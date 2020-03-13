@@ -2,6 +2,7 @@ import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSnackBar} from '@angular/material';
 import {Article} from '../shared/article.model';
 import {ArticleService} from '../shared/article.service';
+import {Provider} from '../shared/provider.model';
 
 @Component({
   styleUrls: ['articles-creation-dialog.component.css'],
@@ -50,6 +51,10 @@ export class ArticlesCreationDialogComponent {
         duration: 2000,
       })
     );
+  }
+
+  getProvider(provider: Provider) {
+    this.newArticle.provider = provider.id;
   }
 
 }
