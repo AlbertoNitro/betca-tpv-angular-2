@@ -36,6 +36,6 @@ export class InvoicesComponent implements OnInit {
   }
 
   print(invoice: Invoice) {
-    // TODO implement print invoice
+    this.invoiceService.print(invoice.ref);
   }
 }
