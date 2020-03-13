@@ -1,42 +1,42 @@
-<h3 mat-dialog-title>Create Provider</h3>
+<h3 mat-dialog-title>Update Provider</h3>
 <mat-dialog-content>
   <mat-form-field>
-    <input [(ngModel)]="newProvider.company" cdkFocusInitial matInput
+    <input [(ngModel)]="provider.company" cdkFocusInitial matInput
            placeholder="Company name"
            required type="text"/>
   </mat-form-field>
   <mat-form-field>
-    <input [(ngModel)]="newProvider.nif" matInput
+    <input [(ngModel)]="provider.nif" matInput
            placeholder="NIF"
            required type="text"/>
   </mat-form-field>
   <mat-form-field>
-    <input [(ngModel)]="newProvider.note" matInput
+    <input [(ngModel)]="provider.note" matInput
            placeholder="Note"
            type="text"/>
   </mat-form-field>
   <mat-form-field>
-    <input [(ngModel)]="newProvider.email" matInput
+    <input [(ngModel)]="provider.email" matInput
            placeholder="E-mail"
            type="text"/>
   </mat-form-field>
   <mat-form-field>
-    <input [(ngModel)]="newProvider.phone" matInput
+    <input [(ngModel)]="provider.phone" matInput
            placeholder="Phone number"
            required type="text"/>
   </mat-form-field>
   <mat-form-field>
-    <input [(ngModel)]="newProvider.address" matInput
+    <input [(ngModel)]="provider.address" matInput
            placeholder="Address"
            type="text"/>
   </mat-form-field>
-  <mat-slide-toggle [(ngModel)]="newProvider.active" disabled>Active</mat-slide-toggle>
+  <mat-slide-toggle [(ngModel)]="provider.active">Active</mat-slide-toggle>
 </mat-dialog-content>
 
 <mat-dialog-actions>
   <button mat-dialog-close mat-raised-button>Close</button>
-  <button (click)="createProvider()" color="primary" mat-raised-button>
+  <button (click)="updateProvider()" color="primary" mat-raised-button>
     <mat-icon>local_shipping</mat-icon>
-    <span>Create provider</span>
+    <span>Update provider</span>
   </button>
 </mat-dialog-actions>
