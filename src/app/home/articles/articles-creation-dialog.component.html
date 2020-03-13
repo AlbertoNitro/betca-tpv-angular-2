@@ -19,7 +19,7 @@
            required type="String"/>
   </mat-form-field>
   <br>
-    <app-providers-dropdown></app-providers-dropdown>
+  <app-providers-dropdown class="full-width" [providerIn]="newArticle.provider" (providerOut)="getProvider($event)"></app-providers-dropdown>
   <br>
   <mat-form-field>
     <input [(ngModel)]="newArticle.stock"  matInput
