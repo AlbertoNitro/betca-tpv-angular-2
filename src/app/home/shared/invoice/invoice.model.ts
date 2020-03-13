@@ -1,5 +1,5 @@
 export interface Invoice {
-  invoice: string;
+  ref: string;
   ticket: string;
   mobile: string;
 }

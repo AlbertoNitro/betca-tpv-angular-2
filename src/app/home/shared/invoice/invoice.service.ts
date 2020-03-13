@@ -26,7 +26,12 @@ export class InvoiceService {
       .param('toDate', filter.toDate ? filter.toDate.getTime().toString() : null)
       .get(AppEndpoints.INVOICES);
   }
+
+  print(id: string): Observable<any> {
+      return this.httpService.pdf().get(AppEndpoints.INVOICES + '/' + id + AppEndpoints.PRINT);
+  }
 }
+
 
 
 
