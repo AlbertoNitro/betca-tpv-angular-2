@@ -2,9 +2,10 @@ import {Component} from '@angular/core';
 import {Provider} from '../shared/provider.model';
 import {ProviderCreationDialogComponent} from './provider-creation-dialog.component';
 import {MatDialog} from '@angular/material';
-import {ProviderService} from './provider.service';
+import {ProviderService} from '../shared/provider.service';
 import {ProviderSearch} from './provider-search.model';
 import {ProviderDetailDialogComponent} from './provider-detail-dialog.component';
+import {ProviderEditionDialogComponent} from './provider-edition-dialog.component';
 
 @Component({
   templateUrl: 'providers.component.html'
@@ -38,23 +39,43 @@ export class ProvidersComponent {
 
   resetSearch() {
     this.providerSearch = {company: null, nif: null, phone: null};
+    this.search();
   }
 
   create() {
-    this.dialog.open(ProviderCreationDialogComponent).afterClosed().subscribe(
-      result => {
+    this.dialog.open(ProviderCreationDialogComponent)
+      .afterClosed().subscribe(
+      () => {
         this.search();
       }
     );
   }
 
   read(provider: Provider) {
-    this.dialog.open(ProviderDetailDialogComponent, {
-      data: {obj: provider}
-    });
+    this.dialog.open(ProviderDetailDialogComponent,
+      {
+        data: {
+          obj: provider
+        }
+      }
+    ).afterClosed().subscribe(
+      () => {
+        this.search();
+      }
+    );
   }
 
   update(provider: Provider) {
-    // TODO
+    this.dialog.open(ProviderEditionDialogComponent,
+      {
+        data: {
+          obj: provider
+        }
+      }
+    ).afterClosed().subscribe(
+      () => {
+        this.search();
+      }
+    );
   }
 }

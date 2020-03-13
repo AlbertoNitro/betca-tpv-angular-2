@@ -10,7 +10,7 @@ import {VoucherService} from './home/shared/voucher.service';
 import {AdvancedArticlesSearchService} from './home/cashier-opened/advanced-search/advanced-articles-search.service';
 import {ArticlesFamilyViewService} from './home/cashier-opened/articles-family/articles-family-view.service';
 import {OrderService} from './home/orders/order.service';
-import {ProviderService} from './home/providers/provider.service';
+import {ProviderService} from './home/shared/provider.service';
 import {SendingsService} from './home/sendings/sendings.service';
 import {InvoiceService} from './home/shared/invoice/invoice.service';
 
