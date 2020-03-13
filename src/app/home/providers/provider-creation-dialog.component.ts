@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {MatSnackBar} from '@angular/material';
 import {Provider} from '../shared/provider.model';
-import {ProviderService} from './provider.service';
+import {ProviderService} from '../shared/provider.service';
 
 @Component({
   templateUrl: 'provider-creation-dialog.component.html',

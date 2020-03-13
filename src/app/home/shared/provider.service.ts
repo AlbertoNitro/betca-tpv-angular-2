@@ -3,8 +3,8 @@ import {Observable} from 'rxjs';
 
 import {AppEndpoints} from '../../app-endpoints';
 import {HttpService} from '../../core/http.service';
-import {Provider} from '../shared/provider.model';
-import {ProviderSearch} from './provider-search.model';
+import {Provider} from './provider.model';
+import {ProviderSearch} from '../providers/provider-search.model';
 
 @Injectable()
 export class ProviderService {

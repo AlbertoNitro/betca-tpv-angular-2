@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {Provider} from '../shared/provider.model';
 import {ProviderCreationDialogComponent} from './provider-creation-dialog.component';
 import {MatDialog} from '@angular/material';
-import {ProviderService} from './provider.service';
+import {ProviderService} from '../shared/provider.service';
 import {ProviderSearch} from './provider-search.model';
 import {ProviderDetailDialogComponent} from './provider-detail-dialog.component';
 

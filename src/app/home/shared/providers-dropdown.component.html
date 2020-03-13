@@ -1,9 +1,10 @@
 <mat-form-field>
   <mat-label>Providers</mat-label>
-  <mat-select>
-    <mat-option></mat-option>
-    <mat-option *ngFor="let provider of providers" [value]="provider.id">
-      {{provider.id - provider.company}}
-    </mat-option>
+  <mat-select [(value)]="providerIn">
+    <ng-container *ngFor="let provider of providers">
+      <mat-option (click)="onSelect(provider)" *ngIf="provider.active" [value]="provider.id">
+        {{provider.company}}
+      </mat-option>
+    </ng-container>
   </mat-select>
 </mat-form-field>
