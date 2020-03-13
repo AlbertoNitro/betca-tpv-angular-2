@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {MatSnackBar} from '@angular/material';
+import {MatDialog, MatSnackBar} from '@angular/material';
 import {Provider} from '../shared/provider.model';
 import {ProviderService} from '../shared/provider.service';
 
@@ -12,12 +12,18 @@ export class ProviderCreationDialogComponent {
 
   newProvider: Provider = {id: null, company: null, phone: null, active: true, address: null, email: null, nif: null, note: null};
 
-  constructor(private message: MatSnackBar, private providerService: ProviderService) {
+  constructor(private providerService: ProviderService,
+              private dialog: MatDialog,
+              private message: MatSnackBar) {
   }
 
   createProvider() {
     this.providerService.create(this.newProvider).subscribe(
-      data => this.message.open('Provider created: ' + data.id, null, {
+      () => this.dialog.closeAll()
+      , () => this.message.open('Oops, something bad happened. The company name already exists.', null, {
+        duration: 2000,
+      })
+      , () => this.message.open('Provider created successfully!', null, {
         duration: 2000,
       })
     );
