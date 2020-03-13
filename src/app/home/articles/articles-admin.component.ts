@@ -5,6 +5,7 @@ import {ArticlesCreationDialogComponent} from './articles-creation-dialog.compon
 import {ArticlesMocksService} from './articles-mocks.service';
 import {ArticlesDetailDialogComponent} from './articles-detail-dialog.component';
 import {ArticleService} from '../shared/article.service';
+import {Provider} from '../shared/provider.model';
 
 @Component({
   templateUrl: 'articles-admin.component.html'
@@ -23,7 +24,6 @@ export class ArticlesAdminComponent {
   }
 
   search() {
-    // TODO
     if (this.article.description == null && this.article.provider == null) {
       this.articleService.readAll().subscribe(
         data => this.data = data
@@ -80,7 +80,7 @@ export class ArticlesAdminComponent {
     );
   }
 
-  delete(article: Article) {
-    // TODO
+  getProvider(provider: Provider) {
+    this.article.provider = provider.id;
   }
 }
