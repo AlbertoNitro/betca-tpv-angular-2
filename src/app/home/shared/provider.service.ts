@@ -26,4 +26,8 @@ export class ProviderService {
   create(provider: Provider): Observable<Provider> {
     return this.httpService.post(AppEndpoints.PROVIDERS, provider);
   }
+
+  update(provider: Provider): Observable<Provider> {
+    return this.httpService.put(AppEndpoints.PROVIDERS + '/' + provider.id, provider);
+  }
 }
