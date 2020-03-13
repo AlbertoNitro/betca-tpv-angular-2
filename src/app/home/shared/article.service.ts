@@ -28,7 +28,6 @@ export class ArticleService {
   }
 
   search(description: string, provider: string): Observable<Article[]> {
-    // TODO
     this.httpService.param('description', description);
     this.httpService.param('provider', provider);
     return this.httpService.get(AppEndpoints.ARTICLES + '/' + 'search');
