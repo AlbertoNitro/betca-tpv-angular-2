@@ -37,6 +37,7 @@ import {InvoicesComponent} from './home/invoices/invoices.component';
 import {BudgetDialogComponent} from './home/cashier-opened/shopping-cart/budget-dialog.component';
 import {ProviderDetailDialogComponent} from './home/providers/provider-detail-dialog.component';
 import {ProviderEditionDialogComponent} from './home/providers/provider-edition-dialog.component';
+import {SendingsDetailDialogComponent} from './home/sendings/sendings-detail-dialog.component';
 
 export class AppComponents {
   static COMPONENTS = [
@@ -81,6 +82,7 @@ export class AppComponents {
     ArticlesDetailDialogComponent,
     SendingsCreationDialogComponent,
     ProviderDetailDialogComponent,
-    ProviderEditionDialogComponent
+    ProviderEditionDialogComponent,
+    SendingsDetailDialogComponent,
   ];
 }

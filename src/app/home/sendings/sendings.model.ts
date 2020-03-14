@@ -2,6 +2,6 @@ export interface Sendings {
   username: string;
   id: string;
   reference: string;
-  creationdate: Date;
+  creationDate: Date;
   estado: boolean;
 }
