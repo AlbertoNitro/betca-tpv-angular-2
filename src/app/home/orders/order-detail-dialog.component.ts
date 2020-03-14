@@ -1,6 +1,6 @@
 import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSnackBar} from '@angular/material';
-import {Order} from './order.model';
+import {OrderDetails} from './orderDetails.model';
 import {OrderService} from './order.service';
 import {OrderLine} from './orderLine.model';
 
@@ -10,7 +10,7 @@ import {OrderLine} from './orderLine.model';
 
 export class OrderDetailDialogComponent {
 
-  order: Order = {id: null, description: null, providerId: null, openingDate: null, closingDate: null, orderLines: []};
+  order: OrderDetails = {id: null, description: null, providerId: null, openingDate: null, closingDate: null, orderLines: []};
 
   title = 'Orders\' articles';
   columns = ['articleId', 'requiredAmount', 'finalAmount'];
