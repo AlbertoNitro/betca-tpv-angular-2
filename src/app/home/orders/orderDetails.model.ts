@@ -1,6 +1,6 @@
 import {OrderLine} from './orderLine.model';
 
-export interface Order {
+export interface OrderDetails {
   id: string;
   description: string;
   providerId: string;

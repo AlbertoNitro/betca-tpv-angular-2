@@ -1,13 +1,14 @@
 import {Injectable} from '@angular/core';
 import {HttpService} from '../../core/http.service';
 import {Observable, of} from 'rxjs';
-import {Order} from '../orders/order.model';
+import {OrderDetails} from './orderDetails.model';
 import {OrderLine} from './orderLine.model';
+import {OrderCreation} from './orderCreation.model';
 
 @Injectable()
 export class OrderService {
 
-  ordersMockList: Order[];
+  ordersMockList: OrderDetails[];
   orderLinesMockList: OrderLine[];
 
   constructor(private httpService: HttpService) {
@@ -44,12 +45,12 @@ export class OrderService {
     ];
   }
 
-  getAll(): Observable<Order[]> {
+  getAll(): Observable<OrderDetails[]> {
     return of(this.ordersMockList);
   }
 
-  createOrder(newOrder: Order): Observable<Order> {
-    const order: Order = {
+  createOrder(newOrder: OrderCreation): Observable<OrderDetails> {
+    const order: OrderDetails = {
       id: this.ordersMockList.length.toString(),
       providerId: newOrder.providerId,
       description: newOrder.description,

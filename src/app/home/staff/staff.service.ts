@@ -4,7 +4,6 @@ import {Observable, of} from 'rxjs';
 import {Staff} from '../staff/staff.model';
 import {AppEndpoints} from '../../app-endpoints';
 import {StockAlarm} from '../stock-alarm/stock-alarm.model';
-import {Order} from '../orders/order.model';
 import {isNotNullOrUndefined} from 'codelyzer/util/isNotNullOrUndefined';
 
 @Injectable({
