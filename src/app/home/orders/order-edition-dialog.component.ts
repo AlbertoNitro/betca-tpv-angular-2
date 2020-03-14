@@ -29,4 +29,8 @@ export class OrderEditionDialogComponent {
   deleteOrderLine(orderLineToDelete: OrderLine) {
     // TODO
   }
+
+  closeOrder() {
+    // TODO
+  }
 }
