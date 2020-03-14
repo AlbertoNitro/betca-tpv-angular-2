@@ -26,11 +26,11 @@ export class HomeComponent {
 
   cashierClosed: boolean;
   username: string;
-  mobile: number;
+  mobile: string;
 
   nowTime: Date;
   staff: Staff;
-  oldRecord: Staff;
+  oldRecord: Staff[];
 
   constructor(private router: Router, private dialog: MatDialog, private httpService: HttpService,
               private staffService: StaffService,
@@ -40,9 +40,10 @@ export class HomeComponent {
       appInfo => this.backend = appInfo.version + '(' + appInfo.profile + ')'
     );
     this.username = tokensService.getName();
-    this.mobile = tokensService.getMobile();
+    this.mobile = tokensService.getMobile().toString();
     this.cashierClosed = true;
     this.cashier();
+    this.oldRecord = null;
   }
 
   isAdmin(): boolean {
@@ -85,24 +86,34 @@ export class HomeComponent {
     this.tokensService.logout();
 
     this.nowTime = new Date();
-    this.staffService
-      .findByMobileAndDate(Number(this.mobile), (this.nowTime.getMonth() + 1).toString(), this.nowTime.getDate().toString())
-      .subscribe(
-      data  => this.oldRecord = data
-    );
-    console.log(this.oldRecord);
-    this.staff =  {
-      id : null,
-      mobile: Number(this.mobile),
-      month: (this.nowTime.getMonth() + 1).toString(),
-      day: this.nowTime.getDate().toString(),
-      workHours: this.nowTime.getHours() - this.oldRecord.lastLoginTime.getHours() +
-        (this.nowTime.getMinutes() - this.oldRecord.lastLoginTime.getMinutes()) / 60 +
-        (this.nowTime.getSeconds() - this.oldRecord.lastLoginTime.getSeconds()) / 3600,
-      lastLoginTime: this.nowTime
-    };
-    this.staffService.updateLoginRecord(this.staff);
-    console.log(this.staffService.readAll());
+    this.staffService.search(
+        this.mobile.toString(),
+        this.nowTime.getFullYear().toString(),
+        (this.nowTime.getMonth() + 1).toString(),
+        this.nowTime.getDate().toString()
+      )
+      .subscribe( {
+        next(data) { this.oldRecord = data; },
+        complete() {
+          this.nowTime = new Date();
+          // tslint:disable-next-line:prefer-const
+          let oldRecordeTime =  new Date(this.oldRecord[0].lastLoginTime);
+          const workHour = this.nowTime.getHours() - oldRecordeTime.getHours() +
+            (this.nowTime.getMinutes() - oldRecordeTime.getMinutes()) / 60 +
+            (this.nowTime.getSeconds() - oldRecordeTime.getSeconds()) / 3600;
+          this.staff =  {
+            id : null,
+            mobile: this.mobile,
+            year: (this.nowTime.getFullYear()).toString(),
+            month: (this.nowTime.getMonth() + 1).toString(),
+            day: this.nowTime.getDate().toString(),
+            workHours: workHour,
+            lastLoginTime: this.nowTime
+          };
+          // this.staffService.updateLoginRecord(this.staff);
+          // console.log('finished..log out');
+        }
+      });
   }
 
   closeCashier() {

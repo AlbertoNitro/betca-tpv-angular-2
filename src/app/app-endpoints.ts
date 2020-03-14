@@ -32,5 +32,7 @@ export class AppEndpoints {
 
   static STOCK_ALARM = '/stock-alarm';
 
+  static STAFFS = '/staffs';
+
   static OFFERS = 'offers';
 }
