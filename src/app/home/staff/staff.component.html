@@ -2,10 +2,13 @@
   <mat-card-title>Search</mat-card-title>
   <mat-card-content>
     <mat-form-field>
-      <input [(ngModel)]="staff.mobile" matInput placeholder="Mobile">
+      <input [(ngModel)]="staff.mobile" matInput placeholder="Mobile:">
     </mat-form-field>
     <mat-form-field>
-      <input [(ngModel)]="month" matInput placeholder="Month:02-2020">
+      <input [(ngModel)]="year" matInput placeholder="Year:">
+    </mat-form-field>
+    <mat-form-field>
+      <input [(ngModel)]="month" matInput placeholder="Month:">
     </mat-form-field>
     <button (click)="search()" color="primary" mat-mini-fab>
       <mat-icon>search</mat-icon>

@@ -1,6 +1,7 @@
 export interface Staff {
-  id: number;
-  mobile: number;
+  id: string;
+  mobile: string;
+  year: string;
   month: string;
   day: string;
   workHours: number;

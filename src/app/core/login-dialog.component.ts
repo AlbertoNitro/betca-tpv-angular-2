@@ -18,7 +18,7 @@ export class LoginDialogComponent {
   homeUrl: string;
 
   nowTime: Date;
-  newMobile: number;
+  newMobile: string;
   staff: Staff;
 
   constructor(@Inject(MAT_DIALOG_DATA) data: any, private staffService: StaffService,
@@ -31,42 +31,37 @@ export class LoginDialogComponent {
       () => this.router.navigate([this.homeUrl])
     );
 
-
-    if ((typeof this.mobile) === 'string') {
-      this.newMobile = Number(this.mobile);
-    } else {
-      this.newMobile = this.mobile;
-    }
-    console.log(this.newMobile);
+    this.newMobile = this.mobile.toString();
     this.nowTime = new Date();
-    if (isNotNullOrUndefined(
-        this.staffService.findByMobileAndDate(
-          this.newMobile,
-          (this.nowTime.getMonth() + 1).toString(),
-          this.nowTime.getDate().toString()
-        )
-      )
-    ) {
-      this.staff = {
-        id : null,
-        mobile: this.newMobile,
-        month: (this.nowTime.getMonth() + 1).toString(),
-        day: this.nowTime.getDate().toString(),
-        workHours: null,
-        lastLoginTime: this.nowTime,
-      };
-      this.staffService.updateLoginRecord(this.staff);
-    } else {
-      this.staff = {
-        id : null,
-        mobile: this.newMobile,
-        month: (this.nowTime.getMonth() + 1).toString(),
-        day: this.nowTime.getDate().toString(),
-        workHours: null,
-        lastLoginTime: this.nowTime,
-      };
-      this.staffService.createNewLoginRecord(this.staff);
-      console.log(this.staffService.readAll());
-    }
+    // if (
+    //     this.staffService.search(
+    //       this.newMobile,
+    //       this.nowTime.getFullYear().toString(),
+    //       (this.nowTime.getMonth() + 1).toString(),
+    //       this.nowTime.getDate().toString()
+    //     )._isScalar === true)
+    // {
+    //   this.staff = {
+    //     id : null,
+    //     mobile: this.newMobile,
+    //     year: (this.nowTime.getFullYear()).toString(),
+    //     month: (this.nowTime.getMonth() + 1).toString(),
+    //     day: this.nowTime.getDate().toString(),
+    //     workHours: null,
+    //     lastLoginTime: this.nowTime,
+    //   };
+    //   this.staffService.updateLoginRecord(this.staff);
+    // } else {
+    this.staff = {
+      id : null,
+      mobile: this.newMobile,
+      year: (this.nowTime.getFullYear()).toString(),
+      month: (this.nowTime.getMonth() + 1).toString(),
+      day: this.nowTime.getDate().toString(),
+      workHours: null,
+      lastLoginTime: this.nowTime,
+    };
+    this.staffService.createNewLoginRecord(this.staff).subscribe();
+    // }
   }
 }
