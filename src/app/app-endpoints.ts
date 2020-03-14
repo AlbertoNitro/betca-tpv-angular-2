@@ -11,6 +11,8 @@ export class AppEndpoints {
   static CASHIER_CLOSURES_LAST = AppEndpoints.CASHIER_CLOSURES + '/last';
   static CASHIER_CLOSURES_LAST_STATE = AppEndpoints.CASHIER_CLOSURES_LAST + '/state';
 
+  static CUSTOMER_DISCOUNTS = '/customer-discounts';
+
   static SYSTEM_APP_INFO = '/system/app-info';
 
   static TICKETS = '/tickets';
