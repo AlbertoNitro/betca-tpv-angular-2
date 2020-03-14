@@ -13,6 +13,7 @@ import {OrderService} from './home/orders/order.service';
 import {ProviderService} from './home/shared/provider.service';
 import {SendingsService} from './home/sendings/sendings.service';
 import {InvoiceService} from './home/shared/invoice/invoice.service';
+import {OfferService} from './home/shared/offer.service';
 
 export class AppServices {
   public static SERVICES = [
@@ -30,6 +31,7 @@ export class AppServices {
     ProviderService,
     ArticlesFamilyViewService,
     SendingsService,
-    InvoiceService
+    InvoiceService,
+    OfferService
   ];
 }
