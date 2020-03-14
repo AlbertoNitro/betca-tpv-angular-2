@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
 import {MatDialog, MatDialogRef, MatSnackBar} from '@angular/material';
-import {Order} from './order.model';
 import {OrderLine} from './orderLine.model';
 import {OrderService} from './order.service';
+import {OrderCreation} from './orderCreation.model';
 
 @Component({
   templateUrl: 'order-creation-dialog.component.html'
@@ -10,7 +10,7 @@ import {OrderService} from './order.service';
 
 export class OrderCreationDialogComponent {
 
-  order: Order = {id: null, description: null, providerId: null, openingDate: null, closingDate: null, orderLines: []};
+  order: OrderCreation = {description: null, providerId: null, orderLines: []};
   orderLine: OrderLine = {articleId: null, finalAmount: null, requiredAmount: null};
 
   title = 'Orders\' articles';

@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Order} from './order.model';
+import {OrderDetails} from './orderDetails.model';
 import {MatDialog} from '@angular/material';
 import {OrderCreationDialogComponent} from './order-creation-dialog.component';
 import {OrderService} from './order.service';
@@ -13,12 +13,12 @@ import {CancelYesDialogComponent} from '../../core/cancel-yes-dialog.component';
 
 export class OrdersComponent {
 
-  order: Order;
+  order: OrderDetails;
   pendingOrders: boolean = true;
 
   title = 'Orders management';
   columns = ['description', 'providerId', 'openingDate'];
-  data: Order[];
+  data: OrderDetails[];
 
   constructor(private dialog: MatDialog, private orderService: OrderService) {
     this.order = {id: null, description: null, providerId: null, orderLines: null, openingDate: null};
@@ -41,7 +41,7 @@ export class OrdersComponent {
     });
   }
 
-  read(order: Order) {
+  read(order: OrderDetails) {
     this.dialog.open(OrderDetailDialogComponent, {
       width: '600px',
       data: {
@@ -51,7 +51,7 @@ export class OrdersComponent {
     });
   }
 
-  update(order: Order) {
+  update(order: OrderDetails) {
     this.dialog.open(OrderEditionDialogComponent, {
       width: '600px',
       data: {
@@ -60,7 +60,7 @@ export class OrdersComponent {
     });
   }
 
-  delete(order: Order) {
+  delete(order: OrderDetails) {
     this.dialog.open(CancelYesDialogComponent).afterClosed().subscribe(
       result => {
         if (result) {
