@@ -13,7 +13,7 @@ export class SendingsCreationDialogComponent {
 
   constructor(private dialog: MatDialog, private dialogRef: MatDialogRef<SendingsCreationDialogComponent>,
               private sendingsService: SendingsService, private message: MatSnackBar) {
-    this.newSendings = {username: null, id: null, reference: null, creationdate: null, estado: false};
+    this.newSendings = {username: null, id: null, reference: null, creationDate: null, estado: false};
   }
 
   createSendings() {
