@@ -31,6 +31,11 @@ export class HomeComponent {
   nowTime: Date;
   staff: Staff;
   oldRecord: Staff[];
+  newRecord: Staff;
+  oldRecordeTime: Date;
+  itemId: string;
+  workHour: number;
+
 
   constructor(private router: Router, private dialog: MatDialog, private httpService: HttpService,
               private staffService: StaffService,
@@ -92,27 +97,32 @@ export class HomeComponent {
         (this.nowTime.getMonth() + 1).toString(),
         this.nowTime.getDate().toString()
       )
-      .subscribe( {
-        next(data) { this.oldRecord = data; },
-        complete() {
-          this.nowTime = new Date();
-          // tslint:disable-next-line:prefer-const
-          let oldRecordeTime =  new Date(this.oldRecord[0].lastLoginTime);
-          const workHour = this.nowTime.getHours() - oldRecordeTime.getHours() +
-            (this.nowTime.getMinutes() - oldRecordeTime.getMinutes()) / 60 +
-            (this.nowTime.getSeconds() - oldRecordeTime.getSeconds()) / 3600;
-          this.staff =  {
-            id : null,
-            mobile: this.mobile,
-            year: (this.nowTime.getFullYear()).toString(),
-            month: (this.nowTime.getMonth() + 1).toString(),
-            day: this.nowTime.getDate().toString(),
-            workHours: workHour,
-            lastLoginTime: this.nowTime
-          };
-          // this.staffService.updateLoginRecord(this.staff);
-          // console.log('finished..log out');
-        }
+      .subscribe( data => {
+        this.oldRecord  = data;
+        console.log(this.oldRecord);
+        this.nowTime = new Date();
+        this.oldRecordeTime =  new Date(this.oldRecord[0].lastLoginTime);
+        this.itemId = this.oldRecord[0].id;
+        this.workHour = this.nowTime.getHours() - this.oldRecordeTime.getHours() +
+          (this.nowTime.getMinutes() - this.oldRecordeTime.getMinutes()) / 60 +
+          (this.nowTime.getSeconds() - this.oldRecordeTime.getSeconds()) / 3600;
+        this.staff =  {
+          id : null,
+          mobile: this.mobile,
+          year: (this.nowTime.getFullYear()).toString(),
+          month: (this.nowTime.getMonth() + 1).toString(),
+          day: this.nowTime.getDate().toString(),
+          workHours: this.workHour,
+          lastLoginTime: this.nowTime
+        };
+        this.staffService.updateLoginRecord(this.itemId, this.staff)
+          // tslint:disable-next-line:no-shadowed-variable
+          .subscribe(data => {
+              this.newRecord = data;
+              console.log(this.newRecord);
+              console.log('finished..log out');
+            }
+        );
       });
   }
 

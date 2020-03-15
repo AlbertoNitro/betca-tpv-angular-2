@@ -21,8 +21,6 @@ export class StaffService {
     },
   ];
 
-
-  // constructor() { }
   constructor(private httpService: HttpService) {
   }
 
@@ -42,74 +40,34 @@ export class StaffService {
     return this.httpService.get(AppEndpoints.STAFFS);
   }
 
-  // findByMobileAndDate(year: string, mobile: string, month: string, day: string): Observable<Staff> {
-  //   let flag = 0;
-  //   // tslint:disable-next-line:prefer-for-of
-  //   for (let i = 0; i < this.staffTest.length; i++) {
-  //     const data = this.staffTest[i];
-  //     if (data.mobile === mobile && data.month === month && data.day === day) {
-  //       return of(data);
-  //     } else {
-  //       flag = flag + 1;
-  //     }
-  //   }
-  //   if (flag > 0) {
-  //     return null;
-  //   }
-  // }
-
-
-  // const staff: Staff = {
-  //   id: null,
-  //   mobile: newLoginRecord.mobile,
-  //   year: newLoginRecord.year,
-  //   month: newLoginRecord.month,
-  //   day: newLoginRecord.day,
-  //   workHours: newLoginRecord.workHours,
-  //   lastLoginTime: newLoginRecord.lastLoginTime,
-  // };
-
 
   createNewLoginRecord(newLoginRecord: Staff): Observable<Staff> {
     return this.httpService.post(AppEndpoints.STAFFS, newLoginRecord);
   }
 
-  // updateLoginRecord(newLoginRecord: Staff): Observable<Staff> {
-  //
-  // }
-
-
-  // createNewLoginRecord(newLoginRecord: Staff): Observable<Staff> {
-  //   const staff: Staff = {
-  //     id: (this.staffTest.length + 1).toString(),
-  //     mobile: newLoginRecord.mobile,
-  //     year: newLoginRecord.year,
-  //     month: newLoginRecord.month,
-  //     day: newLoginRecord.day,
-  //     workHours: newLoginRecord.workHours,
-  //     lastLoginTime: newLoginRecord.lastLoginTime,
-  //   };
-  //   this.staffTest.push(staff);
-  //   return of(staff);
-  // }
-
-  updateLoginRecord(newLoginRecord: Staff): Observable<Staff> {
-    // tslint:disable-next-line:prefer-for-of
-    let flag = 0;
-    // tslint:disable-next-line:prefer-for-of
-    for (let i = 0; i < this.staffTest.length; i++) {
-      const data = this.staffTest[i];
-      if (data.mobile === newLoginRecord.mobile && data.month === newLoginRecord.month && data.day === newLoginRecord.day) {
-        if (isNotNullOrUndefined(newLoginRecord.workHours)) {
-          data.workHours = newLoginRecord.workHours;
-        }
-        data.lastLoginTime = newLoginRecord.lastLoginTime;
-        return of(data);
-      }
-      flag = flag + 1;
-    }
-    if (flag > 0) {
-      return null;
-    }
+  updateLoginRecord(id: string, newLoginRecord: Staff): Observable<Staff> {
+    return this.httpService.put(AppEndpoints.STAFFS + '/' + id, newLoginRecord);
   }
+
+
+
+  // updateLoginRecord(newLoginRecord: Staff): Observable<Staff> {
+  //   // tslint:disable-next-line:prefer-for-of
+  //   let flag = 0;
+  //   // tslint:disable-next-line:prefer-for-of
+  //   for (let i = 0; i < this.staffTest.length; i++) {
+  //     const data = this.staffTest[i];
+  //     if (data.mobile === newLoginRecord.mobile && data.month === newLoginRecord.month && data.day === newLoginRecord.day) {
+  //       if (isNotNullOrUndefined(newLoginRecord.workHours)) {
+  //         data.workHours = newLoginRecord.workHours;
+  //       }
+  //       data.lastLoginTime = newLoginRecord.lastLoginTime;
+  //       return of(data);
+  //     }
+  //     flag = flag + 1;
+  //   }
+  //   if (flag > 0) {
+  //     return null;
+  //   }
+  // }
 }
