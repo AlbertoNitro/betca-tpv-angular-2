@@ -3,6 +3,7 @@ import {Sendings} from './sendings.model';
 import {SendingsService} from './sendings.service';
 import {MatDialog} from '@angular/material';
 import {SendingsCreationDialogComponent} from './sendings-creation-dialog.component';
+import {SendingsDetailDialogComponent} from './sendings-detail-dialog.component';
 
 @Component({
   templateUrl: 'sendings.component.html',
@@ -16,7 +17,7 @@ export class SendingsComponent {
   data: Sendings[];
 
   constructor(private sendingsService: SendingsService, private dialog: MatDialog) {
-    this.sendings = {username: null, id: null, reference: null, creationdate: null, estado: null};
+    this.sendings = {username: null, id: null, reference: null, creationDate: null, estado: null};
     this.data = null;
   }
 
@@ -30,7 +31,7 @@ export class SendingsComponent {
   }
 
   resetSearch() {
-    this.sendings = {username: null, id: null, reference: null, creationdate: null, estado: null};
+    this.sendings = {username: null, id: null, reference: null, creationDate: null, estado: null};
   }
 
   create() {
@@ -39,7 +40,14 @@ export class SendingsComponent {
 
 
   read(sendings: Sendings) {
-    // TODO
+    this.dialog.open(SendingsDetailDialogComponent,
+      {
+        width: '300px',
+        data: {
+          sendingsData: sendings
+        }
+      }
+    );
   }
 
   update(sendings: Sendings) {

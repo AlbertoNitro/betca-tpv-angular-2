@@ -10,27 +10,35 @@ import {Staff} from './staff.model';
 
 export class StaffComponent {
   staff: Staff;
+  year: string;
   month: string;
   title = 'Staff Attendance';
-  columns = ['mobile', 'month', 'day', 'workHours'];
+  columns = ['mobile', 'year', 'month', 'day', 'workHours'];
   data: Staff[];
   // private date: Date;
 
 
   constructor(private staffService: StaffService) {
-    this.staff = {id: null, mobile: null, month: '', day: '', workHours: 0};
+    this.staff = {id: null, mobile: null, year: null, month: null, day: null, workHours: null};
+    // this.staffService.readAll().subscribe(data => this.data = data);
     this.data = null;
   }
 
   search() {
-    // TODO implement search with fields
-    this.staffService.readAll().subscribe(
-      data => this.data = data
-    );
+    if ((this.staff.mobile === null || this.staff.mobile === ''  || this.staff.mobile === 'null') &&
+      (this.staff.year === null  || this.staff.year === ''  || this.staff.year === 'null') &&
+      (this.staff.month === null  || this.staff.month === ''  || this.staff.month === 'null') &&
+      (this.staff.day === null || this.staff.day === ''  || this.staff.day === 'null')
+    ) {
+      this.staffService.readAll().subscribe(data => this.data = data);
+    } else {
+      this.staffService.search(this.staff.mobile, this.staff.year, this.staff.month, this.staff.day)
+        .subscribe(data => this.data = data);
+    }
   }
 
   resetSearch() {
-    this.staff = {id : null, mobile: null, month: null, day: null, workHours: null};
+    this.staff = {id : null, mobile: null, year: null, month: null, day: null, workHours: null};
   }
 
 
