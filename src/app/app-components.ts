@@ -38,6 +38,7 @@ import {BudgetDialogComponent} from './home/cashier-opened/shopping-cart/budget-
 import {ProviderDetailDialogComponent} from './home/providers/provider-detail-dialog.component';
 import {ProviderEditionDialogComponent} from './home/providers/provider-edition-dialog.component';
 import {SendingsDetailDialogComponent} from './home/sendings/sendings-detail-dialog.component';
+import {ArticlesFamilyDialogComponent} from './home/articles/articles-family-dialog.component';
 
 export class AppComponents {
   static COMPONENTS = [
@@ -84,5 +85,6 @@ export class AppComponents {
     ProviderDetailDialogComponent,
     ProviderEditionDialogComponent,
     SendingsDetailDialogComponent,
+    ArticlesFamilyDialogComponent
   ];
 }
