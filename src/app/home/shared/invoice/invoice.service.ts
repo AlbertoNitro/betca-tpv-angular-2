@@ -15,6 +15,10 @@ export class InvoiceService {
     return this.httpService.pdf().post(AppEndpoints.INVOICES);
   }
 
+  createNegative(): Observable<any> {
+    return this.httpService.pdf().post(AppEndpoints.INVOICES + AppEndpoints.NEGATIVE);
+  }
+
   readAll(): Observable<Invoice[]> {
     return this.httpService.get(AppEndpoints.INVOICES);
   }
