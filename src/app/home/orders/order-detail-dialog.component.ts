@@ -10,7 +10,7 @@ import {OrderLine} from './orderLine.model';
 
 export class OrderDetailDialogComponent {
 
-  order: OrderDetails = {id: null, description: null, providerId: null, openingDate: null, closingDate: null, orderLines: []};
+  order: OrderDetails = {id: null, description: null, provider: null, openingDate: null, closingDate: null, orderLines: []};
 
   title = 'Orders\' articles';
   columns = ['articleId', 'requiredAmount', 'finalAmount'];

@@ -4,6 +4,8 @@ import {Observable, of} from 'rxjs';
 import {OrderDetails} from './orderDetails.model';
 import {OrderLine} from './orderLine.model';
 import {OrderCreation} from './orderCreation.model';
+import {OrderSearch} from './orderSearch.model';
+import {AppEndpoints} from '../../app-endpoints';
 
 @Injectable()
 export class OrderService {
@@ -20,7 +22,7 @@ export class OrderService {
     this.ordersMockList = [
       {
         id: '0',
-        providerId: '1154',
+        provider: '1154',
         description: 'Order 1',
         openingDate: new Date(),
         closingDate: null,
@@ -28,7 +30,7 @@ export class OrderService {
       },
       {
         id: '1',
-        providerId: '4421',
+        provider: '4421',
         description: 'Order 2',
         openingDate: new Date(),
         closingDate: null,
@@ -36,7 +38,7 @@ export class OrderService {
       },
       {
         id: '2',
-        providerId: '5431',
+        provider: '5431',
         description: 'Order 3',
         openingDate: new Date(),
         closingDate: null,
@@ -52,7 +54,7 @@ export class OrderService {
   createOrder(newOrder: OrderCreation): Observable<OrderDetails> {
     const order: OrderDetails = {
       id: this.ordersMockList.length.toString(),
-      providerId: newOrder.providerId,
+      provider: newOrder.provider,
       description: newOrder.description,
       openingDate: new Date(),
       closingDate: null,
@@ -62,4 +64,15 @@ export class OrderService {
     return of(order);
   }
 
+  search(orderSearch: OrderSearch): Observable<OrderDetails[]> {
+    let orderClosingDate = null;
+    if (orderSearch.closingDate != null) {
+      orderClosingDate = orderSearch.closingDate.toISOString();
+    }
+    return this.httpService
+      .param('description', orderSearch.description)
+      .param('provider', orderSearch.provider)
+      .param('closingDate', orderClosingDate)
+      .get(AppEndpoints.ORDERS);
+  }
 }

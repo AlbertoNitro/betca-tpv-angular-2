@@ -10,7 +10,7 @@ import {OrderCreation} from './orderCreation.model';
 
 export class OrderCreationDialogComponent {
 
-  order: OrderCreation = {description: null, providerId: null, orderLines: []};
+  order: OrderCreation = {description: null, provider: null, orderLines: []};
   orderLine: OrderLine = {articleId: null, finalAmount: null, requiredAmount: null};
 
   title = 'Orders\' articles';
