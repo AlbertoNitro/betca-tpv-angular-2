@@ -97,8 +97,9 @@ export class HomeComponent {
 
   logout() {
     this.loginTime = this.tokensService.logout();
+    // this.loginTime = new Date(2020, 1, 28, 0, 0, 0);
     if (this.isManagerOrOperator) {
-      this.nowTime = new Date();
+      this.nowTime = new Date((new Date()).getTime() - (new Date()).getTimezoneOffset() * 60 * 1000);
       if (this.loginTime === null) {
         this.staffService.search(
           this.mobile.toString(),
@@ -108,13 +109,17 @@ export class HomeComponent {
         )
           .subscribe( data => {
             this.oldRecord  = data;
-            console.log(this.oldRecord);
-            this.nowTime = new Date();
+            this.nowTime = new Date((new Date()).getTime() - (new Date()).getTimezoneOffset() * 60 * 1000);
             this.oldRecordeTime =  new Date(this.oldRecord[0].lastLoginTime);
             this.itemId = this.oldRecord[0].id;
-            this.workHour = this.nowTime.getHours() - this.oldRecordeTime.getHours() +
-              (this.nowTime.getMinutes() - this.oldRecordeTime.getMinutes()) / 60 +
-              (this.nowTime.getSeconds() - this.oldRecordeTime.getSeconds()) / 3600;
+            this.workHour = this.nowTime.getHours() -
+              (new Date(this.oldRecordeTime.getTime() - (new Date()).getTimezoneOffset() * 60 * 1000)).getHours() +
+              (this.nowTime.getMinutes() -
+                (new Date(this.oldRecordeTime.getTime() - (new Date()).getTimezoneOffset() * 60 * 1000)
+                ).getMinutes()) / 60 +
+              (this.nowTime.getSeconds() -
+                (new Date(this.oldRecordeTime.getTime() - (new Date()).getTimezoneOffset() * 60 * 1000)
+                ).getSeconds()) / 3600;
             this.staff =  {
               id : null,
               mobile: this.mobile,
@@ -128,7 +133,6 @@ export class HomeComponent {
               // tslint:disable-next-line:no-shadowed-variable
               .subscribe(data => {
                   this.newRecord = data;
-                  console.log(this.newRecord);
                 }
               );
           });
@@ -141,7 +145,7 @@ export class HomeComponent {
         )
           .subscribe( data => {
             this.oldRecord  = data;
-            this.nowTime = new Date();
+            this.nowTime = new Date((new Date()).getTime() - (new Date()).getTimezoneOffset() * 60 * 1000);
             this.oldRecordeTime =  new Date(this.oldRecord[0].lastLoginTime);
             this.itemId = this.oldRecord[0].id;
             this.workHour = 24 - this.oldRecordeTime.getHours() +
@@ -164,11 +168,9 @@ export class HomeComponent {
                 }
               );
           });
-        const date = new Date(this.loginTime);
-        console.log('need to write work hours for the pastdays');
+        const date = new Date(this.loginTime.getTime() - this.loginTime.getTimezoneOffset() * 60 * 1000)
         while (!(date.getDate() === this.nowTime.getDate() - 1 && date.getMonth() === this.nowTime.getMonth())) {
           date.setDate(date.getDate() + 1);
-          console.log(date);
           this.staff = {
             id : null,
             mobile: this.mobile,
@@ -181,10 +183,9 @@ export class HomeComponent {
           this.staffService.createNewLoginRecord(this.staff).subscribe();
         }
         date.setDate(date.getDate() + 1);
-        console.log(date);
-        this.workHour = date.getHours() +
-          (date.getMinutes()) / 60 +
-          (date.getSeconds()) / 3600;
+        this.workHour = (new Date()).getHours() +
+          ((new Date()).getMinutes()) / 60 +
+          ((new Date()).getSeconds()) / 3600;
         this.staff = {
           id : null,
           mobile: this.mobile,
