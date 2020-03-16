@@ -16,7 +16,7 @@ export class StaffComponent {
 
 
   constructor(private staffService: StaffService) {
-    this.staff = {id: null, mobile: null, year: null, month: null, day: null, workHours: null};
+    this.staff = {id: null, mobile: null, year: null, month: null, day: null, workHours: null, lastLoginTime: null};
     // this.staffService.readAll().subscribe(data => this.data = data);
     this.data = null;
   }
@@ -40,7 +40,7 @@ export class StaffComponent {
   }
 
   resetSearch() {
-    this.staff = {id : null, mobile: null, year: null, month: null, day: null, workHours: null};
+    this.staff = {id : null, mobile: null, year: null, month: null, day: null, workHours: null, lastLoginTime: null};
   }
 
 

@@ -49,10 +49,10 @@ export class HttpService {
     this.router.navigate(['']);
     const nowTime = new Date();
     if (this.loginTime.getDate() === nowTime.getDate()) {
-      console.log('same days...');
+      // console.log('same days...');
       return null;
     } else {
-      console.log('differernt days...');
+      // console.log('differernt days...');
       return this.loginTime;
     }
   }
