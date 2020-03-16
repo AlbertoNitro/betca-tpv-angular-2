@@ -15,6 +15,7 @@ import {CashierClosureDialogComponent} from './cashier-opened/cashier-closure/ca
 import {CashMovementsDialogComponent} from './cashier-opened/cashier-closure/cash-movements/cash-movements-dialog.component';
 import {Staff} from './staff/staff.model';
 import {StaffService} from './staff/staff.service';
+import {ArticlesFamilyDialogComponent} from './articles/articles-family-dialog.component';
 
 @Component({
   templateUrl: 'home.component.html',
@@ -140,6 +141,12 @@ export class HomeComponent {
 
   moveCash() {
     this.dialog.open(CashMovementsDialogComponent).afterClosed().subscribe(
+      () => this.cashier()
+    );
+  }
+
+  openFamilyCreator() {
+    this.dialog.open(ArticlesFamilyDialogComponent).afterClosed().subscribe(
       () => this.cashier()
     );
   }
