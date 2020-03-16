@@ -10,12 +10,9 @@ import {Staff} from './staff.model';
 
 export class StaffComponent {
   staff: Staff;
-  year: string;
-  month: string;
   title = 'Staff Attendance';
   columns = ['mobile', 'year', 'month', 'day', 'workHours'];
   data: Staff[];
-  // private date: Date;
 
 
   constructor(private staffService: StaffService) {
@@ -32,8 +29,13 @@ export class StaffComponent {
     ) {
       this.staffService.readAll().subscribe(data => this.data = data);
     } else {
-      this.staffService.search(this.staff.mobile, this.staff.year, this.staff.month, this.staff.day)
-        .subscribe(data => this.data = data);
+      if (this.staff.month === null || this.staff.month === ''  || this.staff.month === 'null'){
+        this.staffService.search(this.staff.mobile, this.staff.year, this.staff.month, this.staff.day)
+          .subscribe(data => this.data = data);
+      } else {
+        this.staffService.search(this.staff.mobile, this.staff.year, Number(this.staff.month).toString(), this.staff.day)
+          .subscribe(data => this.data = data);
+      }
     }
   }
 
