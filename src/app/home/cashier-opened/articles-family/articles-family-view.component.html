@@ -5,6 +5,11 @@
   <mat-chip class="chip-sizes">Sizes</mat-chip>
 </mat-chip-list>
 <div class="cards-container">
+  <mat-card class="article-family-view-card type-articles"
+            (click)="getRootArticlesFamily()">
+    <mat-card-title>ROOT</mat-card-title>
+    <div >All articles</div>
+  </mat-card>
   <mat-card *ngFor="let articleElement of articlesFamilyList"
             [ngClass]="{'type-articles': articleElement.familyType === 'ARTICLES',
             'type-article': articleElement.familyType === 'ARTICLE',
