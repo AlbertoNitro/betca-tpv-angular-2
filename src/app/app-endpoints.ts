@@ -21,7 +21,10 @@ export class AppEndpoints {
 
   static BUDGETS = '/budgets';
 
+  static ORDERS = '/orders';
+
   static VOUCHERS = '/vouchers';
+
   static PRINT = '/print';
 
   static PROVIDERS = '/providers';
