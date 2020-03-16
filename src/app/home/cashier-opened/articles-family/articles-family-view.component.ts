@@ -16,12 +16,35 @@ export class ArticlesFamilyViewComponent {
     this.articlesFamilyViewService.readArticlesFamilyList('root')
       .subscribe(
         data => {
-          console.log('data is here');
-          console.log(data);
+
           this.articlesFamilyList = data;
         }
       );
     // this.articlesFamilyList = this.articlesFamilyViewService.readFamilyComposite('ROOT');
     console.log(this.articlesFamilyList);
   }
+
+  selectFamilyTypeArticlesFamily(articleSelected: ArticleFamilyView) {
+    console.log('getting more ');
+    if (articleSelected.familyType === 'ARTICLES') {
+      this.articlesFamilyViewService.readArticlesFamilyList(articleSelected.reference)
+        .subscribe(
+          data => {
+
+            this.articlesFamilyList = data;
+          }
+        );
+    } else if (articleSelected.familyType === 'ARTICLE') {
+
+    } else if (articleSelected.familyType === 'SIZES') {
+
+    }
+  }
+
+
 }
+
+
+
+
+

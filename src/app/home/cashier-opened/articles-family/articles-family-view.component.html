@@ -9,7 +9,8 @@
             [ngClass]="{'type-articles': articleElement.familyType === 'ARTICLES',
             'type-article': articleElement.familyType === 'ARTICLE',
             'type-sizes': articleElement.familyType === 'SIZES'}"
-            class="article-family-view-card">
+            class="article-family-view-card"
+            (click)="selectFamilyTypeArticlesFamily(articleElement)">
 
     <mat-card-title *ngIf="articleElement.id">{{articleElement.id}}</mat-card-title>
     <div *ngIf="articleElement.familyType">{{articleElement.familyType}}</div>
