@@ -39,7 +39,6 @@ import {ProviderDetailDialogComponent} from './home/providers/provider-detail-di
 import {ProviderEditionDialogComponent} from './home/providers/provider-edition-dialog.component';
 import {SendingsDetailDialogComponent} from './home/sendings/sendings-detail-dialog.component';
 import {ArticlesFamilyDialogComponent} from './home/articles/articles-family-dialog.component';
-import {ArticlesDropdownComponent} from './home/shared/articles-dropdown.component';
 
 export class AppComponents {
   static COMPONENTS = [
@@ -62,8 +61,7 @@ export class AppComponents {
     ArticlesAdminComponent,
     ProvidersDropdownComponent,
     SendingsComponent,
-    InvoicesComponent,
-    ArticlesDropdownComponent
+    InvoicesComponent
   ];
 
   static DIALOGS = [
