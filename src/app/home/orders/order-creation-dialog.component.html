@@ -8,7 +8,16 @@
   <app-providers-dropdown class="full-width" [providerIn]="order.provider" (providerOut)="getProvider($event)"></app-providers-dropdown>
   <mat-divider></mat-divider>
   <h4 mat-dialog-title>Add Article to Order</h4>
-  <app-articles-dropdown class="full-width" [articleIn]="orderLine.articleId" (articleOut)="getArticle($event)"></app-articles-dropdown>
+  <mat-form-field>
+    <mat-label>Articles</mat-label>
+    <mat-select [(value)]="articleIn">
+      <ng-container *ngFor="let article of articles">
+        <mat-option (click)="onSelect(article)" [value]="article.code">
+          {{article.description}}
+        </mat-option>
+      </ng-container>
+    </mat-select>
+  </mat-form-field>
   <mat-form-field>
     <input [(ngModel)]="orderLine.requiredAmount" matInput
            placeholder="Required amount"
