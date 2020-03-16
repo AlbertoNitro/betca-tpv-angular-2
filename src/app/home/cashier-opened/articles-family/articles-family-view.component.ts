@@ -11,8 +11,10 @@ export class ArticlesFamilyViewComponent {
   articlesFamilyList: ArticleFamilyView[] = [];
 
   constructor(private articlesFamilyViewService: ArticlesFamilyViewService) {
-    console.log('constructor');
+    this.getRootArticlesFamily();
+  }
 
+  getRootArticlesFamily() {
     this.articlesFamilyViewService.readArticlesFamilyList('root')
       .subscribe(
         data => {
@@ -21,7 +23,31 @@ export class ArticlesFamilyViewComponent {
           this.articlesFamilyList = data;
         }
       );
-    // this.articlesFamilyList = this.articlesFamilyViewService.readFamilyComposite('ROOT');
-    console.log(this.articlesFamilyList);
   }
+
+
+  selectFamilyTypeArticlesFamily(articleSelected: ArticleFamilyView) {
+    console.log('getting more ');
+    if (articleSelected.familyType === 'ARTICLES') {
+      this.articlesFamilyViewService.readArticlesFamilyList(articleSelected.reference)
+        .subscribe(
+          data => {
+            console.log('ARTICLES are here');
+            console.log(data);
+            this.articlesFamilyList = data;
+          }
+        );
+    } else if (articleSelected.familyType === 'ARTICLE') {
+
+    } else if (articleSelected.familyType === 'SIZES') {
+
+    }
+  }
+
+
 }
+
+
+
+
+
