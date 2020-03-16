@@ -36,8 +36,6 @@ export class LoginDialogComponent {
       () => {
         this.router.navigate([this.homeUrl]);
         this.isManagerOrOperator = this.tokensService.isManager() || this.tokensService.isOperator();
-        console.log(this.tokensService.isManager());
-        console.log(this.tokensService.isOperator());
         if (this.isManagerOrOperator) {
           this.newMobile = this.mobile.toString();
           this.nowTime = new Date();
@@ -48,7 +46,6 @@ export class LoginDialogComponent {
             this.nowTime.getDate().toString())
             .subscribe( data => {
               this.oldRecord  = data;
-              console.log(this.oldRecord);
               if (this.oldRecord.length > 0) {
                 this.nowTime = new Date();
                 this.oldRecordeTime =  new Date(this.oldRecord[0].lastLoginTime);
