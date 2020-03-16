@@ -6,6 +6,7 @@ import {OrderService} from './order.service';
 import {OrderDetailDialogComponent} from './order-detail-dialog.component';
 import {OrderEditionDialogComponent} from './order-edition-dialog.component';
 import {CancelYesDialogComponent} from '../../core/cancel-yes-dialog.component';
+import {OrderSearch} from './orderSearch.model';
 
 @Component({
   templateUrl: `orders.component.html`
@@ -14,25 +15,35 @@ import {CancelYesDialogComponent} from '../../core/cancel-yes-dialog.component';
 export class OrdersComponent {
 
   order: OrderDetails;
-  pendingOrders: boolean = true;
+  orderSearch: OrderSearch;
+  pendingOrders: boolean;
 
   title = 'Orders management';
-  columns = ['description', 'providerId', 'openingDate'];
+  columns = ['description', 'provider', 'openingDate'];
   data: OrderDetails[];
 
   constructor(private dialog: MatDialog, private orderService: OrderService) {
-    this.order = {id: null, description: null, providerId: null, orderLines: null, openingDate: null};
+    this.order = {id: null, description: null, provider: null, orderLines: null, openingDate: null};
+    this.orderSearch = {description: null, provider: null, closingDate: new Date()};
     this.data = null;
+    this.pendingOrders = true;
   }
 
   search() {
-    this.orderService.getAll().subscribe(
-      data => this.data = [...data]
+    if (this.pendingOrders === true) {
+      this.orderSearch.closingDate = null;
+    } else {
+      this.orderSearch.closingDate = new Date();
+    }
+    this.orderService.search(this.orderSearch).subscribe(
+      data => {
+        this.data = [...data];
+      }
     );
   }
 
   resetSearch() {
-    this.order = {id: null, description: null, providerId: null, orderLines: null, openingDate: null};
+    this.order = {id: null, description: null, provider: null, orderLines: null, openingDate: null};
   }
 
   create() {

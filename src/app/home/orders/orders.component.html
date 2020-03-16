@@ -2,10 +2,10 @@
   <mat-card-title>Search</mat-card-title>
   <mat-card-content>
     <mat-form-field>
-      <input [(ngModel)]="order.description" matInput placeholder="Description">
+      <input [(ngModel)]="orderSearch.description" matInput placeholder="Description">
     </mat-form-field>
     <mat-form-field>
-      <input [(ngModel)]="order.providerId" matInput placeholder="Provider Id">
+      <input [(ngModel)]="orderSearch.provider" matInput placeholder="Provider Id">
     </mat-form-field>
     <button (click)="search()" color="primary" mat-mini-fab>
       <mat-icon>search</mat-icon>
