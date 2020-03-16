@@ -39,6 +39,9 @@ import {ProviderDetailDialogComponent} from './home/providers/provider-detail-di
 import {ProviderEditionDialogComponent} from './home/providers/provider-edition-dialog.component';
 import {SendingsDetailDialogComponent} from './home/sendings/sendings-detail-dialog.component';
 import {ArticlesFamilyDialogComponent} from './home/articles/articles-family-dialog.component';
+import { OffersComponent } from './home/offers/offers.component';
+import { OfferCreationDialogComponent } from './home/offers/dialogs/offer-creation-dialog/offer-creation-dialog.component';
+import { OfferPrintDialogComponent } from './home/offers/dialogs/offer-print-dialog/offer-print-dialog.component';
 
 export class AppComponents {
   static COMPONENTS = [
@@ -61,7 +64,8 @@ export class AppComponents {
     ArticlesAdminComponent,
     ProvidersDropdownComponent,
     SendingsComponent,
-    InvoicesComponent
+    InvoicesComponent,
+    OffersComponent
   ];
 
   static DIALOGS = [
@@ -85,6 +89,8 @@ export class AppComponents {
     ProviderDetailDialogComponent,
     ProviderEditionDialogComponent,
     SendingsDetailDialogComponent,
-    ArticlesFamilyDialogComponent
+    ArticlesFamilyDialogComponent,
+    OfferCreationDialogComponent,
+    OfferPrintDialogComponent
   ];
 }

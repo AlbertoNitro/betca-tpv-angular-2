@@ -1,0 +1,31 @@
+<mat-card>
+  <mat-card-title>Search</mat-card-title>
+  <mat-card-content>
+    <mat-form-field>
+      <mat-label>Registration Date</mat-label>
+      <input #registrationDate="ngModel" [(ngModel)]="offer.registrationDate" [matDatepicker]="registrationDate"
+             matInput>
+      <mat-datepicker #registrationDate>
+      </mat-datepicker>
+    </mat-form-field>
+    <mat-datepicker-toggle [for]="registrationDate"></mat-datepicker-toggle>
+    <mat-form-field>
+      <mat-label>Expiration Date</mat-label>
+      <input #expirationDate="ngModel" [(ngModel)]="offer.expirationDate" [matDatepicker]="expirationDate"
+             matInput>
+      <mat-datepicker #expirationDate>
+      </mat-datepicker>
+    </mat-form-field>
+    <mat-datepicker-toggle [for]="expirationDate"></mat-datepicker-toggle>
+
+    <button (click)="search(false)" color="primary" mat-mini-fab>
+      <mat-icon>search</mat-icon>
+    </button>
+    <button (click)="search(true)" color="primary" mat-mini-fab>
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-card-content>
+</mat-card>
+
+<app-crud (create)="create()" (read)="print($event)" [updateAction]="false" (delete)="delete($event)"
+          [columns]="columns" [data]="dataSource" [title]="title"></app-crud>

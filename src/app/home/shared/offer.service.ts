@@ -1,21 +1,21 @@
-import { Injectable } from '@angular/core';
-import { HttpService } from 'src/app/core/http.service';
-import { Observable } from 'rxjs';
-import { Offer } from './offer.model';
-import { AppEndpoints } from 'src/app/app-endpoints';
+import {Injectable} from '@angular/core';
+import {HttpService} from 'src/app/core/http.service';
+import {Observable} from 'rxjs';
+import {Offer} from './offer.model';
+import {AppEndpoints} from 'src/app/app-endpoints';
 
 @Injectable()
 export class OfferService {
 
-  constructor(private httpService: HttpService) { }
+  constructor(private httpService: HttpService) {
+  }
 
   public create(offer: Offer): Observable<Offer> {
     return this.httpService.post(AppEndpoints.OFFERS, offer);
   }
 
-  public read(id?: string): Observable<Offer | Array<Offer>> {
-    const endpoint = id ? `${AppEndpoints.OFFERS}/${id}` : `${AppEndpoints.OFFERS}`;
-    return this.httpService.get(endpoint);
+  public read(id?: string): Observable<Offer> {
+    return this.httpService.get(`${AppEndpoints.OFFERS}/${id}`);
   }
 
   public delete(offer: Offer): Observable<void> {

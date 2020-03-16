@@ -1,0 +1,19 @@
+<h3 mat-dialog-title>Print Offer</h3>
+<mat-dialog-content>
+  <h3>{{offer.id}}</h3>
+  <p>Description: <strong>{{offer.description}}</strong></p>
+  <p>Registration Date: <strong>{{offer.registrationDate}}</strong></p>
+  <p>Expiration Date: <strong>{{offer.expirationDate}}</strong></p>
+  <p>Discount: <strong>{{offer.discount}} %</strong></p>
+</mat-dialog-content>
+<mat-dialog-actions>
+
+  <button mat-dialog-close mat-raised-button>Close</button>
+
+  <button (click)="printOffer()" color="primary" mat-raised-button>
+    <mat-icon>local_offer</mat-icon>
+    <span>Print offer</span>
+  </button>
+
+
+</mat-dialog-actions>

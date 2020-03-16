@@ -1,0 +1,55 @@
+<h3 mat-dialog-title>Create Offer</h3>
+<mat-dialog-content>
+  <form (ngSubmit)="create()">
+    <mat-form-field>
+      <label>
+        <input [(ngModel)]="offer.description" cdkFocusInitial class="form-control" matInput placeholder="Description"
+               name="description" type="text" required/>
+      </label>
+    </mat-form-field>
+    <mat-form-field>
+      <label>
+        <input [(ngModel)]="offer.expirationDate" cdkFocusInitial class="form-control" matInput
+               placeholder="Expiration Date" name="expirationDate" type="date" required/>
+      </label>
+    </mat-form-field>
+    <mat-form-field>
+      <label>
+        <input [(ngModel)]="offer.discount" cdkFocusInitial class="form-control" matInput
+               placeholder="Discount %" name="discount" type="number" required min="1" max="100"/>
+      </label>
+    </mat-form-field>
+    <br/>
+    <h3 mat-dialog-title>Add or remove articles to offer</h3>
+    <mat-nav-list>
+      <mat-list-item *ngFor="let article of articles">
+        <div class="custom-list">
+          <p>{{article.description}}</p>
+          <button (click)="addArticleToOffer(article)" mat-button mat-icon-button matSuffix>
+            <mat-icon color="primary">add</mat-icon>
+          </button>
+        </div>
+      </mat-list-item>
+    </mat-nav-list>
+
+    <mat-nav-list>
+      <mat-list-item *ngFor="let article of offer.articleList">
+        <div class="custom-list">
+          <p>{{article.description}}</p>
+          <button (click)="removeArticleFromOffer(article)" mat-button mat-icon-button matSuffix>
+            <mat-icon color="warn">remove</mat-icon>
+          </button>
+        </div>
+      </mat-list-item>
+    </mat-nav-list>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+
+  <button mat-dialog-close mat-raised-button>Close</button>
+
+  <button (click)="create()" color="primary" mat-raised-button type="submit">
+    <mat-icon>local_offer</mat-icon>
+    <span>Create Offer</span>
+  </button>
+</mat-dialog-actions>
