@@ -52,16 +52,7 @@ export class OrderService {
   }
 
   createOrder(newOrder: OrderCreation): Observable<OrderDetails> {
-    const order: OrderDetails = {
-      id: this.ordersMockList.length.toString(),
-      provider: newOrder.provider,
-      description: newOrder.description,
-      openingDate: new Date(),
-      closingDate: null,
-      orderLines: newOrder.orderLines
-    };
-    this.ordersMockList.push(order);
-    return of(order);
+    return this.httpService.post(AppEndpoints.ORDERS, newOrder);
   }
 
   search(orderSearch: OrderSearch): Observable<OrderDetails[]> {

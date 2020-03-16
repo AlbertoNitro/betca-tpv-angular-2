@@ -4,9 +4,7 @@
     <mat-form-field>
       <input [(ngModel)]="orderSearch.description" matInput placeholder="Description">
     </mat-form-field>
-    <mat-form-field>
-      <input [(ngModel)]="orderSearch.provider" matInput placeholder="Provider Id">
-    </mat-form-field>
+    <app-providers-dropdown class="full-width" [providerIn]="order.provider" (providerOut)="getProvider($event)"></app-providers-dropdown>
     <button (click)="search()" color="primary" mat-mini-fab>
       <mat-icon>search</mat-icon>
     </button>

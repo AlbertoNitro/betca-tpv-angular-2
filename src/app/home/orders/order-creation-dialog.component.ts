@@ -3,6 +3,8 @@ import {MatDialog, MatDialogRef, MatSnackBar} from '@angular/material';
 import {OrderLine} from './orderLine.model';
 import {OrderService} from './order.service';
 import {OrderCreation} from './orderCreation.model';
+import {Provider} from '../shared/provider.model';
+import {Article} from '../shared/article.model';
 
 @Component({
   templateUrl: 'order-creation-dialog.component.html'
@@ -29,6 +31,14 @@ export class OrderCreationDialogComponent {
         });
         this.dialogRef.close();
       });
+  }
+
+  getProvider(provider: Provider) {
+    this.order.provider = provider.id;
+  }
+
+  getArticle(article: Article) {
+    this.orderLine.articleId = article.code;
   }
 
   addOrderLine() {
