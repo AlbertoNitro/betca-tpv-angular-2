@@ -7,6 +7,7 @@ import {OrderDetailDialogComponent} from './order-detail-dialog.component';
 import {OrderEditionDialogComponent} from './order-edition-dialog.component';
 import {CancelYesDialogComponent} from '../../core/cancel-yes-dialog.component';
 import {OrderSearch} from './orderSearch.model';
+import {Provider} from '../shared/provider.model';
 
 @Component({
   templateUrl: `orders.component.html`
@@ -44,6 +45,10 @@ export class OrdersComponent {
 
   resetSearch() {
     this.order = {id: null, description: null, provider: null, orderLines: null, openingDate: null};
+  }
+
+  getProvider(provider: Provider) {
+    this.order.provider = provider.id;
   }
 
   create() {
