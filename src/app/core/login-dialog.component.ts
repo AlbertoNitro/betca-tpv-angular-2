@@ -38,7 +38,7 @@ export class LoginDialogComponent {
         this.isManagerOrOperator = this.tokensService.isManager() || this.tokensService.isOperator();
         if (this.isManagerOrOperator) {
           this.newMobile = this.mobile.toString();
-          this.nowTime = new Date();
+          this.nowTime = new Date((new Date()).getTime() - (new Date()).getTimezoneOffset() * 60 * 1000);
           this.staffService.search(
             this.newMobile,
             this.nowTime.getFullYear().toString(),
@@ -47,7 +47,7 @@ export class LoginDialogComponent {
             .subscribe( data => {
               this.oldRecord  = data;
               if (this.oldRecord.length > 0) {
-                this.nowTime = new Date();
+                this.nowTime = new Date((new Date()).getTime() - (new Date()).getTimezoneOffset() * 60 * 1000);
                 this.oldRecordeTime =  new Date(this.oldRecord[0].lastLoginTime);
                 this.itemId = this.oldRecord[0].id;
                 this.workHour = this.oldRecord[0].workHours;
@@ -60,12 +60,11 @@ export class LoginDialogComponent {
                   workHours: this.workHour,
                   lastLoginTime: this.nowTime
                 };
+                console.log(this.staff.lastLoginTime);
                 this.staffService.updateLoginRecord(this.itemId, this.staff)
                   // tslint:disable-next-line:no-shadowed-variable
                   .subscribe(data => {
                       this.newRecord = data;
-                      console.log(this.newRecord);
-                      console.log('finished..log out');
                     }
                   );
               } else {
