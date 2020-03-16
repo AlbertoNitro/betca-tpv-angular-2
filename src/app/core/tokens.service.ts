@@ -17,8 +17,8 @@ export class TokensService {
     return this.httpService.login(mobile, password, TokensService.END_POINT);
   }
 
-  logout(): void {
-    this.httpService.logout();
+  logout(): Date {
+    return this.httpService.logout();
   }
 
   isAdmin(): boolean {

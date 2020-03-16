@@ -36,6 +36,8 @@ export class HomeComponent {
   oldRecordeTime: Date;
   itemId: string;
   workHour: number;
+  isManagerOrOperator: boolean;
+  loginTime: Date;
 
 
   constructor(private router: Router, private dialog: MatDialog, private httpService: HttpService,
@@ -50,6 +52,7 @@ export class HomeComponent {
     this.cashierClosed = true;
     this.cashier();
     this.oldRecord = null;
+    this.isManagerOrOperator = tokensService.isOperator() || tokensService.isManager();
   }
 
   isAdmin(): boolean {
@@ -58,6 +61,10 @@ export class HomeComponent {
 
   isManager(): boolean {
     return this.tokensService.isManager();
+  }
+
+  isOperator(): boolean {
+    return this.tokensService.isOperator();
   }
 
   cashier() {
@@ -89,42 +96,107 @@ export class HomeComponent {
   }
 
   logout() {
-    this.tokensService.logout();
-
-    this.nowTime = new Date();
-    this.staffService.search(
-        this.mobile.toString(),
-        this.nowTime.getFullYear().toString(),
-        (this.nowTime.getMonth() + 1).toString(),
-        this.nowTime.getDate().toString()
-      )
-      .subscribe( data => {
-        this.oldRecord  = data;
-        console.log(this.oldRecord);
-        this.nowTime = new Date();
-        this.oldRecordeTime =  new Date(this.oldRecord[0].lastLoginTime);
-        this.itemId = this.oldRecord[0].id;
-        this.workHour = this.nowTime.getHours() - this.oldRecordeTime.getHours() +
-          (this.nowTime.getMinutes() - this.oldRecordeTime.getMinutes()) / 60 +
-          (this.nowTime.getSeconds() - this.oldRecordeTime.getSeconds()) / 3600;
-        this.staff =  {
+    this.loginTime = this.tokensService.logout();
+    if (this.isManagerOrOperator) {
+      this.nowTime = new Date();
+      if (this.loginTime === null) {
+        this.staffService.search(
+          this.mobile.toString(),
+          this.nowTime.getFullYear().toString(),
+          (this.nowTime.getMonth() + 1).toString(),
+          this.nowTime.getDate().toString()
+        )
+          .subscribe( data => {
+            this.oldRecord  = data;
+            console.log(this.oldRecord);
+            this.nowTime = new Date();
+            this.oldRecordeTime =  new Date(this.oldRecord[0].lastLoginTime);
+            this.itemId = this.oldRecord[0].id;
+            this.workHour = this.nowTime.getHours() - this.oldRecordeTime.getHours() +
+              (this.nowTime.getMinutes() - this.oldRecordeTime.getMinutes()) / 60 +
+              (this.nowTime.getSeconds() - this.oldRecordeTime.getSeconds()) / 3600;
+            this.staff =  {
+              id : null,
+              mobile: this.mobile,
+              year: (this.nowTime.getFullYear()).toString(),
+              month: (this.nowTime.getMonth() + 1).toString(),
+              day: this.nowTime.getDate().toString(),
+              workHours: this.workHour,
+              lastLoginTime: this.nowTime
+            };
+            this.staffService.updateLoginRecord(this.itemId, this.staff)
+              // tslint:disable-next-line:no-shadowed-variable
+              .subscribe(data => {
+                  this.newRecord = data;
+                  console.log(this.newRecord);
+                }
+              );
+          });
+      } else {
+        this.staffService.search(
+          this.mobile.toString(),
+          this.loginTime.getFullYear().toString(),
+          (this.loginTime.getMonth() + 1).toString(),
+          this.loginTime.getDate().toString()
+        )
+          .subscribe( data => {
+            this.oldRecord  = data;
+            this.nowTime = new Date();
+            this.oldRecordeTime =  new Date(this.oldRecord[0].lastLoginTime);
+            this.itemId = this.oldRecord[0].id;
+            this.workHour = 24 - this.oldRecordeTime.getHours() +
+              (60 - this.oldRecordeTime.getMinutes()) / 60 +
+              (60 - this.oldRecordeTime.getSeconds()) / 3600;
+            this.staff =  {
+              id : null,
+              mobile: this.mobile,
+              year: (this.loginTime.getFullYear()).toString(),
+              month: (this.loginTime.getMonth() + 1).toString(),
+              day: this.loginTime.getDate().toString(),
+              workHours: this.workHour,
+              lastLoginTime: new Date(this.loginTime.getFullYear(), (this.loginTime.getMonth() + 1),
+                this.loginTime.getDate(), 0 , 0 , 0)
+            };
+            this.staffService.updateLoginRecord(this.itemId, this.staff)
+              // tslint:disable-next-line:no-shadowed-variable
+              .subscribe(data => {
+                  this.newRecord = data;
+                }
+              );
+          });
+        const date = new Date(this.loginTime);
+        console.log('need to write work hours for the pastdays');
+        while (!(date.getDate() === this.nowTime.getDate() - 1 && date.getMonth() === this.nowTime.getMonth())) {
+          date.setDate(date.getDate() + 1);
+          console.log(date);
+          this.staff = {
+            id : null,
+            mobile: this.mobile,
+            year: (date.getFullYear()).toString(),
+            month: (date.getMonth() + 1).toString(),
+            day: date.getDate().toString(),
+            workHours: 24,
+            lastLoginTime: this.loginTime,
+          };
+          this.staffService.createNewLoginRecord(this.staff).subscribe();
+        }
+        date.setDate(date.getDate() + 1);
+        console.log(date);
+        this.workHour = date.getHours() +
+          (date.getMinutes()) / 60 +
+          (date.getSeconds()) / 3600;
+        this.staff = {
           id : null,
           mobile: this.mobile,
-          year: (this.nowTime.getFullYear()).toString(),
-          month: (this.nowTime.getMonth() + 1).toString(),
-          day: this.nowTime.getDate().toString(),
+          year: (date.getFullYear()).toString(),
+          month: (date.getMonth() + 1).toString(),
+          day: date.getDate().toString(),
           workHours: this.workHour,
-          lastLoginTime: this.nowTime
+          lastLoginTime: this.loginTime,
         };
-        this.staffService.updateLoginRecord(this.itemId, this.staff)
-          // tslint:disable-next-line:no-shadowed-variable
-          .subscribe(data => {
-              this.newRecord = data;
-              console.log(this.newRecord);
-              console.log('finished..log out');
-            }
-        );
-      });
+        this.staffService.createNewLoginRecord(this.staff).subscribe();
+      }
+    }
   }
 
   closeCashier() {
