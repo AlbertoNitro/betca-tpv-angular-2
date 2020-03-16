@@ -29,6 +29,10 @@ export class TokensService {
     return this.httpService.getToken() ? this.httpService.getToken().roles.includes(Role.MANAGER) : false;
   }
 
+  isOperator(): boolean {
+    return this.httpService.getToken() ? this.httpService.getToken().roles.includes(Role.OPERATOR) : false;
+  }
+
   getMobile(): number {
     return this.httpService.getToken() ? this.httpService.getToken().mobile : undefined;
   }
