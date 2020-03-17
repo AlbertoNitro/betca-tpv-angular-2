@@ -107,10 +107,10 @@ export class HomeComponent {
           (this.nowTime.getMonth() + 1).toString(),
           this.nowTime.getDate().toString()
         )
-          .subscribe( data => {
-            this.oldRecord  = data;
+          .subscribe(data => {
+            this.oldRecord = data;
             this.nowTime = new Date((new Date()).getTime() - (new Date()).getTimezoneOffset() * 60 * 1000);
-            this.oldRecordeTime =  new Date(this.oldRecord[0].lastLoginTime);
+            this.oldRecordeTime = new Date(this.oldRecord[0].lastLoginTime);
             this.itemId = this.oldRecord[0].id;
             this.workHour = this.nowTime.getHours() -
               (new Date(this.oldRecordeTime.getTime() - (new Date()).getTimezoneOffset() * 60 * 1000)).getHours() +
@@ -120,8 +120,8 @@ export class HomeComponent {
               (this.nowTime.getSeconds() -
                 (new Date(this.oldRecordeTime.getTime() - (new Date()).getTimezoneOffset() * 60 * 1000)
                 ).getSeconds()) / 3600;
-            this.staff =  {
-              id : null,
+            this.staff = {
+              id: null,
               mobile: this.mobile,
               year: (this.nowTime.getFullYear()).toString(),
               month: (this.nowTime.getMonth() + 1).toString(),
@@ -143,23 +143,23 @@ export class HomeComponent {
           (this.loginTime.getMonth() + 1).toString(),
           this.loginTime.getDate().toString()
         )
-          .subscribe( data => {
-            this.oldRecord  = data;
+          .subscribe(data => {
+            this.oldRecord = data;
             this.nowTime = new Date((new Date()).getTime() - (new Date()).getTimezoneOffset() * 60 * 1000);
-            this.oldRecordeTime =  new Date(this.oldRecord[0].lastLoginTime);
+            this.oldRecordeTime = new Date(this.oldRecord[0].lastLoginTime);
             this.itemId = this.oldRecord[0].id;
             this.workHour = 24 - this.oldRecordeTime.getHours() +
               (60 - this.oldRecordeTime.getMinutes()) / 60 +
               (60 - this.oldRecordeTime.getSeconds()) / 3600;
-            this.staff =  {
-              id : null,
+            this.staff = {
+              id: null,
               mobile: this.mobile,
               year: (this.loginTime.getFullYear()).toString(),
               month: (this.loginTime.getMonth() + 1).toString(),
               day: this.loginTime.getDate().toString(),
               workHours: this.workHour,
               lastLoginTime: new Date(this.loginTime.getFullYear(), (this.loginTime.getMonth() + 1),
-                this.loginTime.getDate(), 0 , 0 , 0)
+                this.loginTime.getDate(), 0, 0, 0)
             };
             this.staffService.updateLoginRecord(this.itemId, this.staff)
               // tslint:disable-next-line:no-shadowed-variable
@@ -168,11 +168,11 @@ export class HomeComponent {
                 }
               );
           });
-        const date = new Date(this.loginTime.getTime() - this.loginTime.getTimezoneOffset() * 60 * 1000)
+        const date = new Date(this.loginTime.getTime() - this.loginTime.getTimezoneOffset() * 60 * 1000);
         while (!(date.getDate() === this.nowTime.getDate() - 1 && date.getMonth() === this.nowTime.getMonth())) {
           date.setDate(date.getDate() + 1);
           this.staff = {
-            id : null,
+            id: null,
             mobile: this.mobile,
             year: (date.getFullYear()).toString(),
             month: (date.getMonth() + 1).toString(),
@@ -187,7 +187,7 @@ export class HomeComponent {
           ((new Date()).getMinutes()) / 60 +
           ((new Date()).getSeconds()) / 3600;
         this.staff = {
-          id : null,
+          id: null,
           mobile: this.mobile,
           year: (date.getFullYear()).toString(),
           month: (date.getMonth() + 1).toString(),

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
 import {StaffService} from './staff.service';
 import {Staff} from './staff.model';
 
@@ -22,14 +22,14 @@ export class StaffComponent {
   }
 
   search() {
-    if ((this.staff.mobile === null || this.staff.mobile === ''  || this.staff.mobile === 'null') &&
-      (this.staff.year === null  || this.staff.year === ''  || this.staff.year === 'null') &&
-      (this.staff.month === null  || this.staff.month === ''  || this.staff.month === 'null') &&
-      (this.staff.day === null || this.staff.day === ''  || this.staff.day === 'null')
+    if ((this.staff.mobile === null || this.staff.mobile === '' || this.staff.mobile === 'null') &&
+      (this.staff.year === null || this.staff.year === '' || this.staff.year === 'null') &&
+      (this.staff.month === null || this.staff.month === '' || this.staff.month === 'null') &&
+      (this.staff.day === null || this.staff.day === '' || this.staff.day === 'null')
     ) {
       this.staffService.readAll().subscribe(data => this.data = data);
     } else {
-      if (this.staff.month === null || this.staff.month === ''  || this.staff.month === 'null'){
+      if (this.staff.month === null || this.staff.month === '' || this.staff.month === 'null') {
         this.staffService.search(this.staff.mobile, this.staff.year, this.staff.month, this.staff.day)
           .subscribe(data => this.data = data);
       } else {
@@ -40,7 +40,7 @@ export class StaffComponent {
   }
 
   resetSearch() {
-    this.staff = {id : null, mobile: null, year: null, month: null, day: null, workHours: null, lastLoginTime: null};
+    this.staff = {id: null, mobile: null, year: null, month: null, day: null, workHours: null, lastLoginTime: null};
   }
 
 

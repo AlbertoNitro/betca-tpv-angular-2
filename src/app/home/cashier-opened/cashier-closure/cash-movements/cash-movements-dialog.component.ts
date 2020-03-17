@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {MatDialog, MatDialogRef} from '@angular/material';
 import {CashierMovements} from './cash-movements.model';
-import {CashMovementsService} from "./cash-movements.service";
+import {CashMovementsService} from './cash-movements.service';
 
 
 @Component({
@@ -15,7 +15,7 @@ export class CashMovementsDialogComponent {
   cashCashier: number;
 
   constructor(private dialog: MatDialog, private dialogRef: MatDialogRef<CashMovementsDialogComponent>,
-              private cashMovementsService: CashMovementsService ) {
+              private cashMovementsService: CashMovementsService) {
     cashMovementsService.readState().subscribe((cashierState) => {
       this.cashCashier = cashierState.totalCash;
     });

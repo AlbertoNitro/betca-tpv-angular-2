@@ -3,20 +3,20 @@
   <form (ngSubmit)="create()">
     <mat-form-field>
       <label>
-        <input [(ngModel)]="offer.description" cdkFocusInitial class="form-control" matInput placeholder="Description"
-               name="description" type="text" required/>
+        <input [(ngModel)]="offer.description" cdkFocusInitial class="form-control" matInput name="description"
+               placeholder="Description" required type="text"/>
       </label>
     </mat-form-field>
     <mat-form-field>
       <label>
         <input [(ngModel)]="offer.expirationDate" cdkFocusInitial class="form-control" matInput
-               placeholder="Expiration Date" name="expirationDate" type="date" required/>
+               name="expirationDate" placeholder="Expiration Date" required type="date"/>
       </label>
     </mat-form-field>
     <mat-form-field>
       <label>
         <input [(ngModel)]="offer.discount" cdkFocusInitial class="form-control" matInput
-               placeholder="Discount %" name="discount" type="number" required min="1" max="100"/>
+               max="100" min="1" name="discount" placeholder="Discount %" required type="number"/>
       </label>
     </mat-form-field>
     <br/>

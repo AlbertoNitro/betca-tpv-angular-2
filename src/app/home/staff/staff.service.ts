@@ -1,7 +1,6 @@
-import { Injectable } from '@angular/core';
-import {Observable, of} from 'rxjs';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
 import {Staff} from '../staff/staff.model';
-import {isNotNullOrUndefined} from 'codelyzer/util/isNotNullOrUndefined';
 import {HttpService} from '../../core/http.service';
 import {AppEndpoints} from '../../app-endpoints';
 

@@ -2,13 +2,13 @@
 <mat-dialog-content>
 
   <mat-form-field class="full-width">
-    <input [(ngModel)]="newArticle.description"  cdkFocusInitial matInput
+    <input [(ngModel)]="newArticle.description" cdkFocusInitial matInput
            placeholder="Description"
            required type="String"/>
   </mat-form-field>
   <br>
   <mat-form-field class="full-width">
-    <input [(ngModel)]="newArticle.retailPrice"  matInput
+    <input [(ngModel)]="newArticle.retailPrice" matInput
            placeholder="Price"
            required type="number"/>
   </mat-form-field>
@@ -19,10 +19,11 @@
            required type="String"/>
   </mat-form-field>
   <br>
-  <app-providers-dropdown class="full-width" [providerIn]="newArticle.provider" (providerOut)="getProvider($event)"></app-providers-dropdown>
+  <app-providers-dropdown (providerOut)="getProvider($event)" [providerIn]="newArticle.provider"
+                          class="full-width"></app-providers-dropdown>
   <br>
   <mat-form-field>
-    <input [(ngModel)]="newArticle.stock"  matInput
+    <input [(ngModel)]="newArticle.stock" matInput
            placeholder="Stock"
            required type="number"/>
   </mat-form-field>

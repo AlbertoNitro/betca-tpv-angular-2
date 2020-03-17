@@ -1,4 +1,4 @@
-import {Component, OnInit, EventEmitter, Output} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {StockAlarmService} from '../stock-alarm.service';
 import {StockAlarm} from '../stock-alarm.model';
 

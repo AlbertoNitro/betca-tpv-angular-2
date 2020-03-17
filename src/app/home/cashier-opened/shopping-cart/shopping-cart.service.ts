@@ -142,6 +142,17 @@ export class ShoppingCartService {
     return (!this.shoppingCart || this.shoppingCart.length === 0);
   }
 
+  createBudget(budgetCreation: BudgetCreation): Observable<any> {
+    const budget = this.httpService.pdf().post(AppEndpoints.BUDGETS, budgetCreation).pipe(
+      map(() => this.reset())
+    );
+    return budget;
+  }
+
+  getShoppingCart() {
+    return this.shoppingCart;
+  }
+
   private addArticle(article: Article, price?: number) {
     const shopping = new Shopping(article.code, article.description, article.retailPrice);
     if (article.stock < 1) {
@@ -154,17 +165,6 @@ export class ShoppingCartService {
       shopping.updateDiscount();
     }
     this.synchronizeAll();
-  }
-
-  createBudget(budgetCreation: BudgetCreation): Observable<any> {
-    const budget = this.httpService.pdf().post(AppEndpoints.BUDGETS, budgetCreation).pipe(
-      map(() => this.reset())
-    );
-    return budget;
-  }
-
-  getShoppingCart() {
-    return this.shoppingCart;
   }
 
   private reset() {

@@ -3,7 +3,8 @@
   <mat-card-content>
     <mat-form-field>
       <mat-label>From Date</mat-label>
-      <input #closureDate= "ngModel" [(ngModel)]="modelCashierClosureSearch.closureDate" [matDatepicker]="closureDate" matInput>
+      <input #closureDate="ngModel" [(ngModel)]="modelCashierClosureSearch.closureDate" [matDatepicker]="closureDate"
+             matInput>
       <mat-datepicker #closureDate></mat-datepicker>
     </mat-form-field>
     <mat-datepicker-toggle [for]="closureDate"></mat-datepicker-toggle>
@@ -15,4 +16,5 @@
     </button>
   </mat-card-content>
 </mat-card>
-<app-crud [columns]="columns" [createAction]="false" [data]="data" [deleteAction]="false" [title]="title" [updateAction]="false"></app-crud>
+<app-crud [columns]="columns" [createAction]="false" [data]="data" [deleteAction]="false" [title]="title"
+          [updateAction]="false"></app-crud>

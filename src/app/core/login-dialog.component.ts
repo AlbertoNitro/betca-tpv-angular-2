@@ -44,15 +44,15 @@ export class LoginDialogComponent {
             this.nowTime.getFullYear().toString(),
             (this.nowTime.getMonth() + 1).toString(),
             this.nowTime.getDate().toString())
-            .subscribe( data => {
-              this.oldRecord  = data;
+            .subscribe(data => {
+              this.oldRecord = data;
               if (this.oldRecord.length > 0) {
                 this.nowTime = new Date((new Date()).getTime() - (new Date()).getTimezoneOffset() * 60 * 1000);
-                this.oldRecordeTime =  new Date(this.oldRecord[0].lastLoginTime);
+                this.oldRecordeTime = new Date(this.oldRecord[0].lastLoginTime);
                 this.itemId = this.oldRecord[0].id;
                 this.workHour = this.oldRecord[0].workHours;
-                this.staff =  {
-                  id : null,
+                this.staff = {
+                  id: null,
                   mobile: this.newMobile,
                   year: (this.nowTime.getFullYear()).toString(),
                   month: (this.nowTime.getMonth() + 1).toString(),
@@ -69,7 +69,7 @@ export class LoginDialogComponent {
                   );
               } else {
                 this.staff = {
-                  id : null,
+                  id: null,
                   mobile: this.newMobile,
                   year: (this.nowTime.getFullYear()).toString(),
                   month: (this.nowTime.getMonth() + 1).toString(),

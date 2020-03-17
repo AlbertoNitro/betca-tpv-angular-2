@@ -32,7 +32,7 @@ export class InvoiceService {
   }
 
   print(id: string): Observable<any> {
-      return this.httpService.pdf().get(AppEndpoints.INVOICES + '/' + id + AppEndpoints.PRINT);
+    return this.httpService.pdf().get(AppEndpoints.INVOICES + '/' + id + AppEndpoints.PRINT);
   }
 }
 

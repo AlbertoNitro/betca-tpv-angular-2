@@ -39,7 +39,7 @@ export class VouchersComponent {
     if (this.searchVoucher.firstDate == null) {
       this.searchVoucher.firstDate = new Date(2020, 1, 1);
     }
-    if (this.searchVoucher.finalDate == null ) {
+    if (this.searchVoucher.finalDate == null) {
       this.searchVoucher.finalDate = new Date();
     }
 

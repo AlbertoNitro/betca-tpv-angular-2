@@ -15,7 +15,7 @@ import {SendingsComponent} from './home/sendings/sendings.component';
 import {StockAlarmComponent} from './home/stock-alarm/stock-alarm.component';
 import {CustomerDiscountComponent} from './home/customer-discount/customer-discount.component';
 import {InvoicesComponent} from './home/invoices/invoices.component';
-import { OffersComponent } from './home/offers/offers.component';
+import {OffersComponent} from './home/offers/offers.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'welcome'},

@@ -11,12 +11,13 @@ import {BudgetCreation} from './budget-creation.model';
 export class BudgetDialogComponent {
 
   budgetCreation: BudgetCreation;
+
   constructor(private dialog: MatDialog, private shoppingCartService: ShoppingCartService) {
-    this.budgetCreation = { shoppingCart: null};
+    this.budgetCreation = {shoppingCart: null};
   }
 
   createBudget() {
-    this.budgetCreation.shoppingCart = this.shoppingCartService.getShoppingCart()
+    this.budgetCreation.shoppingCart = this.shoppingCartService.getShoppingCart();
     this.shoppingCartService.createBudget(this.budgetCreation).subscribe(
       () => {
         this.dialog.closeAll();

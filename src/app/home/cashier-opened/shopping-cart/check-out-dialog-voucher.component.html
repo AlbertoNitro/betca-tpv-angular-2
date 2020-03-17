@@ -3,7 +3,8 @@
   <mat-form-field>
     <form (ngSubmit)="consumeVoucher()" [formGroup]="consumeVoucherForm">
       <label>
-        <input [(ngModel)]="voucher.id" [ngClass]="{ 'is-invalid': submitted && this.consumeVoucherForm.value.errors }" cdkFocusInitial class="form-control" formControlName="id"
+        <input [(ngModel)]="voucher.id" [ngClass]="{ 'is-invalid': submitted && this.consumeVoucherForm.value.errors }"
+               cdkFocusInitial class="form-control" formControlName="id"
                matInput placeholder="Voucher code"
                type="text"/>
         <div *ngIf="submitted && this.consumeVoucherForm.value.errors" class="invalid-feedback">

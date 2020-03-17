@@ -5,7 +5,8 @@
            placeholder="Description"
            required type="String"/>
   </mat-form-field>
-  <app-providers-dropdown class="full-width" [providerIn]="order.provider" (providerOut)="getProvider($event)"></app-providers-dropdown>
+  <app-providers-dropdown (providerOut)="getProvider($event)" [providerIn]="order.provider"
+                          class="full-width"></app-providers-dropdown>
   <mat-divider></mat-divider>
   <h4 mat-dialog-title>Add Article to Order</h4>
   <mat-form-field>
