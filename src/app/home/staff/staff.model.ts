@@ -5,5 +5,5 @@ export interface Staff {
   month: string;
   day: string;
   workHours: number;
-  lastLoginTime?: Date;
+  lastLoginTime: Date;
 }

@@ -23,6 +23,9 @@ export class HttpService {
   private responseType: string;
   private successfulNotification = undefined;
 
+  private loginTime: Date;
+  private logoutTime: Date;
+
   constructor(private http: HttpClient, private snackBar: MatSnackBar, private router: Router) {
     this.resetOptions();
   }
@@ -34,15 +37,24 @@ export class HttpService {
         this.token.mobile = new JwtHelperService().decodeToken(token.token).user;
         this.token.name = new JwtHelperService().decodeToken(token.token).name;
         this.token.roles = new JwtHelperService().decodeToken(token.token).roles;
+        this.loginTime = new Date();
       }), catchError(error => {
         return this.handleError(error);
       })
     );
   }
 
-  logout(): void {
+  logout(): Date {
     this.token = undefined;
     this.router.navigate(['']);
+    const nowTime = new Date();
+    if (this.loginTime.getDate() === nowTime.getDate()) {
+      // console.log('same days...');
+      return null;
+    } else {
+      // console.log('differernt days...');
+      return this.loginTime;
+    }
   }
 
   getToken(): Token {

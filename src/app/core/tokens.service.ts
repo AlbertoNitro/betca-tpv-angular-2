@@ -17,8 +17,8 @@ export class TokensService {
     return this.httpService.login(mobile, password, TokensService.END_POINT);
   }
 
-  logout(): void {
-    this.httpService.logout();
+  logout(): Date {
+    return this.httpService.logout();
   }
 
   isAdmin(): boolean {
@@ -27,6 +27,10 @@ export class TokensService {
 
   isManager(): boolean {
     return this.httpService.getToken() ? this.httpService.getToken().roles.includes(Role.MANAGER) : false;
+  }
+
+  isOperator(): boolean {
+    return this.httpService.getToken() ? this.httpService.getToken().roles.includes(Role.OPERATOR) : false;
   }
 
   getMobile(): number {

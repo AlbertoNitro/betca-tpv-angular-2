@@ -5,17 +5,18 @@
            placeholder="Description"
            required type="String"/>
   </mat-form-field>
-  <mat-form-field>
-    <input [(ngModel)]="order.providerId" matInput
-           placeholder="Provider Id"
-           required type="String"/>
-  </mat-form-field>
+  <app-providers-dropdown class="full-width" [providerIn]="order.provider" (providerOut)="getProvider($event)"></app-providers-dropdown>
   <mat-divider></mat-divider>
   <h4 mat-dialog-title>Add Article to Order</h4>
   <mat-form-field>
-    <input [(ngModel)]="orderLine.articleId" matInput
-           placeholder="Article Id"
-           required type="String"/>
+    <mat-label>Articles</mat-label>
+    <mat-select [(value)]="articleIn">
+      <ng-container *ngFor="let article of articles">
+        <mat-option (click)="onSelect(article)" [value]="article.code">
+          {{article.description}}
+        </mat-option>
+      </ng-container>
+    </mat-select>
   </mat-form-field>
   <mat-form-field>
     <input [(ngModel)]="orderLine.requiredAmount" matInput
