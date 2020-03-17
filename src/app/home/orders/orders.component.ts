@@ -44,11 +44,11 @@ export class OrdersComponent {
   }
 
   resetSearch() {
-    this.order = {id: null, description: null, provider: null, orderLines: null, openingDate: null};
+    this.orderSearch = {description: null, provider: null};
   }
 
   getProvider(provider: Provider) {
-    this.order.provider = provider.id;
+    this.orderSearch.provider = provider.id;
   }
 
   create() {
