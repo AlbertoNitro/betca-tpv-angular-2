@@ -1,7 +1,8 @@
 export interface CustomerDiscount {
   id: string;
-  description?: string;
+  description: string;
   registrationDate?: Date;
   discount: number;
-  minimumPurchase?: number;
+  minimumPurchase: number;
+  mobile: string;
 }

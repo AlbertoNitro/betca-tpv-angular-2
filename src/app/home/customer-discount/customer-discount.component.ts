@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {CustomerDiscount} from './customer-discount.model';
 
 @Component({
   templateUrl: 'customer-discount.component.html'
@@ -7,7 +8,7 @@ import {Component} from '@angular/core';
 export class CustomerDiscountComponent {
   title: 'Customer Discount';
   columns: ['Mobile', 'Discount'];
-  data: any;
+  data: CustomerDiscount[];
 
   create() {
   }
