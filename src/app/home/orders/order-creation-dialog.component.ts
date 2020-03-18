@@ -1,11 +1,12 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {MatDialog, MatDialogRef, MatSnackBar} from '@angular/material';
-import {OrderLine} from './orderLine.model';
+import {OrderLineCreation} from './orderLineCreation.model';
 import {OrderService} from './order.service';
 import {OrderCreation} from './orderCreation.model';
 import {Provider} from '../shared/provider.model';
 import {Article} from '../shared/article.model';
 import {ArticleService} from '../shared/article.service';
+import {OrderLineDetail} from './OrderLineDetail.model';
 
 @Component({
   templateUrl: 'order-creation-dialog.component.html'
@@ -13,8 +14,8 @@ import {ArticleService} from '../shared/article.service';
 
 export class OrderCreationDialogComponent {
 
-  order: OrderCreation = {description: null, provider: null, orderLines: []};
-  orderLine: OrderLine = {articleId: null, finalAmount: null, requiredAmount: null};
+  order: OrderCreation = {description: null, providerId: null, orderLines: []};
+  orderLine: OrderLineCreation = {articleId: null, requiredAmount: null};
 
   @Input() articleIn = '';
   @Output() articleOut = new EventEmitter<any>();
@@ -22,7 +23,7 @@ export class OrderCreationDialogComponent {
 
   title = 'Orders\' articles';
   columns = ['articleId', 'requiredAmount'];
-  data: OrderLine[];
+  data: OrderLineCreation[];
 
   constructor(private dialog: MatDialog, private dialogRef: MatDialogRef<OrderCreationDialogComponent>, private message: MatSnackBar,
               private orderService: OrderService, private articleService: ArticleService) {
@@ -35,13 +36,14 @@ export class OrderCreationDialogComponent {
           duration: 2000,
         });
         this.dialogRef.close();
+        console.log(data);
       });
   }
 
   getProvider(provider: Provider) {
-    this.order.provider = provider.id;
+    this.order.providerId = provider.id;
     this.articleService.readAll().subscribe(
-      data => this.articles = data.filter(value => value.provider === this.order.provider)
+      data => this.articles = data.filter(value => value.provider === this.order.providerId)
     );
   }
 
@@ -54,7 +56,7 @@ export class OrderCreationDialogComponent {
     this.data = [...this.order.orderLines];
   }
 
-  deleteOrderLine(orderLineDelete: OrderLine) {
+  deleteOrderLine(orderLineDelete: OrderLineCreation) {
     const index = this.order.orderLines.findIndex(value => value.articleId === orderLineDelete.articleId);
     if (index > -1) {
       this.order.orderLines.splice(index, 1);
