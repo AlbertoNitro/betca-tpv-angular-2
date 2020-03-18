@@ -16,7 +16,7 @@ export class StaffComponent {
 
 
   constructor(private staffService: StaffService) {
-    this.staff = {id: null, mobile: null, year: null, month: null, day: null, workHours: null, lastLoginTime: null};
+    this.staff = {id: '', mobile: '', year: '', month: '', day: '', workHours: null, lastLoginTime: null};
     // this.staffService.readAll().subscribe(data => this.data = data);
     this.data = null;
   }
