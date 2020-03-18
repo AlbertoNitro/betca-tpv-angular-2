@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {ArticleFamilyView} from './articles-family-view.model';
 import {ArticlesFamilyViewService} from './articles-family-view.service';
 import {ShoppingCartService} from '../shopping-cart/shopping-cart.service';
+import {ArticlesFamilyViewComplete} from './articles-family-view-complete.model';
 
 @Component({
   selector: 'app-articles-family-view',
@@ -9,7 +10,9 @@ import {ShoppingCartService} from '../shopping-cart/shopping-cart.service';
   styleUrls: ['articles-family-view.component.css']
 })
 export class ArticlesFamilyViewComponent {
-  articlesFamilyList: ArticleFamilyView[] = [];
+  // articlesFamilyList: ArticleFamilyView[] = [];
+  articlesFamilyList: ArticlesFamilyViewComplete[] = [];
+
 
   constructor(private articlesFamilyViewService: ArticlesFamilyViewService,
               private shoppingCartService: ShoppingCartService) {
@@ -17,9 +20,10 @@ export class ArticlesFamilyViewComponent {
   }
 
   getRootArticlesFamily() {
-    this.articlesFamilyViewService.readArticlesFamilyList('root')
+    this.articlesFamilyViewService.readFamilyCompositeByDesc('root')
       .subscribe(
         data => {
+          console.log('root data', data);
           this.articlesFamilyList = data;
         }
       );
@@ -35,9 +39,10 @@ export class ArticlesFamilyViewComponent {
 
   selectFamilyTypeArticlesFamily(articleSelected: ArticleFamilyView) {
     if (articleSelected.familyType === 'ARTICLES') {
-      this.articlesFamilyViewService.readArticlesFamilyList(articleSelected.reference)
+      this.articlesFamilyViewService.readFamilyCompositeByDesc(articleSelected.reference)
         .subscribe(
           data => {
+            console.log(data);
             this.articlesFamilyList = data;
           }
         );
