@@ -8,13 +8,22 @@
       <mat-datepicker #closureDate></mat-datepicker>
     </mat-form-field>
     <mat-datepicker-toggle [for]="closureDate"></mat-datepicker-toggle>
-    <button color="primary" mat-mini-fab>
+    <br>
+    <mat-form-field>
+      <mat-label>Higher or lower amount</mat-label>
+      <mat-select>
+        <mat-option value="mayor que"> > </mat-option>
+        <mat-option value="menor que"> < </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <input placeholder="Amount €"
+      required type="number" min="0" matInput/>
+    </mat-form-field>
+    <button (click)="search()" color="primary" mat-mini-fab>
       <mat-icon>search</mat-icon>
-    </button>
-    <button color="primary" mat-mini-fab>
-      <mat-icon>close</mat-icon>
     </button>
   </mat-card-content>
 </mat-card>
-<app-crud [columns]="columns" [createAction]="false" [data]="data" [deleteAction]="false" [title]="title"
+<app-crud [columns]="columns" [createAction]="false" [data]="data" [readAction]="false" [deleteAction]="false" [title]="title"
           [updateAction]="false"></app-crud>
