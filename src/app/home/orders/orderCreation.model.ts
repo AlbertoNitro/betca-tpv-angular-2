@@ -1,7 +1,7 @@
-import {OrderLine} from './orderLine.model';
+import {OrderLineCreation} from './orderLineCreation.model';
 
 export interface OrderCreation {
   description: string;
-  provider: string;
-  orderLines: OrderLine[];
+  providerId: string;
+  orderLines: OrderLineCreation[];
 }

@@ -1,4 +1,4 @@
-import {OrderLine} from './orderLine.model';
+import {OrderLineDetail} from './OrderLineDetail.model';
 
 export interface OrderDetails {
   id: string;
@@ -6,5 +6,5 @@ export interface OrderDetails {
   provider: string;
   openingDate: Date;
   closingDate?: Date;
-  orderLines: OrderLine[];
+  orderLines: OrderLineDetail[];
 }
