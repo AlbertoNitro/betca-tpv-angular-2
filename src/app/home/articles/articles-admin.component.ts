@@ -48,6 +48,10 @@ export class ArticlesAdminComponent {
           isEdit: this.isEdit
         }
       }
+    ).afterClosed().subscribe(
+      result => {
+        this.search();
+      }
     );
   }
 
