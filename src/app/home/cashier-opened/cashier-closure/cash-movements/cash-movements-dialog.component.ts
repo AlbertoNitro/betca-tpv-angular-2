@@ -30,7 +30,9 @@ export class CashMovementsDialogComponent {
 
   move() {
     if (this.operation === this.DEPOSIT) {
-      this.cashMovementsService.deposit(this.cashMovements).subscribe();
+      this.cashMovementsService.deposit(this.cashMovements).subscribe(
+        () => this.dialogRef.close()
+      );
       console.log(this.cashMovements.cashMovement);
     }
     if (this.operation === this.WITHDRAWL) {
