@@ -2,3 +2,12 @@
   display: flex;
   flex-direction: column;
 }
+
+.invalid-operation {
+  color: red;
+}
+
+.cashMovementDialog{
+  margin-top: 2px;
+  font-weight: inherit;
+}

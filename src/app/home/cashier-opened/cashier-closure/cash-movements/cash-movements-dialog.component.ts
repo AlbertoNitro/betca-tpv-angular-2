@@ -15,6 +15,7 @@ export class CashMovementsDialogComponent {
   cashCashier: number;
   DEPOSIT = 'DEPOSIT';
   WITHDRAWL = 'WITHDRAWL';
+  notEnoughCash: boolean;
 
   constructor(private dialog: MatDialog, private dialogRef: MatDialogRef<CashMovementsDialogComponent>,
               private cashMovementsService: CashMovementsService) {
@@ -24,9 +25,9 @@ export class CashMovementsDialogComponent {
   }
 
   invalid() {
-    const notEnoughCash = (this.cashMovements.cashMovement > this.cashCashier) && this.operation === this.WITHDRAWL;
+    this.notEnoughCash = (this.cashMovements.cashMovement > this.cashCashier) && this.operation === this.WITHDRAWL;
     return (!this.cashMovements.cashMovement && this.cashMovements.cashMovement !== 0) || !this.cashMovements.comment
-      || (!this.operation) || notEnoughCash;
+      || (!this.operation) || this.notEnoughCash;
   }
 
   move() {
@@ -40,6 +41,16 @@ export class CashMovementsDialogComponent {
         () => this.dialogRef.close()
       );
     }
+  }
+
+  calculate(): number {
+    if (this.operation === this.WITHDRAWL) {
+      return this.cashCashier - this.cashMovements.cashMovement;
+    }
+    if (this.operation === this.WITHDRAWL) {
+      return this.cashCashier + this.cashMovements.cashMovement;
+    }
+    return this.cashCashier;
   }
 
 }
