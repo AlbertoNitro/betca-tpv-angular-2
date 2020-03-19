@@ -43,11 +43,11 @@
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-dialog-close mat-raised-button>Close</button>
-  <button (click)="createArticle()" *ngIf="editMode == false" color="primary" mat-raised-button>
+  <button (click)="createArticle()" *ngIf="editMode == false && isvalid()" color="primary" mat-raised-button>
     <mat-icon>local_offer</mat-icon>
     <span>Create Article</span>
   </button>
-  <button (click)="updateArticle()" *ngIf="editMode" color="primary" mat-raised-button>
+  <button (click)="updateArticle()" *ngIf="editMode && isvalid()" color="primary" mat-raised-button>
     <mat-icon>local_offer</mat-icon>
     <span>Save Changes</span>
   </button>

@@ -66,4 +66,7 @@ export class ArticlesCreationDialogComponent {
     this.newArticle.provider = provider.id;
   }
 
+  isvalid(): boolean {
+    return this.newArticle.description != null && this.newArticle.reference != null && this.newArticle.retailPrice !== 0;
+  }
 }
