@@ -87,10 +87,12 @@
         <mat-form-field>
           <input #mobile matInput placeholder="Mobile to discount" type="text">
         </mat-form-field>
-        <button (click)="addDiscount(mobile.value)" [disabled]="mobile.value === ''" color="primary" mat-mini-fab
+        <mat-cell *matCellDef="let item" fxFlex="12%">
+        <button (click)="addDiscount(mobile.value, item)" [disabled]="mobile.value === ''" color="primary" mat-mini-fab
                 type="submit">
           <mat-icon>money_off</mat-icon>
         </button>
+        </mat-cell>
       </form>
       <form>
         <mat-form-field>

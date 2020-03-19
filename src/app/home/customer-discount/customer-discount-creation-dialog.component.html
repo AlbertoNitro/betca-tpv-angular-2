@@ -1,0 +1,38 @@
+<h3 mat-dialog-title>Discount</h3>
+<mat-dialog-content>
+  <mat-form-field class="full-width">
+    <input [(ngModel)]="newCustomerDiscount.description" cdkFocusInitial matInput
+           placeholder="Description"
+           type="String"/>
+  </mat-form-field>
+  <br>
+  <mat-form-field class="full-width">
+    <input [(ngModel)]="newCustomerDiscount.registrationDate" matInput
+           placeholder="Registration Date"
+           type="Date"/>
+  </mat-form-field>
+  <br>
+  <mat-form-field class="full-width">
+    <input [(ngModel)]="newCustomerDiscount.discount" matInput
+           placeholder="Discount"
+           required type="Number"/>
+  </mat-form-field>
+  <br>
+  <mat-form-field class="full-width">
+    <input [(ngModel)]="newCustomerDiscount.minimumPurchase"  matInput
+           placeholder="Minimum Purchase"
+           type="Number"/>
+  </mat-form-field>
+  <br>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-dialog-close mat-raised-button>Close</button>
+  <button (click)="create()" *ngIf="editMode == false" color="primary" mat-raised-button>
+    <mat-icon>money_off</mat-icon>
+    <span>Create Discount</span>
+  </button>
+  <button (click)="update()" *ngIf="editMode" color="primary" mat-raised-button>
+    <mat-icon>money_off</mat-icon>
+    <span>Save changes</span>
+  </button>
+</mat-dialog-actions>

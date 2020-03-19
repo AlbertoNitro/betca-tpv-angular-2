@@ -1,11 +1,12 @@
 import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Subscription} from 'rxjs';
-import {MatDialog, MatTableDataSource} from '@angular/material';
+import {MatDialog, MatSnackBar, MatTableDataSource} from '@angular/material';
 
 import {ShoppingCartService} from './shopping-cart.service';
 import {Shopping} from './shopping.model';
 import {CheckOutDialogComponent} from './check-out-dialog.component';
 import {BudgetDialogComponent} from './budget-dialog.component';
+import {CustomerDiscountService} from '../../customer-discount/customer-discount.service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -20,7 +21,8 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   private subscriptionDataSource: Subscription;
   @ViewChild('code', {static: true}) private elementRef: ElementRef;
 
-  constructor(private dialog: MatDialog, private shoppingCartService: ShoppingCartService) {
+  constructor(private dialog: MatDialog, private shoppingCartService: ShoppingCartService,
+              private customerDiscountService: CustomerDiscountService, private message: MatSnackBar) {
     this.subscriptionDataSource = this.shoppingCartService.shoppingCartObservable().subscribe(
       data => {
         this.dataSource = new MatTableDataSource<Shopping>(data);
@@ -146,8 +148,16 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
     // TODO create budget
   }
 
-  addDiscount(mobile) {
-    // TODO add discount
+  addDiscount(mobile, shopping: Shopping) {
+    this.customerDiscountService.readOne(mobile).subscribe(
+      (discount) => {
+        shopping.updateCustomerDiscount(discount);
+        shopping.updateTotal();
+      }
+      , () => {
+        this.message.open('Ups, something went wrong.', null, {duration: 2000});
+      }
+    );
   }
 
   addOffer(offer) {
