@@ -27,4 +27,8 @@ export class OrderService {
       .param('closingDate', orderClosingDate)
       .get(AppEndpoints.ORDERS);
   }
+
+  delete(order: OrderDetails): Observable<void>{
+    return this.httpService.delete(AppEndpoints.ORDERS + '/' + order.id);
+  }
 }
