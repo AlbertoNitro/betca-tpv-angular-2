@@ -81,9 +81,11 @@ export class OrdersComponent {
       result => {
         if (result) {
           this.orderService.delete(orderToDelete).subscribe(
-            value => this.message.open('Order created: ' + orderToDelete.description, null, {
-              duration: 2000,
-            })
+            value => {
+              this.message.open('Order deleted: ' + orderToDelete.description, null, {
+                duration: 2000,
+              });
+            }
           );
         }
       }
