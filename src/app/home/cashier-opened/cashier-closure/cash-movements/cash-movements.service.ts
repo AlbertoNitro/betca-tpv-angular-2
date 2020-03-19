@@ -19,4 +19,8 @@ export class CashMovementsService {
     return this.httpService.patch(AppEndpoints.CASH_MOVEMENT_DEPOSIT, cashierMovements);
   }
 
+  withdrawal(cashierMovements: CashierMovements): Observable<void> {
+    return this.httpService.patch(AppEndpoints.CASH_MOVEMENT_WITHDRAWAL, cashierMovements);
+  }
+
 }

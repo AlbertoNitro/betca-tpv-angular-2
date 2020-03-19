@@ -24,8 +24,9 @@ export class CashMovementsDialogComponent {
   }
 
   invalid() {
+    const notEnoughCash = (this.cashMovements.cashMovement > this.cashCashier) && this.operation === this.WITHDRAWL;
     return (!this.cashMovements.cashMovement && this.cashMovements.cashMovement !== 0) || !this.cashMovements.comment
-      || (!this.operation);
+      || (!this.operation) || notEnoughCash;
   }
 
   move() {
@@ -33,10 +34,11 @@ export class CashMovementsDialogComponent {
       this.cashMovementsService.deposit(this.cashMovements).subscribe(
         () => this.dialogRef.close()
       );
-      console.log(this.cashMovements.cashMovement);
     }
     if (this.operation === this.WITHDRAWL) {
-      console.log('In construction!!!');
+      this.cashMovementsService.withdrawal(this.cashMovements).subscribe(
+        () => this.dialogRef.close()
+      );
     }
   }
 
