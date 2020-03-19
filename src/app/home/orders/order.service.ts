@@ -28,7 +28,11 @@ export class OrderService {
       .get(AppEndpoints.ORDERS);
   }
 
-  delete(order: OrderDetails): Observable<void>{
+  delete(order: OrderDetails): Observable<void> {
     return this.httpService.delete(AppEndpoints.ORDERS + '/' + order.id);
+  }
+
+  update(order: OrderDetails): Observable<OrderDetails> {
+    return this.httpService.put(AppEndpoints.ORDERS + '/' + order.id, order);
   }
 }
