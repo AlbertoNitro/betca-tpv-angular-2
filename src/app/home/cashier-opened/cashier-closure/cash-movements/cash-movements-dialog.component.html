@@ -1,7 +1,7 @@
-<h3 mat-dialog-title>Cash Movements: {{cashCashier}}</h3>
+<h3 mat-dialog-title [className]="notEnoughCash ? 'invalid-operation cashMovementDialog' : 'cashMovementDialog'">Cash Movements: {{calculate()}} €</h3>
 <mat-dialog-content>
   <mat-form-field>
-    <input [(ngModel)]="cashMovements.cash" cdkFocusInitial matInput
+    <input [(ngModel)]="cashMovements.cashMovement" cdkFocusInitial matInput
            placeholder="€"
            required type="number"/>
   </mat-form-field>
@@ -11,8 +11,8 @@
   <mat-form-field>
     <mat-label>Operation</mat-label>
     <mat-select [(ngModel)]="operation" required type="number">
-      <mat-option value="0">DEPOSIT</mat-option>
-      <mat-option value="1">WITHDRAWL</mat-option>
+      <mat-option value="DEPOSIT">DEPOSIT</mat-option>
+      <mat-option value="WITHDRAWL">WITHDRAWL</mat-option>
     </mat-select>
   </mat-form-field>
 </mat-dialog-content>
