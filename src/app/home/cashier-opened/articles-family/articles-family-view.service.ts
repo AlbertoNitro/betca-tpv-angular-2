@@ -12,7 +12,7 @@ export class ArticlesFamilyViewService {
   constructor(private httpService: HttpService) {
   }
 
-  readFamilyCompositeByDesc(familyDescription: string): Observable<ArticlesFamilyViewComplete[]> {
+  readFamilyCompositeByDesc(familyDescription: string): Observable<any[]> {
     return this.httpService
       .param('description', familyDescription)
       .get(AppEndpoints.ARTICLES_FAMILY + AppEndpoints.ARTICLES_FAMILY_COMPOSITE);
