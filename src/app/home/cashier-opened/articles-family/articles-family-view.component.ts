@@ -31,11 +31,8 @@ export class ArticlesFamilyViewComponent {
   }
 
   addArticleToShoppingCart(reference: string) {
-    console.log('enters shoppingcart');
-    this.shoppingCartService.add(reference).subscribe((data) => {
-       console.log(data);
-      }
-    );
+    this.shoppingCartService.add(reference).subscribe(() => {
+    });
   }
 
   selectFamilyTypeArticlesFamily(articleSelected: ArticlesFamilyViewComplete) {
@@ -48,7 +45,7 @@ export class ArticlesFamilyViewComponent {
           }
         );
     } else if (articleSelected.familyType === 'ARTICLE') {
-      this.addArticleToShoppingCart(articleSelected.reference);
+      this.addArticleToShoppingCart(articleSelected.code);
     } else if (articleSelected.familyType === 'SIZES') {
 
     }
