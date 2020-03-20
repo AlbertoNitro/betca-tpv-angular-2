@@ -1,12 +1,11 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {MatDialog, MatDialogRef, MatSnackBar} from '@angular/material';
+import {Component, EventEmitter, Inject, Input, Output} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSnackBar} from '@angular/material';
 import {OrderLineCreation} from './orderLineCreation.model';
 import {OrderService} from './order.service';
 import {OrderCreation} from './orderCreation.model';
 import {Provider} from '../shared/provider.model';
 import {Article} from '../shared/article.model';
 import {ArticleService} from '../shared/article.service';
-import {OrderLineDetail} from './OrderLineDetail.model';
 
 @Component({
   templateUrl: 'order-creation-dialog.component.html'
@@ -16,6 +15,7 @@ export class OrderCreationDialogComponent {
 
   order: OrderCreation = {description: null, providerId: null, orderLines: []};
   orderLine: OrderLineCreation = {articleId: null, requiredAmount: null};
+  isProviderNull: boolean;
 
   @Input() articleIn = '';
   @Output() articleOut = new EventEmitter<any>();
@@ -26,7 +26,16 @@ export class OrderCreationDialogComponent {
   data: OrderLineCreation[];
 
   constructor(private dialog: MatDialog, private dialogRef: MatDialogRef<OrderCreationDialogComponent>, private message: MatSnackBar,
-              private orderService: OrderService, private articleService: ArticleService) {
+              private orderService: OrderService, private articleService: ArticleService, @Inject(MAT_DIALOG_DATA) public orderData: any) {
+    this.order.providerId = orderData.providerId;
+    this.isProviderNull = true;
+    if (orderData.providerId !== null) {
+      this.isProviderNull = false;
+      this.articleService.readAll().subscribe(
+        data => this.articles = data.filter(value => value.provider === this.order.providerId)
+      );
+    }
+    console.log(this.order);
   }
 
   createOrder() {
