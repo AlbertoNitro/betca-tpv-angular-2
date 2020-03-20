@@ -62,7 +62,7 @@ export class OrdersComponent {
       width: '600px',
       data: {
         dialogTitle: order.description,
-        orderData: order
+        orderId: order.id
       }
     });
   }
@@ -90,6 +90,14 @@ export class OrdersComponent {
         }
       }
     );
+  }
+
+  isOrderOpened(order: OrderDetails): boolean {
+    if (order.closingDate === null) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
 }
