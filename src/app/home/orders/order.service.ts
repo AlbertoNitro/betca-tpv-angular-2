@@ -39,4 +39,8 @@ export class OrderService {
   get(orderId: string): Observable<OrderDetails> {
     return this.httpService.get(AppEndpoints.ORDERS + '/' + orderId);
   }
+
+  close(order: OrderDetails): Observable<OrderDetails> {
+    return this.httpService.put(AppEndpoints.ORDERS + AppEndpoints.ORDERS_CLOSE + '/' + order.id, order);
+  }
 }

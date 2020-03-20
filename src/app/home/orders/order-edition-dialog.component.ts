@@ -3,6 +3,7 @@ import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSnackBar} from '@angular/ma
 import {OrderDetails} from './orderDetails.model';
 import {OrderService} from './order.service';
 import {OrderLineDetail} from './OrderLineDetail.model';
+import {OrderCloseDialogComponent} from './order-close-dialog.component';
 
 @Component({
   templateUrl: 'order-edition-dialog.component.html'
@@ -46,6 +47,12 @@ export class OrderEditionDialogComponent {
   }
 
   closeOrder() {
-    // TODO
+    this.dialogRef.close();
+    this.dialog.open(OrderCloseDialogComponent, {
+      width: '600px',
+      data: {
+        orderId: this.order.id
+      }
+    });
   }
 }
