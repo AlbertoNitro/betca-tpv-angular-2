@@ -1,4 +1,4 @@
 export interface CashierMovements {
-  cash: number;
+  cashMovement: number;
   comment: string;
 }

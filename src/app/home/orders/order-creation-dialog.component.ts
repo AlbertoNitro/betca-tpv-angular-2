@@ -36,7 +36,6 @@ export class OrderCreationDialogComponent {
           duration: 2000,
         });
         this.dialogRef.close();
-        console.log(data);
       });
   }
 

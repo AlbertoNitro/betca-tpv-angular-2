@@ -23,11 +23,22 @@ export class OrderEditionDialogComponent {
   }
 
   editOrder() {
-    this.dialogRef.close();
+    this.orderService.update(this.order).subscribe(
+      value => {
+        this.message.open('Order deleted: ' + this.order.description, null, {
+          duration: 2000,
+        });
+        this.dialogRef.close();
+      }
+    );
   }
 
   deleteOrderLine(orderLineToDelete: OrderLineDetail) {
-    // TODO
+    const index = this.order.orderLines.findIndex(value => value.article === orderLineToDelete.article);
+    if (index > -1) {
+      this.order.orderLines.splice(index, 1);
+    }
+    this.data = [...this.orderData.orderData.orderLines];
   }
 
   closeOrder() {

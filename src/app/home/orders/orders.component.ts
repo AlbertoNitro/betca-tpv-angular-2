@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {OrderDetails} from './orderDetails.model';
-import {MatDialog} from '@angular/material';
+import {MatDialog, MatSnackBar} from '@angular/material';
 import {OrderCreationDialogComponent} from './order-creation-dialog.component';
 import {OrderService} from './order.service';
 import {OrderDetailDialogComponent} from './order-detail-dialog.component';
@@ -23,7 +23,7 @@ export class OrdersComponent {
   columns = ['description', 'provider', 'openingDate'];
   data: OrderDetails[];
 
-  constructor(private dialog: MatDialog, private orderService: OrderService) {
+  constructor(private dialog: MatDialog, private orderService: OrderService, private message: MatSnackBar) {
     this.order = {id: null, description: null, provider: null, orderLines: null, openingDate: null};
     this.orderSearch = {description: null, provider: null, closingDate: new Date()};
     this.data = null;
@@ -76,11 +76,17 @@ export class OrdersComponent {
     });
   }
 
-  delete(order: OrderDetails) {
+  delete(orderToDelete: OrderDetails) {
     this.dialog.open(CancelYesDialogComponent).afterClosed().subscribe(
       result => {
         if (result) {
-          console.log('delete');
+          this.orderService.delete(orderToDelete).subscribe(
+            value => {
+              this.message.open('Order deleted: ' + orderToDelete.description, null, {
+                duration: 2000,
+              });
+            }
+          );
         }
       }
     );
