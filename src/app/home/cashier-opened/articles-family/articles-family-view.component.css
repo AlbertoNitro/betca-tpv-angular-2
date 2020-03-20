@@ -12,6 +12,9 @@
   min-height: 100px;
   transition: all .2s ease-in-out;
 }
+.article-family-view-card>div{
+  margin-bottom: 5px;
+}
 
 .article-family-view-card:hover {
   transform: scale(1.1);

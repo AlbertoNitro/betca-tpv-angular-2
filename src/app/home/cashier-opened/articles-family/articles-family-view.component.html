@@ -17,8 +17,11 @@
             'type-sizes': articleElement.familyType === 'SIZES'}"
             class="article-family-view-card">
 
-    <mat-card-title *ngIf="articleElement.id">{{articleElement.id}}</mat-card-title>
     <div *ngIf="articleElement.familyType">{{articleElement.familyType}}</div>
     <div *ngIf="articleElement.reference">{{articleElement.reference}}</div>
+    <div *ngIf="articleElement.code">#{{articleElement.code}}</div>
+    <div *ngIf="articleElement.description">{{articleElement.description}}</div>
+    <div *ngIf="articleElement.retailPrice">{{articleElement.retailPrice}} €</div>
+
   </mat-card>
 </div>
