@@ -43,6 +43,7 @@ import {OffersComponent} from './home/offers/offers.component';
 import {OfferCreationDialogComponent} from './home/offers/dialogs/offer-creation-dialog/offer-creation-dialog.component';
 import {OfferPrintDialogComponent} from './home/offers/dialogs/offer-print-dialog/offer-print-dialog.component';
 import {TicketsComponent} from './home/tickets/tickets.component';
+import {OrderCloseDialogComponent} from './home/orders/order-close-dialog.component';
 
 export class AppComponents {
   static COMPONENTS = [
@@ -80,6 +81,7 @@ export class AppComponents {
     BudgetDialogComponent,
     CheckOutDialogVoucherComponent,
     OrderCreationDialogComponent,
+    OrderCloseDialogComponent,
     OrderEditionDialogComponent,
     OrderDetailDialogComponent,
     ProviderCreationDialogComponent,

@@ -17,13 +17,13 @@
         <mat-form-field>
           <input [(ngModel)]="orderLine.article" disabled
                  matInput
-                 placeholder="Provider Id"
+                 placeholder="Article"
                  required type="String"/>
         </mat-form-field>
         <mat-form-field>
           <input [(ngModel)]="orderLine.requiredAmount"
                  matInput
-                 placeholder="Provider Id"
+                 placeholder="Required Amount"
                  required type="number"/>
         </mat-form-field>
         <button (click)="deleteOrderLine(orderLine)" mat-raised-button><span>X</span></button>

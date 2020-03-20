@@ -25,6 +25,8 @@ export class AppEndpoints {
 
   static ORDERS = '/orders';
 
+  static ORDERS_CLOSE = '/close';
+
   static VOUCHERS = '/vouchers';
 
   static PRINT = '/print';
