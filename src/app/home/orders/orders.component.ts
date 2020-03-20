@@ -54,6 +54,9 @@ export class OrdersComponent {
   create() {
     this.dialog.open(OrderCreationDialogComponent, {
       width: '600px',
+      data: {
+        providerId: null
+      }
     });
   }
 
