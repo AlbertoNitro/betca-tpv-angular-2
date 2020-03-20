@@ -71,7 +71,7 @@ export class OrdersComponent {
     this.dialog.open(OrderEditionDialogComponent, {
       width: '600px',
       data: {
-        orderData: order
+        orderId: order.id
       }
     });
   }

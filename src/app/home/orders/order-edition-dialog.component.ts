@@ -18,8 +18,12 @@ export class OrderEditionDialogComponent {
 
   constructor(private dialog: MatDialog, private dialogRef: MatDialogRef<OrderEditionDialogComponent>, private message: MatSnackBar,
               private orderService: OrderService, @Inject(MAT_DIALOG_DATA) public orderData: any) {
-    this.order = orderData.orderData;
-    this.data = [...this.orderData.orderData.orderLines];
+    this.orderService.get(orderData.orderId).subscribe(
+      data => {
+        this.order = data;
+        this.data = [...data.orderLines];
+      }
+    );
   }
 
   editOrder() {
@@ -38,7 +42,7 @@ export class OrderEditionDialogComponent {
     if (index > -1) {
       this.order.orderLines.splice(index, 1);
     }
-    this.data = [...this.orderData.orderData.orderLines];
+    this.data = [...this.order.orderLines];
   }
 
   closeOrder() {
