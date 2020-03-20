@@ -25,21 +25,19 @@ export class ArticlesFamilyViewComponent {
         data => {
           console.log('root data', data);
           this.articlesFamilyList = data;
+          console.log(this.articlesFamilyList);
         }
       );
   }
 
   addArticleToShoppingCart(reference: string) {
-    console.log('enters shoppingcart');
-    this.shoppingCartService.add(reference).subscribe((data) => {
-       console.log(data);
-      }
-    );
+    this.shoppingCartService.add(reference).subscribe(() => {
+    });
   }
 
-  selectFamilyTypeArticlesFamily(articleSelected: ArticleFamilyView) {
+  selectFamilyTypeArticlesFamily(articleSelected: ArticlesFamilyViewComplete) {
     if (articleSelected.familyType === 'ARTICLES') {
-      this.articlesFamilyViewService.readFamilyCompositeByDesc(articleSelected.reference)
+      this.articlesFamilyViewService.readFamilyCompositeByDesc(articleSelected.description)
         .subscribe(
           data => {
             console.log(data);
@@ -47,7 +45,7 @@ export class ArticlesFamilyViewComponent {
           }
         );
     } else if (articleSelected.familyType === 'ARTICLE') {
-      this.addArticleToShoppingCart(articleSelected.reference);
+      this.addArticleToShoppingCart(articleSelected.code);
     } else if (articleSelected.familyType === 'SIZES') {
 
     }
