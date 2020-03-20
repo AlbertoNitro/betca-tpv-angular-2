@@ -8,6 +8,7 @@ import {OrderEditionDialogComponent} from './order-edition-dialog.component';
 import {CancelYesDialogComponent} from '../../core/cancel-yes-dialog.component';
 import {OrderSearch} from './orderSearch.model';
 import {Provider} from '../shared/provider.model';
+import {ActionNotAllowedDialogComponent} from './action-not-allowed-dialog.component';
 
 @Component({
   templateUrl: `orders.component.html`
@@ -65,34 +66,42 @@ export class OrdersComponent {
       width: '600px',
       data: {
         dialogTitle: order.description,
-        orderData: order
-      }
-    });
-  }
-
-  update(order: OrderDetails) {
-    this.dialog.open(OrderEditionDialogComponent, {
-      width: '600px',
-      data: {
         orderId: order.id
       }
     });
   }
 
-  delete(orderToDelete: OrderDetails) {
-    this.dialog.open(CancelYesDialogComponent).afterClosed().subscribe(
-      result => {
-        if (result) {
-          this.orderService.delete(orderToDelete).subscribe(
-            value => {
-              this.message.open('Order deleted: ' + orderToDelete.description, null, {
-                duration: 2000,
-              });
-            }
-          );
+  update(order: OrderDetails) {
+    if (order.closingDate == null) {
+      this.dialog.open(OrderEditionDialogComponent, {
+        width: '600px',
+        data: {
+          orderId: order.id
         }
-      }
-    );
+      });
+    } else {
+      this.dialog.open(ActionNotAllowedDialogComponent);
+    }
+  }
+
+  delete(orderToDelete: OrderDetails) {
+    if(orderToDelete.closingDate == null) {
+      this.dialog.open(CancelYesDialogComponent).afterClosed().subscribe(
+        result => {
+          if (result) {
+            this.orderService.delete(orderToDelete).subscribe(
+              value => {
+                this.message.open('Order deleted: ' + orderToDelete.description, null, {
+                  duration: 2000,
+                });
+              }
+            );
+          }
+        }
+      );
+    } else {
+      this.dialog.open(ActionNotAllowedDialogComponent);
+    }
   }
 
 }

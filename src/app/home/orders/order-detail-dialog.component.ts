@@ -19,8 +19,12 @@ export class OrderDetailDialogComponent {
 
   constructor(private dialog: MatDialog, private dialogRef: MatDialogRef<OrderDetailDialogComponent>, private message: MatSnackBar,
               private orderService: OrderService, @Inject(MAT_DIALOG_DATA) public orderData: any) {
-    this.order = orderData.orderData;
-    this.data = [...this.orderData.orderData.orderLines];
+    this.orderService.get(orderData.orderId).subscribe(
+      data => {
+        this.order = data;
+        this.data = this.order.orderLines;
+      }
+    );
   }
 
   create() {
