@@ -44,6 +44,7 @@ import {OfferCreationDialogComponent} from './home/offers/dialogs/offer-creation
 import {OfferPrintDialogComponent} from './home/offers/dialogs/offer-print-dialog/offer-print-dialog.component';
 import {TicketsComponent} from './home/tickets/tickets.component';
 import {OrderCloseDialogComponent} from './home/orders/order-close-dialog.component';
+import {ActionNotAllowedDialogComponent} from './home/orders/action-not-allowed-dialog.component';
 
 export class AppComponents {
   static COMPONENTS = [
@@ -73,6 +74,7 @@ export class AppComponents {
 
   static DIALOGS = [
     ArticleQuickCreationDialogComponent,
+    ActionNotAllowedDialogComponent,
     CashierClosureDialogComponent,
     VoucherCreationDialogComponent,
     VoucherPrintDialogComponent,
