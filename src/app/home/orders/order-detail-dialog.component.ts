@@ -3,6 +3,7 @@ import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSnackBar} from '@angular/ma
 import {OrderDetails} from './orderDetails.model';
 import {OrderService} from './order.service';
 import {OrderLineDetail} from './OrderLineDetail.model';
+import {OrderCreationDialogComponent} from './order-creation-dialog.component';
 
 @Component({
   templateUrl: 'order-detail-dialog.component.html'
@@ -24,5 +25,15 @@ export class OrderDetailDialogComponent {
         this.data = this.order.orderLines;
       }
     );
+  }
+
+  create() {
+    this.dialogRef.close();
+    this.dialog.open(OrderCreationDialogComponent, {
+      width: '600px',
+      data: {
+        providerId: this.order.provider
+      }
+    });
   }
 }
