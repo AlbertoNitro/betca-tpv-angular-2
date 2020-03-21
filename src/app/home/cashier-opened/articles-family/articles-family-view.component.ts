@@ -32,7 +32,9 @@ export class ArticlesFamilyViewComponent {
 
   addArticleToShoppingCart(reference: string) {
     this.shoppingCartService.add(reference).subscribe(() => {
-      // todo:message article added
+      this.message.open('✅ Article added to shopping cart', null, {
+        duration: 2000,
+      });
     });
   }
 
@@ -61,7 +63,7 @@ export class ArticlesFamilyViewComponent {
         data => {
           this.articlesFamilyListSizes = data.filter(x => x.size !== null && x.stock !== null);
           this.articlesFamilyListSizes.length === 0 ?
-            this.message.open('Ups, There is no stock for that item.', null, {
+            this.message.open('⚠ Ups, There is no stock for that item.', null, {
               duration: 2000,
             }) :
             this.dialog.open(ArticlesFamilyViewSizesDialogComponent, {data: this.articlesFamilyListSizes});

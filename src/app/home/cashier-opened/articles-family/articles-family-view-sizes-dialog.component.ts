@@ -1,12 +1,12 @@
 import {Component, Inject} from '@angular/core';
 import {ArticlesFamilyViewComplete} from './articles-family-view-complete.model';
 import {ShoppingCartService} from '../shopping-cart/shopping-cart.service';
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSnackBar} from '@angular/material';
 
 
 @Component({
   template: `
-      <mat-list >
+      <mat-list>
           <h3 matSubheader>Sizes with Prices avaliable for this product</h3>
           <mat-list-item *ngFor="let articleInfo of articlesFamilySizes" mat-list-item>
               <span matLine><b>#{{ articleInfo.code}}</b></span>
@@ -27,9 +27,24 @@ export class ArticlesFamilyViewSizesDialogComponent {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any[],
     private shoppingCartService: ShoppingCartService,
-    public dialogRef: MatDialogRef<ArticlesFamilyViewSizesDialogComponent>) {
+    public dialogRef: MatDialogRef<ArticlesFamilyViewSizesDialogComponent>,
+    private message: MatSnackBar) {
     this.articlesFamilySizes = data;
   }
 
-
+  addArticleToShoppingCart(code: string) {
+    return this.shoppingCartService.add(code).subscribe(data => {
+      }, () => {
+        this.message.open('⚠ Ups, Error adding the article to shopping cart.', null, {
+          duration: 2000,
+        });
+      },
+      () => {
+        this.message.open('✅ Article added to shopping cart', null, {
+          duration: 2000,
+        });
+        this.dialogRef.close();
+      }
+    );
+  }
 }
