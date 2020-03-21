@@ -2,6 +2,8 @@ import {Component} from '@angular/core';
 
 import {UserService} from './user.service';
 import {User} from './user.model';
+import {MatDialog} from '@angular/material';
+import {UsersCreationDialogComponent} from './users-creation-dialog.component';
 
 @Component({
   templateUrl: `users.component.html`
@@ -15,7 +17,7 @@ export class UsersComponent {
   columns = ['mobile', 'username'];
   data: User[];
 
-  constructor(private userService: UserService) {
+  constructor(private dialog: MatDialog, private userService: UserService) {
     this.user = {mobile: null, username: null};
     this.data = null;
   }
@@ -33,7 +35,7 @@ export class UsersComponent {
 
 
   create() {
-    // TODO
+    this.dialog.open(UsersCreationDialogComponent);
   }
 
   read(user: User) {

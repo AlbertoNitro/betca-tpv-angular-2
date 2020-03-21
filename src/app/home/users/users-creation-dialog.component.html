@@ -1,0 +1,29 @@
+<h3 mat-dialog-title>Create User</h3>
+<mat-dialog-content>
+  <mat-form-field>
+    <input [(ngModel)]="user.mobile" matInput
+           placeholder="Mobile"
+           required type="text"/>
+  </mat-form-field>
+  <mat-form-field>
+    <input [(ngModel)]="user.username" matInput
+           placeholder="Username"
+           required type="text"/>
+  </mat-form-field>
+  <mat-form-field>
+    <input [(ngModel)]="user.email" matInput placeholder="Email"
+           type="text"/>
+  </mat-form-field>
+  <mat-form-field>
+    <input [(ngModel)]="user.dni" matInput placeholder="DNI"
+           type="text"/>
+  </mat-form-field>
+  <mat-form-field>
+    <input [(ngModel)]="user.address" matInput placeholder="Address"
+           type="text"/>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-dialog-close mat-raised-button>Cancel</button>
+  <button (click)="createUser()" color="primary" mat-raised-button>Create</button>
+</mat-dialog-actions>
