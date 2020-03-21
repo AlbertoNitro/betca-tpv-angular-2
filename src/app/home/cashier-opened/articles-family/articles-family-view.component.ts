@@ -1,9 +1,8 @@
 import {Component} from '@angular/core';
-import {ArticleFamilyView} from './articles-family-view.model';
 import {ArticlesFamilyViewService} from './articles-family-view.service';
 import {ShoppingCartService} from '../shopping-cart/shopping-cart.service';
 import {ArticlesFamilyViewComplete} from './articles-family-view-complete.model';
-import {MatDialog, MatDialogConfig, MatSnackBar} from '@angular/material';
+import {MatDialog, MatSnackBar} from '@angular/material';
 import {ArticlesFamilyViewSizesDialogComponent} from './articles-family-view-sizes-dialog.component';
 
 @Component({
@@ -12,7 +11,6 @@ import {ArticlesFamilyViewSizesDialogComponent} from './articles-family-view-siz
   styleUrls: ['articles-family-view.component.css']
 })
 export class ArticlesFamilyViewComponent {
-  // articlesFamilyList: ArticleFamilyView[] = [];
   articlesFamilyList: ArticlesFamilyViewComplete[] = [];
   articlesFamilyListSizes: ArticlesFamilyViewComplete[] = [];
 
