@@ -1,7 +1,7 @@
 import {Component, Inject} from '@angular/core';
 import {ArticlesFamilyViewComplete} from './articles-family-view-complete.model';
 import {ShoppingCartService} from '../shopping-cart/shopping-cart.service';
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSnackBar} from '@angular/material';
+import {MAT_DIALOG_DATA, MatDialogRef, MatSnackBar} from '@angular/material';
 
 
 @Component({
@@ -33,7 +33,7 @@ export class ArticlesFamilyViewSizesDialogComponent {
   }
 
   addArticleToShoppingCart(code: string) {
-    return this.shoppingCartService.add(code).subscribe(data => {
+    return this.shoppingCartService.add(code).subscribe(() => {
       }, () => {
         this.message.open('⚠ Ups, Error adding the article to shopping cart.', null, {
           duration: 2000,
