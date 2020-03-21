@@ -37,18 +37,31 @@ export class ArticlesFamilyViewComponent {
 
   selectFamilyTypeArticlesFamily(articleSelected: ArticlesFamilyViewComplete) {
     if (articleSelected.familyType === 'ARTICLES') {
-      this.articlesFamilyViewService.readFamilyCompositeByDesc(articleSelected.description)
-        .subscribe(
-          data => {
-            console.log(data);
-            this.articlesFamilyList = data;
-          }
-        );
+      this.handleFamilyViewArticles(articleSelected.description);
     } else if (articleSelected.familyType === 'ARTICLE') {
       this.addArticleToShoppingCart(articleSelected.code);
     } else if (articleSelected.familyType === 'SIZES') {
-
+      this.handleFamilyViewSizes(articleSelected.description);
     }
+  }
+
+  handleFamilyViewArticles(description) {
+    this.articlesFamilyViewService.readFamilyCompositeByDesc(description)
+      .subscribe(
+        data => {
+          this.articlesFamilyList = data;
+        }
+      );
+  }
+
+  handleFamilyViewSizes(description) {
+    this.articlesFamilyViewService.readFamilyCompositeByDesc(description)
+      .subscribe(
+        data => {
+          console.log(data);
+
+        }
+      );
   }
 
 
