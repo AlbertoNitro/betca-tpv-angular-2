@@ -5,5 +5,5 @@ export class ArticlesFamilyViewComplete {
   retailPrice?: string;
   reference?: string;
   size?: string;
-  stock?: string;
+  stock?: number;
 }
