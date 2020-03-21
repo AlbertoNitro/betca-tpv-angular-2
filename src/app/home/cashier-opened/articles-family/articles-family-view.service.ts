@@ -14,8 +14,10 @@ export class ArticlesFamilyViewService {
 
   readFamilyCompositeByDesc(familyDescription: string): Observable<ArticlesFamilyViewComplete[]> {
     return this.httpService
-      .param('description', familyDescription)
-      .get(AppEndpoints.ARTICLES_FAMILY + AppEndpoints.ARTICLES_FAMILY_COMPOSITE);
+      .get(AppEndpoints.ARTICLES_FAMILY
+        + AppEndpoints.ARTICLES_FAMILY_COMPOSITE
+        + `?description=${familyDescription}`
+      );
   }
 
   readArticlesFamilyList(familyDescription: string): Observable<any[]> {
