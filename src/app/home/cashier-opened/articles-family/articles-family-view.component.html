@@ -1,4 +1,5 @@
-<h1>Articles family view</h1>
+<h1>Article Cards</h1>
+<p>Click on them to navigate through the articles</p>
 <mat-chip-list>
   <mat-chip class="chip-articles">Articles</mat-chip>
   <mat-chip class="chip-article">Article</mat-chip>
@@ -7,7 +8,7 @@
 <div class="cards-container">
   <mat-card (click)="getRootArticlesFamily()"
             class="article-family-view-card type-articles">
-    <mat-card-title>ROOT</mat-card-title>
+    <mat-card-title><mat-icon>home</mat-icon>Home</mat-card-title>
     <div>All articles</div>
   </mat-card>
   <mat-card (click)="selectFamilyTypeArticlesFamily(articleElement)"
