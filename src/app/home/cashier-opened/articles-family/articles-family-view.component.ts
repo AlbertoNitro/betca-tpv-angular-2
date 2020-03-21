@@ -3,7 +3,8 @@ import {ArticleFamilyView} from './articles-family-view.model';
 import {ArticlesFamilyViewService} from './articles-family-view.service';
 import {ShoppingCartService} from '../shopping-cart/shopping-cart.service';
 import {ArticlesFamilyViewComplete} from './articles-family-view-complete.model';
-import {MatDialogConfig, MatSnackBar} from '@angular/material';
+import {MatDialog, MatDialogConfig, MatSnackBar} from '@angular/material';
+import {ArticlesFamilyViewSizesDialogComponent} from './articles-family-view-sizes-dialog.component';
 
 @Component({
   selector: 'app-articles-family-view',
@@ -16,6 +17,7 @@ export class ArticlesFamilyViewComponent {
   articlesFamilyListSizes: ArticlesFamilyViewComplete[] = [];
 
   constructor(private articlesFamilyViewService: ArticlesFamilyViewService,
+              private dialog: MatDialog,
               private shoppingCartService: ShoppingCartService,
               private message: MatSnackBar) {
     this.getRootArticlesFamily();
@@ -23,17 +25,14 @@ export class ArticlesFamilyViewComponent {
 
   getRootArticlesFamily() {
     this.articlesFamilyViewService.readFamilyCompositeByDesc('root')
-      .subscribe(
-        data => {
-          console.log('root data', data);
-          this.articlesFamilyList = data;
-          console.log(this.articlesFamilyList);
-        }
-      );
+      .subscribe(data => {
+        this.articlesFamilyList = data;
+      });
   }
 
   addArticleToShoppingCart(reference: string) {
     this.shoppingCartService.add(reference).subscribe(() => {
+      // todo:message article added
     });
   }
 
@@ -65,13 +64,10 @@ export class ArticlesFamilyViewComponent {
             this.message.open('Ups, There is no stock for that item.', null, {
               duration: 2000,
             }) :
-            this.openDilogSizes(this.articlesFamilyListSizes);
+            this.dialog.open(ArticlesFamilyViewSizesDialogComponent, {data: this.articlesFamilyListSizes});
         }
       );
   }
-
-
-
 }
 
 
