@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
+import {EMPTY, Observable} from 'rxjs';
 
 import {AppEndpoints} from '../../app-endpoints';
 import {HttpService} from '../../core/http.service';
@@ -9,6 +9,10 @@ import {User} from './user.model';
 export class UserService {
 
   constructor(private httpService: HttpService) {
+  }
+
+  create(user: User): Observable<User> {
+    return EMPTY;
   }
 
   readAll(): Observable<User[]> {
