@@ -15,8 +15,15 @@ export class UserService {
     return EMPTY;
   }
 
+  read(mobile: string): Observable<User> {
+    return this.httpService.get(AppEndpoints.USERS + '/' + mobile);
+  }
+
+  update(mobile: string, user: User): Observable<User> {
+    return EMPTY;
+  }
+
   readAll(): Observable<User[]> {
     return this.httpService.get(AppEndpoints.USERS);
   }
-
 }
