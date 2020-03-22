@@ -28,6 +28,9 @@ export class ArticlesFamilyDialogComponent {
   sizeNumber: Size[];
   type: SizeType[];
   constructor(@Inject(MAT_DIALOG_DATA) dataDialog: any, private providerService: ProviderService, private sizeService: SizeService) {
+    this.sizeService.readAll().subscribe(
+      data => this.type = data
+    );
     this.providerService.readAll().subscribe(
       data => this.providers = data
     );
@@ -36,9 +39,6 @@ export class ArticlesFamilyDialogComponent {
     );
     this.sizeService.readAllNumber().subscribe(
       data => this.sizeNumber = data
-    );
-    this.sizeService.readAll().subscribe(
-      data => this.type = data
     );
   }
 }
