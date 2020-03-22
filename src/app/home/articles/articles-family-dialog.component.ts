@@ -6,7 +6,8 @@ import {ProviderService} from '../shared/provider.service';
 
 
 @Component({
-  templateUrl: 'articles-family-dialog.component.html'
+  templateUrl: 'articles-family-dialog.component.html',
+  styleUrls: ['articles-family-dialog.component.css']
 })
 
 export class ArticlesFamilyDialogComponent {
