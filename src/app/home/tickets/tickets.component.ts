@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Ticket} from './ticket.model';
-import {TicketService} from './ticket.service';
+import {Ticket} from '../shared/ticket.model';
+import {TicketService} from '../shared/ticket.service';
 
 @Component({
   selector: 'app-tickets',

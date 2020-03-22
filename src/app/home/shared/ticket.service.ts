@@ -15,4 +15,7 @@ export class TicketService {
     return this.httpService.get(AppEndpoints.TICKETS);
   }
 
+  readOne(reference: string): Observable<Ticket> {
+    return this.httpService.get(AppEndpoints.TICKETS + '/' + reference);
+  }
 }
