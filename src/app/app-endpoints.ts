@@ -44,4 +44,8 @@ export class AppEndpoints {
   static STAFFS = '/staffs';
 
   static OFFERS = 'offers';
+
+  static SIZES_INTERNATIONAL = '/sizes-international';
+
+  static SIZES_NUMBER = '/sizes-number';
 }

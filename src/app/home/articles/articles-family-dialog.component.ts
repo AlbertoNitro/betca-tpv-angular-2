@@ -3,6 +3,9 @@ import {MAT_DIALOG_DATA} from '@angular/material';
 import {Provider} from '../shared/provider.model';
 import {ArticleFamily} from './articles-family-dialog.model';
 import {ProviderService} from '../shared/provider.service';
+import {SizeType} from './size/size-type.model';
+import {Size} from './size/size.model';
+import {SizeService} from './size/size.service';
 
 
 @Component({
@@ -15,41 +18,27 @@ export class ArticlesFamilyDialogComponent {
   newArticles: ArticleFamily = {
     description: null,
     provider: null,
-    size: 0,
+    type: null,
     fromSize: null,
     toSize: null,
     increment: 0
   };
-  sizeInternationals = [
-    {id: 1, name: 'XXS'},
-    {id: 2, name: 'XS'},
-    {id: 3, name: 'S'},
-    {id: 4, name: 'M'},
-    {id: 5, name: 'L'},
-    {id: 6, name: 'XL'},
-    {id: 7, name: 'XXL'},
-    {id: 8, name: 'XXXL'},
-    {id: 9, name: 'Special'}
-  ];
-  sizeNumbers = [
-    {id: 1, name: '0'},
-    {id: 2, name: '10'},
-    {id: 3, name: '20'},
-    {id: 4, name: '30'},
-    {id: 5, name: '40'},
-    {id: 6, name: '50'},
-    {id: 7, name: '60'},
-    {id: 8, name: '70'},
-    {id: 9, name: '80'}
-  ];
-  typeSize = [
-    {id: 1, name: 'International'},
-    {id: 2, name: 'Number'},
-  ];
   providers: Provider[];
-  constructor(@Inject(MAT_DIALOG_DATA) dataDialog: any, private providerService: ProviderService) {
+  sizeInternational: Size[];
+  sizeNumber: Size[];
+  type: SizeType[];
+  constructor(@Inject(MAT_DIALOG_DATA) dataDialog: any, private providerService: ProviderService, private sizeService: SizeService) {
     this.providerService.readAll().subscribe(
       data => this.providers = data
+    );
+    this.sizeService.readAllInternational().subscribe(
+      data => this.sizeInternational = data
+    );
+    this.sizeService.readAllNumber().subscribe(
+      data => this.sizeNumber = data
+    );
+    this.sizeService.readAll().subscribe(
+      data => this.type = data
     );
   }
 }
