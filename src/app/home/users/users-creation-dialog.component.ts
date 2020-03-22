@@ -24,14 +24,20 @@ export class UsersCreationDialogComponent {
   }
 
   createUser() {
-    this.userService.create(this.user).subscribe(
-      () => this.dialog.closeAll()
-      , () => this.message.open('Ups, something bad happened', null, {
+    if (this.user.mobile !== null && this.user.username !== null) {
+      this.userService.create(this.user).subscribe(
+        () => this.dialog.closeAll()
+        , () => this.message.open('Ups, something bad happened', null, {
+          duration: 2000,
+        })
+        , () => this.message.open('User created successfully', null, {
+          duration: 2000,
+        })
+      );
+    } else {
+      this.message.open('The fields Mobile and Username are required', null, {
         duration: 2000,
-      })
-      , () => this.message.open('User created successfully', null, {
-        duration: 2000,
-      })
-    );
+      });
+    }
   }
 }
