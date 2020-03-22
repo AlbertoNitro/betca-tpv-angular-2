@@ -1,0 +1,14 @@
+<mat-card>
+  <mat-card-title>Ticket Tracking</mat-card-title>
+  <mat-card-content>
+    <mat-form-field>
+      <input [(ngModel)]="ticket.reference" matInput placeholder="Reference">
+    </mat-form-field>
+    <button (click)="search()" color="primary" mat-mini-fab>
+      <mat-icon>search</mat-icon>
+    </button>
+    <button (click)="resetSearch()" color="primary" mat-mini-fab>
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-card-content>
+</mat-card>
