@@ -102,6 +102,17 @@
         </button>
       </form>
     </div>
+    <div>
+      <form>
+        <mat-form-field>
+          <input #budget matInput placeholder="Budget" type="text">
+        </mat-form-field>
+        <button (click)="findBudgetById(budget.value)" [disabled]="!isEmpty()" color="primary" mat-mini-fab
+                type="submit">
+          <mat-icon>description</mat-icon>
+        </button>
+      </form>
+    </div>
     <button (click)="checkOut()" [disabled]="isEmpty()" color="accent" mat-raised-button>
       <mat-icon mat-icon-button>credit_card</mat-icon>
       Checkout

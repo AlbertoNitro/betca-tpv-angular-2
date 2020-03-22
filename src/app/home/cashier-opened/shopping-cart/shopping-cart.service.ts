@@ -14,6 +14,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {VoucherService} from '../../shared/voucher.service';
 import {InvoiceService} from '../../shared/invoice/invoice.service';
 import {BudgetCreation} from './budget-creation.model';
+import {Budget} from './budget.model';
 
 @Injectable()
 export class ShoppingCartService {
@@ -147,6 +148,15 @@ export class ShoppingCartService {
       map(() => this.reset())
     );
     return budget;
+  }
+
+  getBudgetById(id: string): Observable<Budget> {
+    return this.httpService.get(AppEndpoints.BUDGETS + '/' + id);
+  }
+
+  addBudgetList(listArticle: Array<Shopping>) {
+    this.shoppingCart = listArticle;
+    this.synchronizeAll();
   }
 
   getShoppingCart() {
