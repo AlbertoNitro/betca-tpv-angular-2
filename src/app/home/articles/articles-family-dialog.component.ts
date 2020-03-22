@@ -1,8 +1,8 @@
 import {Component, Inject} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSnackBar} from '@angular/material';
+import {MAT_DIALOG_DATA} from '@angular/material';
 import {Provider} from '../shared/provider.model';
-import {ArticleFamily} from '../shared/articleFamily.model';
-import {ArticleService} from '../shared/article.service';
+import {ArticleFamily} from './articles-family-dialog.model';
+import {ProviderService} from '../shared/provider.service';
 
 
 @Component({
@@ -45,14 +45,11 @@ export class ArticlesFamilyDialogComponent {
     {id: 1, name: 'International'},
     {id: 2, name: 'Number'},
   ];
-
-  constructor(@Inject(MAT_DIALOG_DATA) data: any, private dialog: MatDialog,
-              private dialogRef: MatDialogRef<ArticlesFamilyDialogComponent>,
-              private message: MatSnackBar, private articleService: ArticleService) {
-  }
-
-  getProvider(provider: Provider) {
-    this.newArticles.provider = provider.id;
+  providers: Provider[];
+  constructor(@Inject(MAT_DIALOG_DATA) dataDialog: any, private providerService: ProviderService) {
+    this.providerService.readAll().subscribe(
+      data => this.providers = data
+    );
   }
 }
 
