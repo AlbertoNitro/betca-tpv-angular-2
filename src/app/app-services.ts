@@ -15,7 +15,7 @@ import {SendingsService} from './home/sendings/sendings.service';
 import {InvoiceService} from './home/shared/invoice/invoice.service';
 import {OfferService} from './home/shared/offer.service';
 import {CashMovementsService} from './home/cashier-opened/cashier-closure/cash-movements/cash-movements.service';
-import {TicketService} from './home/tickets/ticket.service';
+import {TicketService} from './home/shared/ticket.service';
 import {CashierClosureMocks} from './home/cashier-opened/cashier-closure/search/cashier-closure-mocks.service';
 
 export class AppServices {

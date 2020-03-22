@@ -17,6 +17,7 @@ import {CustomerDiscountComponent} from './home/customer-discount/customer-disco
 import {InvoicesComponent} from './home/invoices/invoices.component';
 import {OffersComponent} from './home/offers/offers.component';
 import {TicketsComponent} from './home/tickets/tickets.component';
+import {TicketTrackingComponent} from './home/ticket-tracking/ticket-tracking.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'welcome'},
@@ -38,7 +39,8 @@ const routes: Routes = [
       {path: 'stock-alarm', component: StockAlarmComponent},
       {path: 'invoices', component: InvoicesComponent},
       {path: 'offers', component: OffersComponent},
-      {path: 'tickets', component: TicketsComponent}
+      {path: 'tickets', component: TicketsComponent},
+      {path: 'ticket-tracking', component: TicketTrackingComponent}
     ]
   }
 ];

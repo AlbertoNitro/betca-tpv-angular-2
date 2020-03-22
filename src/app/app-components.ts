@@ -47,6 +47,7 @@ import {OrderCloseDialogComponent} from './home/orders/order-close-dialog.compon
 import {ActionNotAllowedDialogComponent} from './home/orders/action-not-allowed-dialog.component';
 import {ArticlesFamilyViewSizesDialogComponent} from './home/cashier-opened/articles-family/articles-family-view-sizes-dialog.component';
 import {UsersCreationDialogComponent} from './home/users/users-creation-dialog.component';
+import {TicketTrackingComponent} from './home/ticket-tracking/ticket-tracking.component';
 
 export class AppComponents {
   static COMPONENTS = [
@@ -71,7 +72,8 @@ export class AppComponents {
     SendingsComponent,
     InvoicesComponent,
     OffersComponent,
-    TicketsComponent
+    TicketsComponent,
+    TicketTrackingComponent
   ];
 
   static DIALOGS = [
