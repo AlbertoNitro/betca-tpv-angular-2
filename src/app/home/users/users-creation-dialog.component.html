@@ -22,8 +22,16 @@
     <input [(ngModel)]="user.address" matInput placeholder="Address"
            type="text"/>
   </mat-form-field>
+  <mat-form-field *ngIf="update">
+    <mat-label>Active</mat-label>
+    <mat-select [(value)]="active">
+      <mat-option value="true">True</mat-option>
+      <mat-option value="false">False</mat-option>
+    </mat-select>
+  </mat-form-field>
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-dialog-close mat-raised-button>Cancel</button>
-  <button (click)="createUser()" color="primary" mat-raised-button>Create</button>
+  <button (click)="createUser()" *ngIf="!update" color="primary" mat-raised-button>Create</button>
+  <button (click)="updateUser()" *ngIf="update" color="primary" mat-raised-button>Update</button>
 </mat-dialog-actions>

@@ -35,7 +35,11 @@ export class UsersComponent {
 
 
   create() {
-    this.dialog.open(UsersCreationDialogComponent);
+    this.dialog.open(UsersCreationDialogComponent, {
+      data: {
+        update: false
+      }
+    });
   }
 
   read(user: User) {
@@ -43,7 +47,12 @@ export class UsersComponent {
   }
 
   update(user: User) {
-    // TODO
+    this.dialog.open(UsersCreationDialogComponent, {
+      data: {
+        mobile: user.mobile,
+        update: true
+      }
+    });
   }
 
   delete(user: User) {
