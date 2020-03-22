@@ -4,6 +4,7 @@ import {UserService} from './user.service';
 import {User} from './user.model';
 import {MatDialog} from '@angular/material';
 import {UsersCreationDialogComponent} from './users-creation-dialog.component';
+import {UsersDetailDialogComponent} from './users-detail-dialog.component';
 
 @Component({
   templateUrl: `users.component.html`
@@ -43,7 +44,11 @@ export class UsersComponent {
   }
 
   read(user: User) {
-    // TODO
+    this.dialog.open(UsersDetailDialogComponent, {
+      data: {
+        mobile: user.mobile
+      }
+    });
   }
 
   update(user: User) {
@@ -58,5 +63,4 @@ export class UsersComponent {
   delete(user: User) {
     // TODO
   }
-
 }

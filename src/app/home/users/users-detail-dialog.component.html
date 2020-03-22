@@ -1,0 +1,30 @@
+<h3 mat-dialog-title>Read User</h3>
+<mat-dialog-content>
+  <mat-form-field>
+    <input [(ngModel)]="user.mobile" matInput
+           placeholder="Mobile" readonly/>
+  </mat-form-field>
+  <mat-form-field>
+    <input [(ngModel)]="user.username" matInput
+           placeholder="Username" readonly/>
+  </mat-form-field>
+  <mat-form-field>
+    <input [(ngModel)]="user.email" matInput placeholder="Email"
+           readonly/>
+  </mat-form-field>
+  <mat-form-field>
+    <input [(ngModel)]="user.dni" matInput placeholder="DNI"
+           readonly/>
+  </mat-form-field>
+  <mat-form-field>
+    <input [(ngModel)]="user.address" matInput placeholder="Address"
+           readonly/>
+  </mat-form-field>
+  <mat-form-field>
+    <input [(ngModel)]="user.active" matInput placeholder="Active"
+           readonly/>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-dialog-close mat-raised-button>Close</button>
+</mat-dialog-actions>
