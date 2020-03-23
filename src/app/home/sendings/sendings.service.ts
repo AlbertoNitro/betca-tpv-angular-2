@@ -18,4 +18,8 @@ export class SendingsService {
   create(newSendings: Sendings): Observable<Sendings> {
     return this.httpService.post(AppEndpoints.SENDINGS, newSendings);
   }
+
+  update(sendings: Sendings): Observable<Sendings> {
+    return this.httpService.put(AppEndpoints.SENDINGS + '/' + sendings.id, sendings);
+  }
 }
