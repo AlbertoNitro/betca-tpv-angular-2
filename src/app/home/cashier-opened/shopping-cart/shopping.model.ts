@@ -26,9 +26,4 @@ export class Shopping {
   toString(): string {
     return 'code:' + this.code + ', delivered:' + this.committed;
   }
-
-  updateCustomerDiscount(discount): void {
-    this.discount = discount;
-  }
-
 }

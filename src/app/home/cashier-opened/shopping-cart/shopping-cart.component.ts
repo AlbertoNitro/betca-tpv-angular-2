@@ -168,8 +168,12 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   addDiscount(mobile) {
     this.customerDiscountService.readOne(mobile).subscribe(
       (discount) => {
-        shopping.updateCustomerDiscount(discount);
-        shopping.updateTotal();
+        this.dataSource.data.forEach(
+          item => {
+            item.discount = discount.discount;
+            item.updateDiscount();
+          }
+        );
       }
       , () => {
         this.snackBar.open('Ups, something went wrong', null, {duration: 2000});

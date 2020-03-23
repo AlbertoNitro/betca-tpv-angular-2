@@ -87,8 +87,7 @@
         <mat-form-field>
           <input #mobile matInput placeholder="Mobile to discount" type="text">
         </mat-form-field>
-        <button (click)="addDiscount(mobile.value)" [disabled]="mobile.value === ''" color="primary"
-                mat-mini-fab
+        <button (click)="addDiscount(mobile.value)" [disabled]="mobile.value === ''" color="primary" mat-mini-fab
                 type="submit">
           <mat-icon>money_off</mat-icon>
         </button>
