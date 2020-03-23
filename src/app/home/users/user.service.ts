@@ -25,6 +25,11 @@ export class UserService {
     return EMPTY;
   }
 
+  delete(mobile: string): Observable<User> {
+    // TODO
+    return EMPTY;
+  }
+
   readAll(): Observable<User[]> {
     return this.httpService.get(AppEndpoints.USERS);
   }
