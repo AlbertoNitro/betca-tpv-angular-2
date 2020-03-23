@@ -50,6 +50,7 @@ import {UsersCreationDialogComponent} from './home/users/users-creation-dialog.c
 import {TicketTrackingComponent} from './home/ticket-tracking/ticket-tracking.component';
 import {UsersDetailDialogComponent} from './home/users/users-detail-dialog.component';
 import {TicketTrackingDialogComponent} from './home/ticket-tracking/ticket-tracking-dialog.component';
+import {SendingsUpdateDialogComponent} from './home/sendings/sendings-update-dialog.component';
 
 export class AppComponents {
   static COMPONENTS = [
@@ -107,6 +108,7 @@ export class AppComponents {
     ArticlesFamilyViewSizesDialogComponent,
     UsersCreationDialogComponent,
     UsersDetailDialogComponent,
-    TicketTrackingDialogComponent
+    TicketTrackingDialogComponent,
+    SendingsUpdateDialogComponent
   ];
 }

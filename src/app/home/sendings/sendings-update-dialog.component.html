@@ -1,0 +1,36 @@
+<h3 mat-dialog-title>Update Sendings</h3>
+<mat-dialog-content>
+  <mat-form-field>
+    <input [(ngModel)]="sendings.id" cdkFocusInitial matInput
+           placeholder="TicketId"
+           required type="text" readonly/>
+  </mat-form-field>
+  <mat-form-field>
+    <input [(ngModel)]="sendings.username" matInput
+           placeholder="Username"
+           required type="text" readonly/>
+  </mat-form-field>
+  <mat-form-field>
+    <input [(ngModel)]="sendings.reference" matInput
+           placeholder="Reference"
+           required type="text" readonly/>
+  </mat-form-field>
+  <mat-form-field>
+    <input [(ngModel)]="sendings.creationDate" matInput
+           placeholder="CreationDate"
+           required type="text" readonly/>
+  </mat-form-field>
+  <mat-form-field>
+    <input [(ngModel)]="sendings.estado" matInput
+           placeholder="Estado"
+           required type="text"/>
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-dialog-close mat-raised-button>Close</button>
+  <button (click)="updateSendings()" color="primary" mat-raised-button>
+    <mat-icon>local_shipping</mat-icon>
+    <span>Update Sendings</span>
+  </button>
+</mat-dialog-actions>

@@ -4,6 +4,7 @@ import {SendingsService} from './sendings.service';
 import {MatDialog} from '@angular/material';
 import {SendingsCreationDialogComponent} from './sendings-creation-dialog.component';
 import {SendingsDetailDialogComponent} from './sendings-detail-dialog.component';
+import {SendingsUpdateDialogComponent} from './sendings-update-dialog.component';
 
 @Component({
   templateUrl: 'sendings.component.html',
@@ -51,7 +52,17 @@ export class SendingsComponent {
   }
 
   update(sendings: Sendings) {
-    // TODO
+    this.dialog.open(SendingsUpdateDialogComponent,
+      {
+        data: {
+          sendingsData: sendings
+        }
+      }
+    ).afterClosed().subscribe(
+      () => {
+        this.search();
+      }
+    );
   }
 
   delete(sendings: Sendings) {
