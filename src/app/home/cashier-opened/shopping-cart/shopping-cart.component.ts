@@ -6,6 +6,7 @@ import {ShoppingCartService} from './shopping-cart.service';
 import {Shopping} from './shopping.model';
 import {CheckOutDialogComponent} from './check-out-dialog.component';
 import {BudgetDialogComponent} from './budget-dialog.component';
+import {CustomerDiscountService} from '../../customer-discount/customer-discount.service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -20,7 +21,9 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   private subscriptionDataSource: Subscription;
   @ViewChild('code', {static: true}) private elementRef: ElementRef;
   @ViewChild('budget', {static: true}) private budgetRef: ElementRef;
-  constructor(private dialog: MatDialog, private shoppingCartService: ShoppingCartService, private snackBar: MatSnackBar) {
+
+  constructor(private dialog: MatDialog, private shoppingCartService: ShoppingCartService,
+              private snackBar: MatSnackBar, private customerDiscountService: CustomerDiscountService) {
     this.subscriptionDataSource = this.shoppingCartService.shoppingCartObservable().subscribe(
       data => {
         this.dataSource = new MatTableDataSource<Shopping>(data);
@@ -149,11 +152,12 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   findBudgetById(id) {
     this.shoppingCartService.getBudgetById(id)
       .subscribe(
-        res =>  {this.shoppingCartService.addBudgetList(res.shoppingCart);
+        res => {
+          this.shoppingCartService.addBudgetList(res.shoppingCart);
           this.budgetRef.nativeElement.value = '';
           const now = new Date();
-          const creationDate = new Date( res.creationDate);
-          if (((now.getTime() - creationDate.getTime()) / 1000 / 60 / 60 / 24 ) > 15) {
+          const creationDate = new Date(res.creationDate);
+          if (((now.getTime() - creationDate.getTime()) / 1000 / 60 / 60 / 24) > 15) {
             const warning = {warning: 'Is expired', message: '', path: ''};
             this.snackBar.open(warning.warning + ': ' + warning.message, 'Info', {duration: 2000});
           }
@@ -162,7 +166,19 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   }
 
   addDiscount(mobile) {
-    // TODO add discount
+    this.customerDiscountService.readOne(mobile).subscribe(
+      (discount) => {
+        this.dataSource.data.forEach(
+          item => {
+            item.discount = discount.discount;
+            item.updateDiscount();
+          }
+        );
+      }
+      , () => {
+        this.snackBar.open('Ups, something went wrong', null, {duration: 2000});
+      }
+    );
   }
 
   addOffer(offer) {

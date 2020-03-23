@@ -15,6 +15,8 @@ import {VoucherService} from '../../shared/voucher.service';
 import {InvoiceService} from '../../shared/invoice/invoice.service';
 import {BudgetCreation} from './budget-creation.model';
 import {Budget} from './budget.model';
+import {CustomerDiscountService} from '../../customer-discount/customer-discount.service';
+import {CustomerDiscount} from '../../customer-discount/customer-discount.model';
 
 @Injectable()
 export class ShoppingCartService {
@@ -33,7 +35,8 @@ export class ShoppingCartService {
               private articleService: ArticleService,
               private httpService: HttpService,
               private voucherService: VoucherService,
-              private invoiceService: InvoiceService) {
+              private invoiceService: InvoiceService,
+              private customerDiscountService: CustomerDiscountService) {
     for (let i = 0; i < ShoppingCartService.SHOPPING_CART_NUM; i++) {
       this.shoppingCartList.push([]);
     }
@@ -141,6 +144,10 @@ export class ShoppingCartService {
 
   isEmpty(): boolean {
     return (!this.shoppingCart || this.shoppingCart.length === 0);
+  }
+
+  getDiscountByMobile(mobile: string): Observable<CustomerDiscount> {
+    return this.httpService.get(AppEndpoints.CUSTOMER_DISCOUNTS + '/' + mobile);
   }
 
   createBudget(budgetCreation: BudgetCreation): Observable<any> {
