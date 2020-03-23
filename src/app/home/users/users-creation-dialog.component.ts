@@ -2,6 +2,7 @@ import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatSnackBar} from '@angular/material';
 import {UserService} from './user.service';
 import {User} from './user.model';
+import {FormControl, Validators} from '@angular/forms';
 
 @Component({
   styleUrls: ['users-creation-dialog.component.css'],
@@ -17,8 +18,9 @@ export class UsersCreationDialogComponent {
     address: null
   };
   update: boolean;
-  mobile: string;
+  mobile: number;
   active: string;
+  emailFormControl = new FormControl('', [Validators.email]);
 
   constructor(@Inject(MAT_DIALOG_DATA) data: any,
               private dialog: MatDialog,
@@ -36,8 +38,12 @@ export class UsersCreationDialogComponent {
     }
   }
 
+  getErrorMessage() {
+    return this.emailFormControl.hasError('email') ? 'Not a valid email' : '';
+  }
+
   createUser() {
-    if (this.validateRequiredFields()) {
+    if (this.validateRequiredFields() && !this.emailFormControl.hasError('email')) {
       this.userService.create(this.user).subscribe(
         () => this.dialog.closeAll()
         , () => this.message.open('Ups, something bad happened', null, {
@@ -47,15 +53,11 @@ export class UsersCreationDialogComponent {
           duration: 2000,
         })
       );
-    } else {
-      this.message.open('The fields Mobile and Username are required', null, {
-        duration: 2000,
-      });
     }
   }
 
   updateUser() {
-    if (this.validateRequiredFields()) {
+    if (this.validateRequiredFields() && !this.emailFormControl.hasError('email')) {
       this.user.active = (this.active === 'true');
       this.userService.update(this.mobile, this.user).subscribe(
         () => this.dialog.closeAll()
@@ -66,19 +68,21 @@ export class UsersCreationDialogComponent {
           duration: 2000,
         })
       );
-    } else {
-      this.message.open('The fields Mobile and Username are required', null, {
-        duration: 2000,
-      });
     }
   }
 
   validateRequiredFields(): boolean {
+    let valid = true;
     if (this.user.mobile === null || this.user.username === null) {
-      return false;
-    } else if ('' === this.user.mobile.trim() || '' === this.user.username.trim()) {
-      return false;
+      valid = false;
+    } else if ('' === this.user.mobile.toString().trim() || '' === this.user.username.trim()) {
+      valid = false;
     }
-    return true;
+    if (valid === false) {
+      this.message.open('The fields Mobile and Username are required', null, {
+        duration: 2000,
+      });
+    }
+    return valid;
   }
 }
