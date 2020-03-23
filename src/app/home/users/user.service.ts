@@ -16,16 +16,16 @@ export class UserService {
     return EMPTY;
   }
 
-  read(mobile: string): Observable<User> {
+  read(mobile: number): Observable<User> {
     return this.httpService.get(AppEndpoints.USERS + '/' + mobile);
   }
 
-  update(mobile: string, user: User): Observable<User> {
+  update(mobile: number, user: User): Observable<User> {
     // TODO
     return EMPTY;
   }
 
-  delete(mobile: string): Observable<User> {
+  delete(mobile: number): Observable<User> {
     // TODO
     return EMPTY;
   }
