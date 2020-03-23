@@ -5,6 +5,7 @@ import {User} from './user.model';
 import {MatDialog} from '@angular/material';
 import {UsersCreationDialogComponent} from './users-creation-dialog.component';
 import {UsersDetailDialogComponent} from './users-detail-dialog.component';
+import {CancelYesDialogComponent} from '../../core/cancel-yes-dialog.component';
 
 @Component({
   templateUrl: `users.component.html`
@@ -61,6 +62,18 @@ export class UsersComponent {
   }
 
   delete(user: User) {
-    // TODO
+    this.dialog.open(CancelYesDialogComponent).afterClosed().subscribe(
+      result => {
+        if (result) {
+          this.userService.delete(user.mobile).subscribe(
+            response => {
+              // TODO
+              console.log(response);
+              this.search();
+            }
+          );
+        }
+      }
+    );
   }
 }
