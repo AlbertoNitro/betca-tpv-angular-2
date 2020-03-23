@@ -1,7 +1,13 @@
 <h3 mat-dialog-title>Articles Family Creator</h3>
 <mat-dialog-content>
-  <app-providers-dropdown (providerOut)="getProvider($event)" [(ngModel)]="newArticles.provider" [providerIn]="newArticles.provider"
-                          class="full-width"></app-providers-dropdown>
+  <mat-form-field>
+    <mat-label>Provider</mat-label>
+    <mat-select [(ngModel)]="newArticles.provider">
+      <mat-option *ngFor="let provider of providers" [value]="provider.id">
+        {{provider.company}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
   <br>
   <mat-form-field class="full-width">
     <input [(ngModel)]="newArticles.description" cdkFocusInitial matInput placeholder="Description" required
@@ -9,49 +15,49 @@
   </mat-form-field>
   <br>
   <label>Size: </label><br><br>
-  <mat-radio-group [(ngModel)]="newArticles.size">
-    <mat-radio-button *ngFor="let type of typeSize" [value]=type.id>
-      {{type.name}}
+  <mat-radio-group [(ngModel)]="newArticles.type">
+    <mat-radio-button *ngFor="let sizeType of type" [value]=sizeType.id class="media-width">
+      {{sizeType.name}}
     </mat-radio-button>
   </mat-radio-group>
   <br><br>
-  <div *ngIf="newArticles.size==1">
+  <div *ngIf="newArticles.type==1">
     <mat-form-field>
       <mat-label>From</mat-label>
-      <mat-select [(ngModel)]="newArticles.fromSize">
-        <mat-option *ngFor="let size of sizeInternationals" [value]="size.id">
-          {{size.name}}
+      <mat-select [(ngModel)]="newArticles.fromSize" class="media-width">
+        <mat-option *ngFor="let size of sizeInternational" [value]="size.id">
+          {{size.description}}
         </mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field>
       <mat-label>To</mat-label>
-      <mat-select [(ngModel)]="newArticles.toSize">
-        <mat-option *ngFor="let size of sizeInternationals" [value]="size.id">
-          {{size.name}}
+      <mat-select [(ngModel)]="newArticles.toSize" class="media-width">
+        <mat-option *ngFor="let size of sizeInternational" [value]="size.id">
+          {{size.description}}
         </mat-option>
       </mat-select>
     </mat-form-field>
   </div>
-  <div *ngIf="newArticles.size==2">
+  <div *ngIf="newArticles.type==2">
     <mat-form-field>
       <mat-label>From</mat-label>
-      <mat-select [(ngModel)]="newArticles.fromSize">
-        <mat-option *ngFor="let size of sizeNumbers" [value]="size.id">
-          {{size.name}}
+      <mat-select [(ngModel)]="newArticles.fromSize" class="media-width">
+        <mat-option *ngFor="let size of sizeNumber" [value]="size.id">
+          {{size.description}}
         </mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field>
       <mat-label>To</mat-label>
-      <mat-select [(ngModel)]="newArticles.toSize">
-        <mat-option *ngFor="let size of sizeNumbers" [value]="size.id">
-          {{size.name}}
+      <mat-select [(ngModel)]="newArticles.toSize" class="media-width">
+        <mat-option *ngFor="let size of sizeNumber" [value]="size.id">
+          {{size.description}}
         </mat-option>
       </mat-select>
     </mat-form-field>
     <br>
-    <mat-form-field class="full-width">
+    <mat-form-field class="media-width">
       <input [(ngModel)]="newArticles.increment" cdkFocusInitial matInput placeholder="Increment" required
              type="Number"/>
     </mat-form-field>
@@ -64,4 +70,5 @@
     <span>Create Articles</span>
   </button>
 </mat-dialog-actions>
+
 
