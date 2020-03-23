@@ -219,7 +219,7 @@ export class HomeComponent {
   }
 
   openFamilyCreator() {
-    this.dialog.open(ArticlesFamilyDialogComponent).afterClosed().subscribe(
+    this.dialog.open(ArticlesFamilyDialogComponent, {width: '500px'}).afterClosed().subscribe(
       () => this.cashier()
     );
   }

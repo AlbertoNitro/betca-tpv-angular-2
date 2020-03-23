@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {TicketService} from '../shared/ticket.service';
 import {Ticket} from '../shared/ticket.model';
+import {MatDialog} from '@angular/material';
+import {TicketTrackingDialogComponent} from './ticket-tracking-dialog.component';
 
 @Component({
   selector: 'app-tickets',
@@ -13,7 +15,7 @@ export class TicketTrackingComponent implements OnInit {
   columns = ['reference'];
   ticket: Ticket;
 
-  constructor(private ticketService: TicketService) {
+  constructor(private ticketService: TicketService, private dialog: MatDialog) {
     this.ticket = { reference: null };
   }
 
@@ -23,9 +25,14 @@ export class TicketTrackingComponent implements OnInit {
   search() {
     if (this.ticket !== null && this.ticket.reference !== null) {
       this.ticketService.readOne(this.ticket.reference).subscribe(
-        t => this.ticket = t
+        t => {
+          this.ticket = t;
+          this.dialog.open( TicketTrackingDialogComponent,
+            {
+              data: { obj: this.ticket }
+            });
+        }
       );
-      // TO DO open status dialog
     }
   }
 
