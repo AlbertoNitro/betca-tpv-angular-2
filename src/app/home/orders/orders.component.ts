@@ -85,7 +85,7 @@ export class OrdersComponent {
   }
 
   delete(orderToDelete: OrderDetails) {
-    if(orderToDelete.closingDate == null) {
+    if(orderToDelete.closingDate === null) {
       this.dialog.open(CancelYesDialogComponent).afterClosed().subscribe(
         result => {
           if (result) {
