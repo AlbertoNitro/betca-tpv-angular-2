@@ -18,6 +18,9 @@ export class ProviderCreationDialogComponent {
   }
 
   createProvider() {
+    if (this.isInvalid()) {
+      return;
+    }
     this.providerService.create(this.newProvider).subscribe(
       () => this.dialog.closeAll()
       , () => this.message.open('Oops, something bad happened. The company name already exists.', null, {
@@ -27,5 +30,17 @@ export class ProviderCreationDialogComponent {
         duration: 2000,
       })
     );
+  }
+
+
+  isInvalid(): boolean {
+    return this.checkEmpty(this.newProvider.company) ||
+      this.checkEmpty(this.newProvider.nif) ||
+      this.checkEmpty(this.newProvider.phone);
+  }
+
+  checkEmpty(attr: string): boolean {
+    return attr == null ||
+      attr === '';
   }
 }
