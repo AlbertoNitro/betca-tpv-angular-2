@@ -20,6 +20,9 @@ export class ProviderEditionDialogComponent {
   }
 
   updateProvider() {
+    if (this.isInvalid()) {
+      return;
+    }
     this.providerService.update(this.provider).subscribe(
       () => this.dialog.closeAll()
       , () => this.message.open('Oops, something bad happened. The company name already exists.', null, {
@@ -29,5 +32,16 @@ export class ProviderEditionDialogComponent {
         duration: 2000,
       })
     );
+  }
+
+  isInvalid(): boolean {
+    return this.checkEmpty(this.provider.company) ||
+      this.checkEmpty(this.provider.nif) ||
+      this.checkEmpty(this.provider.phone);
+  }
+
+  checkEmpty(attr: string): boolean {
+    return attr == null ||
+      attr === '';
   }
 }
