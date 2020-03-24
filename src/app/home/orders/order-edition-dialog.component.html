@@ -6,7 +6,7 @@
            required type="String"/>
   </mat-form-field>
   <mat-form-field>
-    <input [(ngModel)]="order.provider" disabled
+    <input [(ngModel)]="provider.company" disabled
            matInput
            placeholder="Provider Id"
            required type="String"/>
@@ -32,11 +32,11 @@
 
 <mat-dialog-actions>
   <button mat-dialog-close mat-raised-button>Close</button>
-  <button (click)="editOrder()" color="primary" mat-raised-button>
+  <button (click)="editOrder()" *ngIf="order.closingDate == null" color="primary" mat-raised-button>
     <mat-icon>local_offer</mat-icon>
     <span>Edit Order</span>
   </button>
-  <button (click)="closeOrder()" color="accent" mat-raised-button>
+  <button (click)="closeOrder()" *ngIf="order.closingDate == null" color="accent" mat-raised-button>
     <mat-icon>local_offer</mat-icon>
     <span>Close Order</span>
   </button>
