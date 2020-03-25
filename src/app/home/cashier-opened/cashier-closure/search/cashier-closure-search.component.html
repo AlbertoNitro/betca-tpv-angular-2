@@ -4,6 +4,7 @@
     <mat-form-field>
       <mat-label>From Date</mat-label>
       <input #closureDate="ngModel" [(ngModel)]="modelCashierClosureSearch.closureDate" [matDatepicker]="closureDate"
+             [min]="minDate"
              matInput>
       <mat-datepicker #closureDate></mat-datepicker>
     </mat-form-field>
