@@ -22,17 +22,17 @@
   </mat-radio-group>
   <br><br>
   <div *ngIf="newArticles.type==1">
-    <mat-form-field>
+    <mat-form-field class="media-width">
       <mat-label>From</mat-label>
-      <mat-select [(ngModel)]="newArticles.fromSize" class="media-width">
+      <mat-select [(ngModel)]="newArticles.fromSize">
         <mat-option *ngFor="let size of sizeInternational" [value]="size.id">
           {{size.description}}
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field class="media-width">
       <mat-label>To</mat-label>
-      <mat-select [(ngModel)]="newArticles.toSize" class="media-width">
+      <mat-select [(ngModel)]="newArticles.toSize">
         <mat-option *ngFor="let size of sizeInternational" [value]="size.id">
           {{size.description}}
         </mat-option>
@@ -40,17 +40,17 @@
     </mat-form-field>
   </div>
   <div *ngIf="newArticles.type==2">
-    <mat-form-field>
+    <mat-form-field class="media-width">
       <mat-label>From</mat-label>
-      <mat-select [(ngModel)]="newArticles.fromSize" class="media-width">
+      <mat-select [(ngModel)]="newArticles.fromSize">
         <mat-option *ngFor="let size of sizeNumber" [value]="size.id">
           {{size.description}}
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field class="media-width">
       <mat-label>To</mat-label>
-      <mat-select [(ngModel)]="newArticles.toSize" class="media-width">
+      <mat-select [(ngModel)]="newArticles.toSize">
         <mat-option *ngFor="let size of sizeNumber" [value]="size.id">
           {{size.description}}
         </mat-option>

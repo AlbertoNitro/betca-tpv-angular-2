@@ -11,12 +11,13 @@ export class SizeService {
   constructor(private httpService: HttpService) {
   }
   public readAllInternational(): Observable<Size[]> {
-    return this.httpService.get(AppEndpoints.SIZES_INTERNATIONAL);
+    return this.httpService.get(AppEndpoints.ARTICLES_FAMILY + AppEndpoints.SIZES_INTERNATIONAL);
   }
   public readAllNumber(): Observable<Size[]> {
-    return this.httpService.get(AppEndpoints.SIZES_NUMBER);
+    return this.httpService.get(AppEndpoints.ARTICLES_FAMILY + AppEndpoints.SIZES_NUMBER);
   }
   public readAll(): Observable<SizeType[]> {
-    return of([{id: 1, name: 'International'}, {id: 2, name: 'Number'}]);
+    return this.httpService.get(AppEndpoints.ARTICLES_FAMILY + AppEndpoints.SIZES_TYPE);
+  //  return of([{id: 1, name: 'International'}, {id: 2, name: 'Number'}]);
   }
 }
