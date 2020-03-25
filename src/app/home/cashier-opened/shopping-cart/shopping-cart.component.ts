@@ -185,6 +185,10 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
     // TODO add offer
   }
 
+  useCustomerPoints(mobile: string) {
+    // TODO add logic to calculate customer points
+  }
+
   ngOnDestroy(): void {
     this.subscriptionDataSource.unsubscribe();
   }

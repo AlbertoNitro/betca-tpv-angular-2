@@ -91,6 +91,12 @@
                 type="submit">
           <mat-icon>money_off</mat-icon>
         </button>
+        <button (click)="useCustomerPoints(mobile.value)" [disabled]="mobile.value === ''" color="primary"
+                mat-mini-fab
+                matTooltip="Customer points"
+                type="submit">
+          <mat-icon>money</mat-icon>
+        </button>
       </form>
       <form>
         <mat-form-field>
