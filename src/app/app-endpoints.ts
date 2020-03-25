@@ -12,6 +12,7 @@ export class AppEndpoints {
   static CASHIER_CLOSURES_LAST_STATE = AppEndpoints.CASHIER_CLOSURES_LAST + '/state';
   static CASH_MOVEMENT_DEPOSIT = AppEndpoints.CASHIER_CLOSURES_LAST + '/deposit';
   static CASH_MOVEMENT_WITHDRAWAL = AppEndpoints.CASHIER_CLOSURES_LAST + '/withdrawal';
+  static CASHIER_CLOSURE_SEARCH = AppEndpoints.CASHIER_CLOSURES + '/search';
 
   static CUSTOMER_DISCOUNTS = '/customer-discounts';
 

@@ -7,6 +7,7 @@ export interface CashierClosureSearch {
   deposit: number;
   withdrawal: number;
   lostCard: number;
+  lostCash: number;
   finalCash?: number;
   comment: string;
   closureDateS: string;
