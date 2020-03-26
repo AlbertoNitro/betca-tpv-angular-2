@@ -23,6 +23,8 @@ export class ShoppingCartService {
 
   static ARTICLE_VARIOUS = '1';
   static SHOPPING_CART_NUM = 4;
+  static ARTICLE_CUSTOMER_POINTS = '0'; // TODO change and add to seed
+  static POINT_EQUIVALENCE = 100;
 
   private indexShoppingCart = 0;
   private shoppingCart: Array<Shopping>;
@@ -45,6 +47,14 @@ export class ShoppingCartService {
 
   static isArticleVarious(code: string): boolean {
     return code === ShoppingCartService.ARTICLE_VARIOUS;
+  }
+
+  static isArticleCustomerPoints(code: string): boolean {
+    return code === ShoppingCartService.ARTICLE_CUSTOMER_POINTS;
+  }
+
+  static isArticleVariousOrCustomerPoints(code: string): boolean {
+    return this.isArticleVarious(code) || this.isArticleCustomerPoints(code);
   }
 
   shoppingCartObservable(): Observable<Shopping[]> {
@@ -168,6 +178,33 @@ export class ShoppingCartService {
 
   getShoppingCart() {
     return this.shoppingCart;
+  }
+
+  checkIfDiscountByPointsIsUsed() {
+    for (const shoppingCart of this.shoppingCartList) {
+      if (shoppingCart.find(s => s.code === ShoppingCartService.ARTICLE_CUSTOMER_POINTS)) {
+        return true;
+      }
+    }
+  }
+
+  calculateDiscountByCustomerPoints(customerPoints: number) {
+    return -0.5 * (customerPoints / ShoppingCartService.POINT_EQUIVALENCE);
+  }
+
+  applyCustomerPoint(mobile: string) {
+    // TODO fetch customer points by mobile
+    const discountByPointsAlreadyAdded = this.checkIfDiscountByPointsIsUsed();
+    if (discountByPointsAlreadyAdded) {
+      return;
+    }
+    const mockedCustomerPoints = 300;
+    const retailPrice = this.calculateDiscountByCustomerPoints(mockedCustomerPoints);
+
+    const shopping = new Shopping(ShoppingCartService.ARTICLE_CUSTOMER_POINTS, 'Customer points', retailPrice);
+
+    this.shoppingCart.push(shopping);
+    this.synchronizeAll();
   }
 
   private addArticle(article: Article, price?: number) {
