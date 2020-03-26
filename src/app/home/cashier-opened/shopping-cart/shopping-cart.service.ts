@@ -32,6 +32,7 @@ export class ShoppingCartService {
   private shoppingCartList: Array<Array<Shopping>> = [];
   private shoppingCartSubject: Subject<Shopping[]> = new BehaviorSubject(undefined); // refresh auto
   private lastArticle: Article;
+  private mobileList: object = {0: '', 1: '', 2: '', 3: ''};
 
   constructor(private dialog: MatDialog,
               private articleService: ArticleService,
@@ -180,12 +181,8 @@ export class ShoppingCartService {
     return this.shoppingCart;
   }
 
-  checkIfDiscountByPointsIsUsed() {
-    for (const shoppingCart of this.shoppingCartList) {
-      if (shoppingCart.find(s => s.code === ShoppingCartService.ARTICLE_CUSTOMER_POINTS)) {
-        return true;
-      }
-    }
+  checkMobileAlreadyUsed(mobile: string) {
+    return Boolean(Object.keys(this.mobileList).find(item => this.mobileList[item] === mobile));
   }
 
   calculateDiscountByCustomerPoints(customerPoints: number) {
@@ -194,17 +191,26 @@ export class ShoppingCartService {
 
   applyCustomerPoint(mobile: string) {
     // TODO fetch customer points by mobile
-    const discountByPointsAlreadyAdded = this.checkIfDiscountByPointsIsUsed();
-    if (discountByPointsAlreadyAdded) {
-      return;
-    }
+    const mobileAlreadyUsed = this.checkMobileAlreadyUsed(mobile);
     const mockedCustomerPoints = 300;
     const retailPrice = this.calculateDiscountByCustomerPoints(mockedCustomerPoints);
 
-    const shopping = new Shopping(ShoppingCartService.ARTICLE_CUSTOMER_POINTS, 'Customer points', retailPrice);
+    this.storeMobile(mobile);
 
+    if (mobileAlreadyUsed) {
+      this.shoppingCart = this.shoppingCart.filter(s => s.code !== ShoppingCartService.ARTICLE_CUSTOMER_POINTS);
+      this.storeMobile('');
+      this.synchronizeAll();
+      return;
+    }
+    this.shoppingCart = this.shoppingCart.filter(s => s.code !== ShoppingCartService.ARTICLE_CUSTOMER_POINTS);
+    const shopping = new Shopping(ShoppingCartService.ARTICLE_CUSTOMER_POINTS, 'Customer points (' + mobile + ')', retailPrice);
     this.shoppingCart.push(shopping);
     this.synchronizeAll();
+  }
+
+  private storeMobile(mobile: string) {
+    this.mobileList[this.indexShoppingCart] = mobile;
   }
 
   private addArticle(article: Article, price?: number) {
@@ -223,6 +229,7 @@ export class ShoppingCartService {
 
   private reset() {
     this.shoppingCart = [];
+    this.storeMobile('');
     this.synchronizeAll();
   }
 
