@@ -4,22 +4,14 @@
     <mat-form-field>
       <mat-label>From Date</mat-label>
       <input #closureDate="ngModel" [(ngModel)]="modelCashierClosureSearch.closureDate" [matDatepicker]="closureDate"
-             [min]="minDate"
              matInput>
       <mat-datepicker #closureDate></mat-datepicker>
     </mat-form-field>
     <mat-datepicker-toggle [for]="closureDate"></mat-datepicker-toggle>
     <br>
     <mat-form-field>
-      <mat-label>Higher or lower amount</mat-label>
-      <mat-select>
-        <mat-option value="mayor que"> > </mat-option>
-        <mat-option value="menor que"> < </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field>
-      <input placeholder="Amount €"
-      required type="number" min="0" matInput/>
+      <input #finalCash= "ngModel" [(ngModel)]="modelCashierClosureSearch.finalCash" placeholder="Final Cash >="
+      type="number" min="0" matInput/>
     </mat-form-field>
     <button (click)="search()" color="primary" mat-mini-fab>
       <mat-icon>search</mat-icon>
