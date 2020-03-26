@@ -53,6 +53,9 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   }
 
   incrementAmount(shopping: Shopping) {
+    if (this.isArticleCustomerPoints(shopping.code)) {
+      return;
+    }
     shopping.amount++;
     if (shopping.amount === 0) {
       shopping.amount++;
@@ -62,6 +65,9 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   }
 
   decreaseAmount(shopping: Shopping) {
+    if (this.isArticleCustomerPoints(shopping.code)) {
+      return;
+    }
     shopping.amount--;
     if (shopping.amount === 0) {
       shopping.amount--;
@@ -75,8 +81,16 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
     return this.isArticleVarious(shopping.code) ? '' : '' + shopping.discount;
   }
 
+  isArticleCustomerPoints(code: string) {
+    return ShoppingCartService.isArticleCustomerPoints(code);
+  }
+
   isArticleVarious(code: string) {
     return ShoppingCartService.isArticleVarious(code);
+  }
+
+  hasToBeDisabled(code: string) {
+    return ShoppingCartService.isArticleVariousOrCustomerPoints(code);
   }
 
   updateDiscount(shopping: Shopping, event: any): void {
@@ -186,11 +200,12 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   }
 
   useCustomerPoints(mobile: string) {
-    // TODO add logic to calculate customer points
+    this.shoppingCartService.applyCustomerPoint(mobile);
   }
 
   ngOnDestroy(): void {
     this.subscriptionDataSource.unsubscribe();
   }
+
 
 }

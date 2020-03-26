@@ -34,7 +34,7 @@
       <ng-container matColumnDef="discount">
         <mat-header-cell *matHeaderCellDef fxFlex="12%"> %</mat-header-cell>
         <mat-cell *matCellDef="let item" fxFlex="12%">
-          <input (blur)="updateDiscount(item, $event)" [disabled]="isArticleVarious(item.code)"
+          <input (blur)="updateDiscount(item, $event)" [disabled]="hasToBeDisabled(item.code)"
                  [value]="discountLabel(item)" matInput
                  type="number"
           />
@@ -43,7 +43,7 @@
       <ng-container matColumnDef="total">
         <mat-header-cell *matHeaderCellDef fxFlex="12%"> Total</mat-header-cell>
         <mat-cell *matCellDef="let item" fxFlex="12%">
-          <input (blur)="updateTotal(item, $event)" [disabled]="isArticleVarious(item.code)" [value]="item.total"
+          <input (blur)="updateTotal(item, $event)" [disabled]="hasToBeDisabled(item.code)" [value]="item.total"
                  matInput
                  type="number"/>
         </mat-cell>
