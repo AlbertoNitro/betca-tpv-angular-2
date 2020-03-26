@@ -9,11 +9,10 @@ import {CashierService} from '../../../shared/cashier.service';
 })
 export class CashierClosureSearchComponent {
   modelCashierClosureSearch: CashierClosureSearch;
-  title = 'Cashier Closure Search';
+  title = 'Cashier Closure List';
   // tslint:disable-next-line:max-line-length
   columns = ['closureDate', 'initialCash', 'salesCard', 'salesCash', 'usedVouchers', 'deposit', 'withdrawal', 'lostCard', 'lostCash', 'finalCash'];
   data: CashierClosureSearch[];
-  minDate: Date;
 
   constructor(private cashierService: CashierService) {
     this.modelCashierClosureSearch = {
@@ -33,13 +32,24 @@ export class CashierClosureSearchComponent {
       comment: null
     };
     this.data = null;
-    this.minDate = new Date(2020, 1, 1);
   }
   search() {
     if (this.modelCashierClosureSearch.closureDate == null && this.modelCashierClosureSearch.finalCash == null) {
     this.cashierService.readAll().subscribe(
       data => this.data = data
     );
+    } else {
+      let closureDate: string;
+      let finalCash: number;
+      closureDate = '';
+      finalCash = -1;
+      if (this.modelCashierClosureSearch.closureDate != null) {
+        closureDate = this.modelCashierClosureSearch.closureDate.toISOString();
+      }
+      if (this.modelCashierClosureSearch.finalCash != null) {
+        finalCash = this.modelCashierClosureSearch.finalCash;
+      }
+      this.cashierService.search(finalCash, closureDate).subscribe(data => this.data = data);
     }
   }
    // search() {
