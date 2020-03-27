@@ -10,11 +10,8 @@ import {SizeType} from './size-type.model';
 export class SizeService {
   constructor(private httpService: HttpService) {
   }
-  public readAllInternational(): Observable<Size[]> {
-    return this.httpService.get(AppEndpoints.ARTICLES_FAMILY + AppEndpoints.SIZES_INTERNATIONAL);
-  }
-  public readAllNumber(): Observable<Size[]> {
-    return this.httpService.get(AppEndpoints.ARTICLES_FAMILY + AppEndpoints.SIZES_NUMBER);
+  public findById(id: string): Observable<Size[]> {
+    return this.httpService.get(AppEndpoints.ARTICLES_FAMILY + AppEndpoints.SIZES + '/' + id);
   }
   public readAll(): Observable<SizeType[]> {
     return this.httpService.get(AppEndpoints.ARTICLES_FAMILY + AppEndpoints.SIZES_TYPE);

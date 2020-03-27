@@ -34,10 +34,10 @@ export class ArticlesFamilyDialogComponent {
     this.providerService.readAll().subscribe(
       data => this.providers = data
     );
-    this.sizeService.readAllInternational().subscribe(
+    this.sizeService.findById('1').subscribe(
       data => this.sizeInternational = data
     );
-    this.sizeService.readAllNumber().subscribe(
+    this.sizeService.findById('2').subscribe(
       data => this.sizeNumber = data
     );
   }

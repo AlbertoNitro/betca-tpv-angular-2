@@ -47,9 +47,7 @@ export class AppEndpoints {
 
   static OFFERS = 'offers';
 
-  static SIZES_INTERNATIONAL = '/sizes-international';
-
-  static SIZES_NUMBER = '/sizes-number';
+  static SIZES = '/sizes';
 
   static SIZES_TYPE = '/sizes-type';
 }
