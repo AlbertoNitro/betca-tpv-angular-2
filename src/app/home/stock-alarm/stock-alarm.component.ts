@@ -13,7 +13,6 @@ import {CancelYesDialogComponent} from '../../core/cancel-yes-dialog.component';
 })
 export class StockAlarmComponent implements OnInit {
 
-  stockAlarm: StockAlarm;
   title = 'Stock Alarm Management';
   columns = ['id', 'description', 'provider', 'warning', 'critical'];
   data: StockAlarm[];
@@ -36,7 +35,9 @@ export class StockAlarmComponent implements OnInit {
       }
     };
     this.dialog.open(StockAlarmCreateUpdateComponent, this.dialogConfig).afterClosed().subscribe(result => {
-      console.log('Create');
+      if (result) {
+        this.readAll();
+      }
     });
   }
 
@@ -50,7 +51,9 @@ export class StockAlarmComponent implements OnInit {
       }
     };
     this.dialog.open(StockAlarmCreateUpdateComponent, this.dialogConfig).afterClosed().subscribe(result => {
-      console.log('Update');
+      if (result) {
+        this.readAll();
+      }
     });
   }
 
@@ -64,7 +67,9 @@ export class StockAlarmComponent implements OnInit {
       result => {
         if (result) {
           this.alarmService.delete(alarm).subscribe(response => {
-            console.log(response);
+            if (response) {
+              this.readAll();
+            }
           });
         }
       }
@@ -80,7 +85,9 @@ export class StockAlarmComponent implements OnInit {
       }
     };
     this.dialog.open(StockAlarmDetailDialogComponent, this.dialogConfig).afterClosed().subscribe(result => {
-      console.log(alarm);
+      if (result) {
+        this.readAll();
+      }
     });
   }
 

@@ -23,7 +23,7 @@ export class StockAlarmCreateUpdateComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialog: MatDialog,
               public alarmService: StockAlarmService, public articleService: ArticleService) {
-    this.dataSource = new MatTableDataSource<AlarmArticle>(this.data.alarm.article);
+    this.dataSource = new MatTableDataSource<AlarmArticle>(this.data.alarm.alarmArticle);
     this.dialogMode = this.data.dialogMode;
   }
 
@@ -57,7 +57,7 @@ export class StockAlarmCreateUpdateComponent implements OnInit {
       provider: stockAlarmFrom.controls.provider.value,
       warning: stockAlarmFrom.controls.warning.value,
       critical: stockAlarmFrom.controls.critical.value,
-      article: this.dataSource.data
+      alarmArticle : this.dataSource.data
     };
     this.alarmService.create(this.stockAlarmCreate).subscribe(result => {
       console.log(result);
@@ -65,14 +65,15 @@ export class StockAlarmCreateUpdateComponent implements OnInit {
   }
 
   update(stockAlarmFrom: FormGroup) {
-    this.stockAlarmCreate = {
+    this.stockAlarm = {
+      id: this.data.alarm.id,
       description: stockAlarmFrom.controls.description.value,
       provider: stockAlarmFrom.controls.provider.value,
       warning: stockAlarmFrom.controls.warning.value,
       critical: stockAlarmFrom.controls.critical.value,
-      article: this.dataSource.data
+      alarmArticle : this.dataSource.data
     };
-    this.alarmService.update(this.stockAlarmCreate).subscribe(result => {
+    this.alarmService.update(this.stockAlarm).subscribe(result => {
       console.log(result);
     });
   }
