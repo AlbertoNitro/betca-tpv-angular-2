@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {AppEndpoints} from '../../../app-endpoints';
 import {Invoice} from './invoice.model';
 import {InvoiceFilter} from './invoice-filters.model';
+import {NegativeInvoice} from './negative-invoice.model';
 
 @Injectable()
 export class InvoiceService {
@@ -15,8 +16,8 @@ export class InvoiceService {
     return this.httpService.pdf().post(AppEndpoints.INVOICES);
   }
 
-  createNegative(): Observable<any> {
-    return this.httpService.pdf().post(AppEndpoints.INVOICES + AppEndpoints.NEGATIVE);
+  createNegative(negativeInvoice: NegativeInvoice): Observable<any> {
+    return this.httpService.pdf().post(AppEndpoints.INVOICES + AppEndpoints.NEGATIVE, negativeInvoice);
   }
 
   readAll(): Observable<Invoice[]> {
