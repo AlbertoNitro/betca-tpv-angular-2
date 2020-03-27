@@ -16,7 +16,7 @@ export class StockAlarmDetailDialogComponent implements OnInit {
   dataSource: MatTableDataSource<AlarmArticle>;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialog: MatDialog) {
-    this.dataSource = this.data.alarm.article;
+    this.dataSource = this.data.alarm.alarmArticle;
   }
 
   ngOnInit() {
