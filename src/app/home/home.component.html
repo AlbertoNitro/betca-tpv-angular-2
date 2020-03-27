@@ -74,7 +74,7 @@
   </button>
 </mat-menu>
 <mat-menu #receipts="matMenu">
-  <button *ngIf="!cashierClosed" mat-menu-item  routerLink="/home/tickets">
+  <button *ngIf="!cashierClosed" mat-menu-item routerLink="/home/tickets">
     <mat-icon>toc</mat-icon>
     <span>Tickets</span>
   </button>
@@ -146,6 +146,10 @@
   <button mat-menu-item routerLink="/home/staff">
     <mat-icon>people</mat-icon>
     <span>Staff Attendance</span>
+  </button>
+  <button mat-menu-item routerLink="/home/messages-send">
+    <mat-icon>send</mat-icon>
+    <span>Send a new message</span>
   </button>
 </mat-menu>
 
