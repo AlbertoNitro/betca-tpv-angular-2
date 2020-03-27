@@ -100,11 +100,11 @@
     <mat-icon>view_list</mat-icon>
     <span>Articles</span>
   </button>
-  <button (click)="openFamilyCreator()" disabled="false" mat-menu-item>
+  <button disabled="true" mat-menu-item routerLink="">
     <mat-icon>view_quilt</mat-icon>
     <span>Articles Family</span>
   </button>
-  <button disabled="true" mat-menu-item routerLink="">
+  <button (click)="openFamilyCreator()" disabled="false" mat-menu-item>
     <mat-icon>view_module</mat-icon>
     <span>Create Family sizes</span>
   </button>
