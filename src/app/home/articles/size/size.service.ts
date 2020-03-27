@@ -15,6 +15,6 @@ export class SizeService {
   }
   public readAll(): Observable<SizeType[]> {
     return this.httpService.get(AppEndpoints.ARTICLES_FAMILY + AppEndpoints.SIZES_TYPE);
-  //  return of([{id: 1, name: 'International'}, {id: 2, name: 'Number'}]);
+
   }
 }
