@@ -10,6 +10,6 @@ export interface CashierClosureSearch {
   lostCash: number;
   finalCash?: number;
   comment: string;
-  closureDateS: string;
+  closureDateS: Date;
   closureDate?: Date;
 }

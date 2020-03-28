@@ -8,6 +8,14 @@
       <mat-datepicker #closureDate></mat-datepicker>
     </mat-form-field>
     <mat-datepicker-toggle [for]="closureDate"></mat-datepicker-toggle>
+
+    <mat-form-field>
+      <mat-label>To Date</mat-label>
+      <input #closureDateS= "ngModel" [(ngModel)]="modelCashierClosureSearch.closureDateS" [matDatepicker]="closureDateS"
+              matInput>
+      <mat-datepicker #closureDateS></mat-datepicker>
+    </mat-form-field>
+    <mat-datepicker-toggle [for]="closureDateS"></mat-datepicker-toggle>
     <br>
     <mat-form-field>
       <input #finalCash= "ngModel" [(ngModel)]="modelCashierClosureSearch.finalCash" placeholder="Final Cash >="
@@ -15,6 +23,9 @@
     </mat-form-field>
     <button (click)="search()" color="primary" mat-mini-fab>
       <mat-icon>search</mat-icon>
+    </button>
+    <button (click)="resetSearch()" color="primary" mat-mini-fab>
+      <mat-icon>close</mat-icon>
     </button>
   </mat-card-content>
 </mat-card>

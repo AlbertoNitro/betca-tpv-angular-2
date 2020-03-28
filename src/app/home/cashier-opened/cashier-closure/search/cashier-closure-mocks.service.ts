@@ -20,7 +20,7 @@ export class CashierClosureMocks {
     lostCash: 0,
   finalCash: 400,
   comment: null,
-  closureDateS: this.fecha,
+  closureDateS: null,
   closureDate: null
 },
     {
@@ -35,7 +35,7 @@ export class CashierClosureMocks {
       lostCash: 0,
       finalCash: 400,
       comment: null,
-      closureDateS: this.fecha,
+      closureDateS: null,
       closureDate: null
     },
     {
@@ -50,7 +50,7 @@ export class CashierClosureMocks {
       lostCash: 0,
       finalCash: 500,
       comment: null,
-      closureDateS: this.fecha,
+      closureDateS: null,
       closureDate: null
     }];
   constructor() {
