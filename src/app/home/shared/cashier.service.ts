@@ -19,9 +19,10 @@ export class CashierService {
   readAll(): Observable<CashierClosureSearch[]> {
     return this.httpService.get(AppEndpoints.CASHIER_CLOSURE_SEARCH);
   }
-  search(finalCash: number, closureDate: string): Observable<CashierClosureSearch[]> {
+  search(finalCash: number, closureDate: string, closureDateF: string): Observable<CashierClosureSearch[]> {
     this.httpService.param('finalCash', finalCash.toString());
     this.httpService.param('closureDate', closureDate);
+    this.httpService.param('closureDateF', closureDateF);
     return this.httpService.get(AppEndpoints.CASHIER_CLOSURE_SEARCH_BY_PARAMS);
   }
 }

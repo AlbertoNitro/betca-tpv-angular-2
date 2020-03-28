@@ -53,6 +53,7 @@ import {UsersDetailDialogComponent} from './home/users/users-detail-dialog.compo
 import {TicketTrackingDialogComponent} from './home/ticket-tracking/ticket-tracking-dialog.component';
 import {SendingsUpdateDialogComponent} from './home/sendings/sendings-update-dialog.component';
 import {MessagesSendComponent} from './home/messages/messages-send.component';
+import {MessagesComponent} from './home/messages/messages.component';
 import {VatManagementComponent} from './home/vat-management/vat-management.component';
 
 export class AppComponents {
@@ -81,6 +82,7 @@ export class AppComponents {
     TicketsComponent,
     TicketTrackingComponent,
     MessagesSendComponent,
+    MessagesComponent,
     VatManagementComponent
   ];
 
