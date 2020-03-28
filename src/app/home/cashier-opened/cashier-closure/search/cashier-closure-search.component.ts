@@ -33,7 +33,7 @@ export class CashierClosureSearchComponent {
     };
     this.data = null;
   }
-  resertSearch() {
+  resetSearch() {
     this.modelCashierClosureSearch = {
       closureDate: null,
       closureDateS: null,
