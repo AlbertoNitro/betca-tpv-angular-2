@@ -55,9 +55,23 @@ export class UsersCreationDialogComponent {
   createUser() {
     this.userService.create(this.user).subscribe(
       () => this.dialog.closeAll()
-      , () => this.message.open('Ups, something bad happened', null, {
-        duration: 2000,
-      })
+      , error => {
+        let messageError;
+        switch (error.error) {
+          case 'ConflictException':
+            messageError = 'User already exists';
+            break;
+          case 'MethodArgumentNotValidException':
+            messageError = 'The mobile format is incorrect';
+            break;
+          default:
+            messageError = 'Ups, something bad happened';
+            break;
+        }
+        this.message.open(messageError, null, {
+          duration: 2000,
+        });
+      }
       , () => this.message.open('User created successfully', null, {
         duration: 2000,
       })

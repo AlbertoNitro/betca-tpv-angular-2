@@ -12,8 +12,7 @@ export class UserService {
   }
 
   create(user: User): Observable<User> {
-    // TODO
-    return EMPTY;
+    return this.httpService.post(AppEndpoints.USERS, user);
   }
 
   read(mobile: number): Observable<User> {

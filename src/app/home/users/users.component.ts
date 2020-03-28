@@ -41,7 +41,9 @@ export class UsersComponent {
       data: {
         update: false
       }
-    });
+    }).afterClosed().subscribe(
+      () => this.search()
+    );
   }
 
   read(user: User) {
