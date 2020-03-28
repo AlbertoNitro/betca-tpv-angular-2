@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 
 import {UserService} from './user.service';
 import {User} from './user.model';
-import {MatDialog} from '@angular/material';
+import {MatDialog, MatSnackBar} from '@angular/material';
 import {UsersCreationDialogComponent} from './users-creation-dialog.component';
 import {UsersDetailDialogComponent} from './users-detail-dialog.component';
 import {CancelYesDialogComponent} from '../../core/cancel-yes-dialog.component';
@@ -19,7 +19,7 @@ export class UsersComponent {
   columns = ['mobile', 'username'];
   data: User[];
 
-  constructor(private dialog: MatDialog, private userService: UserService) {
+  constructor(private dialog: MatDialog, private userService: UserService, private message: MatSnackBar) {
     this.user = {mobile: null, username: null};
     this.data = null;
   }
@@ -60,19 +60,24 @@ export class UsersComponent {
         mobile: user.mobile,
         update: true
       }
-    });
+    }).afterClosed().subscribe(
+      () => this.search()
+    );
   }
 
   delete(user: User) {
     this.dialog.open(CancelYesDialogComponent).afterClosed().subscribe(
       result => {
         if (result) {
-          this.userService.delete(user.mobile).subscribe(
-            response => {
-              // TODO
-              console.log(response);
-              this.search();
-            }
+          user.active = false;
+          this.userService.update(user.mobile, user).subscribe(
+            () => this.search()
+            , () => this.message.open('Ups, something bad happened', null, {
+              duration: 2000,
+            })
+            , () => this.message.open('User disabled successfully', null, {
+              duration: 2000,
+            })
           );
         }
       }

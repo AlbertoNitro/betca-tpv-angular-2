@@ -55,23 +55,7 @@ export class UsersCreationDialogComponent {
   createUser() {
     this.userService.create(this.user).subscribe(
       () => this.dialog.closeAll()
-      , error => {
-        let messageError;
-        switch (error.error) {
-          case 'ConflictException':
-            messageError = 'User already exists';
-            break;
-          case 'MethodArgumentNotValidException':
-            messageError = 'The mobile format is incorrect';
-            break;
-          default:
-            messageError = 'Ups, something bad happened';
-            break;
-        }
-        this.message.open(messageError, null, {
-          duration: 2000,
-        });
-      }
+      , error => this.errorControl(error.error)
       , () => this.message.open('User created successfully', null, {
         duration: 2000,
       })
@@ -82,9 +66,7 @@ export class UsersCreationDialogComponent {
     this.user.active = (this.active === 'true');
     this.userService.update(this.mobile, this.user).subscribe(
       () => this.dialog.closeAll()
-      , () => this.message.open('Ups, something bad happened', null, {
-        duration: 2000,
-      })
+      , error => this.errorControl(error.error)
       , () => this.message.open('User updated successfully', null, {
         duration: 2000,
       })
@@ -94,5 +76,23 @@ export class UsersCreationDialogComponent {
   invalidUser(): boolean {
     return this.mobileFormControl.hasError('required') || this.usernameFormControl.hasError('required')
       || this.emailFormControl.hasError('email');
+  }
+
+  errorControl(error: string) {
+    let messageError;
+    switch (error) {
+      case 'ConflictException':
+        messageError = 'User with this mobile already exists';
+        break;
+      case 'MethodArgumentNotValidException':
+        messageError = 'The mobile format is incorrect';
+        break;
+      default:
+        messageError = 'Ups, something bad happened';
+        break;
+    }
+    this.message.open(messageError, null, {
+      duration: 2000,
+    });
   }
 }

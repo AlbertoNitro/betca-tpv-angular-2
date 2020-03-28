@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {EMPTY, Observable} from 'rxjs';
+import {Observable} from 'rxjs';
 
 import {AppEndpoints} from '../../app-endpoints';
 import {HttpService} from '../../core/http.service';
@@ -20,13 +20,7 @@ export class UserService {
   }
 
   update(mobile: number, user: User): Observable<User> {
-    // TODO
-    return EMPTY;
-  }
-
-  delete(mobile: number): Observable<User> {
-    // TODO
-    return EMPTY;
+    return this.httpService.put(AppEndpoints.USERS + '/' + mobile, user);
   }
 
   readAll(): Observable<User[]> {
