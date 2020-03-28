@@ -32,11 +32,13 @@ export class OrdersComponent {
   }
 
   search() {
+    this.data = [];
     if (this.pendingOrders === true) {
       this.orderSearch.closingDate = null;
     } else {
       this.orderSearch.closingDate = new Date();
     }
+    console.log(this.orderSearch);
     this.orderService.search(this.orderSearch).subscribe(
       data => {
         this.data = [...data];
@@ -85,7 +87,7 @@ export class OrdersComponent {
   }
 
   delete(orderToDelete: OrderDetails) {
-    if(orderToDelete.closingDate === null) {
+    if (orderToDelete.closingDate == null) {
       this.dialog.open(CancelYesDialogComponent).afterClosed().subscribe(
         result => {
           if (result) {

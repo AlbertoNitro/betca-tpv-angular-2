@@ -39,6 +39,9 @@ export class OrderCreationDialogComponent {
   }
 
   createOrder() {
+    if (this.isNotValid()) {
+      return;
+    }
     this.orderService.createOrder(this.order).subscribe(
       data => {
         this.message.open('Order created: ' + data.description, null, {
@@ -46,6 +49,15 @@ export class OrderCreationDialogComponent {
         });
         this.dialogRef.close();
       });
+  }
+
+  isNotValid(): boolean {
+    return this.empty(this.order.description) || this.empty(this.order.providerId) || this.order.orderLines === [];
+  }
+
+  empty(field: string): boolean {
+    return field == null ||
+      field === '';
   }
 
   getProvider(provider: Provider) {
