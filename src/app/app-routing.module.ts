@@ -19,6 +19,7 @@ import {OffersComponent} from './home/offers/offers.component';
 import {TicketsComponent} from './home/tickets/tickets.component';
 import {TicketTrackingComponent} from './home/ticket-tracking/ticket-tracking.component';
 import {MessagesSendComponent} from './home/messages/messages-send.component';
+import {VatManagementComponent} from './home/vat-management/vat-management.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'welcome'},
@@ -42,7 +43,8 @@ const routes: Routes = [
       {path: 'offers', component: OffersComponent},
       {path: 'tickets', component: TicketsComponent},
       {path: 'ticket-tracking', component: TicketTrackingComponent},
-      {path: 'messages-send', component: MessagesSendComponent}
+      {path: 'messages-send', component: MessagesSendComponent},
+      {path: 'vat-management', component: VatManagementComponent}
     ]
   }
 ];
