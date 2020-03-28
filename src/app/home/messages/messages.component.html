@@ -1,8 +1,15 @@
-<mat-card style="text-align: center;">
-  <mat-card-title> Send a message to a co-worker</mat-card-title>
+<mat-card>
+  <mat-card-title>
+    {{title}}
+  </mat-card-title>
   <mat-card-content>
-    <p>
-      TEST
-    </p>
+    <mat-table #table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+      <!-- Dynamic column -->
+      <ng-container *ngFor="let def of columns" [matColumnDef]="def">
+        <mat-header-cell *matHeaderCellDef>{{ def | uppercase }}</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row[def] }}</mat-cell>
+      </ng-container>
+    </mat-table>
   </mat-card-content>
 </mat-card>
+

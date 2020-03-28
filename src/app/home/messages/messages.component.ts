@@ -1,4 +1,6 @@
 import {Component} from '@angular/core';
+import {MatTableDataSource} from '@angular/material';
+import {Messages} from './messages.model';
 
 @Component({
   selector: 'app-messages',
@@ -8,8 +10,13 @@ import {Component} from '@angular/core';
 
 export class MessagesComponent {
 
-  constructor() {
-  }
+  title = 'Old Messages';
+  columns: Array<string>;
+  dataSource: MatTableDataSource<Messages>;
 
-  // TODO all functions related to reading al messages
+  constructor() {
+    // TODO Create Messages Services, then make a call once the user clicks on messages component
+    this.columns = ['Username', 'Message content'];
+    this.dataSource = new MatTableDataSource<Messages>(null);
+  }
 }
