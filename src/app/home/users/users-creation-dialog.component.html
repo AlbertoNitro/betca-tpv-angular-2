@@ -2,19 +2,19 @@
 <h3 mat-dialog-title *ngIf="update">Update User</h3>
 <mat-dialog-content>
   <mat-form-field>
-    <input [(ngModel)]="user.mobile" matInput
-           placeholder="Mobile"
-           required type="number"/>
+    <input [(ngModel)]="user.mobile" matInput placeholder="Mobile"
+           type="number" [formControl]="mobileFormControl"/>
+    <mat-error *ngIf="mobileFormControl.invalid">{{getErrorMessageMobile()}}</mat-error>
   </mat-form-field>
   <mat-form-field>
-    <input [(ngModel)]="user.username" matInput
-           placeholder="Username"
-           required type="text"/>
+    <input [(ngModel)]="user.username" matInput placeholder="Username"
+           type="text" [formControl]="usernameFormControl"/>
+    <mat-error *ngIf="usernameFormControl.invalid">{{getErrorMessageUsername()}}</mat-error>
   </mat-form-field>
   <mat-form-field>
     <input [(ngModel)]="user.email" matInput placeholder="Email"
            type="email" [formControl]="emailFormControl"/>
-    <mat-error *ngIf="emailFormControl.invalid">{{getErrorMessage()}}</mat-error>
+    <mat-error *ngIf="emailFormControl.invalid">{{getErrorMessageEmail()}}</mat-error>
   </mat-form-field>
   <mat-form-field>
     <input [(ngModel)]="user.dni" matInput placeholder="DNI"
@@ -34,6 +34,6 @@
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-dialog-close mat-raised-button>Cancel</button>
-  <button (click)="createUser()" *ngIf="!update" color="primary" mat-raised-button>Create</button>
-  <button (click)="updateUser()" *ngIf="update" color="primary" mat-raised-button>Update</button>
+  <button (click)="createUser()" *ngIf="!update" [disabled]="invalidUser()" color="primary" mat-raised-button>Create</button>
+  <button (click)="updateUser()" *ngIf="update" [disabled]="invalidUser()" color="primary" mat-raised-button>Update</button>
 </mat-dialog-actions>

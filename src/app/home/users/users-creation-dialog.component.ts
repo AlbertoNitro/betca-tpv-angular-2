@@ -21,6 +21,8 @@ export class UsersCreationDialogComponent {
   mobile: number;
   active: string;
   emailFormControl = new FormControl('', [Validators.email]);
+  mobileFormControl = new FormControl('', [Validators.required]);
+  usernameFormControl = new FormControl('', [Validators.required]);
 
   constructor(@Inject(MAT_DIALOG_DATA) data: any,
               private dialog: MatDialog,
@@ -38,51 +40,59 @@ export class UsersCreationDialogComponent {
     }
   }
 
-  getErrorMessage() {
+  getErrorMessageEmail() {
     return this.emailFormControl.hasError('email') ? 'Not a valid email' : '';
   }
 
+  getErrorMessageMobile() {
+    return this.mobileFormControl.hasError('required') ? 'You must enter a value' : '';
+  }
+
+  getErrorMessageUsername() {
+    return this.usernameFormControl.hasError('required') ? 'You must enter a value' : '';
+  }
+
   createUser() {
-    if (this.validateRequiredFields() && !this.emailFormControl.hasError('email')) {
-      this.userService.create(this.user).subscribe(
-        () => this.dialog.closeAll()
-        , () => this.message.open('Ups, something bad happened', null, {
+    this.userService.create(this.user).subscribe(
+      () => this.dialog.closeAll()
+      , error => {
+        let messageError;
+        switch (error.error) {
+          case 'ConflictException':
+            messageError = 'User already exists';
+            break;
+          case 'MethodArgumentNotValidException':
+            messageError = 'The mobile format is incorrect';
+            break;
+          default:
+            messageError = 'Ups, something bad happened';
+            break;
+        }
+        this.message.open(messageError, null, {
           duration: 2000,
-        })
-        , () => this.message.open('User created successfully', null, {
-          duration: 2000,
-        })
-      );
-    }
+        });
+      }
+      , () => this.message.open('User created successfully', null, {
+        duration: 2000,
+      })
+    );
   }
 
   updateUser() {
-    if (this.validateRequiredFields() && !this.emailFormControl.hasError('email')) {
-      this.user.active = (this.active === 'true');
-      this.userService.update(this.mobile, this.user).subscribe(
-        () => this.dialog.closeAll()
-        , () => this.message.open('Ups, something bad happened', null, {
-          duration: 2000,
-        })
-        , () => this.message.open('User updated successfully', null, {
-          duration: 2000,
-        })
-      );
-    }
+    this.user.active = (this.active === 'true');
+    this.userService.update(this.mobile, this.user).subscribe(
+      () => this.dialog.closeAll()
+      , () => this.message.open('Ups, something bad happened', null, {
+        duration: 2000,
+      })
+      , () => this.message.open('User updated successfully', null, {
+        duration: 2000,
+      })
+    );
   }
 
-  validateRequiredFields(): boolean {
-    let valid = true;
-    if (this.user.mobile === null || this.user.username === null) {
-      valid = false;
-    } else if ('' === this.user.mobile.toString().trim() || '' === this.user.username.trim()) {
-      valid = false;
-    }
-    if (valid === false) {
-      this.message.open('The fields Mobile and Username are required', null, {
-        duration: 2000,
-      });
-    }
-    return valid;
+  invalidUser(): boolean {
+    return this.mobileFormControl.hasError('required') || this.usernameFormControl.hasError('required')
+      || this.emailFormControl.hasError('email');
   }
 }
