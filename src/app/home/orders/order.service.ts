@@ -18,7 +18,7 @@ export class OrderService {
 
   search(orderSearch: OrderSearch): Observable<OrderDetails[]> {
     let orderClosingDate = null;
-    if (orderSearch.closingDate != null) {
+    if (orderSearch.closingDate !== null) {
       orderClosingDate = orderSearch.closingDate.toISOString();
     }
     return this.httpService
