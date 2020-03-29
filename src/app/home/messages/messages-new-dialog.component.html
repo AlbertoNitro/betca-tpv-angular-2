@@ -1,0 +1,14 @@
+<h3 mat-dialog-title>New Messages</h3>
+<mat-dialog-content>
+  <mat-form-field>
+    <input [(ngModel)]="messages.username" matInput
+           placeholder="Username" readonly/>
+  </mat-form-field>
+  <mat-form-field>
+    <input [(ngModel)]="messages.messageContent" matInput
+           placeholder="Content" readonly/>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-dialog-close mat-raised-button>Close</button>
+</mat-dialog-actions>
