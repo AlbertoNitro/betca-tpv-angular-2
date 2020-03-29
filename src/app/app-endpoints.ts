@@ -21,6 +21,8 @@ export class AppEndpoints {
 
   static TICKETS = '/tickets';
 
+  static TICKET_TRACKING = '/ticket-tracking';
+
   static USERS = '/users';
 
   static BUDGETS = '/budgets';

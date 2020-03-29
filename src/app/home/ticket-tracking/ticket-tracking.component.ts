@@ -26,11 +26,15 @@ export class TicketTrackingComponent implements OnInit {
     if (this.ticket !== null && this.ticket.reference !== null) {
       this.ticketService.readOne(this.ticket.reference).subscribe(
         t => {
-          this.ticket = t;
-          this.dialog.open(TicketTrackingDialogComponent,
-            {
-              data: {obj: this.ticket}
-            });
+          if (t != null && t.id != null) {
+            this.ticket = t;
+            this.dialog.open(TicketTrackingDialogComponent,
+              {
+                data: {obj: this.ticket}
+              });
+          } else {
+            this.ticket = {reference: null};
+          }
         }
       );
     }
