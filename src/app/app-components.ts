@@ -54,7 +54,8 @@ import {TicketTrackingDialogComponent} from './home/ticket-tracking/ticket-track
 import {SendingsUpdateDialogComponent} from './home/sendings/sendings-update-dialog.component';
 import {MessagesSendComponent} from './home/messages/messages-send.component';
 import {MessagesComponent} from './home/messages/messages.component';
-import {MessagesNewDialogComponent} from './home/messages/messages-new-dialog.component';
+import {MessagesCreationDialogComponent} from './home/messages/messages-creation-dialog.component';
+import {MessagesDetailDialogComponent} from './home/messages/messages-detail-dialog.component';
 import {VatManagementComponent} from './home/vat-management/vat-management.component';
 
 export class AppComponents {
@@ -84,7 +85,8 @@ export class AppComponents {
     TicketTrackingComponent,
     MessagesSendComponent,
     MessagesComponent,
-    MessagesNewDialogComponent,
+    MessagesCreationDialogComponent,
+    MessagesDetailDialogComponent,
     VatManagementComponent
   ];
 

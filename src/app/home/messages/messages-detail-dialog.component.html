@@ -1,0 +1,30 @@
+<h3 mat-dialog-title>Read messages</h3>
+<mat-dialog-content>
+  <mat-form-field>
+    <input [(ngModel)]="messages.id" matInput
+           placeholder="ID" readonly/>
+  </mat-form-field>
+  <mat-form-field>
+    <input [(ngModel)]="messages.fromUsername" matInput
+           placeholder="Sent from" readonly/>
+  </mat-form-field>
+  <mat-form-field>
+    <input [(ngModel)]="messages.toUsername" matInput
+           placeholder="Sent to" readonly/>
+  </mat-form-field>
+  <mat-form-field>
+    <input [(ngModel)]="messages.sentDate" matInput
+           placeholder="Sent date" readonly/>
+  </mat-form-field>
+  <mat-form-field>
+    <input [(ngModel)]="messages.readDate" matInput
+           placeholder="Read date" readonly/>
+  </mat-form-field>
+  <mat-form-field>
+    <textarea [(ngModel)]="messages.messageContent" matInput
+              placeholder="Message Content"></textarea>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-dialog-close mat-raised-button>Close</button>
+</mat-dialog-actions>
