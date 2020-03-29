@@ -52,7 +52,6 @@ import {TicketTrackingComponent} from './home/ticket-tracking/ticket-tracking.co
 import {UsersDetailDialogComponent} from './home/users/users-detail-dialog.component';
 import {TicketTrackingDialogComponent} from './home/ticket-tracking/ticket-tracking-dialog.component';
 import {SendingsUpdateDialogComponent} from './home/sendings/sendings-update-dialog.component';
-import {MessagesSendComponent} from './home/messages/messages-send.component';
 import {MessagesComponent} from './home/messages/messages.component';
 import {MessagesCreationDialogComponent} from './home/messages/messages-creation-dialog.component';
 import {MessagesDetailDialogComponent} from './home/messages/messages-detail-dialog.component';
@@ -83,7 +82,6 @@ export class AppComponents {
     OffersComponent,
     TicketsComponent,
     TicketTrackingComponent,
-    MessagesSendComponent,
     MessagesComponent,
     MessagesCreationDialogComponent,
     MessagesDetailDialogComponent,
