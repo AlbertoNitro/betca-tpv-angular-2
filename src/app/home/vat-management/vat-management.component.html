@@ -3,7 +3,7 @@
   <mat-divider style="margin-bottom: 10px"></mat-divider>
   <mat-form-field>
     <mat-label>Select the quarter</mat-label>
-    <mat-select [formControl]="quarterControl" [(ngModel)]="selectedValue" required>
+    <mat-select [(ngModel)]="selectedValue" [formControl]="quarterControl" required>
       <mat-option>--</mat-option>
       <mat-option *ngFor="let quarter of quarters" [value]="quarter">
         {{quarter}}
@@ -12,25 +12,25 @@
     <mat-error *ngIf="quarterControl.hasError('required')">Please choose a quarter</mat-error>
   </mat-form-field>
   <ng-container *ngIf="selectedValue != undefined">
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <table [dataSource]="dataSource" class="mat-elevation-z8" mat-table>
 
       <ng-container matColumnDef="type">
-        <th mat-header-cell *matHeaderCellDef> VAT Type </th>
-        <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+        <th *matHeaderCellDef mat-header-cell> VAT Type</th>
+        <td *matCellDef="let element" mat-cell> {{element.type}} </td>
       </ng-container>
 
       <ng-container matColumnDef="taxableAmount">
-        <th mat-header-cell *matHeaderCellDef> Taxable Amount </th>
-        <td mat-cell *matCellDef="let element"> {{element.taxableAmount}}% </td>
+        <th *matHeaderCellDef mat-header-cell> Taxable Amount</th>
+        <td *matCellDef="let element" mat-cell> {{element.taxableAmount}}%</td>
       </ng-container>
 
       <ng-container matColumnDef="totalAmount">
-        <th mat-header-cell *matHeaderCellDef> Total Amount </th>
-        <td mat-cell *matCellDef="let element"> {{element.totalAmount}}€ </td>
+        <th *matHeaderCellDef mat-header-cell> Total Amount</th>
+        <td *matCellDef="let element" mat-cell> {{element.totalAmount}}€</td>
       </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+      <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
     </table>
   </ng-container>
 </div>

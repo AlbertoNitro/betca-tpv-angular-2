@@ -57,7 +57,7 @@ export class StockAlarmCreateUpdateComponent implements OnInit {
       provider: stockAlarmFrom.controls.provider.value,
       warning: stockAlarmFrom.controls.warning.value,
       critical: stockAlarmFrom.controls.critical.value,
-      alarmArticle : this.dataSource.data
+      alarmArticle: this.dataSource.data
     };
     this.alarmService.create(this.stockAlarmCreate).subscribe(result => {
       console.log(result);
@@ -71,7 +71,7 @@ export class StockAlarmCreateUpdateComponent implements OnInit {
       provider: stockAlarmFrom.controls.provider.value,
       warning: stockAlarmFrom.controls.warning.value,
       critical: stockAlarmFrom.controls.critical.value,
-      alarmArticle : this.dataSource.data
+      alarmArticle: this.dataSource.data
     };
     this.alarmService.update(this.stockAlarm).subscribe(result => {
       console.log(result);

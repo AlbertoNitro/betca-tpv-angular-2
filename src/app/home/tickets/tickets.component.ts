@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Ticket} from '../shared/ticket.model';
 import {TicketService} from '../shared/ticket.service';
 
@@ -40,6 +40,6 @@ export class TicketsComponent implements OnInit {
   }
 
   resetSearch() {
-    this.ticket = { reference: null};
+    this.ticket = {reference: null};
   }
 }

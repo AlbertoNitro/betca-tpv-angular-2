@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpService} from '../../core/http.service';
-import {Observable, of} from 'rxjs';
+import {Observable} from 'rxjs';
 import {OrderDetails} from './orderDetails.model';
 import {OrderCreation} from './orderCreation.model';
 import {OrderSearch} from './orderSearch.model';

@@ -7,22 +7,21 @@ import {Observable, of} from 'rxjs';
   providedIn: 'root'
 })
 export class CashierClosureMocks {
-  private fecha = formatDate(new Date(), 'yyyy/MM/dd', 'en');
-  CashierClosureSearchMock: CashierClosureSearch[] = [ {
-  openingDate: null,
-  initialCash: 200,
-  salesCard: 300,
-  salesCash: 200,
-  usedVouchers: 100,
-  deposit: 20,
-  withdrawal: 50,
-  lostCard: 0,
+  CashierClosureSearchMock: CashierClosureSearch[] = [{
+    openingDate: null,
+    initialCash: 200,
+    salesCard: 300,
+    salesCash: 200,
+    usedVouchers: 100,
+    deposit: 20,
+    withdrawal: 50,
+    lostCard: 0,
     lostCash: 0,
-  finalCash: 400,
-  comment: null,
-  closureDateS: null,
-  closureDate: null
-},
+    finalCash: 400,
+    comment: null,
+    closureDateS: null,
+    closureDate: null
+  },
     {
       openingDate: null,
       initialCash: 300,
@@ -53,8 +52,11 @@ export class CashierClosureMocks {
       closureDateS: null,
       closureDate: null
     }];
+  private fecha = formatDate(new Date(), 'yyyy/MM/dd', 'en');
+
   constructor() {
   }
+
   getAll(): Observable<CashierClosureSearch[]> {
     return of(this.CashierClosureSearchMock);
   }

@@ -13,21 +13,21 @@
   </mat-form-field>
   <mat-divider></mat-divider>
   <h4 mat-dialog-title>Order's Articles</h4>
-      <ng-container *ngFor="let orderLine of order.orderLines">
-        <mat-form-field>
-          <input [(ngModel)]="orderLine.article" disabled
-                 matInput
-                 placeholder="Article"
-                 required type="String"/>
-        </mat-form-field>
-        <mat-form-field>
-          <input [(ngModel)]="orderLine.requiredAmount"
-                 matInput
-                 placeholder="Required Amount"
-                 required type="number"/>
-        </mat-form-field>
-        <button (click)="deleteOrderLine(orderLine)" mat-raised-button><span>X</span></button>
-      </ng-container>
+  <ng-container *ngFor="let orderLine of order.orderLines">
+    <mat-form-field>
+      <input [(ngModel)]="orderLine.article" disabled
+             matInput
+             placeholder="Article"
+             required type="String"/>
+    </mat-form-field>
+    <mat-form-field>
+      <input [(ngModel)]="orderLine.requiredAmount"
+             matInput
+             placeholder="Required Amount"
+             required type="number"/>
+    </mat-form-field>
+    <button (click)="deleteOrderLine(orderLine)" mat-raised-button><span>X</span></button>
+  </ng-container>
 </mat-dialog-content>
 
 <mat-dialog-actions>

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Observable, of} from 'rxjs';
+import {Observable} from 'rxjs';
 
 import {AppEndpoints} from '../../../app-endpoints';
 import {Size} from './size.model';
@@ -10,9 +10,11 @@ import {SizeType} from './size-type.model';
 export class SizeService {
   constructor(private httpService: HttpService) {
   }
+
   public findById(id: string): Observable<Size[]> {
     return this.httpService.get(AppEndpoints.ARTICLES_FAMILY + AppEndpoints.SIZES + '/' + id);
   }
+
   public readAll(): Observable<SizeType[]> {
     return this.httpService.get(AppEndpoints.ARTICLES_FAMILY + AppEndpoints.SIZES_TYPE);
 

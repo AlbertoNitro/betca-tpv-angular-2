@@ -1,7 +1,7 @@
 import {Shopping} from './shopping.model';
 
 export interface Ticket {
-  id ?: string;
+  id?: string;
   reference: string;
   shoppingList?: Array<Shopping>;
 }

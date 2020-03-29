@@ -70,7 +70,7 @@ export class ArticlesFamilyDialogComponent {
       this.checkEmpty(this.newArticles.provider) ||
       this.checkEmpty(this.newArticles.sizeType) ||
       this.checkEmpty(this.newArticles.fromSize) ||
-      this.checkEmpty(this.newArticles.toSize) ;
+      this.checkEmpty(this.newArticles.toSize);
   }
 
   checkEmpty(attr: string): boolean {

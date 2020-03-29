@@ -16,7 +16,7 @@ export class TicketTrackingComponent implements OnInit {
   ticket: Ticket;
 
   constructor(private ticketService: TicketService, private dialog: MatDialog) {
-    this.ticket = { reference: null };
+    this.ticket = {reference: null};
   }
 
   ngOnInit() {
@@ -27,9 +27,9 @@ export class TicketTrackingComponent implements OnInit {
       this.ticketService.readOne(this.ticket.reference).subscribe(
         t => {
           this.ticket = t;
-          this.dialog.open( TicketTrackingDialogComponent,
+          this.dialog.open(TicketTrackingDialogComponent,
             {
-              data: { obj: this.ticket }
+              data: {obj: this.ticket}
             });
         }
       );
@@ -37,6 +37,6 @@ export class TicketTrackingComponent implements OnInit {
   }
 
   resetSearch() {
-    this.ticket = { reference: null};
+    this.ticket = {reference: null};
   }
 }

@@ -5,7 +5,7 @@ import {OrderService} from './order.service';
 import {OrderLineDetail} from './OrderLineDetail.model';
 import {OrderCreationDialogComponent} from './order-creation-dialog.component';
 import {ProviderService} from '../shared/provider.service';
-import { Provider } from '../shared/provider.model';
+import {Provider} from '../shared/provider.model';
 
 @Component({
   templateUrl: 'order-detail-dialog.component.html'

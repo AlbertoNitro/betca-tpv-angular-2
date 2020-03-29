@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {CashierClosureSearch} from './cashier-closure-search.model';
-import {CashierClosureMocks} from './cashier-closure-mocks.service';
 import {CashierService} from '../../../shared/cashier.service';
 
 @Component({
@@ -33,6 +32,7 @@ export class CashierClosureSearchComponent {
     };
     this.data = null;
   }
+
   resetSearch() {
     this.modelCashierClosureSearch = {
       closureDate: null,
@@ -50,6 +50,7 @@ export class CashierClosureSearchComponent {
       comment: null
     };
   }
+
   search() {
     if (this.modelCashierClosureSearch.closureDate == null &&
       this.modelCashierClosureSearch.closureDateS == null &&
@@ -95,10 +96,11 @@ export class CashierClosureSearchComponent {
       }
     }
   }
-   // search() {
-    // this.cashierClosureMocks.getAll().subscribe(
-     // data => {this.data = [...data];
-     // }
-     // );
+
+  // search() {
+  // this.cashierClosureMocks.getAll().subscribe(
+  // data => {this.data = [...data];
+  // }
+  // );
   // }
 }

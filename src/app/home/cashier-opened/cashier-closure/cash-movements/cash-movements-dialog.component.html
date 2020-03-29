@@ -1,4 +1,5 @@
-<h3 mat-dialog-title [className]="notEnoughCash ? 'invalid-operation cashMovementDialog' : 'cashMovementDialog'">Cash Movements: {{calculate()}} €</h3>
+<h3 [className]="notEnoughCash ? 'invalid-operation cashMovementDialog' : 'cashMovementDialog'" mat-dialog-title>Cash
+  Movements: {{calculate()}} €</h3>
 <mat-dialog-content>
   <mat-form-field>
     <input [(ngModel)]="cashMovements.cashMovement" cdkFocusInitial matInput
