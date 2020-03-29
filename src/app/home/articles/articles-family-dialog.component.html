@@ -10,18 +10,23 @@
   </mat-form-field>
   <br>
   <mat-form-field class="full-width">
+    <input [(ngModel)]="newArticles.reference" matInput placeholder="Reference" required
+           type="String"/>
+  </mat-form-field>
+  <br>
+  <mat-form-field class="full-width">
     <input [(ngModel)]="newArticles.description" cdkFocusInitial matInput placeholder="Description" required
            type="String"/>
   </mat-form-field>
   <br>
   <label>Size: </label><br><br>
-  <mat-radio-group [(ngModel)]="newArticles.type">
+  <mat-radio-group [(ngModel)]="newArticles.sizeType">
     <mat-radio-button *ngFor="let sizeType of type" [value]=sizeType.id class="media-width">
       {{sizeType.name}}
     </mat-radio-button>
   </mat-radio-group>
   <br><br>
-  <div *ngIf="newArticles.type==1">
+  <div *ngIf="newArticles.sizeType==1">
     <mat-form-field class="media-width">
       <mat-label>From</mat-label>
       <mat-select [(ngModel)]="newArticles.fromSize">
@@ -39,7 +44,7 @@
       </mat-select>
     </mat-form-field>
   </div>
-  <div *ngIf="newArticles.type==2">
+  <div *ngIf="newArticles.sizeType==2">
     <mat-form-field class="media-width">
       <mat-label>From</mat-label>
       <mat-select [(ngModel)]="newArticles.fromSize">
@@ -65,7 +70,7 @@
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-dialog-close mat-raised-button>Close</button>
-  <button color="primary" mat-raised-button>
+  <button (click)="createArticleFamily()" color="primary" mat-raised-button>
     <mat-icon>local_offer</mat-icon>
     <span>Create Articles</span>
   </button>

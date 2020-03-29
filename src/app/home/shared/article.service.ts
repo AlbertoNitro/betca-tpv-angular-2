@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {AppEndpoints} from '../../app-endpoints';
 import {HttpService} from '../../core/http.service';
 import {Article} from './article.model';
+import {ArticleFamily} from '../articles/articles-family-dialog.model';
 
 @Injectable()
 export class ArticleService {
@@ -32,4 +33,9 @@ export class ArticleService {
     this.httpService.param('provider', provider);
     return this.httpService.get(AppEndpoints.ARTICLES + '/' + 'search');
   }
+
+  createFamily(articleFamily: ArticleFamily): Observable<ArticleFamily> {
+    return this.httpService.post(AppEndpoints.ARTICLES_FAMILY, articleFamily);
+  }
+
 }

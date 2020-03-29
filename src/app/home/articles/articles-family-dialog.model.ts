@@ -1,8 +1,9 @@
 export interface ArticleFamily {
   description: string;
-  provider: number;
-  type: number;
-  fromSize: number;
-  toSize: number;
+  provider: string;
+  sizeType: string;
+  fromSize: string;
+  toSize: string;
+  reference: string;
   increment?: number;
 }
