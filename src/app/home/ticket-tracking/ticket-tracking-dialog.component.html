@@ -1,15 +1,22 @@
-<h3 mat-dialog-title>Ticket Tracking</h3>
+<h4 mat-dialog-title>Ticket Tracking</h4>
 <mat-dialog-content>
   <div *ngIf="ticket.reference">
-    <h4>Reference number</h4>
-    <p>{{ticket.reference}}</p>
+    <p>Reference number: {{ticket.reference}}</p>
+  <div *ngIf="ticket.shoppingList && ticket.shoppingList.length > 0">
+    <table>
+      <tr>
+        <th>Article ID</th>
+        <th>Status</th>
+      </tr>
+      <tr *ngFor="let item of ticket.shoppingList">
+        <td>{{item.code}}</td>
+        <td>{{item.shoppingState}}</td>
+      </tr>
+    </table>
   </div>
-  <div *ngIf="ticket.shoppingList">
-    <h4>Shopping states</h4>
-    <div *ngFor="let item of ticket.shoppingList; index as i;">
-      <span>{{item.articleId}}</span>
-      <span>{{item.shoppingState}}</span>
-    </div>
+  </div>
+  <div *ngIf="ticket.reference == null">
+    <p>Reference number not valid</p>
   </div>
 </mat-dialog-content>
 <mat-dialog-actions>
