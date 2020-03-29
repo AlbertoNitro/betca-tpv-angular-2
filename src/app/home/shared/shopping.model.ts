@@ -1,5 +1,5 @@
 export interface Shopping {
-  articleId: string;
+  code: string;
   description: string;
   retailPrice: number;
   amount: number;
