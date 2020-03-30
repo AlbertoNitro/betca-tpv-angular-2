@@ -13,7 +13,7 @@ export class TicketsComponent implements OnInit {
   ticket: Ticket;
 
   title = 'Tickets management';
-  columns = ['ID', 'reference'];
+  columns = ['id', 'reference'];
   data: Ticket[];
 
   constructor(private ticketService: TicketService) {
@@ -22,7 +22,10 @@ export class TicketsComponent implements OnInit {
   }
 
   print(ticket: Ticket) {
-    // TODO
+    this.ticket.id = ticket.id;
+    this.ticketService.getPdf(this.ticket.id).subscribe(
+      () => {}
+    );
   }
 
   update(ticket: Ticket) {
