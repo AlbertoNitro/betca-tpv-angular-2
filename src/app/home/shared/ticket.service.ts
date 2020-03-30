@@ -18,4 +18,8 @@ export class TicketService {
   readOne(reference: string): Observable<Ticket> {
     return this.httpService.get(AppEndpoints.TICKET_TRACKING + '/' + reference);
   }
+
+  getPdf(id: string): Observable<Ticket> {
+    return this.httpService.pdf().get(AppEndpoints.TICKETS + '/' + id);
+  }
 }
