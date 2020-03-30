@@ -6,7 +6,11 @@ import {ShoppingCartService} from './shopping-cart.service';
 import {VoucherService} from '../../shared/voucher.service';
 import {CheckOutDialogVoucherComponent} from './check-out-dialog-voucher.component';
 import {Voucher} from '../../shared/voucher.model';
-import {User} from '../../users/user.model';
+import {User} from '../../shared/users/user.model';
+import {UserService} from '../../shared/users/user.service';
+import {catchError, map} from 'rxjs/operators';
+import {EMPTY} from 'rxjs';
+import {UsersQuickCreationDialogComponent} from './users/users-quick-creation-dialog.component';
 
 @Component({
   templateUrl: 'check-out-dialog.component.html',
@@ -20,13 +24,32 @@ export class CheckOutDialogComponent {
   ticketCreation: TicketCreation;
   user: User;
 
-  constructor(private dialog: MatDialog, private shoppingCartService: ShoppingCartService, private voucherService: VoucherService) {
+  constructor(private dialog: MatDialog, private shoppingCartService: ShoppingCartService, private voucherService: VoucherService,
+              private userService: UserService) {
     this.totalPurchase = this.shoppingCartService.getTotalShoppingCart();
     this.ticketCreation = {cash: 0, card: 0, voucher: 0, shoppingCart: null, note: ''};
   }
 
   static format(value: number): number {
     return value ? value : 0; // empty string,NaN,false,undefined,null,0 is: false
+  }
+
+  checkMobile() {
+    this.userService.read(this.ticketCreation.userMobile).pipe(
+      map(
+        (user: User) => {
+          this.ticketCreation.userMobile = user.mobile;
+        }), catchError(() => {
+        const dialogRef = this.dialog.open(UsersQuickCreationDialogComponent);
+        dialogRef.componentInstance.user = {mobile: this.ticketCreation.userMobile, username: undefined};
+        dialogRef.afterClosed().subscribe(
+          newUser => {
+            newUser ? this.ticketCreation.userMobile = newUser.mobile : this.ticketCreation.userMobile = null;
+          }
+        );
+        return EMPTY;
+      })
+    ).subscribe();
   }
 
   uncommitted() {

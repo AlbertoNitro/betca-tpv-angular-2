@@ -6,7 +6,7 @@ import {CustomerDiscountService} from './home/customer-discount/customer-discoun
 import {ShoppingCartService} from './home/cashier-opened/shopping-cart/shopping-cart.service';
 import {StockAlarmService} from './home/stock-alarm/stock-alarm.service';
 import {SystemService} from './home/system.service';
-import {UserService} from './home/users/user.service';
+import {UserService} from './home/shared/users/user.service';
 import {VoucherService} from './home/shared/voucher.service';
 import {AdvancedArticlesSearchService} from './home/cashier-opened/advanced-search/advanced-articles-search.service';
 import {ArticlesFamilyViewService} from './home/cashier-opened/articles-family/articles-family-view.service';

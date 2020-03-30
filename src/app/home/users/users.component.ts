@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 
-import {UserService} from './user.service';
-import {User} from './user.model';
+import {UserService} from '../shared/users/user.service';
+import {User} from '../shared/users/user.model';
 import {MatDialog, MatSnackBar} from '@angular/material';
 import {UsersCreationDialogComponent} from './users-creation-dialog.component';
 import {UsersDetailDialogComponent} from './users-detail-dialog.component';

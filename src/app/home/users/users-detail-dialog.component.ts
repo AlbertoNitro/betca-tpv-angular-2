@@ -1,7 +1,7 @@
 import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA} from '@angular/material';
-import {UserService} from './user.service';
-import {User} from './user.model';
+import {UserService} from '../shared/users/user.service';
+import {User} from '../shared/users/user.model';
 
 @Component({
   styleUrls: ['users-detail-dialog.component.css'],
