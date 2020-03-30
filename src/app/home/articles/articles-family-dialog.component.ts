@@ -3,9 +3,6 @@ import {MAT_DIALOG_DATA, MatDialog, MatSnackBar} from '@angular/material';
 import {Provider} from '../shared/provider.model';
 import {ArticleFamily} from './articles-family-dialog.model';
 import {ProviderService} from '../shared/provider.service';
-import {SizeType} from './size/size-type.model';
-import {Size} from './size/size.model';
-import {SizeService} from './size/size.service';
 import {ArticleService} from '../shared/article.service';
 
 
@@ -26,27 +23,26 @@ export class ArticlesFamilyDialogComponent {
     increment: 0
   };
   providers: Provider[];
-  sizeInternational: Size[];
-  sizeNumber: Size[];
-  type: SizeType[];
+  type = [
+    {id: 1, name: 'International'},
+    {id: 2, name: 'Number'}
+  ];
+  size: [];
 
-  constructor(@Inject(MAT_DIALOG_DATA) dataDialog: any, private providerService: ProviderService, private sizeService: SizeService,
+  constructor(@Inject(MAT_DIALOG_DATA) dataDialog: any, private providerService: ProviderService,
               private message: MatSnackBar, private dialog: MatDialog, private articleSize: ArticleService) {
-    this.sizeService.readAll().subscribe(
-      data => this.type = data
-    );
+
     this.providerService.readAll().subscribe(
       data => this.providers = data
     );
-    this.sizeService.findById('1').subscribe(
-      data => this.sizeInternational = data
+    this.articleSize.readSizes().subscribe(
+      data => this.size = data
     );
-    this.sizeService.findById('2').subscribe(
-      data => this.sizeNumber = data
-    );
+
   }
 
   createArticleFamily() {
+    alert(this.newArticles.fromSize);
     if (this.isInvalid()) {
       return;
     }
