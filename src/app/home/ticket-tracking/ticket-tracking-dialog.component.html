@@ -1,22 +1,25 @@
-<h4 mat-dialog-title>Ticket Tracking</h4>
+<h4 mat-dialog-title>{{title}}</h4>
 <mat-dialog-content>
-  <div *ngIf="ticket.reference">
-    <p>Reference number: {{ticket.reference}}</p>
-  <div *ngIf="ticket.shoppingList && ticket.shoppingList.length > 0">
+  <div *ngIf="ticket.reference == null">
+    <p>The reference number is not valid.</p>
+  </div>
+  <div *ngIf="ticketService.everyArticleIsCommitted(ticket)">
+    <p>The reference number has expired!</p>
+  </div>
+  <div *ngIf="ticketService.someArticleIsNotCommited(ticket)">
+    <p><b>Reference number:</b> {{ticket.reference}}</p>
     <table>
       <tr>
         <th>Article ID</th>
+        <th>Description</th>
         <th>Status</th>
       </tr>
       <tr *ngFor="let item of ticket.shoppingList">
         <td>{{item.code}}</td>
+        <td>{{item.description}}</td>
         <td>{{item.shoppingState}}</td>
       </tr>
     </table>
-  </div>
-  </div>
-  <div *ngIf="ticket.reference == null">
-    <p>Reference number not valid</p>
   </div>
 </mat-dialog-content>
 <mat-dialog-actions>

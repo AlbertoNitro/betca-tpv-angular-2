@@ -57,6 +57,7 @@ import {MessagesCreationDialogComponent} from './home/messages/messages-creation
 import {MessagesDetailDialogComponent} from './home/messages/messages-detail-dialog.component';
 import {VatManagementComponent} from './home/vat-management/vat-management.component';
 import {UsersQuickCreationDialogComponent} from './home/cashier-opened/shopping-cart/users/users-quick-creation-dialog.component';
+import {TrackingComponent} from './home/ticket-tracking/tracking.component';
 
 export class AppComponents {
   static COMPONENTS = [
@@ -86,7 +87,8 @@ export class AppComponents {
     MessagesComponent,
     MessagesCreationDialogComponent,
     MessagesDetailDialogComponent,
-    VatManagementComponent
+    VatManagementComponent,
+    TrackingComponent
   ];
 
   static DIALOGS = [

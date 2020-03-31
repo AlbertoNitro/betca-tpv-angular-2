@@ -1,0 +1,16 @@
+mat-card {
+  padding: 50px;
+}
+
+td, th, p, mat-card-title {
+  text-align: center;
+}
+
+td, th {
+  width: 150px;
+}
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+}
