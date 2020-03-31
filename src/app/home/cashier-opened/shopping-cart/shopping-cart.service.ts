@@ -23,7 +23,7 @@ export class ShoppingCartService {
 
   static ARTICLE_VARIOUS = '1';
   static SHOPPING_CART_NUM = 4;
-  static ARTICLE_CUSTOMER_POINTS = '0'; // TODO change and add to seed
+  static ARTICLE_CUSTOMER_POINTS = '0';
   static POINT_EQUIVALENCE = 100;
 
   private indexShoppingCart = 0;
@@ -189,11 +189,18 @@ export class ShoppingCartService {
     return -0.5 * (customerPoints / ShoppingCartService.POINT_EQUIVALENCE);
   }
 
-  applyCustomerPoint(mobile: string) {
-    // TODO fetch customer points by mobile
+  fetchCustomerPoints(mobile: string): Observable<any> {
+    return this.httpService.get(AppEndpoints.CUSTOMER_POINTS + '/' + mobile);
+  }
+
+  applyCustomerPoint(customerPoints: number, mobile: string) {
+    console.log({customerPoints, mobile});
+    if (!customerPoints) {
+      return;
+    }
     const mobileAlreadyUsed = this.checkMobileAlreadyUsed(mobile);
-    const mockedCustomerPoints = 300;
-    const retailPrice = this.calculateDiscountByCustomerPoints(mockedCustomerPoints);
+
+    const retailPrice = this.calculateDiscountByCustomerPoints(customerPoints);
 
     this.storeMobile(mobile);
 
