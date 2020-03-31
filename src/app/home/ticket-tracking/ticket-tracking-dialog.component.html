@@ -3,10 +3,10 @@
   <div *ngIf="ticket.reference == null">
     <p>The reference number is not valid.</p>
   </div>
-  <div *ngIf="ticketService.everyArticleIsCommitted(ticket)">
+  <div *ngIf="everyArticleIsCommitted(ticket)">
     <p>The reference number has expired!</p>
   </div>
-  <div *ngIf="ticketService.someArticleIsNotCommited(ticket)">
+  <div *ngIf="someArticleIsNotCommited(ticket)">
     <p><b>Reference number:</b> {{ticket.reference}}</p>
     <table>
       <tr>
