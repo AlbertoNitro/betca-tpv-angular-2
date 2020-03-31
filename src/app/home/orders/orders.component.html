@@ -4,7 +4,7 @@
     <mat-form-field>
       <input [(ngModel)]="orderSearch.description" matInput placeholder="Description">
     </mat-form-field>
-    <app-providers-dropdown (providerOut)="getProvider($event)" [providerIn]="order.provider"
+    <app-providers-dropdown (providerOut)="getProvider($event)" [providerIn]="orderSearch.provider"
                             class="full-width"></app-providers-dropdown>
     <button (click)="search()" color="primary" mat-mini-fab>
       <mat-icon>search</mat-icon>
@@ -16,6 +16,5 @@
     <mat-checkbox [(ngModel)]="pendingOrders">Pending Orders</mat-checkbox>
   </mat-card-content>
 </mat-card>
-<!-- Default: [createAction]="true" [readAction]="true" [updateAction]="true" [deleteAction]="true"-->
 <app-crud (create)="create()" (delete)="delete($event)" (read)="read($event)"
           (update)="update($event)" [columns]="columns" [data]="data" [title]="title"></app-crud>

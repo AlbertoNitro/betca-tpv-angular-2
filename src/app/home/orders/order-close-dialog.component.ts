@@ -10,6 +10,7 @@ import {OrderDetails} from './orderDetails.model';
 export class OrderCloseDialogComponent {
 
   order: OrderDetails = {id: null, description: null, provider: null, openingDate: null, closingDate: null, orderLines: []};
+  provider: string;
 
   constructor(private dialog: MatDialog, private dialogRef: MatDialogRef<OrderCloseDialogComponent>, private message: MatSnackBar,
               private orderService: OrderService, @Inject(MAT_DIALOG_DATA) public orderData: any) {
@@ -17,6 +18,7 @@ export class OrderCloseDialogComponent {
     this.orderService.get(orderData.orderId).subscribe(
       data => {
         this.order = data;
+        this.provider = orderData.provider;
       }
     );
   }

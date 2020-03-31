@@ -9,6 +9,7 @@ import {CancelYesDialogComponent} from '../../core/cancel-yes-dialog.component';
 import {OrderSearch} from './orderSearch.model';
 import {Provider} from '../shared/provider.model';
 import {ActionNotAllowedDialogComponent} from './action-not-allowed-dialog.component';
+import {ProviderService} from '../shared/provider.service';
 
 @Component({
   templateUrl: `orders.component.html`
@@ -16,7 +17,6 @@ import {ActionNotAllowedDialogComponent} from './action-not-allowed-dialog.compo
 
 export class OrdersComponent {
 
-  order: OrderDetails;
   orderSearch: OrderSearch;
   pendingOrders: boolean;
 
@@ -24,8 +24,8 @@ export class OrdersComponent {
   columns = ['description', 'provider', 'openingDate'];
   data: OrderDetails[];
 
-  constructor(private dialog: MatDialog, private orderService: OrderService, private message: MatSnackBar) {
-    this.order = {id: null, description: null, provider: null, orderLines: null, openingDate: null};
+  constructor(private dialog: MatDialog, private orderService: OrderService, private message: MatSnackBar,
+              private providerService: ProviderService) {
     this.orderSearch = {description: null, provider: null, closingDate: new Date()};
     this.data = null;
     this.pendingOrders = true;
@@ -38,7 +38,6 @@ export class OrdersComponent {
     } else {
       this.orderSearch.closingDate = new Date();
     }
-    console.log(this.orderSearch);
     this.orderService.search(this.orderSearch).subscribe(
       data => {
         this.data = [...data];
@@ -64,23 +63,37 @@ export class OrdersComponent {
   }
 
   read(order: OrderDetails) {
-    this.dialog.open(OrderDetailDialogComponent, {
-      width: '600px',
-      data: {
-        dialogTitle: order.description,
-        orderId: order.id
+    let providerName;
+    this.providerService.readAll().subscribe(
+      providers => {
+        providerName = providers.filter(value => value.id === order.provider)[0].company;
+        this.dialog.open(OrderDetailDialogComponent, {
+          width: '600px',
+          data: {
+            dialogTitle: order.description,
+            orderId: order.id,
+            provider: providerName
+          }
+        });
       }
-    });
+    );
   }
 
   update(order: OrderDetails) {
     if (order.closingDate == null) {
-      this.dialog.open(OrderEditionDialogComponent, {
-        width: '600px',
-        data: {
-          orderId: order.id
+      let providerName;
+      this.providerService.readAll().subscribe(
+        providers => {
+          providerName = providers.filter(value => value.id === order.provider)[0].company;
+          this.dialog.open(OrderEditionDialogComponent, {
+            width: '600px',
+            data: {
+              orderId: order.id,
+              provider: providerName
+            }
+          });
         }
-      });
+      );
     } else {
       this.dialog.open(ActionNotAllowedDialogComponent);
     }

@@ -6,7 +6,7 @@
            required type="String"/>
   </mat-form-field>
   <mat-form-field>
-    <input [(ngModel)]="provider.company" disabled
+    <input [(ngModel)]="provider" disabled
            matInput
            placeholder="Provider Id"
            required type="String"/>
@@ -15,7 +15,7 @@
   <h4 mat-dialog-title>Order's Articles</h4>
   <ng-container *ngFor="let orderLine of order.orderLines">
     <mat-form-field>
-      <input [(ngModel)]="orderLine.article" disabled
+      <input [(ngModel)]="orderLine.articleId" disabled
              matInput
              placeholder="Article"
              required type="String"/>
