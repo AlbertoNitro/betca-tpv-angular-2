@@ -16,4 +16,12 @@ export class TicketTrackingDialogComponent {
   constructor(@Inject(MAT_DIALOG_DATA) data: any, private ticketService: TicketService) {
     this.ticket = data.obj;
   }
+
+  everyArticleIsCommitted(ticket) {
+    this.ticketService.everyArticleIsCommitted(ticket);
+  }
+
+  someArticleIsNotCommited(ticket) {
+    this.ticketService.someArticleIsNotCommited(ticket);
+  }
 }
