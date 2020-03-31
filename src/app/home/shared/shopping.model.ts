@@ -11,5 +11,5 @@ export enum ShoppingState {
   NOT_COMMITED,
   REQUIRE_PROVIDER,
   IN_STOCK,
-  COMMITED
+  COMMITTED
 }

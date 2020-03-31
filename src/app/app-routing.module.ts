@@ -20,8 +20,10 @@ import {TicketsComponent} from './home/tickets/tickets.component';
 import {TicketTrackingComponent} from './home/ticket-tracking/ticket-tracking.component';
 import {MessagesComponent} from './home/messages/messages.component';
 import {VatManagementComponent} from './home/vat-management/vat-management.component';
+import {TrackingComponent} from './home/ticket-tracking/tracking.component';
 
 const routes: Routes = [
+  {path: 'home/tracking/:reference', pathMatch: 'prefix', component: TrackingComponent},
   {path: '', pathMatch: 'full', redirectTo: 'welcome'},
   {path: 'welcome', component: WelcomeComponent},
   {

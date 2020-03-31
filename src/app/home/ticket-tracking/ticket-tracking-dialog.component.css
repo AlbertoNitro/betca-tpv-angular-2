@@ -1,7 +1,11 @@
 mat-dialog-content {
-  width: 400px;
+  width: 500px;
 }
 
 table {
   width: 100%;
+}
+
+td, th, h4, p {
+  text-align: center;
 }
