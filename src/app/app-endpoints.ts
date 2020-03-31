@@ -51,7 +51,5 @@ export class AppEndpoints {
 
   static SIZES = '/sizes';
 
-  static SIZES_TYPE = '/sizes-type';
-
   static MESSAGES = '/messages';
 }

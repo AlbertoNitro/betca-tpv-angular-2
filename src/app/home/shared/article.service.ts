@@ -4,7 +4,7 @@ import {Observable} from 'rxjs';
 import {AppEndpoints} from '../../app-endpoints';
 import {HttpService} from '../../core/http.service';
 import {Article} from './article.model';
-import {ArticleFamily} from '../articles/articles-family-dialog.model';
+import {ArticleFamily} from './articles-family-dialog.model';
 
 @Injectable()
 export class ArticleService {
@@ -36,6 +36,9 @@ export class ArticleService {
 
   createFamily(articleFamily: ArticleFamily): Observable<ArticleFamily> {
     return this.httpService.post(AppEndpoints.ARTICLES_FAMILY, articleFamily);
+  }
+  readSizes(): Observable<[]> {
+    return this.httpService.get(AppEndpoints.ARTICLES_FAMILY + AppEndpoints.SIZES);
   }
 
 }
