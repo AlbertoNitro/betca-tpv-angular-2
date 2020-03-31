@@ -16,6 +16,7 @@ export class AppEndpoints {
   static CASHIER_CLOSURE_SEARCH_BY_PARAMS = AppEndpoints.CASHIER_CLOSURES + '/search-by-params';
 
   static CUSTOMER_DISCOUNTS = '/customer-discounts';
+  static CUSTOMER_POINTS = '/customer-points';
 
   static SYSTEM_APP_INFO = '/system/app-info';
 
