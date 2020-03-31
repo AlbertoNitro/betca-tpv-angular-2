@@ -9,7 +9,7 @@ import {TokensService} from '../core/tokens.service';
 import {CancelYesDialogComponent} from '../core/cancel-yes-dialog.component';
 import {CashierService} from './shared/cashier.service';
 import {AdminsService} from './admins.service';
-import {UserService} from './users/user.service';
+import {UserService} from './shared/users/user.service';
 import {SystemService} from './system.service';
 import {CashierClosureDialogComponent} from './cashier-opened/cashier-closure/cashier-closure-dialog.component';
 import {CashMovementsDialogComponent} from './cashier-opened/cashier-closure/cash-movements/cash-movements-dialog.component';
