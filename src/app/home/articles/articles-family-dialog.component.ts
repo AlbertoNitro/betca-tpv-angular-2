@@ -1,7 +1,7 @@
 import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatSnackBar} from '@angular/material';
 import {Provider} from '../shared/provider.model';
-import {ArticleFamily} from './articles-family-dialog.model';
+import {ArticleFamily} from '../shared/articles-family-dialog.model';
 import {ProviderService} from '../shared/provider.service';
 import {ArticleService} from '../shared/article.service';
 
@@ -42,7 +42,7 @@ export class ArticlesFamilyDialogComponent {
   }
 
   createArticleFamily() {
-    alert(this.newArticles.fromSize);
+
     if (this.isInvalid()) {
       return;
     }
