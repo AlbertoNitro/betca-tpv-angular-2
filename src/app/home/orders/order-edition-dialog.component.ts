@@ -4,8 +4,7 @@ import {OrderDetails} from './orderDetails.model';
 import {OrderService} from './order.service';
 import {OrderLineDetail} from './OrderLineDetail.model';
 import {OrderCloseDialogComponent} from './order-close-dialog.component';
-import {ProviderService} from '../shared/provider.service';
-import {Provider} from '../shared/provider.model';
+import {ArticleService} from '../shared/article.service';
 
 @Component({
   templateUrl: 'order-edition-dialog.component.html'
@@ -14,22 +13,20 @@ import {Provider} from '../shared/provider.model';
 export class OrderEditionDialogComponent {
 
   order: OrderDetails = {id: null, description: null, provider: null, openingDate: null, closingDate: null, orderLines: []};
-  provider: Provider;
+  provider: string;
 
   title = 'Orders\' articles';
-  columns = ['article', 'requiredAmount', 'finalAmount'];
+  columns = ['articleId', 'requiredAmount', 'finalAmount'];
   data: OrderLineDetail[];
 
   constructor(private dialog: MatDialog, private dialogRef: MatDialogRef<OrderEditionDialogComponent>, private message: MatSnackBar,
               private orderService: OrderService, @Inject(MAT_DIALOG_DATA) public orderData: any,
-              private providerService: ProviderService) {
+              private articleService: ArticleService) {
     this.orderService.get(orderData.orderId).subscribe(
       data => {
         this.order = data;
         this.data = [...data.orderLines];
-        this.providerService.readAll().subscribe(
-          dataProvider => this.provider = dataProvider.filter(value => value.id === this.order.provider)[0]
-        );
+        this.provider = orderData.provider;
       }
     );
   }
@@ -46,7 +43,7 @@ export class OrderEditionDialogComponent {
   }
 
   deleteOrderLine(orderLineToDelete: OrderLineDetail) {
-    const index = this.order.orderLines.findIndex(value => value.article === orderLineToDelete.article);
+    const index = this.order.orderLines.findIndex(value => value.articleId === orderLineToDelete.articleId);
     if (index > -1) {
       this.order.orderLines.splice(index, 1);
     }
@@ -58,7 +55,8 @@ export class OrderEditionDialogComponent {
     this.dialog.open(OrderCloseDialogComponent, {
       width: '600px',
       data: {
-        orderId: this.order.id
+        orderId: this.order.id,
+        provider: this.provider
       }
     });
   }

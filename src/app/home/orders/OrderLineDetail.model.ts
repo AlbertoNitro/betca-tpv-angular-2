@@ -1,5 +1,5 @@
 export interface OrderLineDetail {
-  article: string;
+  articleId: string;
   requiredAmount: number;
   finalAmount?: number;
 }
