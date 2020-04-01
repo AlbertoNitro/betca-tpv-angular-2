@@ -2,6 +2,7 @@ import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatSnackBar} from '@angular/material';
 import {MessagesService} from './messages.service';
 import {Messages} from './messages.model';
+import {TokensService} from '../../core/tokens.service';
 import {FormControl, Validators} from '@angular/forms';
 
 @Component({
@@ -11,26 +12,26 @@ import {FormControl, Validators} from '@angular/forms';
 export class MessagesCreationDialogComponent {
 
   messages: Messages = {
-    id: null,
-    toUsername: null,
-    fromUsername: null,
+    toUserMobile: null,
+    fromUserMobile: null,
     messageContent: null,
     sentDate: null,
     readDate: null
   };
 
-  toUsernameFormControl = new FormControl('', [Validators.required]);
+  toUserMobileFormControl = new FormControl('', [Validators.required]);
   messageContentFormControl = new FormControl('', [Validators.required]);
 
   constructor(@Inject(MAT_DIALOG_DATA) data: any,
               private dialog: MatDialog,
               private message: MatSnackBar,
-              private messagesService: MessagesService) {
+              private messagesService: MessagesService,
+              private tokensService: TokensService) {
   }
 
 
-  getErrorMessageToUserName() {
-    return this.toUsernameFormControl.hasError('required') ? 'You must enter a value' : '';
+  getErrorMessageToUserMobile() {
+    return this.toUserMobileFormControl.hasError('required') ? 'You must enter a value' : '';
   }
 
   getErrorMessageMessageContent() {
@@ -38,6 +39,7 @@ export class MessagesCreationDialogComponent {
   }
 
   createMessages() {
+    this.messages.fromUserMobile = this.tokensService.getMobile();
     this.messagesService.create(this.messages).subscribe(
       () => this.dialog.closeAll()
       , error => this.errorControl(error.error)
@@ -48,7 +50,7 @@ export class MessagesCreationDialogComponent {
   }
 
   invalidMessages(): boolean {
-    return this.toUsernameFormControl.hasError('required') ||
+    return this.toUserMobileFormControl.hasError('required') ||
       this.messageContentFormControl.hasError('required');
   }
 

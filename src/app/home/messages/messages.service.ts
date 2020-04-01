@@ -19,15 +19,11 @@ export class MessagesService {
     return this.httpService.put(AppEndpoints.MESSAGES, messages);
   }
 
-  read(id: string): Observable<Messages> {
-    return this.httpService.get(AppEndpoints.MESSAGES + '/' + id);
+  readAll(mobile: number): Observable<Messages[]> {
+    return this.httpService.get(AppEndpoints.MESSAGES + '/' + mobile);
   }
 
-  readAll(username: string): Observable<Messages[]> {
-    return this.httpService.get(AppEndpoints.MESSAGES + '/' + username);
-  }
-
-  readAllNewMessages(username: string): Observable<Messages[]> {
-    return this.httpService.get(AppEndpoints.MESSAGES + '/' + username + 'news');
+  readAllNewMessages(mobile: number): Observable<Messages[]> {
+    return this.httpService.get(AppEndpoints.MESSAGES + '/' + mobile + '/news');
   }
 }

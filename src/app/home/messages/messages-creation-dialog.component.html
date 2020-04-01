@@ -2,10 +2,10 @@
 <mat-dialog-content>
   <mat-form-field>
     <mat-label>To:</mat-label>
-    <input [(ngModel)]="messages.toUsername" [formControl]="toUsernameFormControl" matInput
-           placeholder="To Username" type="text"/>
-    <mat-hint>Type the complete user name of you colleague</mat-hint>
-     <mat-error *ngIf="toUsernameFormControl.invalid">{{getErrorMessageToUserName()}}</mat-error>
+    <input [(ngModel)]="messages.toUserMobile" [formControl]="toUserMobileFormControl" matInput
+           placeholder="To User by mobile" type="text"/>
+    <mat-hint>Type the mobile number of you colleague</mat-hint>
+     <mat-error *ngIf="toUserMobileFormControl.invalid">{{getErrorMessageToUserMobile()}}</mat-error>
    </mat-form-field>
    <mat-form-field>
      <mat-label>Message:</mat-label>
