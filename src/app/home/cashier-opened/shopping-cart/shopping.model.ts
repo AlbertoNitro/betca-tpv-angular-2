@@ -15,6 +15,22 @@ export class Shopping {
     return Math.round(value * 100) / 100;
   }
 
+  setDiscount(value: number) {
+    this.discount = value;
+  }
+
+  setTotal(value: number) {
+    this.total = value;
+  }
+
+  setAmount(value: number) {
+    this.amount = value;
+  }
+
+  setCommited(value: boolean) {
+    this.committed = value;
+  }
+
   updateTotal(): void {
     this.total = Shopping.round(this.retailPrice * this.amount * (1 - this.discount / 100));
   }
