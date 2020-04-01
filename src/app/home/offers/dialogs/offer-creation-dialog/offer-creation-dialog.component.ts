@@ -20,14 +20,9 @@ export class OfferCreationDialogComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.articleService.readAll().subscribe((articles: Array<Article>) => {
-    //   this.articles = articles;
-    // });
-    this.articles.push({code: '1', description: 'pera', retailPrice: 5});
-    this.articles.push({code: '2', description: 'tomate', retailPrice: 3});
-    this.articles.push({code: '3', description: 'limón', retailPrice: 4});
-    this.articles.push({code: '4', description: 'piña', retailPrice: 1});
-    this.articles.push({code: '5', description: 'manzana', retailPrice: 2});
+    this.articleService.readAll().subscribe((articles: Array<Article>) => {
+      this.articles = articles;
+    });
     this.submitted = false;
   }
 
