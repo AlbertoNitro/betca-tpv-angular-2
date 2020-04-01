@@ -60,6 +60,7 @@ import {UsersQuickCreationDialogComponent} from './home/cashier-opened/shopping-
 import {TrackingComponent} from './home/ticket-tracking/tracking.component';
 import {ProfileComponent} from './home/profile/profile.component';
 import {StockManagementComponent} from './home/stock-management/stock-management.component';
+import {ChangePasswordDialogComponent} from './home/profile/dialog/change-password-dialog.component';
 
 export class AppComponents {
   static COMPONENTS = [
@@ -127,6 +128,7 @@ export class AppComponents {
     UsersDetailDialogComponent,
     TicketTrackingDialogComponent,
     SendingsUpdateDialogComponent,
-    UsersQuickCreationDialogComponent
+    UsersQuickCreationDialogComponent,
+    ChangePasswordDialogComponent
   ];
 }

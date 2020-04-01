@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
-import {concat, Observable} from 'rxjs';
+import {concat, Observable, of} from 'rxjs';
 
 import {AppEndpoints} from '../../../app-endpoints';
 import {HttpService} from '../../../core/http.service';
 import {User} from './user.model';
+import {delay} from "rxjs/operators";
 
 @Injectable()
 export class UserService {
@@ -31,5 +32,13 @@ export class UserService {
 
   readAll(): Observable<User[]> {
     return this.httpService.get(AppEndpoints.USERS);
+  }
+
+  getPassword(mobile: number): Observable<string> {
+    return of('6').pipe(delay(1000));
+  }
+
+  updatePassword(mobile: number, newPassword: string): Observable<User> {
+    return of({mobile: undefined, username: undefined}).pipe(delay(2000));
   }
 }
