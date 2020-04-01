@@ -35,7 +35,7 @@
         <input [(ngModel)]="user.active" matInput placeholder="Active" readonly/>
       </mat-form-field>
       <mat-card-actions>
-        <button mat-raised-button color="primary">Change Password</button>
+        <button mat-raised-button color="primary" (click)="changePassword()">Change Password</button>
       </mat-card-actions>
     </mat-card-content>
   </mat-card>
