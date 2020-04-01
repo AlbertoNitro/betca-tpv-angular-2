@@ -58,7 +58,9 @@ import {MessagesDetailDialogComponent} from './home/messages/messages-detail-dia
 import {VatManagementComponent} from './home/vat-management/vat-management.component';
 import {UsersQuickCreationDialogComponent} from './home/cashier-opened/shopping-cart/users/users-quick-creation-dialog.component';
 import {TrackingComponent} from './home/ticket-tracking/tracking.component';
+import {ProfileComponent} from './home/profile/profile.component';
 import {StockManagementComponent} from './home/stock-management/stock-management.component';
+import {ChangePasswordDialogComponent} from './home/profile/dialog/change-password-dialog.component';
 import {StockManagementTableComponent} from './home/stock-management/stock-management-table/stock-management-table.component';
 
 export class AppComponents {
@@ -91,6 +93,7 @@ export class AppComponents {
     MessagesDetailDialogComponent,
     VatManagementComponent,
     TrackingComponent,
+    ProfileComponent,
     StockManagementComponent,
     StockManagementTableComponent
   ];
@@ -127,6 +130,7 @@ export class AppComponents {
     UsersDetailDialogComponent,
     TicketTrackingDialogComponent,
     SendingsUpdateDialogComponent,
-    UsersQuickCreationDialogComponent
+    UsersQuickCreationDialogComponent,
+    ChangePasswordDialogComponent
   ];
 }

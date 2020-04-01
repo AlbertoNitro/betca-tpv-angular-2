@@ -21,6 +21,7 @@ import {TicketTrackingComponent} from './home/ticket-tracking/ticket-tracking.co
 import {MessagesComponent} from './home/messages/messages.component';
 import {VatManagementComponent} from './home/vat-management/vat-management.component';
 import {TrackingComponent} from './home/ticket-tracking/tracking.component';
+import {ProfileComponent} from './home/profile/profile.component';
 import {StockManagementComponent} from './home/stock-management/stock-management.component';
 
 const routes: Routes = [
@@ -48,6 +49,7 @@ const routes: Routes = [
       {path: 'ticket-tracking', component: TicketTrackingComponent},
       {path: 'messages', component: MessagesComponent},
       {path: 'vat-management', component: VatManagementComponent},
+      {path: 'profile', component: ProfileComponent},
       {path: 'stock-management', component: StockManagementComponent}
     ]
   }
