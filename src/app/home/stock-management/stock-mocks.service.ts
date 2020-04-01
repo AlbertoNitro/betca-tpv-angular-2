@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Observable, from} from 'rxjs';
+import {Observable, of} from 'rxjs';
 import {Article} from '../shared/article.model';
 
 @Injectable({
@@ -15,7 +15,7 @@ export class StockMocksService {
   constructor() {
   }
 
-  getAll(): Observable<any> {
-    return from(this.articles);
+  getAll(): Observable<Article[]> {
+    return of(this.articles);
   }
 }
