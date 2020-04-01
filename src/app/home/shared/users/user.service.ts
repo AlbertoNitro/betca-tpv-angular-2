@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
+import {concat, Observable} from 'rxjs';
 
 import {AppEndpoints} from '../../../app-endpoints';
 import {HttpService} from '../../../core/http.service';
@@ -11,8 +11,14 @@ export class UserService {
   constructor(private httpService: HttpService) {
   }
 
+  createCustomerPointsByUserMobileAssured(mobile: number): Observable<any> {
+    return this.httpService.post(AppEndpoints.CUSTOMER_POINTS, new Object(mobile));
+  }
+
   create(user: User): Observable<User> {
-    return this.httpService.post(AppEndpoints.USERS, user);
+    const userRequest = this.httpService.post(AppEndpoints.USERS, user);
+    const customerPointsRequest = this.createCustomerPointsByUserMobileAssured(user.mobile);
+    return concat(userRequest, customerPointsRequest);
   }
 
   read(mobile: number): Observable<User> {
