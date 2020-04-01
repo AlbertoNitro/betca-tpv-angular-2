@@ -1,11 +1,12 @@
 export interface Article {
   code: string;
   description: string;
-  retailPrice: number;
+  retailPrice?: number;
   reference?: string;
   stock?: number;
   provider?: string;
   discontinued?: boolean;
   registrationDate?: Date;
   tax?: number;
+  soldUnits?: number;
 }
