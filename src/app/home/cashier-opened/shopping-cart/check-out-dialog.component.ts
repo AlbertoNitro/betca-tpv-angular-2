@@ -43,8 +43,8 @@ export class CheckOutDialogComponent {
         const dialogRef = this.dialog.open(UsersQuickCreationDialogComponent);
         dialogRef.componentInstance.user = {mobile: this.ticketCreation.userMobile, username: undefined};
         dialogRef.afterClosed().subscribe(
-          newUser => {
-            newUser ? this.ticketCreation.userMobile = newUser.mobile : this.ticketCreation.userMobile = null;
+          newUserMobile => {
+            newUserMobile ? this.ticketCreation.userMobile = newUserMobile : this.ticketCreation.userMobile = null;
           }
         );
         return EMPTY;
