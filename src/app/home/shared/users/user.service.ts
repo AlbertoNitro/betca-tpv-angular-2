@@ -4,7 +4,7 @@ import {concat, Observable, of} from 'rxjs';
 import {AppEndpoints} from '../../../app-endpoints';
 import {HttpService} from '../../../core/http.service';
 import {User} from './user.model';
-import {delay} from "rxjs/operators";
+import {delay} from 'rxjs/operators';
 
 @Injectable()
 export class UserService {

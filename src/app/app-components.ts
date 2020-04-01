@@ -61,6 +61,7 @@ import {TrackingComponent} from './home/ticket-tracking/tracking.component';
 import {ProfileComponent} from './home/profile/profile.component';
 import {StockManagementComponent} from './home/stock-management/stock-management.component';
 import {ChangePasswordDialogComponent} from './home/profile/dialog/change-password-dialog.component';
+import {StockManagementTableComponent} from './home/stock-management/stock-management-table/stock-management-table.component';
 
 export class AppComponents {
   static COMPONENTS = [
@@ -93,7 +94,8 @@ export class AppComponents {
     VatManagementComponent,
     TrackingComponent,
     ProfileComponent,
-    StockManagementComponent
+    StockManagementComponent,
+    StockManagementTableComponent
   ];
 
   static DIALOGS = [

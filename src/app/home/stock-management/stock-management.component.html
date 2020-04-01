@@ -1,1 +1,28 @@
-<span>Stock Management</span>
+<mat-card>
+  <mat-card-title>Search</mat-card-title>
+  <mat-card-content>
+    <mat-form-field>
+      <input [(ngModel)]="stockManagementSearch.minimumStock" matInput placeholder="Minimum Stock" type="number">
+    </mat-form-field>
+    <br/>
+    <mat-form-field>
+      <mat-label>From</mat-label>
+      <input [(ngModel)]="stockManagementSearch.initDate" [matDatepicker]="initDate" matInput>
+      <mat-datepicker #initDate></mat-datepicker>
+    </mat-form-field>
+    <mat-datepicker-toggle [for]="initDate"></mat-datepicker-toggle>
+    <mat-form-field>
+      <mat-label>To</mat-label>
+      <input [(ngModel)]="stockManagementSearch.endDate" [matDatepicker]="endDate" matInput>
+      <mat-datepicker #endDate></mat-datepicker>
+    </mat-form-field>
+    <mat-datepicker-toggle [for]="endDate"></mat-datepicker-toggle>
+    <button (click)="search()" color="primary" mat-mini-fab>
+      <mat-icon>search</mat-icon>
+    </button>
+    <button (click)="initDefaultSearch()" color="primary" mat-mini-fab>
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-card-content>
+</mat-card>
+<app-stock-management-table [columns]="columns" [data]="data" [title]="title" [alias]="alias"></app-stock-management-table>
