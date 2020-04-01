@@ -9,7 +9,14 @@ import {User} from '../shared/users/user.model';
 })
 export class UsersDetailDialogComponent {
 
-  user: User;
+  user: User = {
+    mobile: null,
+    username: null,
+    email: null,
+    dni: null,
+    address: null,
+    active: null
+  };
 
   constructor(@Inject(MAT_DIALOG_DATA) data: any,
               private userService: UserService) {

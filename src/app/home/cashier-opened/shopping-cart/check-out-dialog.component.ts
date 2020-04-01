@@ -34,7 +34,7 @@ export class CheckOutDialogComponent {
     return value ? value : 0; // empty string,NaN,false,undefined,null,0 is: false
   }
 
-  checkMobile() {
+  checkUserMobile() {
     this.userService.read(this.ticketCreation.userMobile).pipe(
       map(
         (user: User) => {
