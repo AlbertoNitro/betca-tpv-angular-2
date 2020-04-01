@@ -1,0 +1,42 @@
+<div>
+  <mat-card>
+    <mat-card-title>
+      <mat-icon>perm_identity</mat-icon>
+      {{title}}
+    </mat-card-title>
+    <mat-card-content class="margin">
+      <mat-form-field class="field">
+        <mat-label>Username</mat-label>
+        <input [(ngModel)]="user.username" matInput placeholder="Username" readonly/>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="field">
+        <mat-label>Email</mat-label>
+        <input [(ngModel)]="user.email" matInput placeholder="Email" readonly/>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="field">
+        <mat-label>Mobile</mat-label>
+        <input [(ngModel)]="user.mobile" matInput placeholder="Mobile" readonly/>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="field">
+        <mat-label>Dni</mat-label>
+        <input [(ngModel)]="user.dni" matInput placeholder="Dni" readonly/>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="field">
+        <mat-label>Address</mat-label>
+        <input [(ngModel)]="user.address" matInput placeholder="Address" readonly/>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="field">
+        <mat-label>Active</mat-label>
+        <input [(ngModel)]="user.active" matInput placeholder="Active" readonly/>
+      </mat-form-field>
+      <mat-card-actions>
+        <button mat-raised-button color="primary">Change Password</button>
+      </mat-card-actions>
+    </mat-card-content>
+  </mat-card>
+</div>
