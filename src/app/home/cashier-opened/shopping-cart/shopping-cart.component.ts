@@ -160,7 +160,6 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
       }
       , () => this.dialog.closeAll()
     );
-    // TODO create budget
   }
 
   findBudgetById(id) {
@@ -172,7 +171,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
           const now = new Date();
           const creationDate = new Date(res.creationDate);
           if (((now.getTime() - creationDate.getTime()) / 1000 / 60 / 60 / 24) > 15) {
-            const warning = {warning: 'Is expired', message: '', path: ''};
+            const warning = {warning: 'The budget is expired', message: 'Budget expired', path: ''};
             this.snackBar.open(warning.warning + ': ' + warning.message, 'Info', {duration: 2000});
           }
         }

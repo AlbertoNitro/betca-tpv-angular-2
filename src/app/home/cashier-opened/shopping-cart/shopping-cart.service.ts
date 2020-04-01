@@ -173,8 +173,15 @@ export class ShoppingCartService {
   }
 
   addBudgetList(listArticle: Array<Shopping>) {
-    this.shoppingCart = listArticle;
-    this.synchronizeAll();
+    for (const element of listArticle) {
+      const shoppingElement = new Shopping(element.code, element.description, element.retailPrice);
+      shoppingElement.setDiscount(element.discount);
+      shoppingElement.setTotal(element.total);
+      shoppingElement.setAmount(element.amount);
+      shoppingElement.setCommited(element.committed);
+      this.shoppingCart.push(shoppingElement);
+      this.synchronizeAll();
+    }
   }
 
   getShoppingCart() {
