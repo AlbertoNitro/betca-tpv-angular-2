@@ -1,6 +1,5 @@
 import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA} from '@angular/material';
-import {MessagesService} from './messages.service';
 import {Messages} from './messages.model';
 
 @Component({
@@ -9,14 +8,15 @@ import {Messages} from './messages.model';
 })
 export class MessagesDetailDialogComponent {
 
-  messages: Messages;
+  messages: Messages = {
+    fromUserMobile: null,
+    toUserMobile: null,
+    messageContent: null,
+    sentDate: null,
+    readDate: null
+  };
 
-  constructor(@Inject(MAT_DIALOG_DATA) data: any,
-              private messagesServices: MessagesService) {
-    this.messagesServices.read(data.id).subscribe(
-      messages => {
-        this.messages = messages;
-      }
-    );
+  constructor(@Inject(MAT_DIALOG_DATA) data: any) {
+    this.messages = data;
   }
 }
