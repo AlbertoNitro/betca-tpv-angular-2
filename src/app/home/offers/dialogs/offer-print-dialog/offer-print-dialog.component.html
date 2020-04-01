@@ -1,10 +1,14 @@
 <h3 mat-dialog-title>Print Offer</h3>
 <mat-dialog-content>
-  <h3>{{offer.id}}</h3>
+  <h3>ID: {{offer.id}}</h3>
   <p>Description: <strong>{{offer.description}}</strong></p>
-  <p>Registration Date: <strong>{{offer.registrationDate}}</strong></p>
-  <p>Expiration Date: <strong>{{offer.expirationDate}}</strong></p>
+  <p>Registration Date: <strong>{{offer.registrationDate | date}}</strong></p>
+  <p>Expiration Date: <strong>{{offer.expirationDate | date}}</strong></p>
   <p>Discount: <strong>{{offer.discount}} %</strong></p>
+  <p>Affected Articles:</p>
+  <ul *ngFor='let article of offer.articleList'>
+    <li>{{article.code}}</li>
+  </ul>
 </mat-dialog-content>
 <mat-dialog-actions>
 

@@ -34,18 +34,10 @@ export class OffersComponent implements OnInit {
     const registrationDate = reset ? null : this.offer.registrationDate;
     const expirationDate = reset ? null : this.offer.expirationDate;
 
-    this.offerService.search(registrationDate, expirationDate).pipe(take(1)).subscribe((offers: Array<Offer>) => {
+    this.offerService.search(registrationDate, new Date(expirationDate)).pipe(take(1)).subscribe((offers: Array<Offer>) => {
       this.dataSource = offers;
     }, error => {
-      // TO DELETE (TEST)
-      if (!this.dataSource) {
-        const data = [];
-        data.push({
-          id: '1', expirationDate: '16/03/2021', articleList: [],
-          description: 'TEST!!!', discount: 25, registrationDate: '16/03/2020'
-        });
-        this.dataSource = data;
-      }
+      console.error(error);
     });
   }
 
