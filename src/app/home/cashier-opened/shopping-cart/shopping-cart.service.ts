@@ -147,10 +147,12 @@ export class ShoppingCartService {
     const ticket = this.httpService.pdf().post(AppEndpoints.TICKETS, ticketCreation).pipe(
       map(() => this.reset())
     );
+    const userMobile = this.getCurrentUserMobile();
+    const updateCustomerPoints = this.httpService.put(AppEndpoints.CUSTOMER_POINTS + '/' + userMobile, new Object(0));
     let receipts = iif(() => voucher > 0, this.voucherService.createAndPrint(Math.abs(this.totalShoppingCart - ticketCreation.voucher)));
     receipts = iif(() => requestedInvoice, merge(receipts, this.invoiceService.create()), receipts);
     receipts = iif(() => requestedGiftTicket, merge(receipts, EMPTY), receipts); // TODO change EMPTY to create gift ticket
-    return concat(ticket, receipts);
+    return concat(updateCustomerPoints, ticket, receipts);
   }
 
   isEmpty(): boolean {
@@ -201,8 +203,7 @@ export class ShoppingCartService {
   }
 
   applyCustomerPoint(customerPoints: number, mobile: string) {
-    console.log({customerPoints, mobile});
-    if (!customerPoints) {
+    if (!customerPoints || customerPoints <= 0) {
       return;
     }
     const mobileAlreadyUsed = this.checkMobileAlreadyUsed(mobile);
@@ -218,13 +219,17 @@ export class ShoppingCartService {
       return;
     }
     this.shoppingCart = this.shoppingCart.filter(s => s.code !== ShoppingCartService.ARTICLE_CUSTOMER_POINTS);
-    const shopping = new Shopping(ShoppingCartService.ARTICLE_CUSTOMER_POINTS, 'Customer points (' + mobile + ')', retailPrice);
+    const shopping = new Shopping(ShoppingCartService.ARTICLE_CUSTOMER_POINTS, 'Customer points (' + customerPoints + ')', retailPrice);
     this.shoppingCart.push(shopping);
     this.synchronizeAll();
   }
 
   private storeMobile(mobile: string) {
     this.mobileList[this.indexShoppingCart] = mobile;
+  }
+
+  private getCurrentUserMobile() {
+    return this.mobileList[this.indexShoppingCart];
   }
 
   private addArticle(article: Article, price?: number) {
