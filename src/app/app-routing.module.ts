@@ -23,6 +23,7 @@ import {VatManagementComponent} from './home/vat-management/vat-management.compo
 import {TrackingComponent} from './home/ticket-tracking/tracking.component';
 import {ProfileComponent} from './home/profile/profile.component';
 import {StockManagementComponent} from './home/stock-management/stock-management.component';
+import {UsersRolesComponent} from './home/users-roles/users-roles.component';
 
 const routes: Routes = [
   {path: 'home/tracking/:reference', pathMatch: 'prefix', component: TrackingComponent},
@@ -50,7 +51,8 @@ const routes: Routes = [
       {path: 'messages', component: MessagesComponent},
       {path: 'vat-management', component: VatManagementComponent},
       {path: 'profile', component: ProfileComponent},
-      {path: 'stock-management', component: StockManagementComponent}
+      {path: 'stock-management', component: StockManagementComponent},
+      {path: 'users-roles', component: UsersRolesComponent}
     ]
   }
 ];
