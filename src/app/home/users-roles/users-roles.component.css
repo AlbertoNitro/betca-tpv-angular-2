@@ -1,0 +1,17 @@
+table {
+  width: 75%;
+}
+
+mat-card-title {
+  margin-bottom: 1em;
+}
+
+ul {
+  padding-left: 0;
+  list-style: none;
+  list-style-position: outside;
+}
+
+button {
+  background-color: lightskyblue;
+}
