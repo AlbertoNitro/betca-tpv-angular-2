@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {AppEndpoints} from '../../app-endpoints';
 import {HttpService} from '../../core/http.service';
 import {Ticket} from './ticket.model';
+import { TicketSearch } from '../tickets/ticket-search.model';
 
 @Injectable()
 export class TicketService {
@@ -35,5 +36,18 @@ export class TicketService {
 
   getTicket(id: string): Observable<Ticket> {
     return this.httpService.get(AppEndpoints.TICKETS + '/' + id);
+  }
+
+  advancedSearch(ticketSearch: TicketSearch): Observable<Ticket[]> {
+    if (ticketSearch.mobile) {
+      this.httpService.param('mobile', ticketSearch.mobile);
+    }
+    if (ticketSearch.date) {
+      this.httpService.param('date', ticketSearch.date.toISOString());
+    }
+    if (ticketSearch.amount) {
+      this.httpService.param('amount', ticketSearch.amount.toString());
+    }
+    return this.httpService.get(AppEndpoints.TICKETS + '/search');
   }
 }
