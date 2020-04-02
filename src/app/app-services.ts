@@ -19,8 +19,8 @@ import {CashMovementsService} from './home/cashier-opened/cashier-closure/cash-m
 import {TicketService} from './home/shared/ticket.service';
 import {CashierClosureMocks} from './home/cashier-opened/cashier-closure/search/cashier-closure-mocks.service';
 import {MessagesService} from './home/messages/messages.service';
-import {StockMocksService} from './home/stock-management/stock-mocks.service';
 import {VatManagementService} from './home/shared/vat-management.service';
+import {StockService} from './home/stock-management/stock.service';
 
 export class AppServices {
   public static SERVICES = [
@@ -45,7 +45,7 @@ export class AppServices {
     TicketService,
     CashierClosureMocks,
     MessagesService,
-    StockMocksService,
+    StockService,
     VatManagementService
   ];
 }
