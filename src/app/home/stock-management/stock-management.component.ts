@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Article} from '../shared/article.model';
 import {StockService} from './stock.service';
+import {StockManagementSearchModel} from './StockManagementSearch.model';
 
 @Component({
   templateUrl: 'stock-management.component.html',
@@ -12,11 +13,7 @@ export class StockManagementComponent implements OnInit {
   columns = ['code', 'description', 'soldUnits', 'stock'];
   alias = ['code', 'description', 'num of sold items', 'stock'];
   data: Article[];
-  stockManagementSearch: {
-    initDate: Date;
-    endDate: Date;
-    minimumStock: number;
-  };
+  stockManagementSearch: StockManagementSearchModel;
 
   constructor(private stockService: StockService) {
     this.data = null;
@@ -28,7 +25,7 @@ export class StockManagementComponent implements OnInit {
   }
 
   search(): void {
-    this.stockService.getAll().subscribe(
+    this.stockService.getAll(this.stockManagementSearch).subscribe(
       data => this.data = data
     );
   }
