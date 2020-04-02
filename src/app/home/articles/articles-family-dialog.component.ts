@@ -24,8 +24,8 @@ export class ArticlesFamilyDialogComponent {
   };
   providers: Provider[];
   type = [
-    {id: true, name: 'International'},
-    {id: false, name: 'Number'}
+    {id: 'true', name: 'International'},
+    {id: 'false', name: 'Number'}
   ];
   size: [];
 
