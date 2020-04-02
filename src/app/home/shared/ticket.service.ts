@@ -20,7 +20,7 @@ export class TicketService {
   }
 
   getPdf(id: string): Observable<Ticket> {
-    return this.httpService.pdf().get(AppEndpoints.TICKETS + '/' + id);
+    return this.httpService.pdf().get(AppEndpoints.TICKETS + '/' + id + '/pdf');
   }
 
   everyArticleIsCommitted(ticket: Ticket): boolean {
@@ -31,5 +31,9 @@ export class TicketService {
   someArticleIsNotCommited(ticket: Ticket): boolean {
     const list = ticket.shoppingList;
     return list && list.length > 0 && list.some( value => value.shoppingState.toString() !== 'COMMITTED' );
+  }
+
+  getTicket(id: string): Observable<Ticket> {
+    return this.httpService.get(AppEndpoints.TICKETS + '/' + id);
   }
 }
