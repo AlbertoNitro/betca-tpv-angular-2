@@ -3,16 +3,16 @@
 
   <mat-card-content>
     <mat-form-field>
-      <input [(ngModel)]="ticket.reference" matInput placeholder="Reference">
+      <input [(ngModel)]="ticket.id" matInput placeholder="Ticket ID">
     </mat-form-field>
-    <button (click)="search()" color="primary" mat-mini-fab>
+    <button (click)="search(ticket.id)" color="primary" mat-mini-fab>
       <mat-icon>search</mat-icon>
     </button>
     <button (click)="resetSearch()" color="primary" mat-mini-fab>
       <mat-icon>close</mat-icon>
     </button>
   </mat-card-content>
-
+ 
   <mat-card-content>
     <mat-form-field>
       <input matInput placeholder="Gift Ticket Reference">

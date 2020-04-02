@@ -38,11 +38,21 @@ export class TicketsComponent implements OnInit {
     );
   }
 
-  search() {
-    // TODO
+  search(id: string) {
+    this.ticketService.getTicket(id).subscribe(
+      data => {
+        this.data = [];
+        if (data.shoppingList != null) {
+          this.data[0] = data;
+        }
+      }
+    );
   }
 
   resetSearch() {
     this.ticket = {reference: null};
+    this.ticketService.readAll().subscribe(
+      data => this.data = data
+    );
   }
 }
