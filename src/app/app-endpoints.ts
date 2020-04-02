@@ -28,6 +28,8 @@ export class AppEndpoints {
 
   static USERS = '/users';
 
+  static USER_PASSWORD = '/users/password';
+
   static BUDGETS = '/budgets';
 
   static ORDERS = '/orders';
