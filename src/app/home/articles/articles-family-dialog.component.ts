@@ -24,8 +24,8 @@ export class ArticlesFamilyDialogComponent {
   };
   providers: Provider[];
   type = [
-    {id: 1, name: 'International'},
-    {id: 2, name: 'Number'}
+    {id: true, name: 'International'},
+    {id: false, name: 'Number'}
   ];
   size: [];
 
@@ -66,7 +66,8 @@ export class ArticlesFamilyDialogComponent {
       this.checkEmpty(this.newArticles.provider) ||
       this.checkEmpty(this.newArticles.sizeType) ||
       this.checkEmpty(this.newArticles.fromSize) ||
-      this.checkEmpty(this.newArticles.toSize);
+      this.checkEmpty(this.newArticles.toSize) ||
+      (this.newArticles.fromSize > this.newArticles.toSize);
   }
 
   checkEmpty(attr: string): boolean {
