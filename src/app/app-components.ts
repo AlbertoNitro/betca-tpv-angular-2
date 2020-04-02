@@ -63,6 +63,7 @@ import {StockManagementComponent} from './home/stock-management/stock-management
 import {ChangePasswordDialogComponent} from './home/profile/dialog/change-password-dialog.component';
 import {StockManagementTableComponent} from './home/stock-management/stock-management-table/stock-management-table.component';
 import {UsersRolesComponent} from './home/users-roles/users-roles.component';
+import {ChangeUserRoleDialogComponent} from './home/users-roles/dialog/change-user-role-dialog.component';
 
 export class AppComponents {
   static COMPONENTS = [
@@ -133,6 +134,7 @@ export class AppComponents {
     TicketTrackingDialogComponent,
     SendingsUpdateDialogComponent,
     UsersQuickCreationDialogComponent,
-    ChangePasswordDialogComponent
+    ChangePasswordDialogComponent,
+    ChangeUserRoleDialogComponent
   ];
 }

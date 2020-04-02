@@ -4,6 +4,7 @@ import {UserService} from '../shared/users/user.service';
 import {MatDialog} from '@angular/material/dialog';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {TokensService} from '../../core/tokens.service';
+import {ChangeUserRoleDialogComponent} from './dialog/change-user-role-dialog.component';
 
 @Component({
   templateUrl: `users-roles.component.html`,
@@ -38,6 +39,14 @@ export class UsersRolesComponent implements OnInit {
     } else {
       return roles.includes('ADMIN');
     }
+  }
+
+  changeRole(user: User) {
+    this.dialog.open(ChangeUserRoleDialogComponent, {
+      data: {
+        mobile: user.mobile
+      }
+    });
   }
 
 }
