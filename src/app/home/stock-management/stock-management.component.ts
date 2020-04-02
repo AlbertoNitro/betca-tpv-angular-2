@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Article} from '../shared/article.model';
-import {StockMocksService} from './stock-mocks.service';
+import {StockService} from './stock.service';
 
 @Component({
   templateUrl: 'stock-management.component.html',
@@ -18,7 +18,7 @@ export class StockManagementComponent implements OnInit {
     minimumStock: number;
   };
 
-  constructor(private stockService: StockMocksService) {
+  constructor(private stockService: StockService) {
     this.data = null;
     this.initDefaultSearch();
   }
