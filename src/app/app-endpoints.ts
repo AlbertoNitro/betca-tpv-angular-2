@@ -59,4 +59,6 @@ export class AppEndpoints {
   static SIZES = '/sizes';
 
   static MESSAGES = '/messages';
+
+  static VAT_MANAGEMENT = '/vat-management';
 }

@@ -19,6 +19,7 @@ import {CashMovementsService} from './home/cashier-opened/cashier-closure/cash-m
 import {TicketService} from './home/shared/ticket.service';
 import {CashierClosureMocks} from './home/cashier-opened/cashier-closure/search/cashier-closure-mocks.service';
 import {MessagesService} from './home/messages/messages.service';
+import {VatManagementService} from './home/shared/vat-management.service';
 import {StockService} from './home/stock-management/stock.service';
 
 export class AppServices {
@@ -44,6 +45,7 @@ export class AppServices {
     TicketService,
     CashierClosureMocks,
     MessagesService,
-    StockService
+    StockService,
+    VatManagementService
   ];
 }
