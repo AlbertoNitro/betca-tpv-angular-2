@@ -10,9 +10,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 })
 export class ChangePasswordDialogComponent implements OnInit {
   mobile: number;
-  passwordUser: string;
   passwordGroup = this.fb.group({
-    password: ['', [Validators.required]],
     new_password: ['', [Validators.required]],
     confirm_new_password: ['', [Validators.required]]
   });
@@ -23,30 +21,22 @@ export class ChangePasswordDialogComponent implements OnInit {
               private userService: UserService,
               private fb: FormBuilder) {
     this.mobile = data.mobile;
-    this.userService.getPassword(this.mobile).subscribe(
-      password => {
-        this.passwordUser = password;
-      }
-    );
   }
 
   ngOnInit() {
   }
 
   changePassword() {
-    this.userService.updatePassword(this.mobile, this.passwordUser).subscribe(
-      () => this.message.open('Password updated successfully', null, {
-        duration: 2500,
-      })
+    const newPasword = this.passwordGroup.get('new_password').value;
+    this.userService.updatePassword(this.mobile, newPasword).subscribe(
+      () => {
+      },
+      error => {
+        this.message.open('An error has ocurred', null, {duration: 2500});
+        console.log('Change password error: ' + JSON.stringify(error));
+      },
+      () => this.message.open('Password updated successfully', null, {duration: 2500})
     );
-  }
-
-  passwordIncorrect(): boolean {
-    const passFormControl = this.passwordGroup.get('password');
-    if (passFormControl.touched) {
-      return passFormControl.value !== this.passwordUser;
-    }
-    return false;
   }
 
   passwordsDifferent() {
@@ -59,7 +49,7 @@ export class ChangePasswordDialogComponent implements OnInit {
   }
 
   formIsValid(): boolean {
-    return this.passwordGroup.valid && !this.passwordsDifferent() && !this.passwordIncorrect();
+    return this.passwordGroup.valid && !this.passwordsDifferent();
   }
 
 }
