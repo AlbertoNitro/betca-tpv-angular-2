@@ -11,24 +11,25 @@ export class OfferService {
   }
 
   public create(offer: Offer): Observable<Offer> {
-    return this.httpService.post(AppEndpoints.OFFERS, offer);
+    offer.expirationDate = new Date(offer.expirationDate).toISOString();
+    return this.httpService.post('/' + AppEndpoints.OFFERS, offer);
   }
 
   public read(id?: string): Observable<Offer> {
-    return this.httpService.get(`${AppEndpoints.OFFERS}/${id}`);
+    return this.httpService.get(`/${AppEndpoints.OFFERS}/${id}`);
   }
 
   public delete(offer: Offer): Observable<void> {
-    return this.httpService.delete(AppEndpoints.OFFERS + '/' + offer.id);
+    return this.httpService.delete('/' + AppEndpoints.OFFERS + '/' + offer.id);
   }
 
   public print(offer: Offer): Observable<any> {
-    return this.httpService.pdf().get(AppEndpoints.OFFERS + '/' + offer.id + AppEndpoints.PRINT);
+    return this.httpService.pdf().get('/' + AppEndpoints.OFFERS + '/' + offer.id + AppEndpoints.PRINT);
   }
 
   public search(registrationDate: Date, expirationDate: Date): Observable<Array<Offer>> {
     this.httpService.param('registrationDate', registrationDate.toISOString());
     this.httpService.param('expirationDate', expirationDate.toISOString());
-    return this.httpService.get(`${AppEndpoints.OFFERS}/search`);
+    return this.httpService.get(`/${AppEndpoints.OFFERS}`);
   }
 }

@@ -29,8 +29,8 @@ export class UsersCreationDialogComponent {
               private message: MatSnackBar,
               private userService: UserService) {
     this.update = data.update;
-    this.mobile = data.mobile;
     if (this.update) {
+      this.mobile = data.mobile;
       this.userService.read(data.mobile).subscribe(
         user => {
           this.user = user;

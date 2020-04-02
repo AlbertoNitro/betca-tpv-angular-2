@@ -1,5 +1,5 @@
-import {Component, Inject} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef, MatSnackBar} from '@angular/material';
+import {Component} from '@angular/core';
+import {MatDialogRef, MatSnackBar} from '@angular/material';
 
 import {FormControl, Validators} from '@angular/forms';
 import {User} from '../../../shared/users/user.model';
@@ -15,8 +15,7 @@ export class UsersQuickCreationDialogComponent {
   mobileFormControl = new FormControl('', [Validators.required]);
   usernameFormControl = new FormControl('', [Validators.required]);
 
-  constructor(@Inject(MAT_DIALOG_DATA) data: any,
-              private dialogRef: MatDialogRef<UsersQuickCreationDialogComponent>,
+  constructor(private dialogRef: MatDialogRef<UsersQuickCreationDialogComponent>,
               private message: MatSnackBar,
               private userService: UserService) {
   }

@@ -1,16 +1,12 @@
 <h3 mat-dialog-title>Read messages</h3>
 <mat-dialog-content>
   <mat-form-field>
-    <input [(ngModel)]="messages.id" matInput
-           placeholder="ID" readonly/>
+    <input [(ngModel)]="messages.fromUserMobile" matInput
+           placeholder="Sent from user with mobile: " readonly/>
   </mat-form-field>
   <mat-form-field>
-    <input [(ngModel)]="messages.fromUsername" matInput
-           placeholder="Sent from" readonly/>
-  </mat-form-field>
-  <mat-form-field>
-    <input [(ngModel)]="messages.toUsername" matInput
-           placeholder="Sent to" readonly/>
+    <input [(ngModel)]="messages.toUserMobile" matInput
+           placeholder="Sent to user with mobile: " readonly/>
   </mat-form-field>
   <mat-form-field>
     <input [(ngModel)]="messages.sentDate" matInput
