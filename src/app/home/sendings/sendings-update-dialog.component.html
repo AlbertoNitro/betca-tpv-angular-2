@@ -20,11 +20,9 @@
            placeholder="CreationDate"
            readonly required type="text"/>
   </mat-form-field>
-  <mat-form-field>
-    <input [(ngModel)]="sendings.estado" matInput
-           placeholder="Estado"
-           required type="text"/>
-  </mat-form-field>
+
+  <mat-slide-toggle [(ngModel)]="sendings.estado">Estado</mat-slide-toggle>
+
 </mat-dialog-content>
 
 <mat-dialog-actions>

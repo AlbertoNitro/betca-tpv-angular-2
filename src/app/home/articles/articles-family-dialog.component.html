@@ -26,7 +26,7 @@
     </mat-radio-button>
   </mat-radio-group>
   <br><br>
-  <div *ngIf="newArticles.sizeType=='1'">
+  <div *ngIf="newArticles.sizeType=='true'">
     <mat-form-field class="media-width">
       <mat-label>From</mat-label>
       <mat-select [(ngModel)]="newArticles.fromSize">
@@ -44,7 +44,7 @@
       </mat-select>
     </mat-form-field>
   </div>
-  <div *ngIf="newArticles.sizeType=='2'">
+  <div *ngIf="newArticles.sizeType=='false'">
     <mat-form-field class="media-width">
       <input [(ngModel)]="newArticles.fromSize" cdkFocusInitial matInput placeholder="From" required
              type="Number"/>
