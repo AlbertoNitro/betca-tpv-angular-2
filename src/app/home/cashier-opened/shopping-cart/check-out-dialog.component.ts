@@ -23,6 +23,7 @@ export class CheckOutDialogComponent {
   requestedGiftTicket = false;
   ticketCreation: TicketCreation;
   user: User;
+  isChecked = false;
 
   constructor(private dialog: MatDialog, private shoppingCartService: ShoppingCartService, private voucherService: VoucherService,
               private userService: UserService) {
@@ -162,6 +163,10 @@ export class CheckOutDialogComponent {
 
   invalidInvoice(): boolean {
     return (!this.userCompleted() || !this.fullPayedTicket());
+  }
+
+  onChange(isChecked) {
+    this.isChecked = isChecked;
   }
 
   private userCompleted(): boolean {

@@ -36,10 +36,16 @@
       <mat-icon color="warn">local_offer</mat-icon>
     </button>
   </mat-form-field>
+  <mat-form-field *ngIf="isChecked">
+    <input matInput placeholder="Personalized note for gift ticket" type="text"/>
+    <button aria-label="GiftTicketNote" mat-button mat-icon-button matSuffix>
+      <mat-icon color="warn">card_giftcard</mat-icon>
+    </button>
+  </mat-form-field>
   <mat-checkbox [(ngModel)]="requestedInvoice" [disabled]="invalidInvoice()">
     <span> Create Invoice ({{ticketCreation.userMobile}})</span>
   </mat-checkbox>
-  <mat-checkbox [(ngModel)]="requestedGiftTicket" [disabled]="true">
+  <mat-checkbox [(ngModel)]="requestedGiftTicket" [disabled]="false" (change)="onChange($event.checked)">
     <span>Create Gift Ticket</span>
   </mat-checkbox>
   <div *ngIf="!invalidCheckOut()&&returnedCash()>0" class="mat-raised-button mat-primary"> Cash Return:
