@@ -29,10 +29,12 @@ export class VatManagementComponent {
   }
 
   public getVatData(): void {
-    this.vatManagementService.read(this.selectedValue).subscribe(data => {
-      this.data = data;
-      this.dataSource = this.data.taxes;
-      console.log(this.data);
-    });
+    if (this.selectedValue !== undefined) {
+      this.vatManagementService.read(this.selectedValue).subscribe(data => {
+        this.data = data;
+        this.dataSource = this.data.taxes;
+        console.log(this.data);
+      });
+    }
   }
 }
