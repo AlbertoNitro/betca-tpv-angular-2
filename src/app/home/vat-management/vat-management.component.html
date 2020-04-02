@@ -3,7 +3,7 @@
   <mat-divider style="margin-bottom: 10px"></mat-divider>
   <mat-form-field>
     <mat-label>Select the quarter</mat-label>
-    <mat-select [(ngModel)]="selectedValue" [formControl]="quarterControl" required>
+    <mat-select [(ngModel)]="selectedValue" (selectionChange)="getVatData()" [formControl]="quarterControl" required>
       <mat-option>--</mat-option>
       <mat-option *ngFor="let quarter of quarters" [value]="quarter">
         {{quarter}}
@@ -12,21 +12,26 @@
     <mat-error *ngIf="quarterControl.hasError('required')">Please choose a quarter</mat-error>
   </mat-form-field>
   <ng-container *ngIf="selectedValue != undefined">
-    <table [dataSource]="dataSource" class="mat-elevation-z8" mat-table>
+    <table [dataSource]="this.dataSource" class="mat-elevation-z8" mat-table>
 
-      <ng-container matColumnDef="type">
-        <th *matHeaderCellDef mat-header-cell> VAT Type</th>
-        <td *matCellDef="let element" mat-cell> {{element.type}} </td>
+      <ng-container matColumnDef="tax">
+        <th *matHeaderCellDef mat-header-cell> Tax</th>
+        <td *matCellDef="let element" mat-cell> {{element.tax}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="percentageApplied">
+        <th *matHeaderCellDef mat-header-cell> Percentage Applied</th>
+        <td *matCellDef="let element" mat-cell> {{element.percentageApplied*100}}%</td>
       </ng-container>
 
       <ng-container matColumnDef="taxableAmount">
         <th *matHeaderCellDef mat-header-cell> Taxable Amount</th>
-        <td *matCellDef="let element" mat-cell> {{element.taxableAmount}}%</td>
+        <td *matCellDef="let element" mat-cell> {{element.taxableAmount}}€</td>
       </ng-container>
 
-      <ng-container matColumnDef="totalAmount">
-        <th *matHeaderCellDef mat-header-cell> Total Amount</th>
-        <td *matCellDef="let element" mat-cell> {{element.totalAmount}}€</td>
+      <ng-container matColumnDef="vat">
+        <th *matHeaderCellDef mat-header-cell> VAT</th>
+        <td *matCellDef="let element" mat-cell> {{element.vat}}€</td>
       </ng-container>
 
       <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>

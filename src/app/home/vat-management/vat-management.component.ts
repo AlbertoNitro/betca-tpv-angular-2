@@ -1,8 +1,11 @@
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
-import {Quarter} from './quarter.model';
+import {Quarter} from '../shared/quarter.enum';
 import {FormControl, Validators} from '@angular/forms';
-import {VAT} from './vat.model';
+import {VatManagementService} from '../shared/vat-management.service';
+import {QuarterVatModel} from '../shared/quarter-vat.model';
+import {log} from 'util';
+import {TaxModel} from '../shared/tax.model';
 
 @Component({
   selector: 'app-vat-management',
@@ -10,13 +13,10 @@ import {VAT} from './vat.model';
   templateUrl: 'vat-management.component.html'
 })
 export class VatManagementComponent {
-  selectedValue: string;
-  displayedColumns: string[] = ['type', 'taxableAmount', 'totalAmount'];
-  dataSource: VAT[] = [
-    {type: 'General', taxableAmount: 21, totalAmount: 500},
-    {type: 'Reduced', taxableAmount: 10, totalAmount: 300},
-    {type: 'Super-Reduced', taxableAmount: 4, totalAmount: 100},
-  ];
+  selectedValue: Quarter;
+  displayedColumns: string[] = ['tax', 'percentageApplied', 'taxableAmount', 'vat'];
+  data: QuarterVatModel;
+  dataSource: TaxModel[];
   quarterControl = new FormControl('', Validators.required);
   quarters: Quarter[] = [
     Quarter.Q1,
@@ -25,6 +25,14 @@ export class VatManagementComponent {
     Quarter.Q4
   ];
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private vatManagementService: VatManagementService) {
+  }
+
+  public getVatData(): void {
+    this.vatManagementService.read(this.selectedValue).subscribe(data => {
+      this.data = data;
+      this.dataSource = this.data.taxes;
+      console.log(this.data);
+    });
   }
 }
