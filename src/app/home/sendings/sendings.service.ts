@@ -22,4 +22,9 @@ export class SendingsService {
   update(sendings: Sendings): Observable<Sendings> {
     return this.httpService.put(AppEndpoints.SENDINGS + '/' + sendings.id, sendings);
   }
+
+  delete(sendings: Sendings): Observable<Sendings> {
+    return this.httpService.delete(AppEndpoints.SENDINGS + '/' + sendings.id);
+  }
+
 }
