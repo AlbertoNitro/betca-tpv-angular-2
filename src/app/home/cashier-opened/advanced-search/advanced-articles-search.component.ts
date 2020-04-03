@@ -31,22 +31,11 @@ export class AdvancedArticlesSearchComponent {
   }
 
   advancedSearch() {
-    if (this.articleSearch.description == null && this.articleSearch.reference == null && this.articleSearch.stock == null &&
-      this.articleSearch.provider == null && this.articleSearch.retailPrice == null) {
-      this.advancedArticlesSearchService.advancedArticleSearch(this.articleSearch).subscribe(
-        articles => {
-          this.data = articles;
-        }
-      );
-
-    } else {
-      this.articleSearch.discontinued = this.discontinued;
-      this.advancedArticlesSearchService.advancedArticleSearch(this.articleSearch).subscribe(
-        articles => {
-          this.data = articles;
-        }
-      );
-    }
+    this.advancedArticlesSearchService.advancedArticleSearch(this.articleSearch).subscribe(
+      articles => {
+        this.data = articles;
+      }
+    );
   }
 
   resetSearch() {
@@ -57,7 +46,6 @@ export class AdvancedArticlesSearchComponent {
       retailPrice: null,
       discontinued: null
     };
-    this.discontinued = null;
     this.advancedArticlesSearchService.readAll().subscribe(
       data => this.data = data
     );
@@ -67,8 +55,5 @@ export class AdvancedArticlesSearchComponent {
     this.articleSearch.provider = provider.id;
   }
 
-  onChange(isChecked) {
-    this.discontinued = isChecked;
-  }
 
 }
