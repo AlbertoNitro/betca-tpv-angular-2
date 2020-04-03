@@ -16,7 +16,7 @@ import {MatTableDataSource} from '@angular/material';
 export class StockManagementComponent implements OnInit {
   title: string;
   columns = ['code', 'description', 'soldUnits', 'stock'];
-  columnsArticleTable = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+  columnsArticleTable = ['year', 'jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
   alias = ['code', 'description', 'num of sold items', 'stock'];
   data: Article[];
   dataArticle: SalesPerYearModel[];
@@ -59,7 +59,7 @@ export class StockManagementComponent implements OnInit {
     const currentYear = (new Date()).getFullYear();
     articlesSales.forEach((articleSalesModel) => {
       const index = articleSalesModel.year === currentYear ? 1 : 0;
-      const month = this.columnsArticleTable[articleSalesModel.month - 1];
+      const month = this.columnsArticleTable[articleSalesModel.month];
       this.dataArticle[index][month] = articleSalesModel.amount;
     });
     this.dataArticleTable = new MatTableDataSource<any>(this.dataArticle);
@@ -71,7 +71,7 @@ export class StockManagementComponent implements OnInit {
     this.dataArticle[0].year = ((new Date()).getFullYear() - 1).toString();
     this.dataArticle[1].year = ((new Date()).getFullYear()).toString();
     const currentMonth = (new Date()).getMonth();
-    for (let i = currentMonth; i < 12; i++) {
+    for (let i = currentMonth + 1; i < 13; i++) {
       this.dataArticle[1][this.columnsArticleTable[i]] = '-';
     }
   }
