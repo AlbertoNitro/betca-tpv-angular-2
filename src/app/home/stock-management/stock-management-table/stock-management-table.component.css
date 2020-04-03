@@ -1,5 +1,5 @@
 .selected-item{
-  color: red !important;
+  background-color: #3e50b35c;
 }
 
 mat-row:hover{

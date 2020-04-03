@@ -31,7 +31,8 @@ export class StockManagementTableComponent {
   }
 
   isSelected(item: Article): boolean {
-     return this.selectedItem === item.code;
+    console.log( 'Item :' + this.selectedItem, item.code);
+    return this.selectedItem === item.code;
   }
 
 }
