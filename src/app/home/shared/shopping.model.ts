@@ -8,8 +8,8 @@ export interface Shopping {
 }
 
 export enum ShoppingState {
-  NOT_COMMITED,
-  REQUIRE_PROVIDER,
-  IN_STOCK,
-  COMMITTED
+  NOT_COMMITTED = 'NOT_COMMITTED',
+  REQUIRE_PROVIDER = 'REQUIRE_PROVIDER',
+  IN_STOCK = 'IN_STOCK',
+  COMMITTED = 'COMMITTED'
 }

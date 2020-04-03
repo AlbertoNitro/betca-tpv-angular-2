@@ -25,10 +25,32 @@ export class UsersComponent {
   }
 
   search() {
-    // TODO implement search with fields
-    this.userService.readAll().subscribe(
-      data => this.data = data
-    );
+    if (this.user.mobile == null && this.user.username == null && this.user.dni == null && this.user.address == null) {
+      this.userService.readAll().subscribe(
+        data => this.data = data
+      );
+    } else {
+      this.userService.search(this.user.mobile, this.user.username, this.user.dni, this.user.address).subscribe(
+        data => {
+          if (!this.onlyCustomer) {
+            this.data = data;
+          } else {
+            this.data = [];
+            data.forEach(user => {
+              const customer = user.roles.findIndex(rol => rol === 'CUSTOMER');
+              if (customer !== -1) {
+                this.data.push(user);
+              }
+            });
+            if (this.data.length === 0) {
+              this.message.open('Users not found', null, {
+                duration: 2500,
+              });
+            }
+          }
+        }
+      );
+    }
   }
 
   resetSearch() {

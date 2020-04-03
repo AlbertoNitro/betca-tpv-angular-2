@@ -4,6 +4,7 @@ import {HttpService} from '../../core/http.service';
 import {AppEndpoints} from '../../app-endpoints';
 import {Article} from '../shared/article.model';
 import {StockManagementSearchModel} from './StockManagementSearch.model';
+import {ArticleSalesModel} from './article-sales.model';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,10 @@ export class StockService {
         .param('minimumStock', minimumStock)
         .get(AppEndpoints.STOCK);
 
+  }
+
+  getArticleSalesData(code: string): Observable<ArticleSalesModel[]> {
+    return this.httpService.get(AppEndpoints.STOCK + '/' + code);
   }
 
 }

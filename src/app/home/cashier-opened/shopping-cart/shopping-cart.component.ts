@@ -195,7 +195,11 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
 
   useCustomerPoints(mobile: string) {
     this.shoppingCartService.fetchCustomerPoints(mobile).subscribe((points) => {
-      this.shoppingCartService.applyCustomerPoint(points, mobile);
+      if (!points || points <= 0) {
+        this.snackBar.open('This client doesnt have points', null, {duration: 3000});
+      } else {
+        this.shoppingCartService.applyCustomerPoints(points, mobile);
+      }
     }, error => {
       this.snackBar.open('Theres no points associate to this mobile', null, {duration: 3000});
     });

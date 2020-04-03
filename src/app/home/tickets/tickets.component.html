@@ -26,4 +26,30 @@
   </mat-card-content>
 
 </mat-card>
+<mat-card>
+  <mat-card-title>Advanced Search</mat-card-title>
+  <mat-card-content>
+    <mat-form-field>
+      <input type="number" [(ngModel)]="ticketSearch.mobile" matInput placeholder="User mobile">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Ticket date</mat-label>
+      <input #ticketDate="ngModel"
+              [(ngModel)]="ticketSearch.date"
+              [matDatepicker]="ticketDate"
+              matInput>
+      <mat-datepicker #ticketDate></mat-datepicker>
+    </mat-form-field>
+    <mat-datepicker-toggle [for]="ticketDate"></mat-datepicker-toggle>
+    <mat-form-field>
+      <input type="number" [(ngModel)]="ticketSearch.amount" matInput placeholder="Number of items">
+    </mat-form-field>
+    <button (click)="advancedSearch()" color="primary" mat-mini-fab>
+      <mat-icon>search</mat-icon>
+    </button>
+    <button (click)="resetSearch()" color="primary" mat-mini-fab>
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-card-content>
+</mat-card>
 <app-crud (read)="print($event)" (update)="update($event)" [columns]="columns" [data]="data" [title]="title"></app-crud>

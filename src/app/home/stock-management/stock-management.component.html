@@ -25,4 +25,20 @@
     </button>
   </mat-card-content>
 </mat-card>
-<app-stock-management-table [columns]="columns" [data]="data" [title]="title" [alias]="alias"></app-stock-management-table>
+<mat-card *ngIf="data!=null">
+  <mat-card-title>
+    Article Sales Information
+  </mat-card-title>
+  <span *ngIf="dataArticleTable == null">Select an article</span>
+  <mat-card-content>
+    <mat-table *ngIf="dataArticleTable != null" #table [dataSource]="dataArticleTable" class="mat-elevation-z8" matSort>
+      <ng-container *ngFor="let def of columnsArticleTable, let i = index" [matColumnDef]="def">
+        <mat-header-cell *matHeaderCellDef>{{ def | uppercase }}</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row[def] }}</mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="columnsArticleTable"></mat-header-row>
+      <mat-row *matRowDef="let item; columns: columnsArticleTable;"></mat-row>
+    </mat-table>
+  </mat-card-content>
+</mat-card>
+<app-stock-management-table [columns]="columns" [data]="data" [title]="title" [alias]="alias" (showArticleSales)="getDataArticle($event)"></app-stock-management-table>
