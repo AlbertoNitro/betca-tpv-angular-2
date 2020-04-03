@@ -6,5 +6,5 @@ export interface User {
   address?: string;
   registrationDate?: Date;
   active?: boolean;
-  role?: string[];
+  roles?: string[];
 }
