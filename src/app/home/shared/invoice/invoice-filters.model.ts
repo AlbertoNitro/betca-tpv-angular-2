@@ -1,5 +1,5 @@
 export interface InvoiceFilter {
-  mobile?: number;
-  fromDate?: Date;
-  toDate?: Date;
+  mobile: string;
+  fromDate: string;
+  toDate: string;
 }
