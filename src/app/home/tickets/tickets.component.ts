@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Ticket} from '../shared/ticket.model';
 import {TicketService} from '../shared/ticket.service';
+import { TicketSearch } from './ticket-search.model';
 
 @Component({
   selector: 'app-tickets',
@@ -15,6 +16,8 @@ export class TicketsComponent implements OnInit {
   title = 'Tickets management';
   columns = ['id', 'reference'];
   data: Ticket[];
+
+  ticketSearch: TicketSearch = {};
 
   constructor(private ticketService: TicketService) {
     this.ticket = {id: null, reference: null};
@@ -38,11 +41,34 @@ export class TicketsComponent implements OnInit {
     );
   }
 
-  search() {
-    // TODO
+  search(id: string) {
+    this.ticketService.getTicket(id).subscribe(
+      data => {
+        this.data = [];
+        if (data.shoppingList != null) {
+          this.data[0] = data;
+        }
+      }
+    );
+  }
+
+  advancedSearch() {
+    this.ticketService.advancedSearch(this.ticketSearch).subscribe(
+      tickets => {
+        this.data = tickets;
+      }
+    );
   }
 
   resetSearch() {
     this.ticket = {reference: null};
+    this.ticketSearch = {
+      mobile: null,
+      date: null,
+      amount: null
+    };
+    this.ticketService.readAll().subscribe(
+      data => this.data = data
+    );
   }
 }

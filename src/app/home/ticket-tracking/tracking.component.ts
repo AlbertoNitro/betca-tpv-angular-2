@@ -25,11 +25,15 @@ export class TrackingComponent implements OnInit {
   ngOnInit() {
   }
 
-  everyArticleIsCommitted(ticket) {
-    this.ticketService.everyArticleIsCommitted(ticket);
+  everyArticleIsCommitted() {
+    return this.ticketService.everyArticleIsCommitted(this.ticket);
   }
 
-  someArticleIsNotCommited(ticket) {
-    this.ticketService.someArticleIsNotCommited(ticket);
+  someArticleIsNotCommitted() {
+    return this.ticketService.someArticleIsNotCommited(this.ticket);
+  }
+
+  filteredTicket() {
+    return this.ticketService.filterTicketArticlesNotCommitted(this.ticket);
   }
 }
