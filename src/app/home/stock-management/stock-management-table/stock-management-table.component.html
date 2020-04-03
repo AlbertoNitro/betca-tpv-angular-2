@@ -2,24 +2,15 @@
   <mat-card-title>
     {{title}}
   </mat-card-title>
-  <mat-card-content>
+  <mat-card-content [ngClass]="">
     <mat-table #table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
       <!-- Dynamic column -->
       <ng-container *ngFor="let def of columns, let i = index" [matColumnDef]="def">
         <mat-header-cell *matHeaderCellDef>{{ getAlias(i) | uppercase }}</mat-header-cell>
         <mat-cell *matCellDef="let row">{{ row[def] }}</mat-cell>
       </ng-container>
-      <ng-container matColumnDef="actions">
-        <mat-header-cell *matHeaderCellDef>
-        </mat-header-cell>
-        <mat-cell *matCellDef="let item">
-          <button (click)="onShowInfo(item)" mat-button mat-icon-button matSuffix>
-            <mat-icon color="warn">arrow_drop_down_circle</mat-icon>
-          </button>
-        </mat-cell>
-      </ng-container>
-      <mat-header-row *matHeaderRowDef="columns.concat('actions')"></mat-header-row>
-      <mat-row *matRowDef="let item; columns: columns.concat('actions');"></mat-row>
+      <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
+      <mat-row *matRowDef="let item; columns: columns;" (click)="onShowArticleInfo(item)" [ngClass]="{'selected-item': isSelected(item)}"></mat-row>
     </mat-table>
   </mat-card-content>
 </mat-card>
