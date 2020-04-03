@@ -148,11 +148,11 @@ export class ShoppingCartService {
       map(() => this.reset())
     );
     const userMobile = this.getCurrentUserMobile();
-    const updateCustomerPoints = this.httpService.put(AppEndpoints.CUSTOMER_POINTS + '/' + userMobile, new Object(0));
+    const updatePoints = iif(() => userMobile !== '', this.httpService.put(AppEndpoints.CUSTOMER_POINTS + '/' + userMobile, new Object(0)));
     let receipts = iif(() => voucher > 0, this.voucherService.createAndPrint(Math.abs(this.totalShoppingCart - ticketCreation.voucher)));
     receipts = iif(() => requestedInvoice, merge(receipts, this.invoiceService.create()), receipts);
     receipts = iif(() => requestedGiftTicket, merge(receipts, EMPTY), receipts); // TODO change EMPTY to create gift ticket
-    return concat(updateCustomerPoints, ticket, receipts);
+    return concat(updatePoints, ticket, receipts);
   }
 
   isEmpty(): boolean {
