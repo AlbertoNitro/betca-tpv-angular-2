@@ -1,0 +1,7 @@
+.selected-item{
+  color: red !important;
+}
+
+mat-row:hover{
+  cursor: pointer;
+}
