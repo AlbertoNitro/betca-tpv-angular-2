@@ -28,7 +28,7 @@
         <ng-container matColumnDef="changeRole">
           <th mat-header-cell *matHeaderCellDef> Change role</th>
           <td mat-cell *matCellDef="let element">
-            <button [disabled]="isDisabled(element.roles)" mat-icon-button>
+            <button [disabled]="isDisabled(element.roles, element.mobile)" (click)="changeRole(element)" mat-icon-button>
               <mat-icon>mode_edit</mat-icon>
             </button>
           </td>

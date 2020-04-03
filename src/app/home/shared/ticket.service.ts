@@ -4,7 +4,8 @@ import {Observable} from 'rxjs';
 import {AppEndpoints} from '../../app-endpoints';
 import {HttpService} from '../../core/http.service';
 import {Ticket} from './ticket.model';
-import { TicketSearch } from '../tickets/ticket-search.model';
+import {TicketSearch} from '../tickets/ticket-search.model';
+import {ShoppingState} from './shopping.model';
 
 @Injectable()
 export class TicketService {
@@ -26,12 +27,16 @@ export class TicketService {
 
   everyArticleIsCommitted(ticket: Ticket): boolean {
     const list = ticket.shoppingList;
-    return list && list.length > 0 && list.every( value => value.shoppingState.toString() === 'COMMITTED' );
+    return list && list.length > 0 && list.every( value => value.shoppingState === ShoppingState.COMMITTED );
   }
 
   someArticleIsNotCommited(ticket: Ticket): boolean {
     const list = ticket.shoppingList;
-    return list && list.length > 0 && list.some( value => value.shoppingState.toString() !== 'COMMITTED' );
+    return list && list.length > 0 && list.some( value => value.shoppingState !== ShoppingState.COMMITTED );
+  }
+
+  filterTicketArticlesNotCommitted(ticket: Ticket) {
+    return ticket.shoppingList.filter(value => value.shoppingState !== ShoppingState.COMMITTED);
   }
 
   getTicket(id: string): Observable<Ticket> {
