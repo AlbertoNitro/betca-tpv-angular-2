@@ -1,5 +1,13 @@
-<h3 mat-dialog-title>Change Roles for User</h3>
+<h3 mat-dialog-title>Roles the {{user.username}} user</h3>
 <mat-dialog-content>
+  <ng-container *ngFor="let role of roles">
+    <mat-checkbox color="primary" *ngIf="!verifyRole(role.rol)" (change)="changeStatus(role.rol)" [value]="role.rol"
+                  [checked]="role.checked">{{role.rol | titlecase}}</mat-checkbox>
+    <br>
+  </ng-container>
+  <br>
 </mat-dialog-content>
 <mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button (click)="updateRoles()" mat-button mat-dialog-close>Confirm changes</button>
 </mat-dialog-actions>

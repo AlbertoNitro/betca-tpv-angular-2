@@ -13,12 +13,18 @@ import {ChangeUserRoleDialogComponent} from './dialog/change-user-role-dialog.co
 
 export class UsersRolesComponent implements OnInit {
   title = 'Roles Users Management';
-  roles: string[] = ['Admin', 'Manager', 'Operator', 'Customer'];
   users: User[];
   displayedColumns: string[] = ['username', 'mobile', 'role', 'changeRole'];
 
   constructor(private dialog: MatDialog, private userService: UserService, private message: MatSnackBar,
               private tokensService: TokensService) {
+    this.getAllUsers();
+  }
+
+  ngOnInit(): void {
+  }
+
+  getAllUsers() {
     this.userService.readAll().subscribe(
       users => {
         this.users = users;
@@ -26,15 +32,14 @@ export class UsersRolesComponent implements OnInit {
     );
   }
 
-  ngOnInit(): void {
-  }
-
   isAdmin(): boolean {
     return this.tokensService.isAdmin();
   }
 
-  isDisabled(roles): boolean {
-    if (this.isAdmin()) {
+  isDisabled(roles, mobile: number): boolean {
+    if (mobile === this.tokensService.getMobile()) {
+      return true;
+    } else if (this.isAdmin()) {
       return false;
     } else {
       return roles.includes('ADMIN');
@@ -43,10 +48,10 @@ export class UsersRolesComponent implements OnInit {
 
   changeRole(user: User) {
     this.dialog.open(ChangeUserRoleDialogComponent, {
-      data: {
-        mobile: user.mobile
-      }
-    });
+      data: {user}
+    }).afterClosed().subscribe(
+      () => this.getAllUsers()
+    );
   }
 
 }

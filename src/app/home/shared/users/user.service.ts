@@ -38,4 +38,8 @@ export class UserService {
     const userCredential: UserCredential = {mobile, newPassword};
     return this.httpService.patch(AppEndpoints.USER_PASSWORD + '/' + mobile, userCredential);
   }
+
+  updateRoles(mobile: number, user: User): Observable<User> {
+    return this.httpService.patch(AppEndpoints.USERS + '/' + mobile, user);
+  }
 }
