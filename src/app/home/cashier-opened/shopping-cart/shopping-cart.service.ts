@@ -24,7 +24,7 @@ export class ShoppingCartService {
   static ARTICLE_VARIOUS = '1';
   static SHOPPING_CART_NUM = 4;
   static ARTICLE_CUSTOMER_POINTS = '0';
-  static POINT_EQUIVALENCE = 100;
+  static EACH_TEN_POINTS_ONE_UNIT_DISCOUNT_IN_TOTAL = 10;
 
   private indexShoppingCart = 0;
   private shoppingCart: Array<Shopping>;
@@ -148,11 +148,11 @@ export class ShoppingCartService {
       map(() => this.reset())
     );
     const userMobile = this.getCurrentUserMobile();
-    const updateCustomerPoints = this.httpService.put(AppEndpoints.CUSTOMER_POINTS + '/' + userMobile, new Object(0));
+    const updatePoints = iif(() => userMobile !== '', this.httpService.put(AppEndpoints.CUSTOMER_POINTS + '/' + userMobile, new Object(0)));
     let receipts = iif(() => voucher > 0, this.voucherService.createAndPrint(Math.abs(this.totalShoppingCart - ticketCreation.voucher)));
     receipts = iif(() => requestedInvoice, merge(receipts, this.invoiceService.create()), receipts);
     receipts = iif(() => requestedGiftTicket, merge(receipts, EMPTY), receipts); // TODO change EMPTY to create gift ticket
-    return concat(updateCustomerPoints, ticket, receipts);
+    return concat(updatePoints, ticket, receipts);
   }
 
   isEmpty(): boolean {
@@ -195,17 +195,14 @@ export class ShoppingCartService {
   }
 
   calculateDiscountByCustomerPoints(customerPoints: number) {
-    return -0.5 * (customerPoints / ShoppingCartService.POINT_EQUIVALENCE);
+    return -(customerPoints / ShoppingCartService.EACH_TEN_POINTS_ONE_UNIT_DISCOUNT_IN_TOTAL);
   }
 
   fetchCustomerPoints(mobile: string): Observable<any> {
     return this.httpService.get(AppEndpoints.CUSTOMER_POINTS + '/' + mobile);
   }
 
-  applyCustomerPoint(customerPoints: number, mobile: string) {
-    if (!customerPoints || customerPoints <= 0) {
-      return;
-    }
+  applyCustomerPoints(customerPoints: number, mobile: string) {
     const mobileAlreadyUsed = this.checkMobileAlreadyUsed(mobile);
 
     const retailPrice = this.calculateDiscountByCustomerPoints(customerPoints);
