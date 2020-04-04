@@ -163,6 +163,20 @@ export class ShoppingCartService {
     return this.httpService.get(AppEndpoints.CUSTOMER_DISCOUNTS + '/' + mobile);
   }
 
+
+  applyCustomerDiscount(customerDiscount: CustomerDiscount) {
+    const {discount} = customerDiscount;
+
+    for (const shopping of this.shoppingCart) {
+      shopping.discount = discount;
+      shopping.updateTotal();
+    }
+    this.synchronizeAll();
+
+
+  }
+
+
   createBudget(budgetCreation: BudgetCreation): Observable<any> {
     const budget = this.httpService.pdf().post(AppEndpoints.BUDGETS, budgetCreation).pipe(
       map(() => this.reset())
