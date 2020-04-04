@@ -25,15 +25,20 @@ export class InvoiceService {
   }
 
   search(filter: InvoiceFilter): Observable<Invoice[]> {
-    return this.httpService
-      .param('mobile', filter.mobile ? filter.mobile.toString() : null)
-      .param('fromDate', filter.fromDate ? filter.fromDate.getTime().toString() : null)
-      .param('toDate', filter.toDate ? filter.toDate.getTime().toString() : null)
-      .get(AppEndpoints.INVOICES);
+    if (filter.mobile) {
+      this.httpService.param('mobile', filter.mobile);
+    }
+    if (filter.fromDate) {
+      this.httpService.param('fromDate', filter.fromDate);
+    }
+    if (filter.toDate) {
+      this.httpService.param('toDate', filter.toDate ? filter.toDate : null);
+    }
+    return this.httpService.get(AppEndpoints.INVOICES + AppEndpoints.SEARCH);
   }
 
   print(id: string): Observable<any> {
-    return this.httpService.pdf().get(AppEndpoints.INVOICES + '/' + id + AppEndpoints.PRINT);
+    return this.httpService.pdf().get(AppEndpoints.INVOICES + '/' + id);
   }
 }
 
