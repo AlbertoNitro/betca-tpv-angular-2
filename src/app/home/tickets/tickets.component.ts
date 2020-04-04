@@ -20,6 +20,7 @@ export class TicketsComponent implements OnInit {
   ticketSearch: TicketSearch = {};
 
   articleIdToSearchBy: string;
+  orderIdToSearchBy: string;
 
   constructor(private ticketService: TicketService) {
     this.ticket = {id: null, reference: null};
@@ -70,6 +71,14 @@ export class TicketsComponent implements OnInit {
     );
   }
 
+  searchNotCommittedByOrder() {
+    this.ticketService.getNotCommittedTicketsByOrderId(this.orderIdToSearchBy).subscribe(
+      tickets => {
+        this.data = tickets;
+      }
+    );
+  }
+
   resetSearch() {
     this.ticket = {reference: null};
     this.ticketSearch = {
@@ -78,6 +87,7 @@ export class TicketsComponent implements OnInit {
       amount: null
     };
     this.articleIdToSearchBy = null;
+    this.orderIdToSearchBy = null;
     this.ticketService.readAll().subscribe(
       data => this.data = data
     );

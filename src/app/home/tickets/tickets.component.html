@@ -60,6 +60,12 @@
   <button (click)="searchNotCommittedByArticle()" color="primary" mat-mini-fab>
     <mat-icon>search</mat-icon>
   </button>
+  <mat-form-field>
+    <input [(ngModel)]="orderIdToSearchBy" matInput placeholder="order id">
+  </mat-form-field>
+  <button (click)="searchNotCommittedByOrder()" color="primary" mat-mini-fab>
+    <mat-icon>search</mat-icon>
+  </button>
   <button (click)="resetSearch()" color="primary" mat-mini-fab>
       <mat-icon>close</mat-icon>
     </button>
