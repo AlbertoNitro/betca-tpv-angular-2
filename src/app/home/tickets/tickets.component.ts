@@ -19,6 +19,10 @@ export class TicketsComponent implements OnInit {
 
   ticketSearch: TicketSearch = {};
 
+  articleIdToSearchBy: string;
+  orderIdToSearchBy: string;
+  tagToeSearchBy: string;
+
   constructor(private ticketService: TicketService) {
     this.ticket = {id: null, reference: null};
     this.data = null;
@@ -60,6 +64,30 @@ export class TicketsComponent implements OnInit {
     );
   }
 
+  searchNotCommittedByArticle() {
+    this.ticketService.getNotCommittedTicketsByArticleId(this.articleIdToSearchBy).subscribe(
+      tickets => {
+        this.data = tickets;
+      }
+    );
+  }
+
+  searchNotCommittedByOrder() {
+    this.ticketService.getNotCommittedTicketsByOrderId(this.orderIdToSearchBy).subscribe(
+      tickets => {
+        this.data = tickets;
+      }
+    );
+  }
+
+  searchNotCommittedByTag() {
+    this.ticketService.getNotCommittedTicketsByTag(this.tagToeSearchBy).subscribe(
+      tickets => {
+        this.data = tickets;
+      }
+    );
+  }
+
   resetSearch() {
     this.ticket = {reference: null};
     this.ticketSearch = {
@@ -67,6 +95,9 @@ export class TicketsComponent implements OnInit {
       date: null,
       amount: null
     };
+    this.articleIdToSearchBy = null;
+    this.orderIdToSearchBy = null;
+    this.tagToeSearchBy = null;
     this.ticketService.readAll().subscribe(
       data => this.data = data
     );

@@ -34,8 +34,20 @@ export class UserService {
     return this.httpService.get(AppEndpoints.USERS);
   }
 
+  search(mobile: number, username: string, dni: string, address: string): Observable<User[]> {
+    this.httpService.param('mobile', mobile ? mobile.toString() : '');
+    this.httpService.param('username', username ? username : '');
+    this.httpService.param('dni', dni ? dni : '');
+    this.httpService.param('address', address ? address : '');
+    return this.httpService.get(AppEndpoints.USERS + '/' + 'search');
+  }
+
   updatePassword(mobile: number, newPassword: string): Observable<User> {
     const userCredential: UserCredential = {mobile, newPassword};
     return this.httpService.patch(AppEndpoints.USER_PASSWORD + '/' + mobile, userCredential);
+  }
+
+  updateRoles(mobile: number, user: User): Observable<User> {
+    return this.httpService.patch(AppEndpoints.USERS + '/' + mobile, user);
   }
 }

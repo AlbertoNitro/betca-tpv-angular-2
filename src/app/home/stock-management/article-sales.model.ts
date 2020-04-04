@@ -1,5 +1,6 @@
 export class ArticleSalesModel {
-  minimumStock?: string;
-  initDate?: Date;
-  endDate?: Date;
+  code: string;
+  year: number;
+  month: number;
+  amount: number;
 }

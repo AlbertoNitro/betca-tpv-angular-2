@@ -52,4 +52,28 @@
     </button>
   </mat-card-content>
 </mat-card>
+<mat-card>
+  <mat-card-title>Search tickets with no committed articles by:</mat-card-title>
+  <mat-form-field>
+    <input [(ngModel)]="articleIdToSearchBy" matInput placeholder="article id">
+  </mat-form-field>
+  <button (click)="searchNotCommittedByArticle()" color="primary" mat-mini-fab>
+    <mat-icon>search</mat-icon>
+  </button>
+  <mat-form-field>
+    <input [(ngModel)]="orderIdToSearchBy" matInput placeholder="order id">
+  </mat-form-field>
+  <button (click)="searchNotCommittedByOrder()" color="primary" mat-mini-fab>
+    <mat-icon>search</mat-icon>
+  </button>
+  <mat-form-field>
+    <input [(ngModel)]="tagToeSearchBy" matInput placeholder="tag">
+  </mat-form-field>
+  <button (click)="searchNotCommittedByTag()" color="primary" mat-mini-fab>
+    <mat-icon>search</mat-icon>
+  </button>
+  <button (click)="resetSearch()" color="primary" mat-mini-fab>
+      <mat-icon>close</mat-icon>
+    </button>
+</mat-card>
 <app-crud (read)="print($event)" (update)="update($event)" [columns]="columns" [data]="data" [title]="title"></app-crud>

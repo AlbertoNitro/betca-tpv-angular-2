@@ -2,29 +2,56 @@
 <mat-card>
   <mat-card-content>
     <mat-form-field>
-      <input matInput placeholder="Description">
+      <input [(ngModel)]="articleSearch.description" matInput placeholder="Description">
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="Reference">
+      <input [(ngModel)]="articleSearch.reference" matInput placeholder="Reference">
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="Stock">
+      <input type="number" [(ngModel)]="articleSearch.stock" matInput placeholder="Stock">
     </mat-form-field>
+    <app-providers-dropdown (providerOut)="getProvider($event)" [providerIn]="articleSearch.provider"
+                            class="full-width"></app-providers-dropdown>
     <mat-form-field>
-      <input matInput placeholder="Provider">
+      <input [(ngModel)]="articleSearch.retailPrice" matInput placeholder="Retail Price">
     </mat-form-field>
-    <mat-form-field>
-      <input matInput placeholder="Retail Price">
-    </mat-form-field>
-    <mat-checkbox>Discontinued</mat-checkbox>
+    <mat-slide-toggle [(ngModel)]="articleSearch.discontinued">Discontinued</mat-slide-toggle>
 
-    <button (click)="search()" color="primary" mat-mini-fab>
+    <button (click)="advancedSearch()" color="primary" mat-mini-fab>
       <mat-icon>search</mat-icon>
     </button>
-    <button color="primary" mat-mini-fab>
+    <button (click)="resetSearch()" color="primary" mat-mini-fab>
       <mat-icon>close</mat-icon>
     </button>
   </mat-card-content>
 </mat-card>
 
-<app-crud [columns]="columns" [data]="data" [title]="title"></app-crud>
+<!--<mat-card>
+  <mat-card-title>Advanced Search</mat-card-title>
+  <mat-card-content>
+    <mat-form-field>
+      <input [(ngModel)]="articleSearch.description" matInput placeholder="Description">
+    </mat-form-field>
+    <mat-form-field>
+      <input [(ngModel)]="articleSearch.reference" matInput placeholder="Reference">
+    </mat-form-field>
+    <mat-form-field>
+      <input type="number" [(ngModel)]="articleSearch.stock" matInput placeholder="Stock">
+    </mat-form-field>
+    <mat-form-field>
+      <input type="number" [(ngModel)]="articleSearch.retailPrice" matInput placeholder="Retail Price">
+    </mat-form-field>
+    <mat-form-field>
+      <input  [(ngModel)]="articleSearch.discontinued" matInput placeholder="Discontinued">
+    </mat-form-field>
+
+    <button (click)="search()" color="primary" mat-mini-fab>
+      <mat-icon>search</mat-icon>
+    </button>
+    <button (click)="resetSearch()" color="primary" mat-mini-fab>
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-card-content>
+</mat-card>-->
+<app-crud [deleteAction]=false [readAction]=false [createAction]=false (update)="addToChart($event)"
+          [columns]="columns" [data]="data" [title]="title"></app-crud>

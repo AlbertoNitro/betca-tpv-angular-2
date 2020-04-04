@@ -180,13 +180,8 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
 
   addDiscount(mobile) {
     this.customerDiscountService.readOne(mobile).subscribe(
-      (discount) => {
-        this.dataSource.data.forEach(
-          item => {
-            item.discount = discount.discount;
-            item.updateDiscount();
-          }
-        );
+      (discountDto) => {
+        this.shoppingCartService.applyCustomerDiscount(discountDto);
       }
       , () => {
         this.snackBar.open('Ups, something went wrong', null, {duration: 2000});
@@ -201,7 +196,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   useCustomerPoints(mobile: string) {
     this.shoppingCartService.fetchCustomerPoints(mobile).subscribe((points) => {
       if (!points || points <= 0) {
-        this.snackBar.open('This client does dont have points', null, {duration: 3000});
+        this.snackBar.open('This client doesnt have points', null, {duration: 3000});
       } else {
         this.shoppingCartService.applyCustomerPoints(points, mobile);
       }
