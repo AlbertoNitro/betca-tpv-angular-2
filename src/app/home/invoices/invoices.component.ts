@@ -51,6 +51,11 @@ export class InvoicesComponent implements OnInit {
 
   resetSearch() {
     this.filter = {mobile: null, fromDate: null, toDate: null};
+    this.fromCalendarDate = null;
+    this.toCalendarDate = null;
+    this.invoiceService.readAll().subscribe(
+      data => this.data = data
+    );
   }
 
   print(invoice: Invoice) {
