@@ -3,6 +3,8 @@ import {Article} from '../../shared/article.model';
 import {AdvancedArticlesSearchService} from './advanced-articles-search.service';
 import {ArticleSearch} from './article-advanced-search.model';
 import {Provider} from '../../shared/provider.model';
+import {ShoppingCartService} from '../shopping-cart/shopping-cart.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-advanced-articles-search',
@@ -17,7 +19,8 @@ export class AdvancedArticlesSearchComponent {
   articleSearch: ArticleSearch = {};
   discontinued: boolean;
 
-  constructor(private advancedArticlesSearchService: AdvancedArticlesSearchService) {
+  constructor(private advancedArticlesSearchService: AdvancedArticlesSearchService, private shoppingCartService: ShoppingCartService,
+              private message: MatSnackBar) {
     // this.user = {mobile: null, username: null};
     this.data = null;
     this.discontinued = null;
@@ -55,5 +58,12 @@ export class AdvancedArticlesSearchComponent {
     this.articleSearch.provider = provider.id;
   }
 
+  addToChart(article: Article) {
+    this.shoppingCartService.add(article.code).subscribe(() => {
+      this.message.open('Article added correctly to Shopping Cart', null, {
+        duration: 1500,
+      });
+    });
+  }
 
 }
