@@ -53,5 +53,5 @@
     </button>
   </mat-card-content>
 </mat-card>-->
-<app-crud [deleteAction]=false [readAction]=false [updateAction]=false [createAction]=false
+<app-crud [deleteAction]=false [readAction]=false [createAction]=false (update)="addToChart($event)"
           [columns]="columns" [data]="data" [title]="title"></app-crud>
