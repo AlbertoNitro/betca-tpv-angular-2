@@ -63,4 +63,8 @@ export class TicketService {
   getNotCommittedTicketsByOrderId(orderId: string): Observable<Ticket[]> {
     return this.httpService.get(AppEndpoints.TICKETS + '/search/order/' + orderId);
   }
+
+  getNotCommittedTicketsByTag(tag: string): Observable<Ticket[]> {
+    return this.httpService.get(AppEndpoints.TICKETS + '/search/tag/' + tag);
+  }
 }

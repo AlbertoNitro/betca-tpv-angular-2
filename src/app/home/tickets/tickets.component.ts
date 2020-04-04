@@ -21,6 +21,7 @@ export class TicketsComponent implements OnInit {
 
   articleIdToSearchBy: string;
   orderIdToSearchBy: string;
+  tagToeSearchBy: string;
 
   constructor(private ticketService: TicketService) {
     this.ticket = {id: null, reference: null};
@@ -79,6 +80,14 @@ export class TicketsComponent implements OnInit {
     );
   }
 
+  searchNotCommittedByTag() {
+    this.ticketService.getNotCommittedTicketsByTag(this.tagToeSearchBy).subscribe(
+      tickets => {
+        this.data = tickets;
+      }
+    );
+  }
+
   resetSearch() {
     this.ticket = {reference: null};
     this.ticketSearch = {
@@ -88,6 +97,7 @@ export class TicketsComponent implements OnInit {
     };
     this.articleIdToSearchBy = null;
     this.orderIdToSearchBy = null;
+    this.tagToeSearchBy = null;
     this.ticketService.readAll().subscribe(
       data => this.data = data
     );

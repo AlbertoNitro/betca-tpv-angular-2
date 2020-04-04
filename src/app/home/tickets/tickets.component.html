@@ -66,6 +66,12 @@
   <button (click)="searchNotCommittedByOrder()" color="primary" mat-mini-fab>
     <mat-icon>search</mat-icon>
   </button>
+  <mat-form-field>
+    <input [(ngModel)]="tagToeSearchBy" matInput placeholder="tag">
+  </mat-form-field>
+  <button (click)="searchNotCommittedByTag()" color="primary" mat-mini-fab>
+    <mat-icon>search</mat-icon>
+  </button>
   <button (click)="resetSearch()" color="primary" mat-mini-fab>
       <mat-icon>close</mat-icon>
     </button>
