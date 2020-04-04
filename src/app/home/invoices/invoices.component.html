@@ -7,7 +7,7 @@
     <mat-form-field>
       <mat-label>From Date</mat-label>
       <input #fromDate="ngModel"
-             [(ngModel)]="filter.fromDate"
+             [(ngModel)]="this.fromCalendarDate"
              [matDatepicker]="fromDate"
              matInput>
       <mat-datepicker #fromDate>
@@ -17,7 +17,7 @@
     <mat-form-field>
       <mat-label>To Date</mat-label>
       <input #toDate="ngModel"
-             [(ngModel)]="filter.toDate"
+             [(ngModel)]="this.toCalendarDate"
              [matDatepicker]="toDate"
              matInput>
       <mat-datepicker #toDate>

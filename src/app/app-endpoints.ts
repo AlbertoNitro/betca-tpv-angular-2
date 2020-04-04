@@ -44,6 +44,8 @@ export class AppEndpoints {
 
   static INVOICES = '/invoices';
 
+  static SEARCH = '/search';
+
   static NEGATIVE = '/negative';
 
   static SENDINGS = '/sendings';
