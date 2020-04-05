@@ -12,15 +12,15 @@
       <mat-icon>close</mat-icon>
     </button>
   </mat-card-content>
- 
+
   <mat-card-content>
     <mat-form-field>
-      <input matInput placeholder="Gift Ticket Reference">
+      <input [(ngModel)]="gifTicketReference" matInput placeholder="Gift Ticket Reference">
     </mat-form-field>
-    <button color="primary" mat-mini-fab>
+    <button (click)="searchByGiftTicket(gifTicketReference)" color="primary" mat-mini-fab>
       <mat-icon>search</mat-icon>
     </button>
-    <button color="primary" mat-mini-fab>
+    <button (click)="resetSearch()" color="primary" mat-mini-fab>
       <mat-icon>close</mat-icon>
     </button>
   </mat-card-content>

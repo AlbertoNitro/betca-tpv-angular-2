@@ -43,6 +43,10 @@ export class TicketService {
     return this.httpService.get(AppEndpoints.TICKETS + '/' + id);
   }
 
+  getTicketByGiftTicket(ticketReference: string): Observable<Ticket> {
+    return this.httpService.get(AppEndpoints.TICKETS + '/search/giftTicket/' + ticketReference);
+  }
+
   advancedSearch(ticketSearch: TicketSearch): Observable<Ticket[]> {
     if (ticketSearch.mobile) {
       this.httpService.param('mobile', ticketSearch.mobile);
