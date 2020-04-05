@@ -16,15 +16,16 @@ export class MessagesComponent {
   messages: Messages;
   title: string;
   username: string;
-  mobile: number;
+  mobile: string;
   columns: ['To User mobile', 'Send Date', 'Message content'];
   data: Messages[];
 
   constructor(private dialog: MatDialog, private messagesService: MessagesService, private tokensService: TokensService) {
     this.username = tokensService.getName();
-    this.mobile = tokensService.getMobile();
+    this.mobile = tokensService.getMobile().toString();
     this.title = 'Old Messages sent to ' + this.username.toUpperCase();
     this.messages = {
+      id: null,
       fromUserMobile: null,
       toUserMobile: null,
       messageContent: null,
@@ -32,7 +33,7 @@ export class MessagesComponent {
       readDate: null
     };
 
-    this.messagesService.readAll(this.mobile).subscribe(
+    this.messagesService.readAll().subscribe(
       data => this.data = data
     );
   }

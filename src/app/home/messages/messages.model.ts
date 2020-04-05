@@ -1,5 +1,6 @@
 export interface Messages {
-  fromUserMobile: number;
+  id: string;
+  fromUserMobile: string;
   toUserMobile: string;
   messageContent: string;
   sentDate?: Date;
