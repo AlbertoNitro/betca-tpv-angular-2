@@ -36,11 +36,15 @@ export class CheckOutDialogComponent {
   }
 
   checkUserMobile() {
+    this.user = null;
+    this.requestedInvoice = false;
     this.userService.read(this.ticketCreation.userMobile).pipe(
       map(
         (user: User) => {
           this.ticketCreation.userMobile = user.mobile;
+          this.user = user;
         }), catchError(() => {
+        this.user = null;
         const dialogRef = this.dialog.open(UsersQuickCreationDialogComponent);
         dialogRef.componentInstance.user = {mobile: this.ticketCreation.userMobile, username: undefined};
         dialogRef.afterClosed().subscribe(
@@ -179,5 +183,11 @@ export class CheckOutDialogComponent {
 
   private fullPayedTicket(): boolean {
     return this.ticketCreation.card + this.ticketCreation.cash >= this.totalPurchase;
+  }
+
+  checkInvoice() {
+    if (this.invalidInvoice()) {
+      this.requestedInvoice = false;
+    }
   }
 }

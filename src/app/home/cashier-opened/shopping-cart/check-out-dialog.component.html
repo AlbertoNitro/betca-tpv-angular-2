@@ -19,19 +19,19 @@
     </button>
   </mat-form-field>
   <mat-form-field>
-    <input [(ngModel)]="ticketCreation.card" matInput placeholder="Card" type="number"/>
+    <input [(ngModel)]="ticketCreation.card" matInput placeholder="Card" type="number" (blur)="checkInvoice()"/>
     <button (click)="fillCard()" aria-label="Card" mat-button mat-icon-button matSuffix>
       <mat-icon color="warn">credit_card</mat-icon>
     </button>
   </mat-form-field>
   <mat-form-field>
-    <input [(ngModel)]="ticketCreation.cash" cdkFocusInitial matInput placeholder="Cash" type="number"/>
+    <input [(ngModel)]="ticketCreation.cash" cdkFocusInitial matInput placeholder="Cash" type="number" (blur)="checkInvoice()"/>
     <button (click)="fillCash()" mat-button mat-icon-button matSuffix>
       <mat-icon color="warn">euro_symbol</mat-icon>
     </button>
   </mat-form-field>
   <mat-form-field>
-    <input [(ngModel)]="ticketCreation.voucher" disabled matInput placeholder="Voucher" type="number"/>
+    <input [(ngModel)]="ticketCreation.voucher" disabled matInput placeholder="Voucher" type="number" (blur)="checkInvoice()"/>
     <button (click)="consumeVoucher()" aria-label="Voucher" mat-button mat-icon-button matSuffix>
       <mat-icon color="warn">local_offer</mat-icon>
     </button>
