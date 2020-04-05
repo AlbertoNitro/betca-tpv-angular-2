@@ -32,16 +32,10 @@ export class MessagesComponent {
       readDate: null
     };
 
-    this.messagesService.readAll().subscribe(
+    this.messagesService.readAllMessagesByToUser(this.mobile).subscribe(
       data => {
         this.data = data;
       }
-    );
-  }
-
-  search() {
-    this.messagesService.readAll().subscribe(
-      data => this.data = data
     );
   }
 

@@ -23,9 +23,6 @@ export class MessagesDetailDialogComponent {
     this.messagesService.readById(data.id).subscribe(
       messages => {
         this.messages = messages;
-        console.log('ID = ' + this.messages);
-        console.log('ID = ' + this.messages.id);
-        console.log('To UserName = ' + this.messages.toUsername);
       }
     );
   }

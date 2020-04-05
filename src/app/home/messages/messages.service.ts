@@ -23,12 +23,12 @@ export class MessagesService {
   }
 
   // GET /messages/to-user/{toUserMobile}
-  readAllMessagesByToUser(toUserMobile: number): Observable<Messages[]> {
+  readAllMessagesByToUser(toUserMobile: string): Observable<Messages[]> {
     return this.httpService.get(AppEndpoints.MESSAGES + AppEndpoints.TO_USER + '/' + toUserMobile);
   }
 
   // GET /messages/to-user/{toUserMobile}/unread
-  readAllUnReadMessagesByToUser(toUserMobile: number): Observable<Messages[]> {
+  readAllUnReadMessagesByToUser(toUserMobile: string): Observable<Messages[]> {
     return this.httpService.get(AppEndpoints.MESSAGES + AppEndpoints.TO_USER + '/' + toUserMobile + AppEndpoints.UNREAD);
   }
 
