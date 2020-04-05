@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import {ArticlesFamily} from '../shared/articles-family.model';
 import {MatDialog, MatSnackBar} from '@angular/material';
+import {ArticlesFamilyCreationDialogComponent} from './articles-family-creation-dialog.component';
+import {ArticlesFamilyDetailDialogComponent} from './articles-family-detail-dialog.component';
 import {ArticlesFamilyService} from '../shared/article-family.service';
 import {CancelYesDialogComponent} from '../../core/cancel-yes-dialog.component';
 
@@ -31,6 +33,17 @@ export class ArticlesFamilyAdminComponent {
     }
   }
 
+  read(articleFamily: ArticlesFamily) {
+    this.dialog.open(ArticlesFamilyDetailDialogComponent,
+      {
+        width: '400px',
+        data: {
+          id: articleFamily.id
+        }
+      }
+    );
+  }
+
   resetSearch() {
     this.articleFamily = {description: null, reference: null, id: null, familyType: null};
   }
@@ -49,6 +62,39 @@ export class ArticlesFamilyAdminComponent {
             })
           );
         }
+      }
+    );
+  }
+
+  create() {
+    this.isEdit = false;
+    this.dialog.open(ArticlesFamilyCreationDialogComponent,
+      {
+        width: '500px',
+        data: {
+          isEdit: this.isEdit
+        }
+      }
+    ).afterClosed().subscribe(
+      result => {
+        this.search();
+      }
+    );
+  }
+
+  update(articleFamily: ArticlesFamily) {
+    this.isEdit = true;
+    this.dialog.open(ArticlesFamilyCreationDialogComponent,
+      {
+        width: '500px',
+        data: {
+          id: articleFamily.id,
+          isEdit: this.isEdit
+        }
+      }
+    ).afterClosed().subscribe(
+      result => {
+        this.search();
       }
     );
   }

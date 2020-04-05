@@ -15,6 +15,6 @@
     </button>
   </mat-card-content>
 </mat-card>
-<!-- Default: [createAction]="true" [readAction]="true" [updateAction]="true" [deleteAction]="true"-->
-<app-crud (delete)=delete($event)
+
+<app-crud (create)="create()" (read)="read($event)" (update)="update($event)" (delete)=delete($event)
           [columns]="columns" [data]="data" [deleteAction]="true" [title]="title"></app-crud>

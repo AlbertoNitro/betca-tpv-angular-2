@@ -29,8 +29,10 @@ import {StockAlarmDetailDialogComponent} from './home/stock-alarm/stock-alarm-de
 import {ProviderCreationDialogComponent} from './home/providers/provider-creation-dialog.component';
 import {OrderCreationDialogComponent} from './home/orders/order-creation-dialog.component';
 import {ArticlesCreationDialogComponent} from './home/articles/articles-creation-dialog.component';
+import {ArticlesFamilyCreationDialogComponent} from './home/articles-family/articles-family-creation-dialog.component';
 import {VoucherPrintDialogComponent} from './home/cashier-opened/shopping-cart/vouchers/voucher-print-dialog.component';
 import {ArticlesDetailDialogComponent} from './home/articles/articles-detail-dialog.component';
+import {ArticlesFamilyDetailDialogComponent } from './home/articles-family/articles-family-detail-dialog.component';
 import {OrderDetailDialogComponent} from './home/orders/order-detail-dialog.component';
 import {OrderEditionDialogComponent} from './home/orders/order-edition-dialog.component';
 import {CheckOutDialogVoucherComponent} from './home/cashier-opened/shopping-cart/check-out-dialog-voucher.component';
@@ -120,9 +122,11 @@ export class AppComponents {
     OrderDetailDialogComponent,
     ProviderCreationDialogComponent,
     ArticlesCreationDialogComponent,
+    ArticlesFamilyCreationDialogComponent,
     StockAlarmCreateUpdateComponent,
     StockAlarmDetailDialogComponent,
     ArticlesDetailDialogComponent,
+    ArticlesFamilyDetailDialogComponent,
     SendingsCreationDialogComponent,
     ProviderDetailDialogComponent,
     ProviderEditionDialogComponent,

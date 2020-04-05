@@ -1,0 +1,59 @@
+<h3 mat-dialog-title>Articles Family</h3>
+<mat-dialog-content>
+
+  <div *ngIf="newArticlesFamily.familyType != 'ARTICLE'">
+    <mat-form-field class="full-width">
+      <input [(ngModel)]="newArticlesFamily.reference" cdkFocusInitial matInput
+            placeholder="Reference"
+            required type="String"/>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="full-width">
+      <input [(ngModel)]="newArticlesFamily.description" matInput
+            placeholder="Description"
+            required type="String"/>
+    </mat-form-field>
+    <br>
+  </div>
+  <mat-form-field class="full-width">
+    <mat-label>Family Type</mat-label>
+    <mat-select [(value)]="newArticlesFamily.familyType" [disabled]="editMode" required type="string">
+      <mat-option value="ARTICLE">ARTICLE</mat-option>
+      <mat-option value="SIZE">SIZE</mat-option>
+      <mat-option value="ARTICLES">ARTICLES</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <br>
+  <div *ngIf="newArticlesFamily.familyType == 'ARTICLE'">
+    <mat-form-field class="full-width">
+      <mat-label>Articles</mat-label>
+      <mat-select [(value)]="newArticlesFamily.articleId" required type="string">
+        <mat-option *ngFor="let article of articles" [value]=article.code>{{article.description}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+  </div>
+
+  <div *ngIf="newArticlesFamily.familyType != 'ARTICLE'">
+    <mat-form-field class="full-width">
+      <mat-label>Articles Family</mat-label>
+      <mat-select  [(ngModel)]="newArticlesFamily.articlesFamilyListId" required type="string" multiple>
+        <mat-option *ngFor="let articlesFamily of articlesFamilyList" [value]=articlesFamily.id>{{articlesFamily.description}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+  </div>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-dialog-close mat-raised-button>Close</button>
+  <button (click)="createArticle()" *ngIf="editMode == false" color="primary" mat-raised-button>
+    <mat-icon>local_offer</mat-icon>
+    <span>Create Articles Family</span>
+  </button>
+  <button (click)="updateArticle()" *ngIf="editMode" color="primary" mat-raised-button>
+    <mat-icon>local_offer</mat-icon>
+    <span>Save Changes</span>
+  </button>
+</mat-dialog-actions>
