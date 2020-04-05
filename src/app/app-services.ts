@@ -22,6 +22,7 @@ import {CashierClosureMocks} from './home/cashier-opened/cashier-closure/search/
 import {MessagesService} from './home/messages/messages.service';
 import {VatManagementService} from './home/shared/vat-management.service';
 import {StockService} from './home/stock-management/stock.service';
+import {TagService} from './home/cashier-opened/advanced-search/tag.service';
 
 export class AppServices {
   public static SERVICES = [
@@ -48,6 +49,7 @@ export class AppServices {
     CashierClosureMocks,
     MessagesService,
     StockService,
-    VatManagementService
+    VatManagementService,
+    TagService
   ];
 }

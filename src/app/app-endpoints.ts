@@ -64,4 +64,6 @@ export class AppEndpoints {
   static MESSAGES = '/messages';
 
   static VAT_MANAGEMENT = '/vat-management';
+
+  static TAGS = '/tags';
 }

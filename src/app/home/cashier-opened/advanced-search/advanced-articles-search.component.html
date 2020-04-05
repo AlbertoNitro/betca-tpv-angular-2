@@ -26,6 +26,20 @@
   </mat-card-content>
 </mat-card>
 
+
+<mat-card>
+  <h2>Search by Tag</h2>
+  <mat-card-content>
+    <mat-form-field>
+      <mat-label>Search by Tag</mat-label>
+      <input [(ngModel)]="tagDescription" matInput placeholder="Description">
+    </mat-form-field>
+    <button (click)="searchByTag()" color="primary" mat-mini-fab>
+      <mat-icon>search</mat-icon>
+    </button>
+  </mat-card-content>
+</mat-card>
+
 <!--<mat-card>
   <mat-card-title>Advanced Search</mat-card-title>
   <mat-card-content>

@@ -5,6 +5,8 @@ import {ArticleSearch} from './article-advanced-search.model';
 import {Provider} from '../../shared/provider.model';
 import {ShoppingCartService} from '../shopping-cart/shopping-cart.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {Tag} from './tag.model';
+import {TagService} from './tag.service';
 
 @Component({
   selector: 'app-advanced-articles-search',
@@ -18,9 +20,11 @@ export class AdvancedArticlesSearchComponent {
 
   articleSearch: ArticleSearch = {};
   discontinued: boolean;
+  tagDescription: string;
+  tag: Tag;
 
   constructor(private advancedArticlesSearchService: AdvancedArticlesSearchService, private shoppingCartService: ShoppingCartService,
-              private message: MatSnackBar) {
+              private tagService: TagService, private message: MatSnackBar) {
     // this.user = {mobile: null, username: null};
     this.data = null;
     this.discontinued = null;
@@ -66,4 +70,19 @@ export class AdvancedArticlesSearchComponent {
     });
   }
 
+  searchByTag() {
+    if (this.tagDescription == null) {
+      this.advancedArticlesSearchService.readAll().subscribe(
+        data => this.data = data
+      );
+    } else {
+      this.tagService.readOne(this.tagDescription).subscribe(
+        data => this.tag = data
+      );
+      this.message.open('BUSCANDO POR TAG: ' + this.tag.description, null, {
+        duration: 3000,
+      });
+      this.data = this.tag.articleList;
+    }
+  }
 }
