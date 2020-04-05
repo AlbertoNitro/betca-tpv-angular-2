@@ -7,6 +7,12 @@ import {Shopping} from './shopping.model';
 import {CheckOutDialogComponent} from './check-out-dialog.component';
 import {BudgetDialogComponent} from './budget/budget-dialog.component';
 import {CustomerDiscountService} from '../../customer-discount/customer-discount.service';
+import {TicketService} from "../../shared/ticket.service";
+import {Ticket} from "../../shared/ticket.model";
+import {ShoppingState} from "../../shared/shopping.model";
+import {FormControl, Validators} from "@angular/forms";
+import {ShoppingUpdate} from "../../shared/shoppingUpdate.model";
+import {TicketUpdateModel} from "../../shared/ticketUpdate.model";
 
 @Component({
   selector: 'app-shopping-cart',
@@ -17,13 +23,28 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
 
   displayedColumns = ['id', 'description', 'retailPrice', 'amount', 'discount', 'total', 'actions'];
   dataSource: MatTableDataSource<Shopping>;
+  dataSourceUpdate: Shopping[] = [];
+  ticketId: string;
+  ticketTable: boolean;
+  ticket: Ticket;
+  states: ShoppingState[] = [
+    ShoppingState.NOT_COMMITTED,
+    ShoppingState.REQUIRE_PROVIDER,
+    ShoppingState.IN_STOCK,
+    ShoppingState.COMMITTED
+  ];
+  shoppingStateControl = new FormControl('', Validators.required);
+  shopping: Shopping;
+  ticketUpdate: TicketUpdateModel;
+  shoppingUpdate: ShoppingUpdate;
+  shoppingUpdates: ShoppingUpdate[] = [];
 
   private subscriptionDataSource: Subscription;
   @ViewChild('code', {static: true}) private elementRef: ElementRef;
   @ViewChild('budget', {static: true}) private budgetRef: ElementRef;
 
   constructor(private dialog: MatDialog, private shoppingCartService: ShoppingCartService,
-              private snackBar: MatSnackBar, private customerDiscountService: CustomerDiscountService) {
+              private snackBar: MatSnackBar, private customerDiscountService: CustomerDiscountService, private ticketService: TicketService) {
     this.subscriptionDataSource = this.shoppingCartService.shoppingCartObservable().subscribe(
       data => {
         this.dataSource = new MatTableDataSource<Shopping>(data);
@@ -34,6 +55,37 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.elementRef.nativeElement.focus();
+    this.ticketTable = false;
+    this.ticketService.currentMessage.subscribe(message => this.ticketId = message);
+    if (this.ticketId !== '') {
+      this.ticketTable = true;
+      this.ticketService.getTicket(this.ticketId).subscribe(
+        t => {
+          // this.ticket.shoppingList = t.shoppingList;
+          t.shoppingList.forEach(
+            item => {
+              this.shopping = new Shopping(item.code, item.description, item.retailPrice, item.shoppingState);
+              this.shopping.setAmount(item.amount);
+              this.dataSourceUpdate.push(this.shopping);
+            }
+          );
+        }
+      );
+      console.log(this.dataSourceUpdate);
+    }
+  }
+
+  updateTicket(dataSource: MatTableDataSource<Shopping>) {
+    this.dataSource.data.forEach(
+      item => {
+        this.shoppingUpdate.amount = item.amount;
+        this.shoppingUpdate.shoppinState = item.shoppingState;
+        this.shoppingUpdate.articleId = item.code;
+        this.shoppingUpdates.push(this.shoppingUpdate);
+      }
+    );
+    this.ticketUpdate.shoppingPatchDtoList = this.shoppingUpdates;
+    this.ticketService.update(this.ticketId, this.ticketUpdate).subscribe(data => console.log(data));
   }
 
   totalShoppingCart(): number {

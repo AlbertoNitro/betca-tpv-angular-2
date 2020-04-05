@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Ticket} from '../shared/ticket.model';
 import {TicketService} from '../shared/ticket.service';
 import { TicketSearch } from './ticket-search.model';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-tickets',
@@ -23,7 +24,7 @@ export class TicketsComponent implements OnInit {
   orderIdToSearchBy: string;
   tagToeSearchBy: string;
 
-  constructor(private ticketService: TicketService) {
+  constructor(private router: Router, private ticketService: TicketService) {
     this.ticket = {id: null, reference: null};
     this.data = null;
   }
@@ -36,7 +37,8 @@ export class TicketsComponent implements OnInit {
   }
 
   update(ticket: Ticket) {
-    // TODO
+    this.ticketService.changeMessage(ticket.id);
+    this.router.navigate(['home', 'cashier-opened']);
   }
 
   ngOnInit() {

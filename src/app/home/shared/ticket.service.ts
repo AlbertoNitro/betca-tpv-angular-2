@@ -1,16 +1,28 @@
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 
 import {AppEndpoints} from '../../app-endpoints';
 import {HttpService} from '../../core/http.service';
 import {Ticket} from './ticket.model';
 import {TicketSearch} from '../tickets/ticket-search.model';
 import {ShoppingState} from './shopping.model';
+import {TicketUpdateModel} from "./ticketUpdate.model";
 
 @Injectable()
 export class TicketService {
 
+  private messageSource = new BehaviorSubject('');
+  currentMessage = this.messageSource.asObservable();
+
   constructor(private httpService: HttpService) {
+  }
+
+  changeMessage(message: string) {
+    this.messageSource.next(message);
+  }
+
+  update(id: string, ticketUpdate: TicketUpdateModel): Observable<Ticket> {
+    return this.httpService.patch(AppEndpoints.TICKETS + '/' + id, ticketUpdate);
   }
 
   readAll(): Observable<Ticket[]> {

@@ -1,14 +1,18 @@
+import {ShoppingState} from '../../shared/shopping.model';
+
 export class Shopping {
   amount: number;
   discount: number;
   total: number;
   committed: boolean;
+  shoppingState: ShoppingState;
 
-  constructor(public code: string, public description: string, public retailPrice: number) {
+  constructor(public code: string, public description: string, public retailPrice: number, shoppingState?: ShoppingState) {
     this.amount = 1;
     this.discount = 0;
     this.total = this.retailPrice * this.amount * (1 - this.discount / 100);
     this.committed = true;
+    this.shoppingState = shoppingState;
   }
 
   static round(value: number) {
