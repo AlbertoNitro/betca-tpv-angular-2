@@ -16,6 +16,8 @@ import {CashMovementsDialogComponent} from './cashier-opened/cashier-closure/cas
 import {Staff} from './staff/staff.model';
 import {StaffService} from './staff/staff.service';
 import {ArticlesFamilyDialogComponent} from './articles/articles-family-dialog.component';
+import {MessagesService} from './messages/messages.service';
+import {MessagesUnreadDialogComponent} from './messages/messages-unread-dialog.component';
 
 @Component({
   templateUrl: 'home.component.html',
@@ -39,11 +41,11 @@ export class HomeComponent {
   isManagerOrOperator: boolean;
   loginTime: Date;
 
-
   constructor(private router: Router, private dialog: MatDialog, private httpService: HttpService,
               private staffService: StaffService,
               private tokensService: TokensService, private userService: UserService, private cashierService: CashierService,
-              private adminsService: AdminsService, private systemService: SystemService) {
+              private adminsService: AdminsService, private systemService: SystemService,
+              private messagesService: MessagesService) {
     systemService.readVersion().subscribe(
       appInfo => this.backend = appInfo.version + '(' + appInfo.profile + ')'
     );
@@ -53,6 +55,18 @@ export class HomeComponent {
     this.cashier();
     this.oldRecord = null;
     this.isManagerOrOperator = tokensService.isOperator() || tokensService.isManager();
+
+    this.messagesService.readAllUnReadMessagesByToUser(this.mobile).subscribe(
+      data => {
+        data.forEach(messages => {
+          this.dialog.open(MessagesUnreadDialogComponent, {
+            data: {
+              id: messages.id
+            }
+          });
+        });
+      }
+    );
   }
 
   isAdmin(): boolean {
@@ -130,7 +144,7 @@ export class HomeComponent {
               lastLoginTime: this.nowTime
             };
             this.staffService.updateLoginRecord(this.itemId, this.staff)
-              // tslint:disable-next-line:no-shadowed-variable
+            // tslint:disable-next-line:no-shadowed-variable
               .subscribe(data => {
                   this.newRecord = data;
                 }
@@ -162,7 +176,7 @@ export class HomeComponent {
                 this.loginTime.getDate(), 0, 0, 0)
             };
             this.staffService.updateLoginRecord(this.itemId, this.staff)
-              // tslint:disable-next-line:no-shadowed-variable
+            // tslint:disable-next-line:no-shadowed-variable
               .subscribe(data => {
                   this.newRecord = data;
                 }

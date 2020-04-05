@@ -58,6 +58,7 @@ import {SendingsUpdateDialogComponent} from './home/sendings/sendings-update-dia
 import {MessagesComponent} from './home/messages/messages.component';
 import {MessagesCreationDialogComponent} from './home/messages/messages-creation-dialog.component';
 import {MessagesDetailDialogComponent} from './home/messages/messages-detail-dialog.component';
+import {MessagesUnreadDialogComponent} from './home/messages/messages-unread-dialog.component';
 import {VatManagementComponent} from './home/vat-management/vat-management.component';
 import {UsersQuickCreationDialogComponent} from './home/cashier-opened/shopping-cart/users/users-quick-creation-dialog.component';
 import {TrackingComponent} from './home/ticket-tracking/tracking.component';
@@ -141,6 +142,7 @@ export class AppComponents {
     ChangePasswordDialogComponent,
     ChangeUserRoleDialogComponent,
     MessagesCreationDialogComponent,
-    MessagesDetailDialogComponent
+    MessagesDetailDialogComponent,
+    MessagesUnreadDialogComponent
   ];
 }
