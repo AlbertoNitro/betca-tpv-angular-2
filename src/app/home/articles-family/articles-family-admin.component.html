@@ -4,8 +4,13 @@
     <mat-form-field>
       <input [(ngModel)]="articleFamily.reference" matInput placeholder="Reference">
     </mat-form-field>
-    <mat-form-field>
-      <input [(ngModel)]="articleFamily.familyType" matInput placeholder="Family Type">
+    <mat-form-field class="full-width">
+      <mat-label>Family Type</mat-label>
+      <mat-select [(value)]="articleFamily.familyType" required type="string">
+        <mat-option value="ARTICLE">ARTICLE</mat-option>
+        <mat-option value="SIZES">SIZES</mat-option>
+        <mat-option value="ARTICLES">ARTICLES</mat-option>
+      </mat-select>
     </mat-form-field>
     <button (click)="search()" color="primary" mat-mini-fab>
       <mat-icon>search</mat-icon>
