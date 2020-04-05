@@ -1,9 +1,9 @@
 import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatSnackBar} from '@angular/material';
 import {MessagesService} from './messages.service';
-import {Messages} from './messages.model';
 import {TokensService} from '../../core/tokens.service';
 import {FormControl, Validators} from '@angular/forms';
+import {MessagesCreationModel} from './messagesCreation.model';
 
 @Component({
   styleUrls: ['messages-creation-dialog.component.css'],
@@ -11,13 +11,11 @@ import {FormControl, Validators} from '@angular/forms';
 })
 export class MessagesCreationDialogComponent {
 
-  messages: Messages = {
-    id: null,
-    fromUsername: null,
-    toUsername: null,
+  messages: MessagesCreationModel = {
+    fromUserMobile: null,
+    toUserMobile: null,
     messageContent: null,
-    sentDate: null,
-    readDate: null
+    sentDate: null
   };
 
   toUserMobileFormControl = new FormControl('', [Validators.required]);
@@ -40,7 +38,8 @@ export class MessagesCreationDialogComponent {
   }
 
   createMessages() {
-    this.messages.fromUsername = this.tokensService.getMobile().toString();
+    this.messages.fromUserMobile = this.tokensService.getMobile().toString();
+    this.messages.sentDate = new Date();
     this.messagesService.createMessage(this.messages).subscribe(
       () => this.dialog.closeAll()
       , error => this.errorControl(error.error)

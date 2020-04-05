@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {AppEndpoints} from '../../app-endpoints';
 import {HttpService} from '../../core/http.service';
 import {Messages} from './messages.model';
+import {MessagesCreationModel} from './messagesCreation.model';
 
 @Injectable()
 export class MessagesService {
@@ -32,8 +33,8 @@ export class MessagesService {
   }
 
   // POST /messages (Messages)
-  createMessage(messages: Messages): Observable<Messages> {
-    return this.httpService.post(AppEndpoints.MESSAGES, messages);
+  createMessage(messagesCreationModel: MessagesCreationModel): Observable<Messages> {
+    return this.httpService.post(AppEndpoints.MESSAGES, messagesCreationModel);
   }
 
   // PUT /messages/{id}?readDate={readDate}
