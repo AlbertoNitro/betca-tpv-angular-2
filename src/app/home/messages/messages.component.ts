@@ -55,7 +55,9 @@ export class MessagesComponent {
 
   read(messages: Messages) {
     this.dialog.open(MessagesDetailDialogComponent, {
-      data: {messages}
+      data: {
+        id: messages.id
+      }
     });
   }
 }

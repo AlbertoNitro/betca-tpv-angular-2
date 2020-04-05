@@ -17,8 +17,8 @@ export class MessagesService {
   }
 
   // GET /messages{id}
-  readById(mobile: number): Observable<Messages[]> {
-    return this.httpService.get(AppEndpoints.MESSAGES + '/' + mobile);
+  readById(id: number): Observable<Messages> {
+    return this.httpService.get(AppEndpoints.MESSAGES + '/' + id);
   }
 
   // GET /messages/to-user/{toUserMobile}
