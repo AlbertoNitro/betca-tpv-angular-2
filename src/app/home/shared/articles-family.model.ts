@@ -1,11 +1,11 @@
-import { Article } from './article.model';
+import { ArticleWithProvider } from './article.model';
 
 export interface ArticlesFamily {
   id: string;
   reference: string;
   familyType: string;
   description?: string;  
-  article?: Article;
+  article?: ArticleWithProvider;
   articleId?: string;
   articlesFamilyList?: ArticlesFamily[];
   articlesFamilyListId?: string[];

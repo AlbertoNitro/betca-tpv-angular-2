@@ -1,12 +1,12 @@
 import {Component} from '@angular/core';
 import {MatDialog} from '@angular/material';
 
-import {ShoppingCartService} from './shopping-cart.service';
+import {ShoppingCartService} from '../shopping-cart.service';
 import {BudgetCreation} from './budget-creation.model';
 
 @Component({
   templateUrl: 'budget-dialog.component.html',
-  styleUrls: ['shopping-cart.component.css']
+  styleUrls: ['../shopping-cart.component.css']
 })
 export class BudgetDialogComponent {
 
