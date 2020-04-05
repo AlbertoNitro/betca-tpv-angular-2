@@ -19,7 +19,15 @@ export class ArticlesAdminComponent {
   isEdit: boolean;
 
   constructor(private dialog: MatDialog, private articlesMocksService: ArticlesMocksService, private articleService: ArticleService) {
-    this.article = {description: null, provider: null, stock: null, retailPrice: null, discontinued: null, reference: null, code: null};
+    this.article = {
+      description: null,
+      provider: null,
+      stock: null,
+      retailPrice: null,
+      discontinued: null,
+      reference: null,
+      code: null
+    };
     // this.data = null;
   }
 
@@ -36,7 +44,15 @@ export class ArticlesAdminComponent {
   }
 
   resetSearch() {
-    this.article = {description: null, provider: null, stock: null, retailPrice: null, discontinued: null, reference: null, code: null};
+    this.article = {
+      description: null,
+      provider: null,
+      stock: null,
+      retailPrice: null,
+      discontinued: null,
+      reference: null,
+      code: null
+    };
   }
 
   create() {
@@ -86,5 +102,11 @@ export class ArticlesAdminComponent {
 
   getProvider(provider: Provider) {
     this.article.provider = provider.id;
+  }
+
+  searchIncompletedArticles() {
+    this.articleService.searchIncompletedArticles().subscribe(
+      data => this.data = data
+    );
   }
 }

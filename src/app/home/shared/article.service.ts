@@ -37,8 +37,13 @@ export class ArticleService {
   createFamily(articleFamily: ArticleFamily): Observable<ArticleFamily> {
     return this.httpService.post(AppEndpoints.ARTICLES_FAMILY, articleFamily);
   }
+
   readSizes(): Observable<[]> {
     return this.httpService.get(AppEndpoints.ARTICLES_FAMILY + AppEndpoints.SIZES);
+  }
+
+  searchIncompletedArticles(): Observable<Article[]> {
+    return this.httpService.get(AppEndpoints.ARTICLES + '/' + 'searchIncompletedArticles');
   }
 
 }
