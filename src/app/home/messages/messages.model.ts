@@ -3,6 +3,6 @@ export interface Messages {
   fromUsername: string;
   toUsername: string;
   messageContent: string;
-  sentDate: Date;
-  readDate?: Date;
+  sentDate: string;
+  readDate?: string;
 }

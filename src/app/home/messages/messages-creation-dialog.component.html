@@ -2,21 +2,21 @@
 <mat-dialog-content>
   <mat-form-field>
     <mat-label>To:</mat-label>
-    <input [(ngModel)]="messages.toUsername" [formControl]="toUserMobileFormControl" matInput
+    <input [(ngModel)]="messages.toUserMobile" [formControl]="toUserMobileFormControl" matInput
            placeholder="To User by mobile" type="text"/>
     <mat-hint>Type the mobile number of you colleague</mat-hint>
-     <mat-error *ngIf="toUserMobileFormControl.invalid">{{getErrorMessageToUserMobile()}}</mat-error>
-   </mat-form-field>
-   <mat-form-field>
-     <mat-label>Message:</mat-label>
-     <textarea [(ngModel)]="messages.messageContent" [formControl]="messageContentFormControl" matInput
-            placeholder="Content"></textarea>
-     <mat-hint>Happy messages make happy workers</mat-hint>
-     <mat-error *ngIf="messageContentFormControl.invalid">{{getErrorMessageMessageContent()}}</mat-error>
-   </mat-form-field>
- </mat-dialog-content>
- <mat-dialog-actions>
-   <button mat-dialog-close mat-raised-button>Close</button>
-   <button [disabled]="invalidMessages()" (click)="createMessages()" color="primary" mat-raised-button>Create
-   </button>
- </mat-dialog-actions>
+    <mat-error *ngIf="toUserMobileFormControl.invalid">{{getErrorMessageToUserMobile()}}</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Message:</mat-label>
+    <textarea [(ngModel)]="messages.messageContent" [formControl]="messageContentFormControl" matInput
+              placeholder="Content"></textarea>
+    <mat-hint>Happy messages make happy workers</mat-hint>
+    <mat-error *ngIf="messageContentFormControl.invalid">{{getErrorMessageMessageContent()}}</mat-error>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-dialog-close mat-raised-button>Close</button>
+  <button [disabled]="invalidMessages()" (click)="createMessages()" color="primary" mat-raised-button>Create
+  </button>
+</mat-dialog-actions>
