@@ -95,8 +95,6 @@ export class AppComponents {
     TicketsComponent,
     TicketTrackingComponent,
     MessagesComponent,
-    MessagesCreationDialogComponent,
-    MessagesDetailDialogComponent,
     VatManagementComponent,
     TrackingComponent,
     ProfileComponent,
@@ -141,6 +139,8 @@ export class AppComponents {
     SendingsUpdateDialogComponent,
     UsersQuickCreationDialogComponent,
     ChangePasswordDialogComponent,
-    ChangeUserRoleDialogComponent
+    ChangeUserRoleDialogComponent,
+    MessagesCreationDialogComponent,
+    MessagesDetailDialogComponent
   ];
 }
