@@ -8,6 +8,7 @@ import {StaffComponent} from './home/staff/staff.component';
 import {WelcomeComponent} from './welcome.component';
 import {CashierClosureSearchComponent} from './home/cashier-opened/cashier-closure/search/cashier-closure-search.component';
 import {ArticlesAdminComponent} from './home/articles/articles-admin.component';
+import {ArticlesFamilyAdminComponent} from './home/articles-family/articles-family-admin.component';
 import {VouchersComponent} from './home/cashier-opened/shopping-cart/vouchers/vouchers.component';
 import {ProvidersComponent} from './home/providers/providers.component';
 import {OrdersComponent} from './home/orders/orders.component';
@@ -33,6 +34,7 @@ const routes: Routes = [
     path: 'home', component: HomeComponent,
     children: [
       {path: 'articles', component: ArticlesAdminComponent},
+      {path: 'articles-family', component: ArticlesFamilyAdminComponent},
       {path: 'cashier-closed', component: CashierClosedComponent},
       {path: 'cashier-opened', component: CashierOpenedComponent},
       {path: 'cashier-closure-search', component: CashierClosureSearchComponent},
