@@ -1,0 +1,22 @@
+<h3 mat-dialog-title>You have this message pending</h3>
+<mat-dialog-content>
+  <mat-form-field>
+    <input [(ngModel)]="messages.id" matInput
+           placeholder="Message id: " readonly/>
+  </mat-form-field>
+  <mat-form-field>
+    <input [(ngModel)]="messages.fromUsername" matInput
+           placeholder="Sent from user with mobile: " readonly/>
+  </mat-form-field>
+  <mat-form-field>
+    <input [(ngModel)]="messages.sentDate" matInput
+           placeholder="Sent date" readonly/>
+  </mat-form-field>
+  <mat-form-field>
+    <textarea [(ngModel)]="messages.messageContent" matInput
+              placeholder="Message Content"></textarea>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button (click)="markAsRead()" mat-dialog-close mat-raised-button>Mark as read</button>
+</mat-dialog-actions>
