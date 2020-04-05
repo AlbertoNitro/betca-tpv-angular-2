@@ -10,14 +10,13 @@ import {MessagesDetailDialogComponent} from './messages-detail-dialog.component'
 @Component({
   templateUrl: 'messages.component.html',
 })
-
 export class MessagesComponent {
 
   messages: Messages;
   title: string;
   username: string;
   mobile: string;
-  columns: ['To User mobile', 'Send Date', 'Message content'];
+  columns = ['id', 'fromUsername', 'messageContent', 'sentDate', 'readDate'];
   data: Messages[];
 
   constructor(private dialog: MatDialog, private messagesService: MessagesService, private tokensService: TokensService) {
@@ -26,13 +25,21 @@ export class MessagesComponent {
     this.title = 'Old Messages sent to ' + this.username.toUpperCase();
     this.messages = {
       id: null,
-      fromUserMobile: null,
-      toUserMobile: null,
+      fromUsername: null,
+      toUsername: null,
       messageContent: null,
       sentDate: null,
       readDate: null
     };
 
+    this.messagesService.readAll().subscribe(
+      data => {
+        this.data = data;
+      }
+    );
+  }
+
+  search() {
     this.messagesService.readAll().subscribe(
       data => this.data = data
     );

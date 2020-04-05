@@ -13,8 +13,8 @@ export class MessagesCreationDialogComponent {
 
   messages: Messages = {
     id: null,
-    toUserMobile: null,
-    fromUserMobile: null,
+    fromUsername: null,
+    toUsername: null,
     messageContent: null,
     sentDate: null,
     readDate: null
@@ -40,7 +40,7 @@ export class MessagesCreationDialogComponent {
   }
 
   createMessages() {
-    this.messages.fromUserMobile = this.tokensService.getMobile().toString();
+    this.messages.fromUsername = this.tokensService.getMobile().toString();
     this.messagesService.createMessage(this.messages).subscribe(
       () => this.dialog.closeAll()
       , error => this.errorControl(error.error)

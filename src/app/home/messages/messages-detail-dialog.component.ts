@@ -10,8 +10,8 @@ export class MessagesDetailDialogComponent {
 
   messages: Messages = {
     id: null,
-    fromUserMobile: null,
-    toUserMobile: null,
+    fromUsername: null,
+    toUsername: null,
     messageContent: null,
     sentDate: null,
     readDate: null
