@@ -22,6 +22,7 @@ export class TicketsComponent implements OnInit {
   articleIdToSearchBy: string;
   orderIdToSearchBy: string;
   tagToeSearchBy: string;
+  gifTicketReference: string;
 
   constructor(private ticketService: TicketService) {
     this.ticket = {id: null, reference: null};
