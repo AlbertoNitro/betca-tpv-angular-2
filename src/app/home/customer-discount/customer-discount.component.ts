@@ -14,11 +14,20 @@ export class CustomerDiscountComponent {
   columns: ['Mobile', 'Discount'];
   data: CustomerDiscount[];
   isEdit: boolean;
+  displayedColumns: string[] = ['mobile', 'discount'];
 
   constructor(private customerDiscountService: CustomerDiscountService, private snackBar: MatSnackBar,
               private dialog: MatDialog) {
     this.customerDiscountService.readAll().subscribe(
       data => this.data = data
+    );
+  }
+
+  getAllDiscounts() {
+    this.customerDiscountService.readAll().subscribe(
+      data => {
+        this.data = data;
+      }
     );
   }
 
@@ -55,5 +64,6 @@ export class CustomerDiscountComponent {
       () => this.snackBar.open('Update ok', null, {duration: 2000})
     );
   }
+
 }
 
