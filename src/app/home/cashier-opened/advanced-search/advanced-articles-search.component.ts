@@ -1,10 +1,12 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Article} from '../../shared/article.model';
 import {AdvancedArticlesSearchService} from './advanced-articles-search.service';
 import {ArticleSearch} from './article-advanced-search.model';
 import {Provider} from '../../shared/provider.model';
 import {ShoppingCartService} from '../shopping-cart/shopping-cart.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {Tag} from './tag.model';
+import {TagService} from './tag.service';
 
 @Component({
   selector: 'app-advanced-articles-search',
@@ -18,12 +20,20 @@ export class AdvancedArticlesSearchComponent {
 
   articleSearch: ArticleSearch = {};
   discontinued: boolean;
+  tagDescription: string;
+  tag: Tag;
+
+  tags: Tag[];
 
   constructor(private advancedArticlesSearchService: AdvancedArticlesSearchService, private shoppingCartService: ShoppingCartService,
-              private message: MatSnackBar) {
+              private tagService: TagService, private message: MatSnackBar) {
     // this.user = {mobile: null, username: null};
     this.data = null;
     this.discontinued = null;
+    this.tagService.readAll().subscribe(
+      data => this.tags = data
+    );
+    this.tag = null;
   }
 
   search() {
@@ -64,6 +74,22 @@ export class AdvancedArticlesSearchComponent {
         duration: 1500,
       });
     });
+  }
+
+  searchByTag() {
+    if (this.tagDescription == null) {
+      this.advancedArticlesSearchService.readAll().subscribe(
+        data => this.data = data
+      );
+    } else {
+      this.tagService.readOne(this.tagDescription).subscribe(
+        data => {
+          this.tag = data;
+          this.data = data.articles;
+          console.log(this.tag);
+        }
+      );
+    }
   }
 
 }
