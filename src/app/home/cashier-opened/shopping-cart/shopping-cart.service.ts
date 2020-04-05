@@ -17,6 +17,8 @@ import {BudgetCreation} from './budget/budget-creation.model';
 import {Budget} from './budget/budget.model';
 import {CustomerDiscountService} from '../../customer-discount/customer-discount.service';
 import {CustomerDiscount} from '../../customer-discount/customer-discount.model';
+import {GiftTicketCreation} from './gift-ticket-creation.model';
+import {GiftTicketService} from '../../shared/gift-ticket.service';
 
 @Injectable()
 export class ShoppingCartService {
@@ -39,6 +41,7 @@ export class ShoppingCartService {
               private httpService: HttpService,
               private voucherService: VoucherService,
               private invoiceService: InvoiceService,
+              private giftTicketService: GiftTicketService,
               private customerDiscountService: CustomerDiscountService) {
     for (let i = 0; i < ShoppingCartService.SHOPPING_CART_NUM; i++) {
       this.shoppingCartList.push([]);
@@ -142,7 +145,8 @@ export class ShoppingCartService {
     this.synchronizeAll();
   }
 
-  checkOut(ticketCreation: TicketCreation, voucher: number, requestedInvoice: boolean, requestedGiftTicket): Observable<any> {
+  checkOut(ticketCreation: TicketCreation, voucher: number, requestedInvoice: boolean,
+           requestedGiftTicket: boolean, giftTicketCreation: GiftTicketCreation): Observable<any> {
     ticketCreation.shoppingCart = this.shoppingCart;
     const ticket = this.httpService.pdf().post(AppEndpoints.TICKETS, ticketCreation).pipe(
       map(() => this.reset())
@@ -151,7 +155,7 @@ export class ShoppingCartService {
     const updatePoints = iif(() => userMobile !== '', this.httpService.put(AppEndpoints.CUSTOMER_POINTS + '/' + userMobile, new Object(0)));
     let receipts = iif(() => voucher > 0, this.voucherService.createAndPrint(Math.abs(this.totalShoppingCart - ticketCreation.voucher)));
     receipts = iif(() => requestedInvoice, merge(receipts, this.invoiceService.create()), receipts);
-    receipts = iif(() => requestedGiftTicket, merge(receipts, EMPTY), receipts); // TODO change EMPTY to create gift ticket
+    receipts = iif(() => requestedGiftTicket, merge(receipts, this.giftTicketService.createAndPrint(giftTicketCreation)), receipts);
     return concat(updatePoints, ticket, receipts);
   }
 

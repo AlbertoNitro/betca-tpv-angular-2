@@ -11,6 +11,8 @@ import {UserService} from '../../shared/users/user.service';
 import {catchError, map} from 'rxjs/operators';
 import {EMPTY} from 'rxjs';
 import {UsersQuickCreationDialogComponent} from './users/users-quick-creation-dialog.component';
+import {GiftTicketCreation} from './gift-ticket-creation.model';
+import {GiftTicketService} from '../../shared/gift-ticket.service';
 
 @Component({
   templateUrl: 'check-out-dialog.component.html',
@@ -23,12 +25,13 @@ export class CheckOutDialogComponent {
   requestedGiftTicket = false;
   ticketCreation: TicketCreation;
   user: User;
-  isChecked = false;
+  giftTicketCreation: GiftTicketCreation;
 
   constructor(private dialog: MatDialog, private shoppingCartService: ShoppingCartService, private voucherService: VoucherService,
-              private userService: UserService) {
+              private userService: UserService, private giftTicketService: GiftTicketService) {
     this.totalPurchase = this.shoppingCartService.getTotalShoppingCart();
     this.ticketCreation = {cash: 0, card: 0, voucher: 0, shoppingCart: null, note: ''};
+    this.giftTicketCreation = {personalizedMessage: ''};
   }
 
   static format(value: number): number {
@@ -158,7 +161,7 @@ export class CheckOutDialogComponent {
     if (returned > 0) {
       this.ticketCreation.note += ' Return: ' + this.round(returned) + '.';
     }
-    this.shoppingCartService.checkOut(this.ticketCreation, voucher, this.requestedInvoice, this.requestedGiftTicket).subscribe(
+    this.shoppingCartService.checkOut(this.ticketCreation, voucher, this.requestedInvoice, this.requestedGiftTicket, this.giftTicketCreation).subscribe(
       () => {
       }, () => this.dialog.closeAll()
       , () => this.dialog.closeAll()
@@ -169,8 +172,8 @@ export class CheckOutDialogComponent {
     return (!this.userCompleted() || !this.fullPayedTicket());
   }
 
-  onChange(isChecked) {
-    this.isChecked = isChecked;
+  onChange(requestedGiftTicket) {
+    this.requestedGiftTicket = requestedGiftTicket;
   }
 
   private userCompleted(): boolean {

@@ -18,6 +18,7 @@ import {InvoiceService} from './home/shared/invoice/invoice.service';
 import {OfferService} from './home/shared/offer.service';
 import {CashMovementsService} from './home/cashier-opened/cashier-closure/cash-movements/cash-movements.service';
 import {TicketService} from './home/shared/ticket.service';
+import {GiftTicketService} from './home/shared/gift-ticket.service';
 import {CashierClosureMocks} from './home/cashier-opened/cashier-closure/search/cashier-closure-mocks.service';
 import {MessagesService} from './home/messages/messages.service';
 import {VatManagementService} from './home/shared/vat-management.service';
@@ -46,6 +47,7 @@ export class AppServices {
     OfferService,
     CashMovementsService,
     TicketService,
+    GiftTicketService,
     CashierClosureMocks,
     MessagesService,
     StockService,
