@@ -21,16 +21,14 @@ export class MessagesService {
     return this.httpService.get(AppEndpoints.MESSAGES + '/' + mobile);
   }
 
-  // GET /messages?toUserMobile={toUserMobile}
+  // GET /messages/to-user/{toUserMobile}
   readAllMessagesByToUser(toUserMobile: number): Observable<Messages[]> {
-    this.httpService.param('toUserMobile', toUserMobile ? toUserMobile.toString() : '');
-    return this.httpService.get(AppEndpoints.MESSAGES + AppEndpoints.MY_MESSAGES);
+    return this.httpService.get(AppEndpoints.MESSAGES + AppEndpoints.TO_USER + '/' + toUserMobile);
   }
 
-  // GET /messages/unread?toUserMobile={toUserMobile}
+  // GET /messages/to-user/{toUserMobile}/unread
   readAllUnReadMessagesByToUser(toUserMobile: number): Observable<Messages[]> {
-    this.httpService.param('toUserMobile', toUserMobile ? toUserMobile.toString() : '');
-    return this.httpService.get(AppEndpoints.MESSAGES + AppEndpoints.MY_MESSAGES + AppEndpoints.UNREAD);
+    return this.httpService.get(AppEndpoints.MESSAGES + AppEndpoints.TO_USER + '/' + toUserMobile + AppEndpoints.UNREAD);
   }
 
   // POST /messages (Messages)

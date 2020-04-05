@@ -63,7 +63,7 @@ export class AppEndpoints {
 
   static MESSAGES = '/messages';
 
-  static MY_MESSAGES = '/my-messages';
+  static TO_USER = '/to-user';
 
   static UNREAD = 'unread';
 
