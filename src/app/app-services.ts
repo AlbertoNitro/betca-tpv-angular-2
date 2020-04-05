@@ -1,5 +1,6 @@
 import {AdminsService} from './home/admins.service';
 import {ArticleService} from './home/shared/article.service';
+import {ArticlesFamilyService} from './home/shared/article-family.service';
 import {CashierClosureService} from './home/cashier-opened/cashier-closure/cashier-closure.service';
 import {CashierService} from './home/shared/cashier.service';
 import {CustomerDiscountService} from './home/customer-discount/customer-discount.service';
@@ -26,6 +27,7 @@ export class AppServices {
   public static SERVICES = [
     AdminsService,
     ArticleService,
+    ArticlesFamilyService,
     AdvancedArticlesSearchService,
     CashierClosureService,
     CashierService,

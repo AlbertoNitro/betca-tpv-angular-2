@@ -6,6 +6,7 @@ export class AppEndpoints {
 
   static ARTICLES_FAMILY = '/articles-family';
   static ARTICLES_FAMILY_COMPOSITE = '/familydescription';
+  static CREATE_ARTICLES_FAMILY = "/create-articles-family";
 
   static CASHIER_CLOSURES = '/cashier-closures';
   static CASHIER_CLOSURES_LAST = AppEndpoints.CASHIER_CLOSURES + '/last';
