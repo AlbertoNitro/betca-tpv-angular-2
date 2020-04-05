@@ -11,19 +11,34 @@ export class MessagesService {
   constructor(private httpService: HttpService) {
   }
 
-  create(messages: Messages): Observable<Messages> {
-    return this.httpService.post(AppEndpoints.MESSAGES, messages);
+  // GET /messages
+  readAll(): Observable<Messages[]> {
+    return this.httpService.get(AppEndpoints.MESSAGES);
   }
 
-  updateAsRead(messages: Messages): Observable<Messages> {
-    return this.httpService.put(AppEndpoints.MESSAGES, messages);
-  }
-
-  readAll(mobile: number): Observable<Messages[]> {
+  // GET /messages{id}
+  readById(mobile: number): Observable<Messages[]> {
     return this.httpService.get(AppEndpoints.MESSAGES + '/' + mobile);
   }
 
-  readAllNewMessages(mobile: number): Observable<Messages[]> {
-    return this.httpService.get(AppEndpoints.MESSAGES + '/' + mobile + '/news');
+  // GET /messages/to-user/{toUserMobile}
+  readAllMessagesByToUser(toUserMobile: number): Observable<Messages[]> {
+    return this.httpService.get(AppEndpoints.MESSAGES + AppEndpoints.TO_USER + '/' + toUserMobile);
+  }
+
+  // GET /messages/to-user/{toUserMobile}/unread
+  readAllUnReadMessagesByToUser(toUserMobile: number): Observable<Messages[]> {
+    return this.httpService.get(AppEndpoints.MESSAGES + AppEndpoints.TO_USER + '/' + toUserMobile + AppEndpoints.UNREAD);
+  }
+
+  // POST /messages (Messages)
+  createMessage(messages: Messages): Observable<Messages> {
+    return this.httpService.post(AppEndpoints.MESSAGES, messages);
+  }
+
+  // PUT /messages/{id}?readDate={readDate}
+  markMessageAsRead(id: number, readDate: Date): Observable<Messages> {
+    this.httpService.param('readDate', readDate.toISOString());
+    return this.httpService.put(AppEndpoints.MESSAGES + '/' + id);
   }
 }

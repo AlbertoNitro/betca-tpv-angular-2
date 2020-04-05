@@ -64,6 +64,10 @@ export class AppEndpoints {
 
   static MESSAGES = '/messages';
 
+  static TO_USER = '/to-user';
+
+  static UNREAD = 'unread';
+
   static VAT_MANAGEMENT = '/vat-management';
 
   static TAGS = '/tags';

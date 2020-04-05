@@ -10,29 +10,37 @@ import {MessagesDetailDialogComponent} from './messages-detail-dialog.component'
 @Component({
   templateUrl: 'messages.component.html',
 })
-
 export class MessagesComponent {
 
   messages: Messages;
   title: string;
   username: string;
-  mobile: number;
-  columns: ['To User mobile', 'Send Date', 'Message content'];
+  mobile: string;
+  columns = ['id', 'fromUsername', 'messageContent', 'sentDate', 'readDate'];
   data: Messages[];
 
   constructor(private dialog: MatDialog, private messagesService: MessagesService, private tokensService: TokensService) {
     this.username = tokensService.getName();
-    this.mobile = tokensService.getMobile();
+    this.mobile = tokensService.getMobile().toString();
     this.title = 'Old Messages sent to ' + this.username.toUpperCase();
     this.messages = {
-      fromUserMobile: null,
-      toUserMobile: null,
+      id: null,
+      fromUsername: null,
+      toUsername: null,
       messageContent: null,
       sentDate: null,
       readDate: null
     };
 
-    this.messagesService.readAll(this.mobile).subscribe(
+    this.messagesService.readAll().subscribe(
+      data => {
+        this.data = data;
+      }
+    );
+  }
+
+  search() {
+    this.messagesService.readAll().subscribe(
       data => this.data = data
     );
   }

@@ -9,8 +9,9 @@ import {Messages} from './messages.model';
 export class MessagesDetailDialogComponent {
 
   messages: Messages = {
-    fromUserMobile: null,
-    toUserMobile: null,
+    id: null,
+    fromUsername: null,
+    toUsername: null,
     messageContent: null,
     sentDate: null,
     readDate: null

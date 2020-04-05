@@ -12,8 +12,9 @@ import {FormControl, Validators} from '@angular/forms';
 export class MessagesCreationDialogComponent {
 
   messages: Messages = {
-    toUserMobile: null,
-    fromUserMobile: null,
+    id: null,
+    fromUsername: null,
+    toUsername: null,
     messageContent: null,
     sentDate: null,
     readDate: null
@@ -39,8 +40,8 @@ export class MessagesCreationDialogComponent {
   }
 
   createMessages() {
-    this.messages.fromUserMobile = this.tokensService.getMobile();
-    this.messagesService.create(this.messages).subscribe(
+    this.messages.fromUsername = this.tokensService.getMobile().toString();
+    this.messagesService.createMessage(this.messages).subscribe(
       () => this.dialog.closeAll()
       , error => this.errorControl(error.error)
       , () => this.message.open('Message sent successfully', null, {
