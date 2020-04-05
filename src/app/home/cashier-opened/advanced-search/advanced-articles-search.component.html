@@ -26,46 +26,19 @@
   </mat-card-content>
 </mat-card>
 
-
 <mat-card>
-  <h2>Search by Tag</h2>
-  <mat-card-content>
-    <mat-form-field>
-      <mat-label>Search by Tag</mat-label>
-      <input [(ngModel)]="tagDescription" matInput placeholder="Description">
-    </mat-form-field>
-    <button (click)="searchByTag()" color="primary" mat-mini-fab>
-      <mat-icon>search</mat-icon>
-    </button>
-  </mat-card-content>
+  <h3>Search by Tag</h3>
+  <mat-form-field>
+    <mat-label>Search by Tag</mat-label>
+    <mat-select matNativeControl [(ngModel)]="tagDescription" name="tag">
+      <mat-option *ngFor="let tag of tags" [value]="tag.description">
+        {{tag.description}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button (click)="searchByTag()" color="primary" mat-mini-fab>
+    <mat-icon>search</mat-icon>
+  </button>
 </mat-card>
-
-<!--<mat-card>
-  <mat-card-title>Advanced Search</mat-card-title>
-  <mat-card-content>
-    <mat-form-field>
-      <input [(ngModel)]="articleSearch.description" matInput placeholder="Description">
-    </mat-form-field>
-    <mat-form-field>
-      <input [(ngModel)]="articleSearch.reference" matInput placeholder="Reference">
-    </mat-form-field>
-    <mat-form-field>
-      <input type="number" [(ngModel)]="articleSearch.stock" matInput placeholder="Stock">
-    </mat-form-field>
-    <mat-form-field>
-      <input type="number" [(ngModel)]="articleSearch.retailPrice" matInput placeholder="Retail Price">
-    </mat-form-field>
-    <mat-form-field>
-      <input  [(ngModel)]="articleSearch.discontinued" matInput placeholder="Discontinued">
-    </mat-form-field>
-
-    <button (click)="search()" color="primary" mat-mini-fab>
-      <mat-icon>search</mat-icon>
-    </button>
-    <button (click)="resetSearch()" color="primary" mat-mini-fab>
-      <mat-icon>close</mat-icon>
-    </button>
-  </mat-card-content>
-</mat-card>-->
 <app-crud [deleteAction]=false [readAction]=false [createAction]=false (update)="addToChart($event)"
           [columns]="columns" [data]="data" [title]="title"></app-crud>

@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Article} from '../../shared/article.model';
 import {AdvancedArticlesSearchService} from './advanced-articles-search.service';
 import {ArticleSearch} from './article-advanced-search.model';
@@ -23,11 +23,17 @@ export class AdvancedArticlesSearchComponent {
   tagDescription: string;
   tag: Tag;
 
+  tags: Tag[];
+
   constructor(private advancedArticlesSearchService: AdvancedArticlesSearchService, private shoppingCartService: ShoppingCartService,
               private tagService: TagService, private message: MatSnackBar) {
     // this.user = {mobile: null, username: null};
     this.data = null;
     this.discontinued = null;
+    this.tagService.readAll().subscribe(
+      data => this.tags = data
+    );
+    this.tag = null;
   }
 
   search() {
@@ -77,12 +83,13 @@ export class AdvancedArticlesSearchComponent {
       );
     } else {
       this.tagService.readOne(this.tagDescription).subscribe(
-        data => this.tag = data
+        data => {
+          this.tag = data;
+          this.data = data.articles;
+          console.log(this.tag);
+        }
       );
-      this.message.open('BUSCANDO POR TAG: ' + this.tag.description, null, {
-        duration: 3000,
-      });
-      this.data = this.tag.articleList;
     }
   }
+
 }
