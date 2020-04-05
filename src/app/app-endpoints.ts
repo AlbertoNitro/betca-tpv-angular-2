@@ -66,7 +66,7 @@ export class AppEndpoints {
 
   static TO_USER = '/to-user';
 
-  static UNREAD = 'unread';
+  static UNREAD = '/unread';
 
   static VAT_MANAGEMENT = '/vat-management';
 
