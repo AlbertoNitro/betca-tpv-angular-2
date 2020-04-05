@@ -5,7 +5,7 @@ import {MatDialog, MatSnackBar, MatTableDataSource} from '@angular/material';
 import {ShoppingCartService} from './shopping-cart.service';
 import {Shopping} from './shopping.model';
 import {CheckOutDialogComponent} from './check-out-dialog.component';
-import {BudgetDialogComponent} from './budget-dialog.component';
+import {BudgetDialogComponent} from './budget/budget-dialog.component';
 import {CustomerDiscountService} from '../../customer-discount/customer-discount.service';
 
 @Component({
@@ -151,6 +151,10 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
     this.dialog.open(CheckOutDialogComponent).afterClosed().subscribe(
       () => this.ngOnInit()
     );
+  }
+
+  disabledBudgetButton(value): boolean {
+    return !this.shoppingCartService.isEmpty() || value === '';
   }
 
   createBudget() {
