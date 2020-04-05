@@ -38,7 +38,7 @@ import {OrderEditionDialogComponent} from './home/orders/order-edition-dialog.co
 import {CheckOutDialogVoucherComponent} from './home/cashier-opened/shopping-cart/check-out-dialog-voucher.component';
 import {SendingsCreationDialogComponent} from './home/sendings/sendings-creation-dialog.component';
 import {InvoicesComponent} from './home/invoices/invoices.component';
-import {BudgetDialogComponent} from './home/cashier-opened/shopping-cart/budget-dialog.component';
+import {BudgetDialogComponent} from './home/cashier-opened/shopping-cart/budget/budget-dialog.component';
 import {ProviderDetailDialogComponent} from './home/providers/provider-detail-dialog.component';
 import {ProviderEditionDialogComponent} from './home/providers/provider-edition-dialog.component';
 import {SendingsDetailDialogComponent} from './home/sendings/sendings-detail-dialog.component';
