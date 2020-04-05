@@ -13,8 +13,8 @@ import {ArticleQuickCreationDialogComponent} from './article-quick-creation-dial
 import {MatDialog} from '@angular/material/dialog';
 import {VoucherService} from '../../shared/voucher.service';
 import {InvoiceService} from '../../shared/invoice/invoice.service';
-import {BudgetCreation} from './budget-creation.model';
-import {Budget} from './budget.model';
+import {BudgetCreation} from './budget/budget-creation.model';
+import {Budget} from './budget/budget.model';
 import {CustomerDiscountService} from '../../customer-discount/customer-discount.service';
 import {CustomerDiscount} from '../../customer-discount/customer-discount.model';
 

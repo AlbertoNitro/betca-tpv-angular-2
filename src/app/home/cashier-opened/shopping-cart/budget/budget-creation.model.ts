@@ -1,4 +1,4 @@
-import {Shopping} from './shopping.model';
+import {Shopping} from '../shopping.model';
 
 export interface BudgetCreation {
   shoppingCart: Shopping[];

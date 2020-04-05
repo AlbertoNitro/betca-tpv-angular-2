@@ -19,6 +19,9 @@
 
   
   <div *ngIf="articleFamily.isTypeArticle">
+    <br>
+    <mat-label><strong>Articles details:</strong></mat-label>
+    <br>
     <mat-label><strong>Article:</strong> {{articleFamily.article.code}} </mat-label>
 
     <br>
@@ -34,9 +37,33 @@
     <mat-label><strong>Reference:</strong> {{articleFamily.article.reference}} </mat-label>
 
     <br>
-
-    <mat-label><strong>Provider:</strong> {{articleFamily.article.provider}} (Until Creation of Provider READ)</mat-label>
-
+    <mat-label><strong>Article's Provider details:</strong></mat-label>
+    <br>
+    <div *ngIf="articleFamily.article.provider.company">
+      <h4>Company name</h4>
+      <p>{{articleFamily.article.provider.company}}</p>
+    </div>
+    <div *ngIf="articleFamily.article.provider.nif">
+      <h4>NIF</h4>
+      <p>{{articleFamily.article.provider.nif}}</p>
+    </div>
+    <div *ngIf="articleFamily.article.provider.note">
+      <h4>Note</h4>
+      <p>{{articleFamily.article.provider.note}}</p>
+    </div>
+    <div *ngIf="articleFamily.article.provider.email">
+      <h4>E-mail</h4>
+      <p>{{articleFamily.article.provider.email}}</p>
+    </div>
+    <div *ngIf="articleFamily.article.provider.phone">
+      <h4>Phone number</h4>
+      <p>{{articleFamily.article.provider.phone}}</p>
+    </div>
+    <div *ngIf="articleFamily.article.provider.address">
+      <h4>Address</h4>
+      <p>{{articleFamily.article.provider.address}}</p>
+    </div>
+    <br>
     <br>
 
     <mat-label><strong>Stock:</strong> {{articleFamily.article.stock}} </mat-label>
@@ -52,6 +79,9 @@
 
     <div *ngIf="articleFamily.isTypeArticle == false"> 
       <div *ngFor="let articlesFamilyList of articleFamily.articlesFamilyList" >
+        <br>
+            <mat-label><strong>Articles Family details:</strong></mat-label>
+        <br>
         <mat-label><strong>Id:</strong> {{articlesFamilyList.id}} </mat-label>
   
         <br>
@@ -69,6 +99,9 @@
         <br>
   
         <div *ngIf="articlesFamilyList.article != null">
+          <br>
+            <mat-label><strong>Article details:</strong></mat-label>
+          <br>
           <mat-label><strong>Article:</strong> {{articlesFamilyList.article.code}} </mat-label>
       
           <br>
@@ -84,9 +117,33 @@
           <mat-label><strong>Reference:</strong> {{articlesFamilyList.article.reference}} </mat-label>
       
           <br>
-      
-          <mat-label><strong>Provider:</strong> {{articlesFamilyList.article.provider}} (Until Creation of Provider READ)</mat-label>
-      
+          <mat-label><strong>Article's Provider details:</strong></mat-label>
+          <br>
+          <div *ngIf="articlesFamilyList.article.provider.company">
+            <h4>Company name</h4>
+            <p>{{articlesFamilyList.article.provider.company}}</p>
+          </div>
+          <div *ngIf="articlesFamilyList.article.provider.nif">
+            <h4>NIF</h4>
+            <p>{{articlesFamilyList.article.provider.nif}}</p>
+          </div>
+          <div *ngIf="articlesFamilyList.article.provider.note">
+            <h4>Note</h4>
+            <p>{{articlesFamilyList.article.provider.note}}</p>
+          </div>
+          <div *ngIf="articlesFamilyList.article.provider.email">
+            <h4>E-mail</h4>
+            <p>{{articlesFamilyList.article.provider.email}}</p>
+          </div>
+          <div *ngIf="articlesFamilyList.article.provider.phone">
+            <h4>Phone number</h4>
+            <p>{{articlesFamilyList.article.provider.phone}}</p>
+          </div>
+          <div *ngIf="articlesFamilyList.article.provider.address">
+            <h4>Address</h4>
+            <p>{{articlesFamilyList.article.provider.address}}</p>
+          </div>
+          <br>
           <br>
       
           <mat-label><strong>Stock:</strong> {{articlesFamilyList.article.stock}} </mat-label>
