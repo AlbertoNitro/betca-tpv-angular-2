@@ -56,6 +56,17 @@ export class TicketsComponent implements OnInit {
     );
   }
 
+  searchByGiftTicket(ticketReference: string) {
+    this.ticketService.getTicketByGiftTicket(ticketReference).subscribe(
+        data => {
+          this.data = [];
+          if (data.shoppingList != null) {
+            this.data[0] = data;
+          }
+        }
+    );
+  }
+
   advancedSearch() {
     this.ticketService.advancedSearch(this.ticketSearch).subscribe(
       tickets => {
