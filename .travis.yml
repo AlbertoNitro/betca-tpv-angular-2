@@ -4,6 +4,7 @@ node_js:
 addons:
   chrome: stable
 branches:
+  only:
   - develop
   - /^release-[0-999].[0-999]$/
   - master
@@ -18,7 +19,6 @@ script:
 # Deploy https://betca-tpv-angular.herokuapp.com
 deploy:
   provider: heroku
-  api_key:
-    secure: $HEROKU
+  api_key: $HEROKU
   on:
     branch: master
