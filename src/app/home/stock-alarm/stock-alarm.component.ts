@@ -16,9 +16,8 @@ export class StockAlarmComponent implements OnInit {
   title = 'Stock Alarm Management';
   columns = ['id', 'description', 'provider', 'warning', 'critical'];
   data: StockAlarm[];
-  dialogConfig: MatDialogConfig;
 
-  constructor(private dialog: MatDialog, private alarmService: StockAlarmService) {
+  constructor(private dialog: MatDialog, private stockAlarmService: StockAlarmService) {
   }
 
   ngOnInit() {
@@ -26,47 +25,44 @@ export class StockAlarmComponent implements OnInit {
   }
 
   create() {
-    this.dialogConfig = {
+    this.dialog.open(StockAlarmCreateUpdateComponent, {
       width: '60%',
       height: '90%',
       data: {
         dialogMode: 'create',
-        alarm: {}
+        stockAlarm: {}
       }
-    };
-    this.dialog.open(StockAlarmCreateUpdateComponent, this.dialogConfig).afterClosed().subscribe(result => {
+    }).afterClosed().subscribe(result => {
       if (result) {
         this.readAll();
       }
     });
   }
 
-  update(alarm: StockAlarm) {
-    this.dialogConfig = {
+  update(stockAlarm: StockAlarm) {
+    this.dialog.open(StockAlarmCreateUpdateComponent, {
       width: '60%',
       height: '90%',
       data: {
         dialogMode: 'update',
-        alarm
+        stockAlarm
       }
-    };
-    this.dialog.open(StockAlarmCreateUpdateComponent, this.dialogConfig).afterClosed().subscribe(result => {
+    }).afterClosed().subscribe(result => {
       if (result) {
         this.readAll();
       }
     });
   }
 
-  delete(alarm: StockAlarm) {
-    this.dialogConfig = {
+  delete(stockAlarm: StockAlarm) {
+    this.dialog.open(CancelYesDialogComponent, {
       data: {
-        alarm
+        stockAlarm
       }
-    };
-    this.dialog.open(CancelYesDialogComponent, this.dialogConfig).afterClosed().subscribe(
+    }).afterClosed().subscribe(
       result => {
         if (result) {
-          this.alarmService.delete(alarm).subscribe(response => {
+          this.stockAlarmService.delete(stockAlarm).subscribe(response => {
             if (response) {
               this.readAll();
             }
@@ -76,15 +72,14 @@ export class StockAlarmComponent implements OnInit {
     );
   }
 
-  read(alarm: StockAlarm) {
-    this.dialogConfig = {
+  read(stockAlarm: StockAlarm) {
+    this.dialog.open(StockAlarmDetailDialogComponent, {
       width: '60%',
       height: '90%',
       data: {
-        alarm
+        stockAlarm
       }
-    };
-    this.dialog.open(StockAlarmDetailDialogComponent, this.dialogConfig).afterClosed().subscribe(result => {
+    }).afterClosed().subscribe(result => {
       if (result) {
         this.readAll();
       }
@@ -92,7 +87,7 @@ export class StockAlarmComponent implements OnInit {
   }
 
   readAll() {
-    this.alarmService.readAll().subscribe(result => {
+    this.stockAlarmService.readAll().subscribe(result => {
       this.data = result;
     });
   }
