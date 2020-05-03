@@ -3,84 +3,54 @@
   <mat-card-title *ngIf="dialogMode==='update'"> Update Stock Alarm</mat-card-title>
   <mat-card-content>
     <form [formGroup]="stockAlarmFrom">
-      <div class="container">
-        <div class="form-group input-margin">
+      <mat-form-field>
+        <input formControlName="description" matInput placeholder="Description"
+               required type="text"/>
+      </mat-form-field>
+      <app-providers-dropdown (providerOut)="getProvider($event)"
+                              [providerIn]="stockAlarmFrom.controls.provider"></app-providers-dropdown>
+      <mat-form-field>
+        <input formControlName="warning" matInput placeholder="Warning"
+               type="number"/>
+      </mat-form-field>
+      <mat-form-field>
+        <input formControlName="critical" matInput placeholder="Critical"
+               type="number"/>
+      </mat-form-field>
+
+      <div formArrayName="stockAlarmArticle">
+        <h3>StockAlarm Articles</h3>
+        <div *ngFor="let stockAlarmArticle of stockAlarmArticles.controls; let i=index">
+          <div [formGroupName]="i">
           <mat-form-field>
-            <input formControlName="description" matInput placeholder="Description"
-                   required type="text"/>
+            <input type="text" formControlName="articleId" matInput placeholder="ArticleID"
+                   [matAutocomplete]="auto">
           </mat-form-field>
-        </div>
-        <div class="form-group input-margin">
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let article of articles" [value]="article.code">{{article.description}}</mat-option>
+            </mat-autocomplete>
+            <mat-form-field>
+            <input type="number" formControlName="warning" matInput placeholder="Article Warning">
+          </mat-form-field>
           <mat-form-field>
-            <input formControlName="provider" matInput placeholder="provider"
-                   type="text"/>
+            <input type="number" formControlName="critical" matInput placeholder="Article Critical">
           </mat-form-field>
+            <button (click)="removeStockAlarmArticle(i)" color="primary" mat-button>Remove Article</button>
+          </div>
         </div>
       </div>
-      <div class="container">
-        <div class="form-group input-margin">
-          <mat-form-field>
-            <input formControlName="warning" matInput placeholder="Warning"
-                   type="number"/>
-          </mat-form-field>
-        </div>
-        <div class="form-group input-margin">
-          <mat-form-field>
-            <input formControlName="critical" matInput placeholder="Critical"
-                   type="number"/>
-          </mat-form-field>
-        </div>
-      </div>
-    </form>
-    <form [formGroup]="articleAlarmFrom" class="container">
-      <div class="form-group input-margin">
-        <mat-form-field>
-          <input formControlName="articleId" matInput placeholder="articleId" required type="number"/>
-        </mat-form-field>
-      </div>
-      <div class="form-group input-margin">
-        <mat-form-field>
-          <input formControlName="warning" matInput placeholder="warning" required type="number"/>
-        </mat-form-field>
-      </div>
-      <div class="form-group input-margin">
-        <mat-form-field>
-          <input formControlName="critical" matInput placeholder="critical" required type="number"/>
-        </mat-form-field>
-      </div>
-      <button (click)="addArticle(articleAlarmFrom)" color="primary" mat-button>Add Article</button>
+        <button (click)="addStockAlarmArticle()" color="primary" mat-button [disabled]="!stockAlarmFrom.valid">
+          Add Article</button>
     </form>
   </mat-card-content>
 </mat-card>
-<mat-card-content>
-  <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-    <ng-container matColumnDef="articleId">
-      <mat-header-cell *matHeaderCellDef> Id</mat-header-cell>
-      <mat-cell *matCellDef="let alarmArticle"> {{alarmArticle.articleId}}</mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="warning">
-      <mat-header-cell *matHeaderCellDef> Warning</mat-header-cell>
-      <mat-cell *matCellDef="let alarmArticle"> {{alarmArticle.warning}}</mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="critical">
-      <mat-header-cell *matHeaderCellDef> Critical</mat-header-cell>
-      <mat-cell *matCellDef="let alarmArticle"> {{alarmArticle.critical}}</mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="action">
-      <mat-header-cell *matHeaderCellDef> Action</mat-header-cell>
-      <mat-cell *matCellDef="let alarmArticle">
-        <mat-icon (click)="delete(alarmArticle)" class="mat-icon mat-warn material-icons" color="primary"
-                  role="button">close
-        </mat-icon>
-      </mat-cell>
-    </ng-container>
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let alarmArticle; columns: displayedColumns;"></mat-row>
-  </mat-table>
-</mat-card-content>
+
+<p>
+  Form Value: {{ stockAlarmFrom.value | json }}
+</p>
+
 <mat-dialog-actions>
   <button mat-dialog-close mat-raised-button>Cancel</button>
-  <button (click)="createOrUpdate()" [mat-dialog-close]="true" color="primary"
-          mat-raised-button>{{dialogMode}}
-  </button>
+  <button (click)="createOrUpdate()" [mat-dialog-close]="true" [disabled]="!stockAlarmFrom.valid"
+          mat-raised-button color="primary">{{dialogMode}}</button>
 </mat-dialog-actions>

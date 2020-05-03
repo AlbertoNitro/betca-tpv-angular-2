@@ -4,11 +4,11 @@ export interface StockAlarm {
   provider?: string;
   warning?: number;
   critical?: number;
-  alarmArticle: AlarmArticle[];
+  stockAlarmArticle: StockAlarmArticle[];
 }
 
-export interface AlarmArticle {
-  articleId: number;
+export interface StockAlarmArticle {
+  articleId: string;
   warning: number;
   critical: number;
 }
@@ -18,6 +18,5 @@ export interface StockAlarmCreate {
   provider?: string;
   warning?: number;
   critical?: number;
-  alarmArticle: AlarmArticle[];
+  stockAlarmArticle: StockAlarmArticle[];
 }
-
