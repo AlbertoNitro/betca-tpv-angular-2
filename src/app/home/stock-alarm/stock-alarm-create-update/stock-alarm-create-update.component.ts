@@ -2,10 +2,10 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog} from '@angular/material';
 import {ArticleService} from '../../shared/article.service';
 import {StockAlarmService} from '../stock-alarm.service';
-import {FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Article} from '../../shared/article.model';
 import {Provider} from '../../shared/provider.model';
-import {StockAlarmArticle, StockAlarm, StockAlarmCreate} from '../stock-alarm.model';
+import {StockAlarm} from '../stock-alarm.model';
 
 
 @Component({
@@ -28,15 +28,15 @@ export class StockAlarmCreateUpdateComponent implements OnInit {
   }
   ngOnInit() {
     this.stockAlarmFrom = this.fb.group({
-      description: [''],
-      provider: [''],
-      warning: [''],
-      critical: [''],
+      description: [this.stockAlarm.description, [Validators.required]],
+      provider: [this.stockAlarm.provider, [Validators.min(0)]],
+      warning: [this.stockAlarm.warning, [Validators.min(0)]],
+      critical: [this.stockAlarm.critical],
       stockAlarmArticle: this.fb.array([
         this.fb.group({
-          articleId: [''],
-          warning: [''],
-          critical: ['']
+          articleId: [null, [Validators.required]],
+          warning: [null, [Validators.required, Validators.min(0)]],
+          critical: [null, [Validators.required, Validators.min(0)]]
         })
       ])
       });
@@ -49,6 +49,7 @@ export class StockAlarmCreateUpdateComponent implements OnInit {
   }
 
   create() {
+    console.log(this.stockAlarmFrom.value);
     this.stockAlarmService.create(this.stockAlarmFrom.value).subscribe(
       result => {
         console.log(result);
@@ -77,40 +78,10 @@ export class StockAlarmCreateUpdateComponent implements OnInit {
     }));
   }
 
-  // addArticle() {
-  //   console.log(this.stockAlarmArticle);
-  //   this.articleService.readOne(this.stockAlarmArticle.articleId).subscribe(
-  //     result => {
-  //       const repeat = this.dataSource.some(item => {
-  //         if (item.articleId === result.code) {
-  //           return true;
-  //         }
-  //       });
-  //       if (repeat) {
-  //         console.log('exist');
-  //       } else {
-  //         this.stockAlarmCreate.stockAlarmArticle.push(this.stockAlarmArticle);
-  //         this.dataSource.push(this.stockAlarmArticle);
-  //         this.dataSource = [...this.stockAlarmCreate.stockAlarmArticle];
-  //         console.log(this.dataSource);
-  //       }
-  //     },
-  //     (error) => {
-  //       console.log(error);
-  //     }
-  //   );
-  // }
+  removeStockAlarmArticle(stockAlarmArticle: number) {
+    this.stockAlarmArticles.removeAt(stockAlarmArticle);
+  }
 
-  // deleteStockAlarmArticle(stockAlarmArticle: StockAlarmArticle) {
-  //   console.log(stockAlarmArticle);
-  //   const indexArticle = this.dataSource.indexOf(stockAlarmArticle);
-  //   console.log(indexArticle);
-  //   this.dataSource = this.dataSource.slice(indexArticle, 1);
-  //   console.log(this.dataSource);
-  //   this.dataSource = [...this.stockAlarmCreate.stockAlarmArticle];
-  //   console.log(this.dataSource);
-  // }
-  //
   getProvider(provider: Provider) {
      this.stockAlarmFrom.controls.provider.setValue(provider.id);
      this.getArticlesByProvider();
