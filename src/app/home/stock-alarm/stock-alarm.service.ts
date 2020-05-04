@@ -3,8 +3,7 @@ import {Observable} from 'rxjs';
 
 import {HttpService} from '../../core/http.service';
 import {AppEndpoints} from '../../app-endpoints';
-import {StockAlarm, StockAlarmCreate} from './stock-alarm.model';
-import {Article} from '../shared/article.model';
+import {StockAlarm, StockAlarmArticleSearch, StockAlarmCreate} from './stock-alarm.model';
 
 @Injectable({
   providedIn: 'root'
@@ -30,11 +29,7 @@ export class StockAlarmService {
     return this.httpService.delete(AppEndpoints.STOCK_ALARM + '/' + stockAlarm.id);
   }
 
-  searchWarning(): Observable<Article[]> {
-    return this.httpService.get(AppEndpoints.STOCK_ALARM + '/' + 'warning');
-  }
-
-  searchCritical(): Observable<StockAlarm> {
-    return this.httpService.get(AppEndpoints.STOCK_ALARM + '/' + 'critical');
+  searchArticle(searchArticleState: string): Observable<StockAlarmArticleSearch[]> {
+    return this.httpService.get(AppEndpoints.STOCK_ALARM + '/' + searchArticleState);
   }
 }

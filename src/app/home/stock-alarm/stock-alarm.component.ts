@@ -1,11 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {MatDialog, MatDialogConfig} from '@angular/material';
-import {StockAlarm} from './stock-alarm.model';
+import {MatDialog} from '@angular/material';
+import {StockAlarm, StockAlarmArticleSearch} from './stock-alarm.model';
 import {StockAlarmService} from './stock-alarm.service';
 import {StockAlarmCreateUpdateComponent} from './stock-alarm-create-update/stock-alarm-create-update.component';
 import {StockAlarmDetailDialogComponent} from './stock-alarm-detail-dialog/stock-alarm-detail-dialog.component';
 import {CancelYesDialogComponent} from '../../core/cancel-yes-dialog.component';
-import {Article} from '../shared/article.model';
 
 @Component({
   selector: 'app-stock-alarm',
@@ -18,8 +17,9 @@ export class StockAlarmComponent implements OnInit {
   columns = ['id', 'description', 'provider', 'warning', 'critical'];
   data: StockAlarm[];
   articleTitle = 'Articles info';
-  articleColumns = ['code', 'description', 'stock', 'critical', 'warning'];
-  articleData: Article[];
+  articleColumns = ['code', 'description', 'stock', 'warning', 'critical'];
+  articleData: StockAlarmArticleSearch[];
+  searchArticleState = 'warning';
 
   constructor(private dialog: MatDialog, private stockAlarmService: StockAlarmService) {
   }
@@ -96,18 +96,14 @@ export class StockAlarmComponent implements OnInit {
     });
   }
 
-  searchWarning() {
-    this.stockAlarmService.searchWarning().subscribe(result => {
+  searchArticle() {
+    this.stockAlarmService.searchArticle(this.searchArticleState).subscribe(result => {
       this.articleData = result;
       console.log(result);
     });
   }
 
-  searchCritical() {
-    console.log('searchCritical');
-  }
-
   resetSearch() {
-    console.log('resetSearch');
+    this.articleData = null;
   }
 }
