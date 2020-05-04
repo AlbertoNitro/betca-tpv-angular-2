@@ -13,6 +13,14 @@ export interface StockAlarmArticle {
   critical: number;
 }
 
+export interface StockAlarmArticleSearch {
+  code: string;
+  description: string;
+  stock: number;
+  warning: number;
+  critical: number;
+}
+
 export interface StockAlarmCreate {
   description: string;
   provider?: string;
