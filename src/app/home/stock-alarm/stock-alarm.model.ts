@@ -1,3 +1,5 @@
+import {Article} from '../shared/article.model';
+
 export interface StockAlarm {
   id: string;
   description: string;
@@ -8,7 +10,7 @@ export interface StockAlarm {
 }
 
 export interface StockAlarmArticle {
-  articleId: string;
+  article: Article;
   warning: number;
   critical: number;
 }

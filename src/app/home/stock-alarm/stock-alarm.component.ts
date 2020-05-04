@@ -19,7 +19,7 @@ export class StockAlarmComponent implements OnInit {
   articleTitle = 'Articles info';
   articleColumns = ['code', 'description', 'stock', 'warning', 'critical'];
   articleData: StockAlarmArticleSearch[];
-  searchArticleState: string;
+  searchArticleState = 'warning';
 
   constructor(private dialog: MatDialog, private stockAlarmService: StockAlarmService) {
   }
