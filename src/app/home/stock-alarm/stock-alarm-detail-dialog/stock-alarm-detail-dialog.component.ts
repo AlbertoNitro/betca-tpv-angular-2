@@ -1,7 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialog, MatTableDataSource} from '@angular/material';
-import {FormControl, FormGroup} from '@angular/forms';
-import {AlarmArticle, StockAlarm} from '../stock-alarm.model';
+import {MAT_DIALOG_DATA} from '@angular/material';
+import {StockAlarmArticle, StockAlarm} from '../stock-alarm.model';
 
 @Component({
   selector: 'app-stock-alarm-update-dialog',
@@ -9,24 +8,19 @@ import {AlarmArticle, StockAlarm} from '../stock-alarm.model';
   styleUrls: ['./stock-alarm-detail-dialog.component.css']
 })
 export class StockAlarmDetailDialogComponent implements OnInit {
-  stockAlarm: StockAlarm;
-  stockAlarmFrom: FormGroup;
+  stockAlarm: StockAlarm = {id: null, description: null, provider: null, warning: null, critical: null, stockAlarmArticle: null};
   title = 'Stock Alarm Article Detail';
   columns = ['articleId', 'warning', 'critical'];
-  dataSource: MatTableDataSource<AlarmArticle>;
+  dataSource: StockAlarmArticle[];
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialog: MatDialog) {
-    this.dataSource = this.data.alarm.alarmArticle;
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
+    data.stockAlarm.stockAlarmArticle.map(value => {
+      value.articleId = value.article.code;
+    });
+    this.dataSource = data.stockAlarm.stockAlarmArticle;
   }
 
   ngOnInit() {
-    this.stockAlarmFrom = new FormGroup(
-      {
-        description: new FormControl(this.data.alarm.description),
-        provider: new FormControl(this.data.alarm.provider),
-        warning: new FormControl(this.data.alarm.warning),
-        critical: new FormControl(this.data.alarm.critical)
-      }
-    );
+    this.stockAlarm = this.data.stockAlarm;
   }
 }

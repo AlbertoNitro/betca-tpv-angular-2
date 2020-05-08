@@ -1,5 +1,28 @@
 <h1> Stock Alarm </h1>
-<app-stock-alarm-search (outer)="searchData($event)"></app-stock-alarm-search>
+<mat-card>
+  <mat-card-title>Search Articles By State</mat-card-title>
+  <mat-card-content>
+    <mat-form-field class="full-width">
+      <mat-label>Article State</mat-label>
+      <mat-select [(value)]="searchArticleState">
+        <mat-option value="warning">Warning</mat-option>
+        <mat-option value="critical">Critical</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button (click)="searchArticle()" color="primary" mat-mini-fab class="mat-raised-button">
+      <mat-icon>search</mat-icon>
+    </button>
+    <button (click)="resetSearch()" color="primary" mat-mini-fab class="mat-raised-button">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-card-content>
+  <app-crud [data]="articleData" [title]="articleTitle" [columns]="articleColumns"
+            [createAction]=false
+            [readAction]=false
+            [updateAction]="false"
+            [deleteAction]=false>
+  </app-crud>
+</mat-card>
 <app-crud (create)="create()" (delete)="delete($event)" (read)="read($event)" (update)="update($event)"
           [columns]="columns" [data]="data" [title]="title">
 </app-crud>

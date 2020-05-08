@@ -1,14 +1,24 @@
+import {Article} from '../shared/article.model';
+
 export interface StockAlarm {
   id: string;
   description: string;
   provider?: string;
   warning?: number;
   critical?: number;
-  alarmArticle: AlarmArticle[];
+  stockAlarmArticle: StockAlarmArticle[];
 }
 
-export interface AlarmArticle {
-  articleId: number;
+export interface StockAlarmArticle {
+  article: Article;
+  warning: number;
+  critical: number;
+}
+
+export interface StockAlarmArticleSearch {
+  code: string;
+  description: string;
+  stock: number;
   warning: number;
   critical: number;
 }
@@ -18,6 +28,5 @@ export interface StockAlarmCreate {
   provider?: string;
   warning?: number;
   critical?: number;
-  alarmArticle: AlarmArticle[];
+  stockAlarmArticle: StockAlarmArticle[];
 }
-
