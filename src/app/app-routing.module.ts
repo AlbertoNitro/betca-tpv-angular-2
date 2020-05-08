@@ -25,6 +25,7 @@ import {TrackingComponent} from './home/ticket-tracking/tracking.component';
 import {ProfileComponent} from './home/profile/profile.component';
 import {StockManagementComponent} from './home/stock-management/stock-management.component';
 import {UsersRolesComponent} from './home/users-roles/users-roles.component';
+import {TagsComponent} from './home/tags/tags.component';
 
 const routes: Routes = [
   {path: 'home/tracking/:reference', pathMatch: 'prefix', component: TrackingComponent},
@@ -54,7 +55,8 @@ const routes: Routes = [
       {path: 'vat-management', component: VatManagementComponent},
       {path: 'profile', component: ProfileComponent},
       {path: 'stock-management', component: StockManagementComponent},
-      {path: 'users-roles', component: UsersRolesComponent}
+      {path: 'users-roles', component: UsersRolesComponent},
+      {path: 'tags', component: TagsComponent}
     ]
   }
 ];

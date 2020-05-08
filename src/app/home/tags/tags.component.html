@@ -1,0 +1,7 @@
+<mat-card>
+  <h3>All Tags</h3>
+  <div *ngIf="tag.description">{{tag.description}}</div>
+</mat-card>
+
+<app-crud (create)="create()" (read)="read($event)" (update)="update($event)"
+          [columns]="columns" [data]="tags" [deleteAction]="false" [title]="title"></app-crud>

@@ -17,4 +17,7 @@ export class TagService {
   readOne(description: string): Observable<Tag> {
     return this.httpService.get(AppEndpoints.TAGS + '/' + description);
   }
+  public create(tag: Tag): Observable<Tag> {
+    return this.httpService.post(AppEndpoints.TAGS, tag);
+  }
 }

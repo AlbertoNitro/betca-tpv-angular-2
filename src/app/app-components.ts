@@ -68,6 +68,10 @@ import {ChangePasswordDialogComponent} from './home/profile/dialog/change-passwo
 import {StockManagementTableComponent} from './home/stock-management/stock-management-table/stock-management-table.component';
 import {UsersRolesComponent} from './home/users-roles/users-roles.component';
 import {ChangeUserRoleDialogComponent} from './home/users-roles/dialog/change-user-role-dialog.component';
+import {TagCreateDialogComponent} from './home/tags/tag-create-dialog/tag-create-dialog.component';
+import {TagReadDialogComponent} from './home/tags/tag-read-dialog/tag-read-dialog.component';
+import {TagEditDialogComponent} from './home/tags/tag-edit-dialog/tag-edit-dialog.component';
+import {TagsComponent} from './home/tags/tags.component';
 
 export class AppComponents {
   static COMPONENTS = [
@@ -101,7 +105,8 @@ export class AppComponents {
     ProfileComponent,
     StockManagementComponent,
     StockManagementTableComponent,
-    UsersRolesComponent
+    UsersRolesComponent,
+    TagsComponent
   ];
 
   static DIALOGS = [
@@ -143,6 +148,9 @@ export class AppComponents {
     ChangeUserRoleDialogComponent,
     MessagesCreationDialogComponent,
     MessagesDetailDialogComponent,
-    MessagesUnreadDialogComponent
+    MessagesUnreadDialogComponent,
+    TagCreateDialogComponent,
+    TagReadDialogComponent,
+    TagEditDialogComponent
   ];
 }

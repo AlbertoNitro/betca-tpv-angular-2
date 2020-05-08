@@ -1,0 +1,14 @@
+.mat-nav-list .mat-list-item:hover {
+  background: white;
+}
+
+.custom-list {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border: 1px solid #eee;
+  padding: 0 20px;
+  border-radius: 5px;
+  cursor: text;
+  height: 47px;
+}
