@@ -10,14 +10,23 @@ export class TagService {
   constructor(private httpService: HttpService) {
   }
 
-  readAll(): Observable<Tag[]> {
+  public readAll(): Observable<Tag[]> {
     return this.httpService.get(AppEndpoints.TAGS);
   }
 
-  readOne(description: string): Observable<Tag> {
+  public readOne(description: string): Observable<Tag> {
     return this.httpService.get(AppEndpoints.TAGS + '/' + description);
   }
   public create(tag: Tag): Observable<Tag> {
     return this.httpService.post(AppEndpoints.TAGS, tag);
+  }
+  public print(tag: Tag): Observable<any> {
+    return this.httpService.pdf().get('/' + AppEndpoints.TAGS + '/' + tag.id + AppEndpoints.PRINT);
+  }
+  public delete(tag: Tag): Observable<void> {
+    return this.httpService.delete('/' + AppEndpoints.TAGS + '/' + tag.id);
+  }
+  public update(tag: Tag): Observable<void> {
+    return this.httpService.put(AppEndpoints.TAGS + '/' + tag.id, tag);
   }
 }
