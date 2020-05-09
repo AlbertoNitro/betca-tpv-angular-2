@@ -1,1 +1,43 @@
-<p>tag-edit-dialog works!</p>
+<h3 mat-dialog-title>Edit Tag</h3>
+<mat-dialog-content>
+  <form (ngSubmit)="update()">
+    <mat-form-field>
+      <label>
+        <input [(ngModel)]="tag.description" cdkFocusInitial class="form-control" matInput name="description"
+               placeholder="Description" required type="text"/>
+      </label>
+    </mat-form-field>
+    <br/>
+    <h3 mat-dialog-title>Add or remove articles to tag</h3>
+    <mat-nav-list>
+      <mat-list-item *ngFor="let article of articles">
+        <div class="custom-list">
+          <p>{{article.description}}</p>
+          <button (click)="addArticleToTag(article)" mat-button mat-icon-button matSuffix>
+            <mat-icon color="primary">add</mat-icon>
+          </button>
+        </div>
+      </mat-list-item>
+    </mat-nav-list>
+
+    <mat-nav-list>
+      <mat-list-item *ngFor="let article of tag.articles">
+        <div class="custom-list">
+          <p>{{article.description}}</p>
+          <button (click)="removeArticleFromTag(article)" mat-button mat-icon-button matSuffix>
+            <mat-icon color="warn">remove</mat-icon>
+          </button>
+        </div>
+      </mat-list-item>
+    </mat-nav-list>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+
+  <button mat-dialog-close mat-raised-button>Close</button>
+
+  <button (click)="update()" color="primary" mat-raised-button type="submit">
+    <mat-icon>local_tag</mat-icon>
+    <span>Update Tag</span>
+  </button>
+</mat-dialog-actions>

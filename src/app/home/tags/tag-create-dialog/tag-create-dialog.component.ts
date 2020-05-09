@@ -13,7 +13,7 @@ export class TagCreateDialogComponent implements OnInit {
 
   public tag: Tag = {id: null, description: null, articles: []};
   public articles: Array<Article> = [];
-  public submited: boolean;
+  public submitted: boolean;
   constructor(private dialog: MatDialog, private tagService: TagService,
               private message: MatSnackBar, private articleService: ArticleService) {
   }
@@ -22,6 +22,7 @@ export class TagCreateDialogComponent implements OnInit {
     this.articleService.readAll().subscribe((articles: Array<Article>) => {
       this.articles = articles;
     });
+    this.submitted = false;
   }
   public create() {
     this.tagService.create(this.tag).subscribe( () => {
