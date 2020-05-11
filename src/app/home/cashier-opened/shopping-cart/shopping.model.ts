@@ -1,8 +1,11 @@
+import {ShoppingState} from '../../shared/shopping.model';
+
 export class Shopping {
   amount: number;
   discount: number;
   total: number;
   committed: boolean;
+  shoppingState?: ShoppingState;
 
   constructor(public code: string, public description: string, public retailPrice: number) {
     this.amount = 1;

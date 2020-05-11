@@ -71,6 +71,7 @@ import {TagCreateDialogComponent} from './home/tags/tag-create-dialog/tag-create
 import {TagReadDialogComponent} from './home/tags/tag-read-dialog/tag-read-dialog.component';
 import {TagEditDialogComponent} from './home/tags/tag-edit-dialog/tag-edit-dialog.component';
 import {TagsComponent} from './home/tags/tags.component';
+import {TicketUpdateDialogComponent} from './home/tickets/ticket-update-dialog.component';
 
 export class AppComponents {
   static COMPONENTS = [
@@ -149,6 +150,7 @@ export class AppComponents {
     MessagesUnreadDialogComponent,
     TagCreateDialogComponent,
     TagReadDialogComponent,
-    TagEditDialogComponent
+    TagEditDialogComponent,
+    TicketUpdateDialogComponent
   ];
 }

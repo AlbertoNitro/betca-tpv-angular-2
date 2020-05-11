@@ -76,4 +76,4 @@
       <mat-icon>close</mat-icon>
     </button>
 </mat-card>
-<app-crud (read)="print($event)" (update)="update($event)" [columns]="columns" [data]="data" [title]="title"></app-crud>
+<app-crud (read)="print($event)" (update)="update($event)" [deleteAction]="false" [columns]="columns" [data]="data" [title]="title"></app-crud>

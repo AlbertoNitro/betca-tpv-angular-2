@@ -5,6 +5,7 @@ export interface Shopping {
   amount: number;
   discount?: number;
   shoppingState?: ShoppingState;
+  total?: number;
 }
 
 export enum ShoppingState {
