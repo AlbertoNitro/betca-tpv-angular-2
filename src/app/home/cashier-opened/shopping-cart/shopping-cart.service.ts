@@ -272,4 +272,12 @@ export class ShoppingCartService {
     this.synchronizeCartTotal();
   }
 
+  updateTicketDialogTotal(elemTotal) {
+    this.totalShoppingCart = elemTotal;
+  }
+
+  updateTicketDialogShopping(shopping: Shopping[]) {
+    this.shoppingCart = shopping;
+  }
+
 }

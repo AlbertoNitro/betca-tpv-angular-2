@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Ticket} from '../shared/ticket.model';
 import {TicketService} from '../shared/ticket.service';
 import { TicketSearch } from './ticket-search.model';
+import {TicketUpdateDialogComponent} from './ticket-update-dialog.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-tickets',
@@ -24,7 +26,7 @@ export class TicketsComponent implements OnInit {
   tagToeSearchBy: string;
   gifTicketReference: string;
 
-  constructor(private ticketService: TicketService) {
+  constructor(private ticketService: TicketService, private dialog: MatDialog) {
     this.ticket = {id: null, reference: null};
     this.data = null;
   }
@@ -37,7 +39,14 @@ export class TicketsComponent implements OnInit {
   }
 
   update(ticket: Ticket) {
-    // TODO
+    this.dialog.open(TicketUpdateDialogComponent,
+      {
+        width: '900px',
+        data: {
+          id: ticket.id
+        }
+      }
+    );
   }
 
   ngOnInit() {

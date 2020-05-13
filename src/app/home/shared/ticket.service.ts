@@ -6,6 +6,7 @@ import {HttpService} from '../../core/http.service';
 import {Ticket} from './ticket.model';
 import {TicketSearch} from '../tickets/ticket-search.model';
 import {ShoppingState} from './shopping.model';
+import {TicketUpdateModel} from './ticketUpdate.model';
 
 @Injectable()
 export class TicketService {
@@ -70,5 +71,9 @@ export class TicketService {
 
   getNotCommittedTicketsByTag(tag: string): Observable<Ticket[]> {
     return this.httpService.get(AppEndpoints.TICKETS + '/search/tag/' + tag);
+  }
+
+  update(id: string, ticketUpdate: TicketUpdateModel): Observable<Ticket> {
+    return this.httpService.patch(AppEndpoints.TICKETS + '/' + id, ticketUpdate);
   }
 }
