@@ -3,7 +3,7 @@
   <h3>ID: {{tag.id}}</h3>
   <p>Description: <strong>{{tag.description}}</strong></p>
   <p>Affected Articles:</p>
-  <ul *ngFor='let article of tag.articles'>
+  <ul *ngFor='let article of tag.articleList'>
     <li>{{article.code}}</li>
   </ul>
 </mat-dialog-content>

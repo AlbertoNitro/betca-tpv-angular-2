@@ -21,7 +21,7 @@
     </mat-nav-list>
 
     <mat-nav-list>
-      <mat-list-item *ngFor="let article of tag.articles">
+      <mat-list-item *ngFor="let article of tag.articleList">
         <div class="custom-list">
           <p>{{article.description}}</p>
           <button (click)="removeArticleFromTag(article)" mat-button mat-icon-button matSuffix>

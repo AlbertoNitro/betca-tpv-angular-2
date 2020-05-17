@@ -18,7 +18,7 @@ export class TagService {
     return this.httpService.get(AppEndpoints.TAGS + '/' + description);
   }
   public create(tag: Tag): Observable<Tag> {
-    return this.httpService.post('/' + AppEndpoints.TAGS, tag);
+    return this.httpService.post(AppEndpoints.TAGS, tag);
   }
   public print(tag: Tag): Observable<any> {
     return this.httpService.pdf().get('/' + AppEndpoints.TAGS + '/' + tag.id + AppEndpoints.PRINT);
