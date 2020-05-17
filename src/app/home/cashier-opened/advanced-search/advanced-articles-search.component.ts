@@ -85,7 +85,7 @@ export class AdvancedArticlesSearchComponent {
       this.tagService.readOne(this.tagDescription).subscribe(
         data => {
           this.tag = data;
-          this.data = data.articles;
+          this.data = data.articleList;
           console.log(this.tag);
         }
       );
