@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {Tag} from '../../cashier-opened/advanced-search/tag.model';
+import {Tag} from '../../shared/tag.model';
 import {Article} from '../../shared/article.model';
 import {MatDialog, MatSnackBar} from '@angular/material';
-import {TagService} from '../../cashier-opened/advanced-search/tag.service';
+import {TagService} from '../../shared/tag.service';
 import {ArticleService} from '../../shared/article.service';
 
 @Component({

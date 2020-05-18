@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Tag} from '../cashier-opened/advanced-search/tag.model';
+import {Tag} from '../shared/tag.model';
 import {MatDialog} from '@angular/material';
-import {TagService} from '../cashier-opened/advanced-search/tag.service';
+import {TagService} from '../shared/tag.service';
 import {TagCreateDialogComponent} from './tag-create-dialog/tag-create-dialog.component';
 import {TagReadDialogComponent} from './tag-read-dialog/tag-read-dialog.component';
 import {TagEditDialogComponent} from './tag-edit-dialog/tag-edit-dialog.component';

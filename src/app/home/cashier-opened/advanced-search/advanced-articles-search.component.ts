@@ -5,8 +5,8 @@ import {ArticleSearch} from './article-advanced-search.model';
 import {Provider} from '../../shared/provider.model';
 import {ShoppingCartService} from '../shopping-cart/shopping-cart.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {Tag} from './tag.model';
-import {TagService} from './tag.service';
+import {Tag} from '../../shared/tag.model';
+import {TagService} from '../../shared/tag.service';
 
 @Component({
   selector: 'app-advanced-articles-search',
@@ -85,7 +85,8 @@ export class AdvancedArticlesSearchComponent {
       this.tagService.readOne(this.tagDescription).subscribe(
         data => {
           this.tag = data;
-          this.data = data.articleList;
+          this.data.push(this.tag.articleList.values()[Symbol.iterator].arguments);
+
           console.log(this.tag);
         }
       );
