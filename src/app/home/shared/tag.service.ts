@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {HttpService} from '../../../core/http.service';
+import {HttpService} from '../../core/http.service';
 import {Observable} from 'rxjs';
-import {AppEndpoints} from '../../../app-endpoints';
+import {AppEndpoints} from '../../app-endpoints';
 import {Tag} from './tag.model';
 
 @Injectable()

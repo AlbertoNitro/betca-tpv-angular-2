@@ -1,7 +1,7 @@
 import {Component, Inject} from '@angular/core';
-import {Tag} from '../../cashier-opened/advanced-search/tag.model';
+import {Tag} from '../../shared/tag.model';
 import {MAT_DIALOG_DATA, MatDialog} from '@angular/material';
-import {TagService} from '../../cashier-opened/advanced-search/tag.service';
+import {TagService} from '../../shared/tag.service';
 
 
 @Component({
