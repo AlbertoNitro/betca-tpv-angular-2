@@ -13,7 +13,6 @@ export class TagService {
   public readAll(): Observable<Tag[]> {
     return this.httpService.get(AppEndpoints.TAGS);
   }
-
   public readOne(description: string): Observable<Tag> {
     return this.httpService.get(AppEndpoints.TAGS + '/' + description);
   }
@@ -21,7 +20,7 @@ export class TagService {
     return this.httpService.post(AppEndpoints.TAGS, tag);
   }
   public print(tag: Tag): Observable<any> {
-    return this.httpService.pdf().get('/' + AppEndpoints.TAGS + '/' + tag.id + AppEndpoints.PRINT);
+    return this.httpService.pdf().get(AppEndpoints.TAGS + '/' + tag.id + AppEndpoints.PRINT);
   }
   public delete(tag: Tag): Observable<void> {
     return this.httpService.delete('/' + AppEndpoints.TAGS + '/' + tag.id);

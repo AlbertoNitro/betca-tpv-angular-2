@@ -11,12 +11,12 @@ import {take} from 'rxjs/operators';
 @Component({
   templateUrl: 'tags.component.html'
 })
-export class TagsComponent implements  OnInit {
+export class TagsComponent implements OnInit {
 
   public tag: Tag;
   public title: string;
   public columns: Array<string>;
-  public dataSource: Array<Tag>;
+  public dataSource: Tag[];
 
   constructor(private dialog: MatDialog, private tagService: TagService) {
     this.tag = {description: null};
@@ -27,21 +27,20 @@ export class TagsComponent implements  OnInit {
     this.columns = ['description'];
   }
 
-  public  show(): void {
+  public show(): void {
     this.tagService.readAll().subscribe(
-      data => this.dataSource = data
-    );
+      data => {this.dataSource = data; });
   }
 
   public create(): void {
     this.dialog.open(TagCreateDialogComponent)
-      .afterClosed().pipe(take (1)).subscribe(
+      .afterClosed().pipe(take(1)).subscribe(
       () => {
         this.show();
       });
   }
   public read(tag: Tag): void {
-    this.dialog.open(TagReadDialogComponent, { data: { obj: tag }});
+    this.dialog.open(TagReadDialogComponent, {data: {obj: tag}});
   }
   public update(tag: Tag): void {
     this.dialog.open(TagEditDialogComponent,

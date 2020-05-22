@@ -9,11 +9,11 @@ import {TagService} from '../../shared/tag.service';
   templateUrl: './tag-read-dialog.component.html',
   styles: []
 })
-export class TagReadDialogComponent  {
+export class TagReadDialogComponent {
   public tag: Tag;
 
   constructor(private dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public data: any, private tagService: TagService) {
-    this.tag = this.data.tag_object;
+    this.tag = this.data.obj;
   }
 
   showTag() {
