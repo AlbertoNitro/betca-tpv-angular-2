@@ -11,7 +11,7 @@ import {ArticleService} from '../../shared/article.service';
 })
 export class TagEditDialogComponent implements OnInit {
 
-  public tag: Tag = {id: null, description: null, articleList: []};
+  public tag: Tag = {id: null, description: null, articles: []};
   public articles: Array<Article> = [];
   public submitted: boolean;
   constructor(private dialog: MatDialog, private tagService: TagService,
@@ -35,11 +35,11 @@ export class TagEditDialogComponent implements OnInit {
     });
   }
   public addArticleToTag(article: Article): void {
-    this.tag.articleList.push(article);
+    this.tag.articles.push(article);
     this.articles = this.articles.filter( a => a.code !== article.code);
   }
   public removeArticleFromTag(article: Article): void {
     this.articles.push(article);
-    this.tag.articleList = this.tag.articleList.filter(a => a.code !== article.code);
+    this.tag.articles = this.tag.articles.filter(a => a.code !== article.code);
   }
 }

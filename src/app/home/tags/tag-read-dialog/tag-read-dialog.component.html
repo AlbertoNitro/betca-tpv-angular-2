@@ -3,7 +3,7 @@
   <h3>ID: {{tag.id}}</h3>
   <p>Description: <strong>{{tag.description}}</strong></p>
   <p>Linked Articles:</p>
-  <ul *ngFor='let article of tag.articleList'>
+  <ul *ngFor='let article of tag.articles'>
     <li>{{article.description}}</li>
   </ul>
 </mat-dialog-content>
