@@ -3,7 +3,7 @@
   <form (ngSubmit)="update()">
     <mat-form-field>
       <label>
-        <input [(ngModel)]="tag.description" cdkFocusInitial class="form-control" matInput name="description"
+        <input [(ngModel)]=tag.description cdkFocusInitial class="form-control" matInput name="description"
                placeholder="Description" required type="text"/>
       </label>
     </mat-form-field>
@@ -21,7 +21,7 @@
     </mat-nav-list>
 
     <mat-nav-list>
-      <mat-list-item *ngFor="let article of tag.articleList">
+      <mat-list-item *ngFor="let article of tag2.articleList">
         <div class="custom-list">
           <p>{{article.description}}</p>
           <button (click)="removeArticleFromTag(article)" mat-button mat-icon-button matSuffix>
