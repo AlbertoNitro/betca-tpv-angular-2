@@ -23,9 +23,9 @@ export class TagService {
     return this.httpService.pdf().get(AppEndpoints.TAGS + '/' + tag.id + AppEndpoints.PRINT);
   }
   public delete(tag: Tag): Observable<void> {
-    return this.httpService.delete('/' + AppEndpoints.TAGS + '/' + tag.id);
+    return this.httpService.delete(AppEndpoints.TAGS + '/' + tag.id);
   }
-  public update(tag: Tag): Observable<void> {
-    return this.httpService.put(AppEndpoints.TAGS + '/' + tag.description, tag);
+  public update(description: string, tag: Tag): Observable<Tag> {
+    return this.httpService.put(AppEndpoints.TAGS + '/' + description, tag);
   }
 }
