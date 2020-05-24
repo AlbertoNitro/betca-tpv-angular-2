@@ -28,7 +28,6 @@ export class TagEditDialogComponent implements OnInit {
     this.tag2.id = this.data.obj.id;
     this.tag2.description = this.data.obj.description;
     this.tag2.articleList = this.data.obj.articles;
-    console.log(this.tag2.articleList);
     this.articleService.readAll().subscribe((articles: Array<Article>) => {
       this.articles = articles;
     });
