@@ -22,6 +22,4 @@ export class TagReadDialogComponent {
       () => this.dialog.closeAll(),
       () => this.dialog.closeAll());
   }
-
-
 }
