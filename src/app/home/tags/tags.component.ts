@@ -44,15 +44,10 @@ export class TagsComponent implements OnInit {
   }
   public update(tag: Tag): void {
     this.dialog.open(TagEditDialogComponent,
-      {
-        data: {
-          obj: tag
-        }
-      }).afterClosed().subscribe(
-      () => {
-        this.show();
-      }
-    );
+      {data: {obj: tag}}).afterClosed().subscribe(
+        () => {
+          this.show();
+        });
   }
   public delete(tag: Tag): void {
     this.dialog.open(CancelYesDialogComponent).afterClosed().pipe(take(1)).subscribe((shouldDelete: boolean) => {
