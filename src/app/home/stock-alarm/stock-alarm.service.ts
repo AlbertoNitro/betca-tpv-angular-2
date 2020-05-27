@@ -21,8 +21,8 @@ export class StockAlarmService {
     return this.httpService.post(AppEndpoints.STOCK_ALARM, stockAlarmCreate);
   }
 
-  update(stockAlarm: StockAlarm): Observable<StockAlarmCreate> {
-    return this.httpService.put(AppEndpoints.STOCK_ALARM + '/' + stockAlarm.id, stockAlarm);
+  update(id: string, stockAlarm: StockAlarm): Observable<StockAlarm> {
+    return this.httpService.put(AppEndpoints.STOCK_ALARM + '/' + id, stockAlarm);
   }
 
   delete(stockAlarm: StockAlarm): Observable<StockAlarm> {

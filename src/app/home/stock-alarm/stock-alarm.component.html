@@ -18,9 +18,9 @@
   </mat-card-content>
   <app-crud [data]="articleData" [title]="articleTitle" [columns]="articleColumns"
             [createAction]=false
+            [deleteAction]=false
             [readAction]=false
-            [updateAction]="false"
-            [deleteAction]=false>
+            [updateAction]="false">
   </app-crud>
 </mat-card>
 <app-crud (create)="create()" (delete)="delete($event)" (read)="read($event)" (update)="update($event)"

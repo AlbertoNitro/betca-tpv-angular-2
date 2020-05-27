@@ -4,53 +4,49 @@
   <mat-card-content>
     <form [formGroup]="stockAlarmFrom">
       <mat-form-field>
-        <input formControlName="description" matInput placeholder="Description"
-               required type="text"/>
+        <input formControlName="description" matInput
+               placeholder="Description" required type="text"/>
       </mat-form-field>
       <app-providers-dropdown (providerOut)="getProvider($event)"
                               [providerIn]="stockAlarmFrom.controls.provider"></app-providers-dropdown>
       <mat-form-field>
-        <input formControlName="warning" matInput placeholder="Warning"
-               type="number"/>
+        <input formControlName="warning" matInput
+               placeholder="Warning" type="number"/>
       </mat-form-field>
       <mat-form-field>
-        <input formControlName="critical" matInput placeholder="Critical"
-               type="number"/>
+        <input formControlName="critical" matInput
+               placeholder="Critical" type="number"/>
       </mat-form-field>
-
       <div formArrayName="stockAlarmArticle">
         <h3>StockAlarm Articles</h3>
         <div *ngFor="let stockAlarmArticle of stockAlarmArticles.controls; let i=index">
           <div [formGroupName]="i">
           <mat-form-field>
-            <input type="text" formControlName="articleId" matInput placeholder="ArticleID"
-                   [matAutocomplete]="auto">
+            <input [matAutocomplete]="auto" formControlName="articleId" matInput
+                   placeholder="ArticleID" type="text">
           </mat-form-field>
             <mat-autocomplete #auto="matAutocomplete">
               <mat-option *ngFor="let article of articles" [value]="article.code">{{article.description}}</mat-option>
             </mat-autocomplete>
-            <mat-form-field>
-            <input type="number" formControlName="warning" matInput placeholder="Article Warning">
+          <mat-form-field>
+            <input formControlName="warning" matInput placeholder="Article Warning" type="number" >
           </mat-form-field>
           <mat-form-field>
-            <input type="number" formControlName="critical" matInput placeholder="Article Critical">
+            <input formControlName="critical" matInput placeholder="Article Critical" type="number" >
           </mat-form-field>
-            <button (click)="removeStockAlarmArticle(i)" color="primary" mat-button>Remove Article</button>
+            <button (click)="removeStockAlarmArticle(i)" [disabled]="i===stockAlarmArticles.length-1" color="primary" mat-button>Remove Article
+            </button>
           </div>
         </div>
       </div>
-        <button (click)="addStockAlarmArticle()" color="primary" mat-button [disabled]="!stockAlarmFrom.valid">
-          Add Article</button>
+        <button (click)="addStockAlarmArticle()" [disabled]="!stockAlarmArticles.valid" color="primary" mat-button >Add More Articles
+        </button>
     </form>
   </mat-card-content>
 </mat-card>
-
-<p>
-  Form Value: {{ stockAlarmFrom.value | json }}
-</p>
-
 <mat-dialog-actions>
   <button mat-dialog-close mat-raised-button>Cancel</button>
   <button (click)="createOrUpdate()" [mat-dialog-close]="true" [disabled]="!stockAlarmFrom.valid"
-          mat-raised-button color="primary">{{dialogMode}}</button>
+          mat-raised-button color="primary">{{dialogMode}}
+  </button>
 </mat-dialog-actions>
