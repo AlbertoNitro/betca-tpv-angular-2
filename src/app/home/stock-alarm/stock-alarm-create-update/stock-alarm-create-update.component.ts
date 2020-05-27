@@ -7,12 +7,12 @@ import {Article} from '../../shared/article.model';
 import {Provider} from '../../shared/provider.model';
 import {StockAlarm} from '../stock-alarm.model';
 
-
 @Component({
   selector: 'app-stock-alarm-create-dialog',
   templateUrl: './stock-alarm-create-update.component.html',
   styleUrls: ['./stock-alarm-create-update.component.css']
 })
+
 export class StockAlarmCreateUpdateComponent implements OnInit {
 
   articles: Article[];
@@ -20,18 +20,18 @@ export class StockAlarmCreateUpdateComponent implements OnInit {
   stockAlarmFrom: FormGroup;
   dialogMode: string;
 
-
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialog: MatDialog, private fb: FormBuilder,
               public stockAlarmService: StockAlarmService, public articleService: ArticleService) {
     this.stockAlarm = data.stockAlarm;
     this.dialogMode = data.dialogMode;
   }
+
   ngOnInit() {
     this.stockAlarmFrom = this.fb.group({
       description: [this.stockAlarm.description, [Validators.required]],
-      provider: [this.stockAlarm.provider, [Validators.min(0)]],
+      provider: [this.stockAlarm.provider, [Validators.required]],
       warning: [this.stockAlarm.warning, [Validators.min(0)]],
-      critical: [this.stockAlarm.critical],
+      critical: [this.stockAlarm.critical, [Validators.min(0)]],
       stockAlarmArticle: this.fb.array([
         this.fb.group({
           articleId: [null, [Validators.required]],
@@ -39,7 +39,17 @@ export class StockAlarmCreateUpdateComponent implements OnInit {
           critical: [null, [Validators.required, Validators.min(0)]]
         })
       ])
-      });
+    });
+    if (this.dialogMode === 'update') {
+        this.stockAlarm.stockAlarmArticle.map((item, index) => {
+          this.addStockAlarmArticle();
+          this.stockAlarmArticles.at(index).patchValue({
+            articleId: item.article.code,
+            warning: item.warning,
+            critical: item.critical
+          });
+        });
+    }
   }
 
   createOrUpdate() {
@@ -49,7 +59,6 @@ export class StockAlarmCreateUpdateComponent implements OnInit {
   }
 
   create() {
-    console.log(this.stockAlarmFrom.value);
     this.stockAlarmService.create(this.stockAlarmFrom.value).subscribe(
       result => {
         console.log(result);
@@ -58,7 +67,7 @@ export class StockAlarmCreateUpdateComponent implements OnInit {
   }
 
   update() {
-    this.stockAlarmService.update(this.stockAlarmFrom.value).subscribe(
+    this.stockAlarmService.update(this.stockAlarm.id, this.stockAlarmFrom.value).subscribe(
       result => {
         console.log(result);
       }

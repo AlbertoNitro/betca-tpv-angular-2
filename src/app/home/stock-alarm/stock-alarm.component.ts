@@ -11,6 +11,7 @@ import {CancelYesDialogComponent} from '../../core/cancel-yes-dialog.component';
   templateUrl: './stock-alarm.component.html',
   styleUrls: ['./stock-alarm.component.css']
 })
+
 export class StockAlarmComponent implements OnInit {
 
   title = 'Stock Alarm Management';
@@ -99,7 +100,6 @@ export class StockAlarmComponent implements OnInit {
   searchArticle() {
     this.stockAlarmService.searchArticle(this.searchArticleState).subscribe(result => {
       this.articleData = result;
-      console.log(result);
     });
   }
 
