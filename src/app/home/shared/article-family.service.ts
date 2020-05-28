@@ -19,9 +19,8 @@ export class ArticlesFamilyService {
     return this.httpService.get(AppEndpoints.ARTICLES_FAMILY);
   }
 
-  search(reference: string, familyType: string): Observable<ArticlesFamily[]> {
+  search(reference: string): Observable<ArticlesFamily[]> {
     this.httpService.param('reference', reference);
-    this.httpService.param('familyType', familyType);
     return this.httpService.get(AppEndpoints.ARTICLES_FAMILY);
   }
 
