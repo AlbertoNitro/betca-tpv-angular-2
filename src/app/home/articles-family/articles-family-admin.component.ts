@@ -22,12 +22,12 @@ export class ArticlesFamilyAdminComponent {
   }
 
   search() {
-    if (this.articleFamily.reference == null && this.articleFamily.familyType == null) {
+    if (this.articleFamily.reference == null) {
       this.articleFamilyService.readAll().subscribe(
         data => this.data = data
       );
     } else {
-      this.articleFamilyService.search(this.articleFamily.reference, this.articleFamily.familyType).subscribe(
+      this.articleFamilyService.search(this.articleFamily.reference).subscribe(
         data => this.data = data
       );
     }
