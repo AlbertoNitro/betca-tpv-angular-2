@@ -30,6 +30,7 @@ export class ArticlesFamilyAdminComponent {
       this.articleFamilyService.search(this.articleFamily.reference).subscribe(
         data => this.data = data
       );
+      
     }
   }
 
