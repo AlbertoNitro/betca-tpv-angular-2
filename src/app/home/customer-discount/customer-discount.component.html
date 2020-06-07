@@ -38,15 +38,10 @@
       </ng-container>
 
 
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: columns;"></mat-row>
 
     </mat-table>
 
   </mat-card-content>
 </mat-card>
-
-<!--Default: [createAction]="true" [readAction]="true" [updateAction]="true" [deleteAction]="true"-->
-<app-crud (create)="create()" (read)="read($event)" (delete)="delete($event)" (update)="update($event)"
-          [columns]="columns" [data]="data" [title]="title">
-</app-crud>

@@ -13,9 +13,7 @@ export class CustomerDiscountComponent implements OnInit {
 
   title = 'Customer Discount';
   data: CustomerDiscount[];
-  columns: ['mobile', 'discount', 'actions'];
-  isEdit: boolean;
-  displayedColumns: string[] = ['mobile', 'discount', 'actions'];
+  columns: string[] = ['mobile', 'discount', 'actions'];
 
   constructor(private customerDiscountService: CustomerDiscountService, private snackBar: MatSnackBar,
               private dialog: MatDialog) {
@@ -28,12 +26,9 @@ export class CustomerDiscountComponent implements OnInit {
   }
 
   create() {
-    this.isEdit = false;
-    this.dialog.open(CustomerDiscountCreationDialogComponent,
-      {
-        width: '500px',
+    this.dialog.open(CustomerDiscountCreationDialogComponent, {
         data: {
-          isEdit: this.isEdit
+          update: false
         }
       }
     ).afterClosed().subscribe(
