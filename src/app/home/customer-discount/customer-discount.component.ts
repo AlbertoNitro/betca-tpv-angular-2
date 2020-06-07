@@ -1,43 +1,34 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CustomerDiscount} from './customer-discount.model';
 import {CustomerDiscountService} from './customer-discount.service';
 import {MatDialog, MatSnackBar} from '@angular/material';
 import {CustomerDiscountCreationDialogComponent} from './customer-discount-creation-dialog-component';
 
 @Component({
-  templateUrl: 'customer-discount.component.html',
+  templateUrl: `customer-discount.component.html`,
   providers: [CustomerDiscountService]
 })
 
-export class CustomerDiscountComponent {
-  title: 'Customer Discount';
-  columns: ['Mobile', 'Discount'];
+export class CustomerDiscountComponent implements OnInit {
+
+  title = 'Customer Discount';
   data: CustomerDiscount[];
-  isEdit: boolean;
-  displayedColumns: string[] = ['mobile', 'discount'];
+  columns: string[] = ['mobile', 'discount', 'actions'];
 
   constructor(private customerDiscountService: CustomerDiscountService, private snackBar: MatSnackBar,
               private dialog: MatDialog) {
+  }
+
+  ngOnInit() {
     this.customerDiscountService.readAll().subscribe(
       data => this.data = data
     );
   }
 
-  getAllDiscounts() {
-    this.customerDiscountService.readAll().subscribe(
-      data => {
-        this.data = data;
-      }
-    );
-  }
-
   create() {
-    this.isEdit = false;
-    this.dialog.open(CustomerDiscountCreationDialogComponent,
-      {
-        width: '500px',
+    this.dialog.open(CustomerDiscountCreationDialogComponent, {
         data: {
-          isEdit: this.isEdit
+          update: false
         }
       }
     ).afterClosed().subscribe(
@@ -49,21 +40,20 @@ export class CustomerDiscountComponent {
     );
   }
 
-  delete($event: CustomerDiscount) {
-    this.customerDiscountService.delete($event).subscribe(
+  delete(customerDiscount: CustomerDiscount) {
+    this.customerDiscountService.delete(customerDiscount).subscribe(
       () => this.snackBar.open('Delete ok', null, {duration: 2000})
     );
   }
 
-  read($event: CustomerDiscount) {
-    this.snackBar.open('Minimum purchase is ' + $event.minimumPurchase);
+  read(customerDiscount: CustomerDiscount) {
+    this.snackBar.open('Minimum purchase is ' + customerDiscount.minimumPurchase);
   }
 
-  update($event: CustomerDiscount) {
-    this.customerDiscountService.update($event.id, $event).subscribe(
+  update(customerDiscount: CustomerDiscount) {
+    this.customerDiscountService.update(customerDiscount.id, customerDiscount).subscribe(
       () => this.snackBar.open('Update ok', null, {duration: 2000})
     );
   }
 
 }
-
