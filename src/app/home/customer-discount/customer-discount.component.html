@@ -10,7 +10,7 @@
 
       <ng-container matColumnDef="mobile">
         <mat-header-cell *matHeaderCellDef>MOBILE</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{ element.mobile }}</mat-cell>
+        <mat-cell *matCellDef="let element">{{ element.user.mobile }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="discount">
@@ -28,7 +28,7 @@
           <button (click)="read(item)" mat-button mat-icon-button matSuffix>
             <mat-icon color="warn">visibility</mat-icon>
           </button>
-          <button (click)="update(item)" mat-button mat-icon-button matSuffix>
+          <button (click)="updateCustomerDiscount(item)" mat-button mat-icon-button matSuffix>
             <mat-icon color="warn">mode_edit</mat-icon>
           </button>
           <button (click)="delete(item)" mat-button mat-icon-button matSuffix>

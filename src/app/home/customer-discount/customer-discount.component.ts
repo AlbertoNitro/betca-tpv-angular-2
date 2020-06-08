@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {CustomerDiscount} from './customer-discount.model';
 import {CustomerDiscountService} from './customer-discount.service';
 import {MatDialog, MatSnackBar} from '@angular/material';
-import {CustomerDiscountCreationDialogComponent} from './customer-discount-creation-dialog-component';
+import {CustomerDiscountCreationDialogComponent} from './customer-discount-creation-dialog.component';
 
 @Component({
   templateUrl: `customer-discount.component.html`,
@@ -21,7 +21,9 @@ export class CustomerDiscountComponent implements OnInit {
 
   ngOnInit() {
     this.customerDiscountService.readAll().subscribe(
-      data => this.data = data
+      data => {
+        this.data = data;
+      }
     );
   }
 
@@ -50,7 +52,7 @@ export class CustomerDiscountComponent implements OnInit {
     this.snackBar.open('Minimum purchase is ' + customerDiscount.minimumPurchase);
   }
 
-  update(customerDiscount: CustomerDiscount) {
+  updateCustomerDiscount(customerDiscount: CustomerDiscount) {
     this.customerDiscountService.update(customerDiscount.id, customerDiscount).subscribe(
       () => this.snackBar.open('Update ok', null, {duration: 2000})
     );

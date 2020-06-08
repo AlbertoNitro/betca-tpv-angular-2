@@ -12,7 +12,7 @@ import {CashierClosureDialogComponent} from './home/cashier-opened/cashier-closu
 import {CheckOutDialogComponent} from './home/cashier-opened/shopping-cart/check-out-dialog.component';
 import {CashierClosureSearchComponent} from './home/cashier-opened/cashier-closure/search/cashier-closure-search.component';
 import {CustomerDiscountComponent} from './home/customer-discount/customer-discount.component';
-import {CustomerDiscountCreationDialogComponent} from './home/customer-discount/customer-discount-creation-dialog-component';
+import {CustomerDiscountCreationDialogComponent} from './home/customer-discount/customer-discount-creation-dialog.component';
 import {ArticlesAdminComponent} from './home/articles/articles-admin.component';
 import {ArticlesFamilyAdminComponent} from './home/articles-family/articles-family-admin.component';
 import {VouchersComponent} from './home/cashier-opened/shopping-cart/vouchers/vouchers.component';
