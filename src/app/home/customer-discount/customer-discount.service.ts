@@ -15,7 +15,7 @@ export class CustomerDiscountService {
   }
 
   create(customerDiscount: CustomerDiscount): Observable<CustomerDiscount> {
-    return this.httpService.successful().post(AppEndpoints.CUSTOMER_DISCOUNTS, customerDiscount);
+    return this.httpService.post(AppEndpoints.CUSTOMER_DISCOUNTS, customerDiscount);
   }
 
   readAll(): Observable<CustomerDiscount[]> {
@@ -23,7 +23,7 @@ export class CustomerDiscountService {
   }
 
   update(id: string, customerDiscount: CustomerDiscount): Observable<CustomerDiscount> {
-    return this.httpService.put(AppEndpoints.CUSTOMER_DISCOUNTS + '/' + id, customerDiscount);
+    return this.httpService.put(AppEndpoints.CUSTOMER_DISCOUNTS + '/' + customerDiscount.id, customerDiscount);
   }
 
   delete(customerDiscount: CustomerDiscount): Observable<void> {
