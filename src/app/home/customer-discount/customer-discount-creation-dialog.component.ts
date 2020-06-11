@@ -24,7 +24,7 @@ export class CustomerDiscountCreationDialogComponent {
               private snackBar: MatSnackBar,
               private customerDiscountService: CustomerDiscountService) {
     this.update = data.update;
-    if (this.update) {
+    if (data.update) {
       this.customerDiscountService.readOne(data.mobile).subscribe(
         customerDiscount => {
           this.newCustomerDiscount = customerDiscount;
@@ -49,30 +49,16 @@ export class CustomerDiscountCreationDialogComponent {
 
   updateCustomerDiscount() {
     this.customerDiscountService.update(this.newCustomerDiscount.mobile, this.newCustomerDiscount).subscribe(
-      () => this.dialog.closeAll()
-      , error => this.errorControl(error.error)
+      (data) => {
+        this.newCustomerDiscount = data;
+        this.dialog.closeAll();
+      }
+       , () => this.snackBar.open('Ups, something bad happened.', null, {
+        duration: 2000,
+      })
       , () => this.snackBar.open('Customer discount updated successfully', null, {
         duration: 2000,
       })
     );
   }
-
-  errorControl(error: string) {
-    let messageError;
-    switch (error) {
-      case 'ConflictException':
-        messageError = 'Customer discount with this mobile already exists';
-        break;
-      case 'MethodArgumentNotValidException':
-        messageError = 'The customer discount format is incorrect';
-        break;
-      default:
-        messageError = 'Ups, something bad happened';
-        break;
-    }
-    this.snackBar.open(messageError, null, {
-      duration: 2000,
-    });
-  }
-
 }
