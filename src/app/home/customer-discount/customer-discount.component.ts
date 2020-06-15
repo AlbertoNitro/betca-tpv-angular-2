@@ -3,6 +3,8 @@ import {CustomerDiscount} from './customer-discount.model';
 import {CustomerDiscountService} from './customer-discount.service';
 import {MatDialog, MatSnackBar} from '@angular/material';
 import {CustomerDiscountCreationDialogComponent} from './customer-discount-creation-dialog.component';
+import {CancelYesDialogComponent} from '../../core/cancel-yes-dialog.component';
+
 
 @Component({
   templateUrl: `customer-discount.component.html`,
@@ -11,13 +13,22 @@ import {CustomerDiscountCreationDialogComponent} from './customer-discount-creat
 
 export class CustomerDiscountComponent implements OnInit {
 
+  customerDiscount: CustomerDiscount;
   title = 'Customer Discount';
   data: CustomerDiscount[];
   columns: string[] = ['mobile', 'discount', 'actions'];
+  id: string;
+  flag: string;
 
   constructor(private customerDiscountService: CustomerDiscountService, private snackBar: MatSnackBar,
               private dialog: MatDialog) {
+    this.customerDiscount = {
+      id: null, discount: null, minimumPurchase: null,
+      mobile: null, registrationDate: null, description: null
+    };
+    this.data = null;
   }
+
 
   ngOnInit() {
     this.customerDiscountService.readAll().subscribe(
@@ -30,7 +41,7 @@ export class CustomerDiscountComponent implements OnInit {
   create() {
     this.dialog.open(CustomerDiscountCreationDialogComponent, {
         data: {
-          update: false
+          flag: false
         }
       }
     ).afterClosed().subscribe(
@@ -42,20 +53,47 @@ export class CustomerDiscountComponent implements OnInit {
     );
   }
 
-  delete(customerDiscount: CustomerDiscount) {
-    this.customerDiscountService.delete(customerDiscount).subscribe(
-      () => this.snackBar.open('Delete ok', null, {duration: 2000})
-    );
-  }
-
   read(customerDiscount: CustomerDiscount) {
     this.snackBar.open('Minimum purchase is ' + customerDiscount.minimumPurchase);
   }
 
-  updateCustomerDiscount(customerDiscount: CustomerDiscount) {
-    this.customerDiscountService.update(customerDiscount.id, customerDiscount).subscribe(
-      () => this.snackBar.open('Update ok', null, {duration: 2000})
-    );
+  resetSearch() {
+    this.customerDiscount = {
+      id: null, discount: null, minimumPurchase: null,
+      mobile: null, registrationDate: null, description: null
+    };
   }
 
+  update(customerDiscount: CustomerDiscount) {
+    this.dialog.open(CustomerDiscountCreationDialogComponent, {
+      data: {
+        flag: true,
+        id: customerDiscount.id,
+        obj: customerDiscount
+      }
+    }).afterClosed().subscribe(
+      result => {
+        this.customerDiscountService.readAll().subscribe(
+          data => this.data = data
+        );
+      });
+  }
+
+  delete(customerDiscount: CustomerDiscount) {
+    this.dialog.open(CancelYesDialogComponent).afterClosed().subscribe(
+      result => {
+        if (result) {
+          this.customerDiscountService.delete(customerDiscount).subscribe(
+            () => this.snackBar.open('Discount deleted successfully', null, {
+              duration: 2000,
+            })
+            , () => this.snackBar.open('Something bad happened', null, {
+              duration: 2000,
+            })
+          );
+        }
+      }
+    );
+  }
 }
+

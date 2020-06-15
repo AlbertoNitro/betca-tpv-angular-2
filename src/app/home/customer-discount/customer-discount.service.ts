@@ -10,7 +10,7 @@ export class CustomerDiscountService {
   constructor(private httpService: HttpService) {
   }
 
-  readOne(mobile: string): Observable<CustomerDiscount> {
+  findByUserMobile(mobile: string): Observable<CustomerDiscount> {
     return this.httpService.get(AppEndpoints.CUSTOMER_DISCOUNTS + '/' + mobile);
   }
 
@@ -22,12 +22,15 @@ export class CustomerDiscountService {
     return this.httpService.get(AppEndpoints.CUSTOMER_DISCOUNTS);
   }
 
-  update(mobile: string, customerDiscount: CustomerDiscount): Observable<CustomerDiscount> {
-    return this.httpService.put(AppEndpoints.CUSTOMER_DISCOUNTS + '/' + customerDiscount.mobile, customerDiscount);
+  update(id: string, customerDiscount: CustomerDiscount): Observable<CustomerDiscount> {
+    return this.httpService.put(AppEndpoints.CUSTOMER_DISCOUNTS + '/' + id, customerDiscount);
   }
 
   delete(customerDiscount: CustomerDiscount): Observable<void> {
     return this.httpService.delete(AppEndpoints.CUSTOMER_DISCOUNTS + '/' + customerDiscount.id);
   }
 
+  readOne(id: string): Observable<CustomerDiscount> {
+    return this.httpService.get(AppEndpoints.CUSTOMER_DISCOUNTS + '/' + id);
+  }
 }
