@@ -1,0 +1,22 @@
+<h3 mat-dialog-title>Customer Discount</h3>
+<mat-dialog-content>
+  <mat-form-field>
+    <input [(ngModel)]="customerDiscount.discount" matInput
+           placeholder="Discount" readonly/>
+  </mat-form-field>
+  <mat-form-field>
+    <input [(ngModel)]="customerDiscount.minimumPurchase" matInput placeholder="Minimum Purchase"
+           readonly/>
+  </mat-form-field>
+  <mat-form-field>
+    <input [(ngModel)]="customerDiscount.description" matInput placeholder="Description"
+           readonly/>
+  </mat-form-field>
+  <mat-form-field>
+    <input [(ngModel)]="customerDiscount.registrationDate" matInput placeholder="Date"
+           readonly/>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-dialog-close mat-raised-button>Close</button>
+</mat-dialog-actions>
