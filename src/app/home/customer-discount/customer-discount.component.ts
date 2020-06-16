@@ -4,6 +4,7 @@ import {CustomerDiscountService} from './customer-discount.service';
 import {MatDialog, MatSnackBar} from '@angular/material';
 import {CustomerDiscountCreationDialogComponent} from './customer-discount-creation-dialog.component';
 import {CancelYesDialogComponent} from '../../core/cancel-yes-dialog.component';
+import {CustomerDiscountDetailDialogComponent} from './customer-discount-detail-dialog.component';
 
 
 @Component({
@@ -38,6 +39,15 @@ export class CustomerDiscountComponent implements OnInit {
     );
   }
 
+  read(customerDiscount: CustomerDiscount) {
+    this.dialog.open(CustomerDiscountDetailDialogComponent, {
+      data: {
+        obj: customerDiscount,
+
+      }
+    });
+  }
+
   create() {
     this.dialog.open(CustomerDiscountCreationDialogComponent, {
         data: {
@@ -49,19 +59,7 @@ export class CustomerDiscountComponent implements OnInit {
         this.customerDiscountService.readAll().subscribe(
           data => this.data = data
         );
-      }
-    );
-  }
-
-  read(customerDiscount: CustomerDiscount) {
-    this.snackBar.open('Minimum purchase is ' + customerDiscount.minimumPurchase);
-  }
-
-  resetSearch() {
-    this.customerDiscount = {
-      id: null, discount: null, minimumPurchase: null,
-      mobile: null, registrationDate: null, description: null
-    };
+      });
   }
 
   update(customerDiscount: CustomerDiscount) {
@@ -84,9 +82,9 @@ export class CustomerDiscountComponent implements OnInit {
       result => {
         if (result) {
           this.customerDiscountService.delete(customerDiscount).subscribe(
-            () => this.snackBar.open('Discount deleted successfully', null, {
-              duration: 2000,
-            })
+            () => this.customerDiscountService.readAll().subscribe(
+              data => this.data = data
+            )
             , () => this.snackBar.open('Something bad happened', null, {
               duration: 2000,
             })

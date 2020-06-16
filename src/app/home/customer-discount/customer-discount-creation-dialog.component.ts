@@ -32,9 +32,7 @@ export class CustomerDiscountCreationDialogComponent {
 
   createDiscount() {
     this.customerDiscountService.create(this.customerDiscount).subscribe(
-      () => {
-        this.dialog.closeAll();
-      }
+      () => this.dialog.closeAll()
       , () => this.snackBar.open('Ups, something bad happened.', null, {
         duration: 2000,
       })
