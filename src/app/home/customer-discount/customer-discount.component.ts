@@ -42,7 +42,7 @@ export class CustomerDiscountComponent implements OnInit {
   read(customerDiscount: CustomerDiscount) {
     this.dialog.open(CustomerDiscountDetailDialogComponent, {
       data: {
-        obj: customerDiscount,
+        obj: customerDiscount
 
       }
     });

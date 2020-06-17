@@ -8,11 +8,15 @@
   </mat-form-field>
   <mat-form-field>
     <input [(ngModel)]="customerDiscount.discount" matInput placeholder="Discount"
-           type="Number">
+           >
   </mat-form-field>
   <mat-form-field>
     <input [(ngModel)]="customerDiscount.minimumPurchase" matInput placeholder="Minimum Purchase"
            type="Number">
+  </mat-form-field>
+  <mat-form-field>
+    <input [(ngModel)]="customerDiscount.description" matInput placeholder="Description"
+           type="String">
   </mat-form-field>
 
 </mat-dialog-content>
