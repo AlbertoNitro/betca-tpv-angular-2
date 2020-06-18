@@ -195,6 +195,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
             this.snackBar.open('Ups, something went wrong', null, {duration: 2000});
           });
   }
+  // Checking functionality
 
   addOffer(offer) {
     // TODO add offer
