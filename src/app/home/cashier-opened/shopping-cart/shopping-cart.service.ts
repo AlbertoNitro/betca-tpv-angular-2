@@ -173,6 +173,7 @@ export class ShoppingCartService {
 
     for (const shopping of this.shoppingCart) {
       shopping.discount = discount;
+      shopping.updateTotal();
     }
     this.synchronizeAll();
   }
