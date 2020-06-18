@@ -7,6 +7,7 @@ import {Shopping} from './shopping.model';
 import {CheckOutDialogComponent} from './check-out-dialog.component';
 import {BudgetDialogComponent} from './budget/budget-dialog.component';
 import {CustomerDiscountService} from '../../customer-discount/customer-discount.service';
+import {error} from 'util';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -185,12 +186,14 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   addDiscount(mobile) {
     this.customerDiscountService.readOne(mobile).subscribe(
       (discountDto) => {
-        this.shoppingCartService.applyCustomerDiscount(discountDto);
-      }
-      , () => {
-        this.snackBar.open('Ups, something went wrong', null, {duration: 2000});
-      }
-    );
+        if (this.totalShoppingCart() >= discountDto.minimumPurchase) {
+          this.snackBar.open('Cart value is very low to discount', null, {duration: 2000});
+        } else {
+          this.shoppingCartService.applyCustomerDiscount(discountDto);
+        }
+      }, () => {
+            this.snackBar.open('Ups, something went wrong', null, {duration: 2000});
+          });
   }
 
   addOffer(offer) {
