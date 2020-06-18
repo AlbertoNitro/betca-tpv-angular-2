@@ -186,7 +186,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   addDiscount(mobile) {
     this.customerDiscountService.readOne(mobile).subscribe(
       (discountDto) => {
-        if (this.totalShoppingCart() >= discountDto.minimumPurchase) {
+        if (this.totalShoppingCart().valueOf() <= discountDto.minimumPurchase.valueOf()) {
           this.snackBar.open('Cart value is very low to discount', null, {duration: 2000});
         } else {
           this.shoppingCartService.applyCustomerDiscount(discountDto);
@@ -207,8 +207,8 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
       } else {
         this.shoppingCartService.applyCustomerPoints(points, mobile);
       }
-    }, error => {
-      this.snackBar.open('Theres no points associate to this mobile', null, {duration: 3000});
+    }, () => {
+      this.snackBar.open('There is no points associate to this mobile', null, {duration: 3000});
     });
   }
 
