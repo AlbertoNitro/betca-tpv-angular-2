@@ -173,11 +173,12 @@ export class ShoppingCartService {
 
     for (const shopping of this.shoppingCart) {
       shopping.discount = discount;
-      shopping.updateTotal();
+      if (this.totalShoppingCart <= shopping.discount) {
+        console.log('Purchase value has to be greater than the actual one');
+      } else {
+        this.synchronizeAll();
+      }
     }
-    this.synchronizeAll();
-
-
   }
 
 
