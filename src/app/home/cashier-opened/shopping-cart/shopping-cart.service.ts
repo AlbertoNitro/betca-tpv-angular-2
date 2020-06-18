@@ -176,6 +176,7 @@ export class ShoppingCartService {
       if (this.totalShoppingCart <= shopping.discount) {
         console.log('Purchase value has to be greater than the actual one');
       } else {
+        console.log('sin cambios');
         this.synchronizeAll();
       }
     }
